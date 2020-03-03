@@ -23,28 +23,28 @@ public class WikiDocsProjectApplication {
 		return args -> {
 			articleRepository.deleteAll();
 			userRepository.deleteAll();
-			User user = new User();
-			Article article = new Article();
+//			User user = new User();
+//			Article article = new Article();
 
-
-			user.builder()
-					.name("Muhammad Sultan")
-					.email("muhammad.sultan96@gmail.com")
-					.role(Role.ADMIN)
-					.build();
-
-			article.builder()
-					.author(user)
-					.name("Article 1")
-					.content(" ")
-					.status(Status.BETA)
-					.editable(true)
-					.build();
-
-			user.builder().article(article).build();
-
-			userRepository.save(user).subscribe(System.out::println);
-			articleRepository.save(article).subscribe(System.out::println);
+//
+//			user.builder()
+//					.name("Muhammad Sultan")
+//					.email("muhammad.sultan96@gmail.com")
+//					.role(Role.ADMIN)
+//					.build();
+//
+//			article.builder()
+//					.author(user)
+//					.name("Article 1")
+//					.content(" ")
+//					.status(Status.BETA)
+//					.editable(true)
+//					.build();
+//
+//			user.builder().article(article).build();
+//
+//			userRepository.save(user).subscribe(System.out::println);
+//			articleRepository.save(article).subscribe(System.out::println);
 
 		};
 	}
