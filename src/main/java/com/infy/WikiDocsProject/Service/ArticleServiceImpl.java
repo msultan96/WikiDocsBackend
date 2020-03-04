@@ -3,6 +3,9 @@ package com.infy.WikiDocsProject.Service;
 import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Repository.ArticleRepository;
 import com.infy.WikiDocsProject.enums.Status;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -18,19 +21,19 @@ public class ArticleServiceImpl implements ArticleService {
 		this.articleRepository = articleRepository;
 	}
 
-	public Flux<Article> getApprovedAndBetaArticles(){
+	public List<Article> getApprovedAndBetaArticles(){
 		return articleRepository.findArticlesByStatusOrStatus(Status.APPROVED, Status.BETA);
 	}
 
-	public Mono<Article> getArticleById(){
+	public Article getArticleById(){
 		return null;
 	}
 
-	public Mono<Article> updateArticleById(){
+	public Article updateArticleById(){
 		return null;
 	}
 
-	public Flux<Article> getAll() {
+	public List<Article> getAll() {
 		return articleRepository.findAll();
 	}
 }

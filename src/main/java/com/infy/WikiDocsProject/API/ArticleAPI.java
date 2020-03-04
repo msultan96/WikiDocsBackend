@@ -3,6 +3,9 @@ package com.infy.WikiDocsProject.API;
 import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Service.ArticleService;
 import com.infy.WikiDocsProject.Service.UserService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -23,13 +26,13 @@ public class ArticleAPI {
 
 	@GetMapping("getApprovedAndBetaArticles")
 	@ResponseBody
-	public Flux<Article> getApprovedAndBetaArticles() {
+	public List<Article> getApprovedAndBetaArticles() {
 
 		return null;
 	}
 
 	@GetMapping("getAll")
-	public Flux<Article> getAll(){
+	public List<Article> getAll(){
 		return articleService.getAll();
 	}
 

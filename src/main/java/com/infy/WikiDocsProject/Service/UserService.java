@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 
 public interface UserService {
 
-	Mono<User> login();
+	User login();
 
-	Mono<Article> createArticle();
+	Article createArticle();
 }

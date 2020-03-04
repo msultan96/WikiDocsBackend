@@ -24,24 +24,24 @@ public class UserAPI {
 
 	@GetMapping("{name}")
 	@ResponseBody
-	public Mono<User> loginUser(@PathVariable String name) {
+	public User loginUser(@PathVariable String name) {
 
 		return null;
 	}
 
-	public Mono<Article> createArticle(){
+	public Article createArticle(){
 		return null;
 	}
 
-	public Mono<Article> readArticle(){
+	public Article readArticle(){
 		return null;
 	}
 
-	public Mono<Article> editArticle(){
+	public Article editArticle(){
 		return null;
 	}
 
-	public Mono<Article> submitArticle(){
+	public Article submitArticle(){
 		return null;
 	}
 

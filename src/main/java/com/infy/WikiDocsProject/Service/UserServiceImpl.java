@@ -17,11 +17,11 @@ public class UserServiceImpl implements UserService {
 		this.userRepository = userRepository;
 	}
 
-	public Mono<User> login(){
+	public User login(){
 		return null;
 	}
 
-	public Mono<Article> createArticle(){
+	public Article createArticle(){
 		Article article;
 		return null;
 	}
