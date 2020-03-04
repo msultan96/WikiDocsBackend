@@ -1,6 +1,7 @@
 package com.infy.WikiDocsProject.Repository;
 
 import com.infy.WikiDocsProject.Model.Article;
+import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.enums.Status;
 
 import java.util.List;
@@ -14,4 +15,7 @@ import reactor.core.publisher.Flux;
 public interface ArticleRepository extends MongoRepository<Article, String> {
 
 	List<Article> findArticlesByStatusOrStatus(Status status1, Status status2);
+	User submitArticle(Article arc);
+	User approveArticle(Article arc);
+	User rejectArticle(Article arc);
 }
