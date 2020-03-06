@@ -1,17 +1,19 @@
 package com.infy.WikiDocsProject.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Model.User;
 
 public interface ArticleService {
 
+	List<Article> getAllArticlesByUser(String name) throws Exception;
 	List<Article> getApprovedAndBetaArticles();
-	Article getArticleByChannelId(String channelId);
+	Article getArticleByChannelId(String channelId) throws Exception;
 
-	void submitArticleForApproval(String channelId);
-	void approveArticle(String channelId);
-	void rejectArticle(String channelId);
+	Article submitArticleForApproval(String channelId) throws Exception;
+	Article approveArticle(String channelId) throws Exception;
+	Article rejectArticle(String channelId) throws Exception;
 
 }

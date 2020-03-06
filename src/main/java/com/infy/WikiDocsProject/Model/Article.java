@@ -1,6 +1,7 @@
 package com.infy.WikiDocsProject.Model;
 
 import com.infy.WikiDocsProject.enums.Status;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,15 +9,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Article {
 
 	@Id
-	private String id;
+	private ObjectId id;
+	private ObjectId userId;
 	private String channelId;
 	private String name;
 	private Status status;
 	private int rejectedCount;
 	private boolean editable;
 
-	public Article(String id, String channelId, String name, Status status, int rejectedCount, boolean editable) {
+	public Article(ObjectId id, ObjectId userId, String channelId, String name, Status status, int rejectedCount, boolean editable) {
 		this.id = id;
+		this.userId = userId;
 		this.channelId = channelId;
 		this.name = name;
 		this.status = status;
@@ -27,12 +30,20 @@ public class Article {
 	public Article(){
 
 	}
-	public String getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(ObjectId id) {
 		this.id = id;
+	}
+
+	public ObjectId getUserId() {
+		return userId;
+	}
+
+	public void setUserId(ObjectId userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {
@@ -73,5 +84,18 @@ public class Article {
 
 	public void setChannelId(String channelId) {
 		this.channelId = channelId;
+	}
+
+	@Override
+	public String toString() {
+		return "Article{" +
+				"id='" + id + '\'' +
+				", userId='" + userId + '\'' +
+				", channelId='" + channelId + '\'' +
+				", name='" + name + '\'' +
+				", status=" + status +
+				", rejectedCount=" + rejectedCount +
+				", editable=" + editable +
+				'}';
 	}
 }
