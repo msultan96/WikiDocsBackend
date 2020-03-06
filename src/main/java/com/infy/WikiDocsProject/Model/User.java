@@ -2,8 +2,11 @@ package com.infy.WikiDocsProject.Model;
 
 import com.infy.WikiDocsProject.enums.Role;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Document
@@ -13,6 +16,7 @@ public class User {
 	private String id;
 	private String email;
 	private String name;
+	@DBRef(db = "article")
 	private List<Article> articles;
 	private Role role;
 
@@ -23,6 +27,8 @@ public class User {
 		this.articles = articles;
 		this.role = role;
 	}
+
+	public User() { }
 
 	public String getId() {
 		return id;

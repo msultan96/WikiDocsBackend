@@ -4,54 +4,35 @@ import com.infy.WikiDocsProject.enums.Status;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
 @Document
 public class Article {
 
 	@Id
 	private String id;
-	private User author;
-	private List<User> currentCollaborators;
+	private String channelId;
 	private String name;
-	private String content;
 	private Status status;
-	private Status[] edits;
+	private int rejectedCount;
 	private boolean editable;
 
-	public Article(String id, User author, List<User> currentCollaborators, String name, String content, Status status, Status[] edits, boolean editable) {
+	public Article(String id, String channelId, String name, Status status, int rejectedCount, boolean editable) {
 		this.id = id;
-		this.author = author;
-		this.currentCollaborators = currentCollaborators;
+		this.channelId = channelId;
 		this.name = name;
-		this.content = content;
 		this.status = status;
-		this.edits = edits;
+		this.rejectedCount = rejectedCount;
 		this.editable = editable;
 	}
 
+	public Article(){
+
+	}
 	public String getId() {
 		return id;
 	}
 
 	public void setId(String id) {
 		this.id = id;
-	}
-
-	public User getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(User author) {
-		this.author = author;
-	}
-
-	public List<User> getCurrentCollaborators() {
-		return currentCollaborators;
-	}
-
-	public void setCurrentCollaborators(List<User> currentCollaborators) {
-		this.currentCollaborators = currentCollaborators;
 	}
 
 	public String getName() {
@@ -62,14 +43,6 @@ public class Article {
 		this.name = name;
 	}
 
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
 	public Status getStatus() {
 		return status;
 	}
@@ -78,12 +51,12 @@ public class Article {
 		this.status = status;
 	}
 
-	public Status[] getEdits() {
-		return edits;
+	public int getRejectedCount() {
+		return rejectedCount;
 	}
 
-	public void setEdits(Status[] edits) {
-		this.edits = edits;
+	public void setRejectedCount(int rejectedCount) {
+		this.rejectedCount = rejectedCount;
 	}
 
 	public boolean isEditable() {
@@ -92,5 +65,13 @@ public class Article {
 
 	public void setEditable(boolean editable) {
 		this.editable = editable;
+	}
+
+	public String getChannelId() {
+		return channelId;
+	}
+
+	public void setChannelId(String channelId) {
+		this.channelId = channelId;
 	}
 }

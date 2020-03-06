@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("article")
@@ -27,13 +26,12 @@ public class ArticleAPI {
 	@GetMapping("getApprovedAndBetaArticles")
 	@ResponseBody
 	public List<Article> getApprovedAndBetaArticles() {
-
-		return null;
+		return articleService.getApprovedAndBetaArticles();
 	}
 
-	@GetMapping("getAll")
-	public List<Article> getAll(){
-		return articleService.getAll();
+	@GetMapping("getAllArticlesByUser/{name}")
+	@ResponseBody
+	public List<Article> getAllArticlesByUser(@PathVariable String name){
+		return userService.getAllArticlesByUser(name);
 	}
-
 }
