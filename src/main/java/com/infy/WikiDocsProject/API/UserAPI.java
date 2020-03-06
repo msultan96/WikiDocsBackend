@@ -39,7 +39,6 @@ public class UserAPI {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
 		}
 		catch(Exception e){
-			System.out.println(environment.getProperty(e.getMessage()));
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, environment.getProperty(e.getMessage()));
 		}
 	}

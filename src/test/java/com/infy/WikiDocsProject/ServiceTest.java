@@ -31,14 +31,14 @@ public class ServiceTest {
 	private UserService userService = new UserServiceImpl(userRepository, articleRepository);
 	
 	@InjectMocks
-	private ArticleService articleService = new ArticleServiceImpl(articleRepository);
+	private ArticleService articleService = new ArticleServiceImpl(userService, articleRepository);
 	
 	@Rule
 	public ExpectedException expectedException = ExpectedException.none();
 
 	
 	@Test
-	public void findUserByNameInvalid() {
+	public void findUserByNameInvalid() throws Exception {
 		String name = "da@#$";
 		Mockito.when(userRepository.findUserByName(Mockito.anyString())).thenReturn(null);
 		expectedException.expect(Exception.class);
@@ -47,7 +47,7 @@ public class ServiceTest {
 		
 	}
 	@Test
-	public void createArticleByUserInvalid() {
+	public void createArticleByUserInvalid() throws Exception {
 		String name = "Tom";
 		String channelId = "123423#";
 		Mockito.when(userRepository.findUserByName(Mockito.anyString())).thenReturn(null);
@@ -58,7 +58,7 @@ public class ServiceTest {
 	}
 	
 	@Test
-	public void getArticleByChannelIdInvalid() {
+	public void getArticleByChannelIdInvalid() throws Exception {
 		String channelId = "123423#";
 		Mockito.when(articleRepository.findArticleByChannelId(Mockito.anyString())).thenReturn(null);
 		expectedException.expect(Exception.class);
@@ -67,7 +67,7 @@ public class ServiceTest {
 	}
 	
 	@Test
-	public void submitArticleForApproval() {
+	public void submitArticleForApproval() throws Exception {
 		String channelId = "123$%$";
 		Mockito.when(articleRepository.findArticleByChannelId(Mockito.anyString())).thenReturn(null);
 		expectedException.expect(Exception.class);
@@ -76,7 +76,7 @@ public class ServiceTest {
 	}
 	
 	@Test
-	public void approveArticleInvalid() {
+	public void approveArticleInvalid() throws Exception{
 		String channelId = "123$*%";
 		Mockito.when(articleRepository.findArticleByChannelId(Mockito.anyString())).thenReturn(null);
 		expectedException.expect(Exception.class);
@@ -85,19 +85,11 @@ public class ServiceTest {
 	}
 	
 	@Test
-	public void rejectArticleInvalid(){
+	public void rejectArticleInvalid()throws Exception{
 		String channelId = "34536$*%";
 		Mockito.when(articleRepository.findArticleByChannelId(Mockito.anyString())).thenReturn(null);
 		expectedException.expect(Exception.class);
 		expectedException.expectMessage("");
 		articleService.rejectArticle(channelId);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }
