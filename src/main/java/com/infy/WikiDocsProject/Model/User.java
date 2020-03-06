@@ -1,26 +1,24 @@
 package com.infy.WikiDocsProject.Model;
 
 import com.infy.WikiDocsProject.enums.Role;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Document
 public class User {
 
 	@Id
-	private String id;
+	private ObjectId id;
 	private String email;
 	private String name;
 	@DBRef(db = "article")
 	private List<Article> articles;
 	private Role role;
 
-	public User(String id, String email, String name, List<Article> articles, Role role) {
+	public User(ObjectId id, String email, String name, List<Article> articles, Role role) {
 		this.id = id;
 		this.email = email;
 		this.name = name;
@@ -30,11 +28,11 @@ public class User {
 
 	public User() { }
 
-	public String getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 
@@ -68,5 +66,16 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"id='" + id + '\'' +
+				", email='" + email + '\'' +
+				", name='" + name + '\'' +
+				", articles=" + articles +
+				", role=" + role +
+				'}';
 	}
 }

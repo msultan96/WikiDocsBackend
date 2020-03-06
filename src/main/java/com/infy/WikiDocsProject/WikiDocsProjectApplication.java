@@ -10,11 +10,13 @@ import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,6 +24,7 @@ import java.util.List;
 
 
 @SpringBootApplication
+@PropertySource(value={"classpath:messages.properties"})
 public class WikiDocsProjectApplication {
 
 	@Autowired
@@ -41,25 +44,36 @@ public class WikiDocsProjectApplication {
 			userRepository.deleteAll();
 
 			User user = new User();
-			Article article = new Article();
+			Article article1 = new Article();
+			Article article2 = new Article();
 			List<Article> articles = new ArrayList<>();
 
+			user.setId(new ObjectId());
 			user.setName("Muhammad Sultan");
 			user.setEmail("muhammad.sultan96@gmail.com");
 			user.setArticles(Collections.emptyList());
 			user.setRole(Role.USER);
 
-			article.setEditable(true);
-			article.setName("No name");
-			article.setStatus(Status.BETA);
+			article1.setId(new ObjectId());
+			article1.setUserId(user.getId());
+			article1.setEditable(true);
+			article1.setName("Article 1");
+			article1.setStatus(Status.BETA);
 
-			articles.add(article);
+			article2.setId(new ObjectId());
+			article2.setUserId(user.getId());
+			article2.setEditable(true);
+			article2.setName("Article 2");
+			article2.setStatus(Status.BETA);
+
+			articles.add(article1);
+			articles.add(article2);
 
 			user.setArticles(articles);
 
-			articleRepository.insert(article);
+			articleRepository.insert(article1);
+			articleRepository.insert(article2);
 			userRepository.insert(user);
-
 		};
 	}
 }

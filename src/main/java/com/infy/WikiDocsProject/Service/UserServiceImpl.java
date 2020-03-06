@@ -6,13 +6,12 @@ import com.infy.WikiDocsProject.Repository.ArticleRepository;
 import com.infy.WikiDocsProject.Repository.UserRepository;
 
 import com.infy.WikiDocsProject.enums.Status;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.query.BasicQuery;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service(value="userService")
 public class UserServiceImpl implements UserService {
@@ -27,29 +26,39 @@ public class UserServiceImpl implements UserService {
 		this.articleRepository = articleRepository;
 	}
 
-	public User findUserByName(String name){
-		return userRepository.findUserByName(name);
+	public User findUserByName(String name) throws Exception{
+		Optional<User> optionalUser = userRepository.findUserByName(name);
+		if(optionalUser.isPresent()){
+			return optionalUser.get();
+		}
+		else{
+			throw new Exception("UserService.NO_USER_FOUND_WITH_NAME");
+		}
 	}
 	
-	public void createArticleByUser(String name, String channelId){
-		Article article = new Article();
-		User user = findUserByName(name);
+	public Article createArticleByUser(String name, String channelId) throws Exception{
+		User user;
+		List<Article> articles = null;
+		Article newArticle = new Article();
 
-		// change to get article by user from database
-		List<Article> articleList = user.getArticles();
+		try{
+			user = findUserByName(name);
+		}
+		catch(Exception e){
+			throw new Exception("UserService.NO_USER_FOUND_WITH_NAME");
+		}
 
-		article.setStatus(Status.INITIAL);
-		article.setChannelId(channelId);
-		articleList.add(article);
+		articles = articleRepository.findAllArticlesByUserId(user.getId());
 
-		user.setArticles(articleList);
+		newArticle.setId(new ObjectId());
+		newArticle.setUserId(user.getId());
+		newArticle.setStatus(Status.INITIAL);
+		newArticle.setChannelId(channelId);
+		articles.add(newArticle);
 
-		articleRepository.save(article);
+		user.setArticles(articles);
+		articleRepository.save(newArticle);
 		userRepository.save(user);
-	}
-
-	public List<Article> getAllArticlesByUser(String name){
-//		return userRepository.getArticlesByUser();
-		return null;
+		return newArticle;
 	}
 }
