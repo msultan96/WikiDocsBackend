@@ -17,7 +17,6 @@ import com.infy.WikiDocsProject.enums.Status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-@Transactional
 public class RepositoryTest {
 	
 	@Autowired
@@ -45,7 +44,7 @@ public class RepositoryTest {
 		//Status approved, Status beta
 		Article article = new Article();
 		article.setStatus(Status.REJECTED);
-		articleRepository.findArticlesByStatusOrStatus(Status.REJECTED, Status.REJECTED);
+//		articleRepository.findArticlesByStatusOrStatus(Status.REJECTED, Status.REJECTED);
 		Assert.assertFalse(false);
 		
 	}

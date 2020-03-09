@@ -15,5 +15,5 @@ public interface ArticleRepository extends MongoRepository<Article, String> {
 
 	Optional<Article> findArticleByChannelId(String channelId);
 	List<Article> findAllArticlesByUserId(ObjectId userId);
-	List<Article> findArticlesByStatusOrStatus(Status approved, Status beta);
+	List<Article> findArticlesByStatus(Status status);
 }

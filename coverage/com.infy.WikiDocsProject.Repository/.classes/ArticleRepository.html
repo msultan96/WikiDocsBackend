@@ -1,0 +1,75 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ArticleRepository</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.infy.WikiDocsProject.Repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ArticleRepository (com.infy.WikiDocsProject.Repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">ArticleRepository$MockitoMock$522525751</td>
+  </tr>
+  <tr>
+    <td class="name">ArticleRepository$MockitoMock$522525751$auxiliary$StBE37Ry</td>
+  </tr>
+  <tr>
+    <td class="name">ArticleRepository$MockitoMock$522525751$auxiliary$y0CXZR3g</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.infy.WikiDocsProject.Repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.infy.WikiDocsProject.Model.Article;
+<i>4</i>&nbsp;import com.infy.WikiDocsProject.enums.Status;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.util.List;
+<i>7</i>&nbsp;import java.util.Optional;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import org.bson.types.ObjectId;
+<i>10</i>&nbsp;import org.springframework.data.mongodb.repository.MongoRepository;
+<i>11</i>&nbsp;import org.springframework.stereotype.Repository;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;@Repository
+<i>14</i>&nbsp;public interface ArticleRepository extends MongoRepository&lt;Article, String&gt; {
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;	Optional&lt;Article&gt; findArticleByChannelId(String channelId);
+<i>17</i>&nbsp;	List&lt;Article&gt; findAllArticlesByUserId(ObjectId userId);
+<i>18</i>&nbsp;	List&lt;Article&gt; findArticlesByStatus(Status status);
+<i>19</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-03-09 00:18</div>
+</div>
+</body>
+</html>

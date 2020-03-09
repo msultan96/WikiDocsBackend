@@ -9,10 +9,11 @@ import com.infy.WikiDocsProject.Model.User;
 public interface ArticleService {
 
 	List<Article> getAllArticlesByUser(String name) throws Exception;
-	List<Article> getApprovedAndBetaArticles();
+	List<Article> getApprovedArticles();
+	List<Article> getBetaArticles();
 	Article getArticleByChannelId(String channelId) throws Exception;
 
-	Article submitArticleForApproval(String channelId) throws Exception;
+	Article submitArticle(String channelId) throws Exception;
 	Article approveArticle(String channelId) throws Exception;
 	Article rejectArticle(String channelId) throws Exception;
 

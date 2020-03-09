@@ -1,5 +1,6 @@
 package com.infy.WikiDocsProject.Service;
 
+import com.infy.WikiDocsProject.Exception.*;
 import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.Repository.ArticleRepository;
@@ -27,17 +28,21 @@ public class ArticleServiceImpl implements ArticleService {
 		User user;
 		try{
 			user = userService.findUserByName(name);
+			List<Article> articles = articleRepository.findAllArticlesByUserId(user.getId());
+			return articles;
 		}
-		catch(Exception e){
-			throw new Exception(e.getMessage());
+		catch(UserNotFoundException e){
+			throw new UserNotFoundException();
 		}
+	}
 
-		List<Article> articles = articleRepository.findAllArticlesByUserId(user.getId());
+	public List<Article> getApprovedArticles(){
+		List<Article> articles = articleRepository.findArticlesByStatus(Status.APPROVED);
 		return articles;
 	}
 
-	public List<Article> getApprovedAndBetaArticles(){
-		List<Article> articles = articleRepository.findArticlesByStatusOrStatus(Status.APPROVED, Status.BETA);
+	public List<Article> getBetaArticles(){
+		List<Article> articles = articleRepository.findArticlesByStatus(Status.BETA);
 		return articles;
 	}
 
@@ -47,51 +52,90 @@ public class ArticleServiceImpl implements ArticleService {
 			return optionalArticle.get();
 		}
 		else{
-			throw new Exception("ArticleService.INVALID_CHANNEL_ID");
+			throw new ArticleNotFoundException();
 		}
 	}
 
-	public Article submitArticleForApproval(String channelId) throws Exception{
+	public Article submitArticle(String channelId) throws Exception{
 		Optional<Article> optionalArticle = articleRepository.findArticleByChannelId(channelId);
 		if(optionalArticle.isPresent()){
 			Article article = optionalArticle.get();
-			article.setStatus(Status.BETA);
-			/*
-			TODO: Send an email to Administrator
-			 */
-			articleRepository.save(article);
-			return article;
+			if(article.getStatus() == Status.INITIAL
+					|| article.getStatus() == Status.BETA
+					|| article.getStatus() == Status.REJECTED) {
+
+				article.setStatus(Status.BETA);
+				/*
+				TODO: Send an email to Administrator
+				 */
+				articleRepository.save(article);
+				return article;
+			}
+
+			if(article.getStatus() == Status.DISCARDED){
+				throw new SubmittingArticleIsDiscardedException();
+			}
+			if(article.getStatus() == Status.APPROVED) {
+				throw new SubmittingArticleIsApprovedException();
+			}
 		}
-		else{
-			throw new Exception("ArticleService.INVALID_CHANNEL_ID_SUBMISSION");
-		}
+		throw new ArticleNotFoundException();
 	}
 
 	public Article approveArticle(String channelId) throws Exception{
 		Optional<Article> optionalArticle = articleRepository.findArticleByChannelId(channelId);
 		if(optionalArticle.isPresent()) {
 			Article article = optionalArticle.get();
-			article.setStatus(Status.APPROVED);
-			articleRepository.save(article);
-			return article;
+
+			if(article.getStatus() == Status.BETA){
+				article.setStatus(Status.APPROVED);
+				articleRepository.save(article);
+				return article;
+			}
+
+			if(article.getStatus() == Status.REJECTED){
+				throw new ApprovingArticleIsStillRejectedException();
+			}
+
+			if(article.getStatus() == Status.INITIAL){
+				throw new ApprovingArticleIsInitialException();
+			}
+			if(article.getStatus() == Status.APPROVED){
+				throw new ApprovingArticleIsApprovedException();
+			}
+			if(article.getStatus() == Status.DISCARDED){
+				throw new ApprovingArticleIsDiscardedException();
+			}
 		}
-		else{
-			throw new Exception("ArticleService.INVALID_CHANNEL_ID_APPROVAL");
-		}
+		throw new ArticleNotFoundException();
 	}
 
 	public Article rejectArticle(String channelId) throws Exception{
 		Optional<Article> optionalArticle = articleRepository.findArticleByChannelId(channelId);
 		if(optionalArticle.isPresent()) {
 			Article article = optionalArticle.get();
-			article.setStatus(Status.REJECTED);
-			article.setRejectedCount(article.getRejectedCount() + 1);
-			if (article.getRejectedCount() > 3) article.setStatus(Status.DISCARDED);
-			articleRepository.save(article);
-			return article;
+
+			if(article.getStatus() == Status.BETA){
+				article.setStatus(Status.REJECTED);
+				article.setRejectedCount(article.getRejectedCount() + 1);
+				if (article.getRejectedCount() > 3) article.setStatus(Status.DISCARDED);
+				articleRepository.save(article);
+				return article;
+			}
+
+			if(article.getStatus() == Status.INITIAL){
+				throw new RejectingArticleIsInitialException();
+			}
+			if(article.getStatus() == Status.APPROVED){
+				throw new RejectingArticleIsApprovedException();
+			}
+			if(article.getStatus() == Status.REJECTED){
+				throw new RejectingArticleIsStillRejectedException();
+			}
+			if(article.getStatus() == Status.DISCARDED){
+				throw new RejectingArticleIsDiscardedException();
+			}
 		}
-		else{
-			throw new Exception("ArticleService.INVALID_CHANNEL_ID_REJECTED");
-		}
+		throw new ArticleNotFoundException();
 	}
 }

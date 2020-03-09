@@ -35,16 +35,22 @@ public class ArticleAPI {
 		}
 	}
 
-	@GetMapping("getApprovedAndBetaArticles")
-	public ResponseEntity<List<Article>> getApprovedAndBetaArticles(){
-		List<Article> articles = articleService.getApprovedAndBetaArticles();
-		return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);
+	@GetMapping("getApprovedArticles")
+	public ResponseEntity<List<Article>> getApprovedArticles(){
+		List<Article> approvedArticles = articleService.getApprovedArticles();
+		return new ResponseEntity<List<Article>>(approvedArticles, HttpStatus.OK);
+	}
+
+	@GetMapping("getBetarticles")
+	public ResponseEntity<List<Article>> getBetaArticles(){
+		List<Article> betaArticles = articleService.getBetaArticles();
+		return new ResponseEntity<List<Article>>(betaArticles, HttpStatus.OK);
 	}
 
 	@PostMapping("submitArticleForApproval/{channelId}")
 	public ResponseEntity<Article> submitArticleForApproval(@PathVariable String channelId) throws Exception{
 		try{
-			Article article = articleService.submitArticleForApproval(channelId);
+			Article article = articleService.submitArticle(channelId);
 			return new ResponseEntity<Article>(article, HttpStatus.OK);
 		}
 		catch(Exception e){
