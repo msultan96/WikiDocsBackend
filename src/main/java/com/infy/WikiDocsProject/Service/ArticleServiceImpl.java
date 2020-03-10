@@ -20,12 +20,11 @@ import org.springframework.stereotype.Service;
 @Service(value="articleService")
 public class ArticleServiceImpl implements ArticleService {
 
-	// Objects declarations
 	private final UserService userService;
 	private final ArticleRepository articleRepository;
 
 	/**
-	 * Constructor
+	 * Constructor using constructor injection
 	 * @param userService
 	 * @param articleRepository
 	 */
@@ -37,36 +36,98 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * @name getAllArticlesByUser
-	 * @Desciption Get all article by user's name
-	 * @param name
+	 * @name getAllArticlesByEmail
+	 * @Desciption Get all article by user's email
+	 * @param email
 	 * @return List of articles
 	 */
-	public List<Article> getAllArticlesByUser(String name) throws Exception{
+	public List<Article> getAllArticlesByEmail(String email) throws Exception{
 		// User object declared
 		User user;
 		try{
-			// called findUserByName() from userService class to find user of given name
+			// called findUserByEmail() from userService class to find user of given name
 			// receive back a user object
-			user = userService.findUserByName(name);
-			// called findAllArticleByUserId() from articleRepository class to find all articles of given userId
-			// receive back a list of articles
-			List<Article> articles = articleRepository.findAllArticlesByUserId(user.getId());
+			user = userService.findUserByEmail(email);
+			// called findAllArticleByEmailId() from articleRepository class to
+			//		find all articles of given user by email
+			// 		and receive back a list of articles
+			List<Article> articles = articleRepository.findAllArticlesByEmailId(email);
 			// return list of article
 			return articles;
 		}
 		catch(UserNotFoundException e){
-			// throw not found exception if article or user is not found
+			// throw not found exception if user is not found
 			throw new UserNotFoundException();
 		}
 	}
 
 	/**
-	 * @name: getApprovedArticles
-	 * @Desciption Get all approved articles
+	 * @name: getAllApprovedArticlesByEmail
+	 * @Desciption Get all approved articles a user has
 	 * @return List of articles
 	 */
-	public List<Article> getApprovedArticles(){
+	public List<Article> getAllApprovedArticlesByEmail(String email) throws Exception{
+        User user;
+        try{
+            user = userService.findUserByEmail(email);
+            List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.APPROVED);
+            return articles;
+        }
+        catch(UserNotFoundException e){
+            throw new UserNotFoundException();
+        }
+    }
+
+    public List<Article> getAllBetaArticlesByEmail(String email) throws Exception {
+        User user;
+        try {
+            user = userService.findUserByEmail(email);
+            List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.BETA);
+            return articles;
+        } catch (UserNotFoundException e) {
+            throw new UserNotFoundException();
+        }
+    }
+
+    public List<Article> getAllInitialArticlesByEmail(String email) throws Exception {
+        User user;
+        try {
+            user = userService.findUserByEmail(email);
+            List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.INITIAL);
+            return articles;
+        } catch (UserNotFoundException e) {
+            throw new UserNotFoundException();
+        }
+    }
+
+    public List<Article> getAllRejectedArticlesByEmail(String email) throws Exception{
+        User user;
+        try {
+            user = userService.findUserByEmail(email);
+            List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.REJECTED);
+            return articles;
+        } catch (UserNotFoundException e) {
+            throw new UserNotFoundException();
+        }
+    }
+
+    public List<Article> getAllDiscardedArticlesByEmail(String email) throws Exception{
+        User user;
+        try {
+            user = userService.findUserByEmail(email);
+            List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.DISCARDED);
+            return articles;
+        } catch (UserNotFoundException e) {
+            throw new UserNotFoundException();
+        }
+    }
+
+		/**
+		 * @name: getApprovedArticles
+		 * @Desciption Get all approved articles across all users
+		 * @return List of articles
+		 */
+		public List<Article> getApprovedArticles(){
 		// called findArticlesByStatus() from articleRepository class to find article of given status APPROVED
 		// receive back a list of articles
 		List<Article> articles = articleRepository.findArticlesByStatus(Status.APPROVED);
@@ -75,7 +136,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 	/**
 	 * @name: getBetaArticles
-	 * @Desciption Get all beta articles
+	 * @Desciption Get all beta articles across all users
 	 * @return List of articles
 	 */
 	public List<Article> getBetaArticles(){
@@ -87,7 +148,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 	/**
 	 * @name: getArticleByChannelId
-	 * @Desciption Get all articles of given channelId
+	 * @Desciption Retrieve an article with a specific channelId
 	 * @param channelId
 	 * @return article object
 	 */	
@@ -127,9 +188,9 @@ public class ArticleServiceImpl implements ArticleService {
 				/*
 				TODO: Send an email to Administrator
 				 */
-				// Save article from articleRepository to database
+				// Save article to database
 				articleRepository.save(article);
-				// return article object
+				// return the article object
 				return article;
 			}
 			// If article's status is DISCARDED throw exception
@@ -164,7 +225,7 @@ public class ArticleServiceImpl implements ArticleService {
 			if(article.getStatus() == Status.BETA){
 				// then set article status to APPROVED
 				article.setStatus(Status.APPROVED);
-				// Save article from articleRepository to database
+				// Save article to database
 				articleRepository.save(article);
 				// return article object
 				return article;
@@ -217,7 +278,7 @@ public class ArticleServiceImpl implements ArticleService {
 				article.setRejectedCount(article.getRejectedCount() + 1);
 				// If article's rejected count greater than 3, article status is set DISCARDED
 				if (article.getRejectedCount() > 3) article.setStatus(Status.DISCARDED);
-				// Save article from articleRepository to database
+				// Save article to database
 				articleRepository.save(article);
 				// return article object
 				return article;

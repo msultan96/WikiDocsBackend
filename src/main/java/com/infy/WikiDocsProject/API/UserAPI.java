@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -20,45 +21,47 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("UserAPI")
 @CrossOrigin
 public class UserAPI {
 
-	// Objects declaration
 	private final UserService userService;
 	private final ArticleService articleService;
+	private final PasswordEncoder passwordEncoder;
 	private final Environment environment;
 
-	// Contructor with Autowired objects assigned
+	/**
+	 * Constructor using constructor injection
+	 */
 	@Autowired
-	public UserAPI(UserService userService, ArticleService articleService, Environment environment) {
-		// Autowired objects assigned to local objects
+	public UserAPI(UserService userService, ArticleService articleService, PasswordEncoder passwordEncoder, Environment environment) {
 		this.userService = userService;
 		this.articleService = articleService;
+		this.passwordEncoder = passwordEncoder;
 		this.environment = environment;
 	}
 
 	/**
-	 * Method name: loginUser
-	 * @param name
-	 * @return user object
+	 * Method name: login
+	 * @param user object sent from frontend
+	 * @return user object with updated information
 	 * @throws Exception
 	 */
-	
-	// @GetMapping to retrieve info
-	// "login/{name}" - URL link to this particular method.
-	@GetMapping("login/{name}")
-	public ResponseEntity<User> loginUser(@PathVariable String name) throws Exception{
+	// @PostMapping to expose endpoint
+	// and to send/retrieve information securely
+	@PostMapping("login")
+	public ResponseEntity<User> loginUser(@RequestBody User user) throws Exception{
 		try{
-			// Called findUserByName() from userService classs to find user with that "name"
-			User user = userService.findUserByName(name);
-			// Called getAllArticleByUser() from articleService class to find all articles of user by at name has
-			// Receive back a list of articles
-			List<Article> articleList = articleService.getAllArticlesByUser(name);
+			// Called findUserByEmail() from userService class to find user
+			//  with given email and provided password
+			System.out.println(user.getPassword());
+			User returnedUser = userService.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
+			// Called getAllArticleByUser() from articleService class to find all articles of user by the email
+			List<Article> articleList = articleService.getAllArticlesByEmail(returnedUser.getEmail());
 			// Set user's articles with list of articles from above.
 			user.setArticles(articleList);
 			// return user object
-			return new ResponseEntity<User>(user, HttpStatus.OK);
+			return new ResponseEntity<User>(returnedUser, HttpStatus.OK);
 		}
 		catch(Exception e){
 			// throw exception of user with that name is not found
@@ -67,21 +70,18 @@ public class UserAPI {
 		}
 	}
 
-	
 	/**
 	 * Method name: getUsersArticles
-	 * @param name
+	 * @param email
 	 * @return List of articles
 	 * @throws Exception
 	 */
-	// @GetMapping to retrieve info
-	// "getUsersArticles/{name}" - URL link to this particular method.
-	@GetMapping("getUsersArticles/{name}")
-	public ResponseEntity<List<Article>> getUsersArticles(@PathVariable String name) throws Exception{
+	// @GetMapping to expose API endpoint
+	@GetMapping("getUsersArticles/{email:.+}")
+	public ResponseEntity<List<Article>> getUsersArticles(@PathVariable String email) throws Exception{
 		try{
 			// Called getAllArticleByUser() from articleService class to find all article of user by that "name"
-			// Receive a  list of articles as result
-			List<Article> articles = articleService.getAllArticlesByUser(name);
+			List<Article> articles = articleService.getAllArticlesByEmail(email);
 			// Return list of articles
 			return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);
 		}
@@ -90,25 +90,21 @@ public class UserAPI {
 			// find exception message from environmnet.getProperty().
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, environment.getProperty(e.getMessage()));
 		}
-
 	}
 
 	/**
 	 * Method name: createNewArticle
-	 * @param name
+	 * @param email
 	 * @param channelId
 	 * @return
 	 * @throws Exception
 	 */
-	// @PostMapping post up info
-	// "createNewArticle/{name}/{channelId}" - URL link to this particular method.
-	@PostMapping("createNewArticle/{name}/{channelId}")
-	public ResponseEntity<Article> createNewArticle(@PathVariable String name, @PathVariable String channelId) throws Exception {
+	// @GetMapping to expose API endpoint
+	@PostMapping("createNewArticle/{email}/{channelId}")
+	public ResponseEntity<Article> createNewArticle(@PathVariable String email, @PathVariable String channelId) throws Exception {
 		try{
 			// Called createArticleByUser() from userService class to create a new article with name and channelId
-			// Receive back an article object
-			Article article = userService.createArticleByUser(name, channelId);
-			// Return previous article object
+			Article article = userService.createArticleByEmail(email, channelId);
 			return new ResponseEntity<Article>(article, HttpStatus.OK);
 		}
 		catch(Exception e){

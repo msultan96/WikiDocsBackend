@@ -1,10 +1,9 @@
 package com.infy.WikiDocsProject.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.infy.WikiDocsProject.Model.Article;
-import com.infy.WikiDocsProject.Model.User;
+
 /**
  * Article Service Class 
  * Headers
@@ -12,10 +11,18 @@ import com.infy.WikiDocsProject.Model.User;
 public interface ArticleService {
 	
 	//Method declarations
-	List<Article> getAllArticlesByUser(String name) throws Exception;
+
+	List<Article> getAllArticlesByEmail(String email) throws Exception;
+	List<Article> getAllApprovedArticlesByEmail(String email) throws Exception;
+	List<Article> getAllBetaArticlesByEmail(String email) throws Exception;
+	List<Article> getAllInitialArticlesByEmail(String email) throws Exception;
+	List<Article> getAllRejectedArticlesByEmail(String email) throws Exception;
+	List<Article> getAllDiscardedArticlesByEmail(String email) throws Exception;
+
+	Article getArticleByChannelId(String channelId) throws Exception;
+
 	List<Article> getApprovedArticles();
 	List<Article> getBetaArticles();
-	Article getArticleByChannelId(String channelId) throws Exception;
 
 	Article submitArticle(String channelId) throws Exception;
 	Article approveArticle(String channelId) throws Exception;

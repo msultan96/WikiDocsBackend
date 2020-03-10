@@ -18,26 +18,14 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ArticleRepository extends MongoRepository<Article, String> {
-	
-	/**
-	 * @name findArticleByChannelId
-	 * @Desciption Retrieve an article of given channelId
-	 * @param channelId
-	 * @return an article object
-	 */
+
 	Optional<Article> findArticleByChannelId(String channelId);
-	/**
-	 * @name findAllArticlesByUserId
-	 * @Desciption Retrieve all articles of given userId
-	 * @param userId
-	 * @return list of article
-	 */
-	List<Article> findAllArticlesByUserId(ObjectId userId);
-	/**
-	 * @name findArticlesByStatus
-	 * @Desciption Retrieve all articles of given status
-	 * @param status
-	 * @return list of article
-	 */
+
+//	List<Article> findAllArticlesByUserId(ObjectId userId);
+
 	List<Article> findArticlesByStatus(Status status);
+
+	List<Article> findAllArticlesByEmailId(String email);
+
+	List<Article> findAllArticlesByEmailIdAndStatus(String email, Status approved);
 }

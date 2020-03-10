@@ -9,7 +9,10 @@ import com.infy.WikiDocsProject.Model.User;
  *
  */
 public interface UserService {
-	//Method declarations
-	User findUserByName(String name) throws Exception;
-	Article createArticleByUser(String name, String channelId) throws Exception;
+
+	User findUserByEmail(String email) throws Exception;
+	User findUserByEmailAndPassword(String email, String encode) throws Exception;
+
+	Article createArticleByEmail(String email, String channelId) throws Exception;//Fix
+
 }
