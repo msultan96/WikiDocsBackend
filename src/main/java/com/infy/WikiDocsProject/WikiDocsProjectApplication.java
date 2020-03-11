@@ -71,7 +71,9 @@ public class WikiDocsProjectApplication {
 
 				List<Article> articles = new ArrayList<>();
 				Article article;
+				Role role = baseProducer.randomElement(Role.class);
 				for(int j=0; j<50; j++){
+					if(role == Role.ADMIN) break;
 					article = new ArticleBuilder()
 							.id(new ObjectId())
 							.emailId(person.getEmail())
@@ -95,7 +97,7 @@ public class WikiDocsProjectApplication {
 						.email(person.getEmail())
 						.name(person.getFullName())
 						.password(bCryptPasswordEncoder.encode(person.getPassword()))
-						.role(baseProducer.randomElement(Role.class))
+						.role(role)
 						.articles(articles)
 						.build();
 				userRepository.insert(user);

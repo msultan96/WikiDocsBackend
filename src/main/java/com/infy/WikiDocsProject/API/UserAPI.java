@@ -90,26 +90,4 @@ public class UserAPI {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, environment.getProperty(e.getMessage()));
 		}
 	}
-
-	/**
-	 * Method name: createNewArticle
-	 * @param map
-	 * @return
-	 * @throws Exception
-	 */
-	// @GetMapping to expose API endpoint
-	@PostMapping("createNewArticle")
-	public ResponseEntity<Article> createNewArticle(@RequestBody Map<String, String> map) throws Exception {
-		try{
-
-			// Called createArticleByUser() from userService class to create a new article with name and channelId
-			Article article = userService.createArticleByEmail(map.get("email"), map.get("channelId"));
-			return new ResponseEntity<Article>(article, HttpStatus.OK);
-		}
-		catch(Exception e){
-			// throw exception of user with that name is not found
-			// find exception message from environmnet.getProperty().
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, environment.getProperty(e.getMessage()));
-		}
-	}
 }

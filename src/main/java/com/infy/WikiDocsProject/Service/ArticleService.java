@@ -12,6 +12,8 @@ public interface ArticleService {
 	
 	//Method declarations
 
+	Article createArticleByEmail(String email, String channelId) throws Exception;
+
 	List<Article> getAllArticlesByEmailId(String email) throws Exception;
 	List<Article> getAllApprovedArticlesByEmailId(String email) throws Exception;
 	List<Article> getAllBetaArticlesByEmailId(String email) throws Exception;

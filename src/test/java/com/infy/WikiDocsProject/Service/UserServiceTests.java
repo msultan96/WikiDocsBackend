@@ -1,5 +1,6 @@
 package com.infy.WikiDocsProject.Service;
 
+import com.infy.WikiDocsProject.Exception.PasswordIncorrectException;
 import com.infy.WikiDocsProject.Exception.UserNotFoundException;
 import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Model.User;
@@ -17,7 +18,10 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +43,8 @@ public class UserServiceTests {
 
     @Mock
     ArticleRepository articleRepository;
+    @Mock
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     // Inject mock services
     @InjectMocks
@@ -57,12 +63,7 @@ public class UserServiceTests {
     public void testFindUserByEmail() throws Exception {
         // Generate expectedUser using UserBuilder()
         Optional<User> expectedUser = Optional.of(new UserBuilder()
-                // attribute set
-                .id(new ObjectId())
-                .name("John")
                 .email("John@gmail.com")
-                .articles(new ArrayList<>())
-                .role(Role.USER)
                 .build());
 
         // when findUserByEmail() is called with any string param form userRepository
@@ -94,75 +95,50 @@ public class UserServiceTests {
                 .thenReturn(expectedUser);
 
         // actual call to findUserByEmail() with "noUser@gmail.com" param
-        userService.findUserByEmail("noUser@gmail.com");
+        userService.findUserByEmail("john@gmail.com");
     }
 
-    /**
-     * @Test
-     * @Name testCreateArticleByEmail
-     * @Desciption Test create article by Email to be valid
-     * @throws Exception
-     */
     @Test
-    public void testCreateArticleByEmail() throws Exception {
-        // Generate expectedUser using UserBuilder()
+    public void findUserByEmailAndPassword() throws Exception {
         Optional<User> expectedUser = Optional.of(new UserBuilder()
-                // attribute set
-                .id(new ObjectId())
-                .name("John")
                 .email("John@gmail.com")
-                .articles(new ArrayList<>())
-                .role(Role.USER)
+                .password("$2a$10$TefPIRcSjTwrUVuNCbBik.L9khixW3zjr0lbF7J5tekMMg9ISrP1C")
                 .build());
 
-        // Generate expectedArticle using ArticleBuilder()
-        Article expectedArticle = new ArticleBuilder()
-                // attribute set
-                .id(new ObjectId())
-                .emailId(expectedUser.get().getEmail())
-                .status(Status.INITIAL)
-                .channelId("testArticle")
-                .editable(true)
-                .build();
-
-        // when findUserByEmail() is called with any string param
-        // then return expectedUser
         when(userRepository.findUserByEmail(anyString()))
                 .thenReturn(expectedUser);
 
-        // actual call to createArticleByEmail with "John@gmail.com","testArticle" params
-        Article actualArticle = userService.createArticleByEmail("John@gmail.com","testArticle");
+        when(bCryptPasswordEncoder.matches(anyString(), anyString()))
+                .thenReturn(true);
 
-        // compare expectedArticle.getEmailId() and actualArticle.getEmailId()
-        assertEquals(expectedArticle.getEmailId(), actualArticle.getEmailId());
-        // compare expectedArticle.getName() and actualArticle.getName()
-        assertEquals(expectedArticle.getName(), actualArticle.getName());
-        // compare expectedArticle.getContent() and actualArticle.getContent()
-        assertEquals(expectedArticle.getContent(), actualArticle.getContent());
-        // compare expectedArticle.getStatus(), actualArticle.getStatus()
-        assertEquals(expectedArticle.getStatus(), actualArticle.getStatus());
-        // compare expectedArticle.getChannelId(), actualArticle.getChannelId()
-        assertEquals(expectedArticle.getChannelId(), actualArticle.getChannelId());
-        // compare expectedArticle.isEditable(), actualArticle.isEditable()
-        assertEquals(expectedArticle.isEditable(), actualArticle.isEditable());
+        User actualUser = userService.findUserByEmailAndPassword("John@gmail.com", "johnsPassword");
 
+        assertEquals(expectedUser.get(), actualUser);
     }
-    /**
-     * @Test
-     * @Name testCreateArticleByUser_UserNotFound
-     * @Desciption Test create article by user to be invalid
-     * @throws Exception
-     */
 
-    @Test(expected = UserNotFoundException.class)
-    public void testCreateArticleByEmail_UserNotFound() throws Exception{
-        // when findUserByEmail() is called with any string param from userService
-        // then throw User Not Found Exception
-        when(userService.findUserByEmail(anyString()))
-                .thenThrow(new UserNotFoundException());
+    @Test(expected= UserNotFoundException.class)
+    public void findUserByEmailAndPassword_InvalidEmail() throws Exception {
+        Optional<User> expectedUser = Optional.empty();
 
-        // actual call to createArticleByEmail() with "John@gmail.com", "Invalid" param
-        userService.createArticleByEmail("John@gmail.com", "invalid");
+        when(userRepository.findUserByEmail(anyString()))
+                .thenReturn(expectedUser);
 
+        userService.findUserByEmailAndPassword("John@gmail.com", "johnsPassword");
+    }
+
+    @Test(expected= PasswordIncorrectException.class)
+    public void findUserByEmailAndPassword_InvalidPassword() throws Exception {
+        Optional<User> expectedUser = Optional.of(new UserBuilder()
+                .email("John@gmail.com")
+                .password("$2a$10$YX.SjCQvt83xlHVhZJcb2uOsUxkaPf1OPKVEsePVIo8frR3dLQjs6")
+                .build());
+
+        when(userRepository.findUserByEmail(anyString()))
+                .thenReturn(expectedUser);
+
+        when(bCryptPasswordEncoder.matches(anyString(), anyString()))
+                .thenReturn(false);
+
+        userService.findUserByEmailAndPassword("John@gmail.com", "johnsPassword");
     }
 }

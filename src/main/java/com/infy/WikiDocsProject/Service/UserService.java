@@ -13,6 +13,4 @@ public interface UserService {
 	User findUserByEmail(String email) throws Exception;
 	User findUserByEmailAndPassword(String email, String encode) throws Exception;
 
-	Article createArticleByEmail(String email, String channelId) throws Exception;//Fix
-
 }

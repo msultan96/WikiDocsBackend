@@ -27,16 +27,14 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 	
 	private final UserRepository userRepository;
-	private final ArticleRepository articleRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	/**
 	 * Constructor using constructor injection
 	 */
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository, ArticleRepository articleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+	public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.userRepository = userRepository;
-		this.articleRepository = articleRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 
@@ -69,53 +67,6 @@ public class UserServiceImpl implements UserService {
 			}
 		}
 		else{
-			throw new UserNotFoundException();
-		}
-	}
-
-	/**
-	 * @name createArticleByEmail
-	 * @Desciption Create new article with given emailId and channelId
-	 * @param emailId
-	 * @param channelId
-	 * @return article object
-	 */
-	public Article createArticleByEmail(String emailId, String channelId) throws Exception{
-		// User object declared
-		User user;
-		// List of article declared
-		List<Article> articles;
-
-		try {
-			// call findUserByName to find user of given name
-			// receive back a user object
-			user = findUserByEmail(emailId);
-			// called findAllArticlesByUserId() from articleRepository with users email
-			// receive back an article object
-			articles = articleRepository.findAllArticlesByEmailId(emailId);
-			
-			// Declared new article object and
-			// set with with the article builder with initial parameters
-			Article newArticle = new ArticleBuilder()
-					.id(new ObjectId())
-					.emailId(user.getEmail())
-					.status(Status.INITIAL)
-					.channelId(channelId)
-					.editable(true)
-					.build();
-			// add new article to list
-			articles.add(newArticle);
-			// set article list to users articles
-			user.setArticles(articles);
-			// save article to database
-			articleRepository.save(newArticle);
-			// save user class to database
-			userRepository.save(user);
-			// return new article object
-			return newArticle;
-		}
-		catch(UserNotFoundException e){
-			// throw User Not Found Exception
 			throw new UserNotFoundException();
 		}
 	}

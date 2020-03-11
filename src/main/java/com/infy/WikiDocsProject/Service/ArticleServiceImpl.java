@@ -4,11 +4,14 @@ import com.infy.WikiDocsProject.Exception.*;
 import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.Repository.ArticleRepository;
+import com.infy.WikiDocsProject.Repository.UserRepository;
+import com.infy.WikiDocsProject.Utility.ArticleBuilder;
 import com.infy.WikiDocsProject.enums.Status;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
@@ -22,17 +25,20 @@ public class ArticleServiceImpl implements ArticleService {
 
 	private final UserService userService;
 	private final ArticleRepository articleRepository;
+	private final UserRepository userRepository;
 
 	/**
 	 * Constructor using constructor injection
 	 * @param userService
 	 * @param articleRepository
+	 * @param userRepository
 	 */
 	@Autowired
-	public ArticleServiceImpl(UserService userService, ArticleRepository articleRepository) {
+	public ArticleServiceImpl(UserService userService, ArticleRepository articleRepository, UserRepository userRepository) {
 		// Initialize local objects with params
 		this.userService = userService;
 		this.articleRepository = articleRepository;
+		this.userRepository = userRepository;
 	}
 
 	/**
@@ -270,8 +276,8 @@ public class ArticleServiceImpl implements ArticleService {
 		// If article is present create new article object and assign article to it
 		if(optionalArticle.isPresent()) {
 			Article article = optionalArticle.get();
-			
-			// If article's status is BETA 
+
+			// If article's status is BETA
 			if(article.getStatus() == Status.BETA){
 				// then set article's status to REJECTED
 				article.setStatus(Status.REJECTED);
@@ -307,5 +313,52 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 		// throw Article Not Found Exception
 		throw new ArticleNotFoundException();
+	}
+
+	/**
+	 * @name createArticleByEmail
+	 * @Desciption Create new article with given emailId and channelId
+	 * @param emailId
+	 * @param channelId
+	 * @return article object
+	 */
+	public Article createArticleByEmail(String emailId, String channelId) throws Exception{
+		// User object declared
+		User user;
+		// List of article declared
+		List<Article> articles;
+
+		try {
+			// call findUserByName to find user of given name
+			// receive back a user object
+			user = userService.findUserByEmail(emailId);
+		}
+		catch(UserNotFoundException e){
+			// throw User Not Found Exception
+			throw new UserNotFoundException();
+		}
+		// called findAllArticlesByUserId() from articleRepository with users email
+		// receive back an article object
+		articles = articleRepository.findAllArticlesByEmailId(emailId);
+
+		// Declared new article object and
+		// set with with the article builder with initial parameters
+		Article newArticle = new ArticleBuilder()
+				.id(new ObjectId())
+				.emailId(user.getEmail())
+				.status(Status.INITIAL)
+				.channelId(channelId)
+				.editable(true)
+				.build();
+		// add new article to list
+		articles.add(newArticle);
+		// set article list to users articles
+		user.setArticles(articles);
+		// save article to database
+		articleRepository.save(newArticle);
+		// save user class to database
+		userRepository.save(user);
+		// return new article object
+		return newArticle;
 	}
 }
