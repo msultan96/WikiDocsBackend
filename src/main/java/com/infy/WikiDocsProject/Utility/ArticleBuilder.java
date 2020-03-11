@@ -15,15 +15,17 @@ public class ArticleBuilder {
     private String emailId;
     private String channelId;
     private String name;
+    private String content;
     private Status status;
     private int rejectedCount;
     private boolean editable;
 
-    public ArticleBuilder(ObjectId id, String emailId, String channelId, String name, Status status, int rejectedCount, boolean editable) {
+    public ArticleBuilder(ObjectId id, String emailId, String channelId, String name, String content, Status status, int rejectedCount, boolean editable) {
         this.id = id;
         this.emailId = emailId;
         this.channelId = channelId;
         this.name = name;
+        this.content = content;
         this.status = status;
         this.rejectedCount = rejectedCount;
         this.editable = editable;
@@ -51,6 +53,12 @@ public class ArticleBuilder {
         return this;
     }
 
+    public ArticleBuilder content(String content) {
+        this.content = content;
+        return this;
+    }
+
+
     public ArticleBuilder status(Status status) {
         this.status = status;
         return this;
@@ -72,6 +80,6 @@ public class ArticleBuilder {
      * @return article object
      */
     public Article build(){
-        return new Article(id, emailId, channelId, name, status, rejectedCount, editable);
+        return new Article(id, emailId, channelId, name, content, status, rejectedCount, editable);
     }
 }

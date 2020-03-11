@@ -47,7 +47,7 @@ public class ArticleAPI {
 		try {
 			// call getAllArticlesByEmail() from articleService class to find  articles of user with email.
 			// receive back  a list of articles
-			List<Article> articles = articleService.getAllArticlesByEmail(email);
+			List<Article> articles = articleService.getAllArticlesByEmailId(email);
 			// return a list of articles of that user has.
 			return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);
 		} catch (Exception e) {
@@ -88,7 +88,7 @@ public class ArticleAPI {
 	@GetMapping("getAllApprovedArticlesByEmail/{email:.+}")
 	public ResponseEntity<List<Article>> getAllApprovedArticles(@PathVariable String email) throws Exception{
 		try{
-			List<Article> approvedArticles = articleService.getAllApprovedArticlesByEmail(email);
+			List<Article> approvedArticles = articleService.getAllApprovedArticlesByEmailId(email);
 			return new ResponseEntity<List<Article>>(approvedArticles, HttpStatus.OK);
 		}
 		catch(Exception e){
@@ -99,7 +99,7 @@ public class ArticleAPI {
 	@GetMapping("getAllBetaArticlesByEmail/{email:.+}")
 	public ResponseEntity<List<Article>> getAllBetaArticlesByEmail(@PathVariable String email) throws Exception{
 		try{
-			List<Article> betaArticles = articleService.getAllBetaArticlesByEmail(email);
+			List<Article> betaArticles = articleService.getAllBetaArticlesByEmailId(email);
 			return new ResponseEntity<List<Article>>(betaArticles, HttpStatus.OK);
 		}
 		catch(Exception e){
@@ -110,7 +110,7 @@ public class ArticleAPI {
 	@GetMapping("getAllInitialArticlesByEmail/{email:.+}")
 	public ResponseEntity<List<Article>> getAllInitialArticlesByEmail(@PathVariable String email) throws Exception{
 		try{
-			List<Article> initialArticles = articleService.getAllInitialArticlesByEmail(email);
+			List<Article> initialArticles = articleService.getAllInitialArticlesByEmailId(email);
 			return new ResponseEntity<List<Article>>(initialArticles, HttpStatus.OK);
 		}
 		catch(Exception e){
@@ -121,7 +121,7 @@ public class ArticleAPI {
 	@GetMapping("getAllRejectedArticlesByEmail/{email:.+}")
 	public ResponseEntity<List<Article>> getAllRejectedArticlesByEmail(@PathVariable String email) throws Exception{
 		try{
-			List<Article> rejectedArticles = articleService.getAllRejectedArticlesByEmail(email);
+			List<Article> rejectedArticles = articleService.getAllRejectedArticlesByEmailId(email);
 			return new ResponseEntity<List<Article>>(rejectedArticles, HttpStatus.OK);
 		}
 		catch(Exception e){
@@ -132,30 +132,8 @@ public class ArticleAPI {
 	@GetMapping("getAllDiscardedArticlesByEmail/{email:.+}")
 	public ResponseEntity<List<Article>> getAllDiscardedArticlesByEmail(@PathVariable String email) throws Exception{
 		try{
-			List<Article> discardedArticles = articleService.getAllDiscardedArticlesByEmail(email);
+			List<Article> discardedArticles = articleService.getAllDiscardedArticlesByEmailId(email);
 			return new ResponseEntity<List<Article>>(discardedArticles, HttpStatus.OK);
-		}
-		catch(Exception e){
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, environment.getProperty(e.getMessage()));
-		}
-	}
-
-	@GetMapping("getAllApprovedArticles")
-	public ResponseEntity<List<Article>> getAllApprovedArticles() throws Exception{
-		try{
-			List<Article> approvedArticles = articleService.getApprovedArticles();
-			return new ResponseEntity<List<Article>>(approvedArticles, HttpStatus.OK);
-		}
-		catch(Exception e){
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, environment.getProperty(e.getMessage()));
-		}
-	}
-
-	@GetMapping("getAllBetaArticles")
-	public ResponseEntity<List<Article>> getAllBetaArticles() throws Exception{
-		try{
-			List<Article> betaArticles = articleService.getBetaArticles();
-			return new ResponseEntity<List<Article>>(betaArticles, HttpStatus.OK);
 		}
 		catch(Exception e){
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, environment.getProperty(e.getMessage()));
@@ -226,4 +204,18 @@ public class ArticleAPI {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, environment.getProperty(e.getMessage()));
 		}
 	}
+
+	@PostMapping("getArticleByChannelId")
+	public ResponseEntity<Article> getArticleByChannelId(@RequestParam String channelId) throws Exception{
+		try{
+			Article article = articleService.getArticleByChannelId(channelId);
+			return new ResponseEntity<Article>(article, HttpStatus.OK);
+		}
+		catch(Exception e){
+			// throw exception of user with that name is not found
+			// find exception message from environmnet.getProperty().
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, environment.getProperty(e.getMessage()));
+		}
+	}
+
 }

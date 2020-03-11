@@ -28,13 +28,13 @@
   <th class="name">Class</th>
 </tr>
   <tr>
-    <td class="name">UserService$MockitoMock$1274472769</td>
+    <td class="name">UserService$MockitoMock$375012761</td>
   </tr>
   <tr>
-    <td class="name">UserService$MockitoMock$1274472769$auxiliary$hKOSsqIH</td>
+    <td class="name">UserService$MockitoMock$375012761$auxiliary$5Jw0hB7F</td>
   </tr>
   <tr>
-    <td class="name">UserService$MockitoMock$1274472769$auxiliary$MyoApje6</td>
+    <td class="name">UserService$MockitoMock$375012761$auxiliary$fpOMTO1P</td>
   </tr>
 <tr>
   <td class="name"><strong>total</strong></td>
@@ -49,18 +49,26 @@
 <i>2</i>&nbsp;
 <i>3</i>&nbsp;import com.infy.WikiDocsProject.Model.Article;
 <i>4</i>&nbsp;import com.infy.WikiDocsProject.Model.User;
-<i>5</i>&nbsp;
-<i>6</i>&nbsp;public interface UserService {
-<i>7</i>&nbsp;
-<i>8</i>&nbsp;	User findUserByName(String name) throws Exception;
-<i>9</i>&nbsp;	Article createArticleByUser(String name, String channelId) throws Exception;
-<i>10</i>&nbsp;}
+<i>5</i>&nbsp;/**
+<i>6</i>&nbsp; * 
+<i>7</i>&nbsp; * User Service Class
+<i>8</i>&nbsp; * Headers
+<i>9</i>&nbsp; *
+<i>10</i>&nbsp; */
+<i>11</i>&nbsp;public interface UserService {
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;	User findUserByEmail(String email) throws Exception;
+<i>14</i>&nbsp;	User findUserByEmailAndPassword(String email, String encode) throws Exception;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;	Article createArticleByEmail(String email, String channelId) throws Exception;//Fix
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-03-09 00:48</div>
+    <div style="float:right;">generated on 2020-03-10 21:06</div>
 </div>
 </body>
 </html>

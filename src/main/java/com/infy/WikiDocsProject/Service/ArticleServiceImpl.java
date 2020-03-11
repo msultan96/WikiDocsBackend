@@ -36,12 +36,12 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * @name getAllArticlesByEmail
+	 * @name getAllArticlesByEmailId
 	 * @Desciption Get all article by user's email
 	 * @param email
 	 * @return List of articles
 	 */
-	public List<Article> getAllArticlesByEmail(String email) throws Exception{
+	public List<Article> getAllArticlesByEmailId(String email) throws Exception{
 		// User object declared
 		User user;
 		try{
@@ -62,11 +62,12 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * @name: getAllApprovedArticlesByEmail
+	 * @name: getAllApprovedArticlesByEmailId
 	 * @Desciption Get all approved articles a user has
+	 * @param email
 	 * @return List of articles
 	 */
-	public List<Article> getAllApprovedArticlesByEmail(String email) throws Exception{
+	public List<Article> getAllApprovedArticlesByEmailId(String email) throws Exception{
         User user;
         try{
             user = userService.findUserByEmail(email);
@@ -78,7 +79,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    public List<Article> getAllBetaArticlesByEmail(String email) throws Exception {
+    public List<Article> getAllBetaArticlesByEmailId(String email) throws Exception {
         User user;
         try {
             user = userService.findUserByEmail(email);
@@ -89,7 +90,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    public List<Article> getAllInitialArticlesByEmail(String email) throws Exception {
+    public List<Article> getAllInitialArticlesByEmailId(String email) throws Exception {
         User user;
         try {
             user = userService.findUserByEmail(email);
@@ -100,7 +101,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    public List<Article> getAllRejectedArticlesByEmail(String email) throws Exception{
+    public List<Article> getAllRejectedArticlesByEmailId(String email) throws Exception{
         User user;
         try {
             user = userService.findUserByEmail(email);
@@ -111,7 +112,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    public List<Article> getAllDiscardedArticlesByEmail(String email) throws Exception{
+    public List<Article> getAllDiscardedArticlesByEmailId(String email) throws Exception{
         User user;
         try {
             user = userService.findUserByEmail(email);
@@ -122,12 +123,12 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-		/**
-		 * @name: getApprovedArticles
-		 * @Desciption Get all approved articles across all users
-		 * @return List of articles
-		 */
-		public List<Article> getApprovedArticles(){
+	/**
+	 * @name: getApprovedArticles
+	 * @Desciption Get all approved articles across all users
+	 * @return List of articles
+	 */
+	public List<Article> getApprovedArticles(){
 		// called findArticlesByStatus() from articleRepository class to find article of given status APPROVED
 		// receive back a list of articles
 		List<Article> articles = articleRepository.findArticlesByStatus(Status.APPROVED);

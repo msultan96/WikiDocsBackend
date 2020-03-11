@@ -18,6 +18,7 @@ public class Article {
 	private String emailId;
 	private String channelId;
 	private String name;
+	private String content;
 	private Status status;
 	private int rejectedCount;
 	private boolean editable;
@@ -25,19 +26,20 @@ public class Article {
 	/**
 	 * All Args Constructor
 	 */
-	public Article(ObjectId id, String emailId, String channelId, String name, Status status, int rejectedCount, boolean editable) {
+	public Article(ObjectId id, String emailId, String channelId, String name, String content, Status status, int rejectedCount, boolean editable) {
 		this.id = id;
 		this.emailId = emailId;
 		this.channelId = channelId;
 		this.name = name;
+		this.content = content;
 		this.status = status;
 		this.rejectedCount = rejectedCount;
 		this.editable = editable;
 	}
-	/**
-	 * Default contructor
-	 */
 
+	/**
+	 * No Args Constructor
+	 */
 	public Article(){
 
 	}
@@ -64,6 +66,14 @@ public class Article {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public Status getStatus() {

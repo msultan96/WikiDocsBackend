@@ -12,12 +12,12 @@ public interface ArticleService {
 	
 	//Method declarations
 
-	List<Article> getAllArticlesByEmail(String email) throws Exception;
-	List<Article> getAllApprovedArticlesByEmail(String email) throws Exception;
-	List<Article> getAllBetaArticlesByEmail(String email) throws Exception;
-	List<Article> getAllInitialArticlesByEmail(String email) throws Exception;
-	List<Article> getAllRejectedArticlesByEmail(String email) throws Exception;
-	List<Article> getAllDiscardedArticlesByEmail(String email) throws Exception;
+	List<Article> getAllArticlesByEmailId(String email) throws Exception;
+	List<Article> getAllApprovedArticlesByEmailId(String email) throws Exception;
+	List<Article> getAllBetaArticlesByEmailId(String email) throws Exception;
+	List<Article> getAllInitialArticlesByEmailId(String email) throws Exception;
+	List<Article> getAllRejectedArticlesByEmailId(String email) throws Exception;
+	List<Article> getAllDiscardedArticlesByEmailId(String email) throws Exception;
 
 	Article getArticleByChannelId(String channelId) throws Exception;
 

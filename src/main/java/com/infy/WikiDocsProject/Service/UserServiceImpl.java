@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	/**
-	 * @name findUserByName
+	 * @name findUserByEmail
 	 * @Desciption Find user of given email
 	 * @param email
 	 * @return user object
@@ -61,7 +61,6 @@ public class UserServiceImpl implements UserService {
 	public User findUserByEmailAndPassword(String email, String password) throws Exception{
 		Optional<User> optionalUser = userRepository.findUserByEmail(email);
 		if(optionalUser.isPresent()){
-			System.out.println(password);
 			if(bCryptPasswordEncoder.matches(password, optionalUser.get().getPassword())){
 				return optionalUser.get();
 			}

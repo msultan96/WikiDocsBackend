@@ -50,18 +50,18 @@
 </td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    75%
   </span>
   <span class="absValue">
-    (3/ 3)
+    (3/ 4)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    91.7%
+    74.2%
   </span>
   <span class="absValue">
-    (22/ 24)
+    (23/ 31)
   </span>
 </td>
 </tr>
@@ -74,78 +74,132 @@
 
 <div class="sourceCode"><i>1</i>&nbsp;package com.infy.WikiDocsProject.Service;
 <i>2</i>&nbsp;
-<i>3</i>&nbsp;import com.infy.WikiDocsProject.Exception.UserNotFoundException;
-<i>4</i>&nbsp;import com.infy.WikiDocsProject.Model.Article;
-<i>5</i>&nbsp;import com.infy.WikiDocsProject.Model.User;
-<i>6</i>&nbsp;import com.infy.WikiDocsProject.Repository.ArticleRepository;
-<i>7</i>&nbsp;import com.infy.WikiDocsProject.Repository.UserRepository;
-<i>8</i>&nbsp;
-<i>9</i>&nbsp;import com.infy.WikiDocsProject.Utility.ArticleBuilder;
-<i>10</i>&nbsp;import com.infy.WikiDocsProject.enums.Status;
-<i>11</i>&nbsp;import org.bson.types.ObjectId;
-<i>12</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
-<i>13</i>&nbsp;import org.springframework.stereotype.Service;
-<i>14</i>&nbsp;
-<i>15</i>&nbsp;import java.util.List;
-<i>16</i>&nbsp;import java.util.Optional;
+<i>3</i>&nbsp;import com.infy.WikiDocsProject.Exception.PasswordIncorrectException;
+<i>4</i>&nbsp;import com.infy.WikiDocsProject.Exception.UserNotFoundException;
+<i>5</i>&nbsp;import com.infy.WikiDocsProject.Model.Article;
+<i>6</i>&nbsp;import com.infy.WikiDocsProject.Model.User;
+<i>7</i>&nbsp;import com.infy.WikiDocsProject.Repository.ArticleRepository;
+<i>8</i>&nbsp;import com.infy.WikiDocsProject.Repository.UserRepository;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import com.infy.WikiDocsProject.Utility.ArticleBuilder;
+<i>11</i>&nbsp;import com.infy.WikiDocsProject.enums.Status;
+<i>12</i>&nbsp;import org.bson.types.ObjectId;
+<i>13</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>14</i>&nbsp;import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+<i>15</i>&nbsp;import org.springframework.security.crypto.password.PasswordEncoder;
+<i>16</i>&nbsp;import org.springframework.stereotype.Service;
 <i>17</i>&nbsp;
-<i>18</i>&nbsp;@Service(value=&quot;userService&quot;)
-<i>19</i>&nbsp;public class UserServiceImpl implements UserService {
-<i>20</i>&nbsp;
-<i>21</i>&nbsp;	private final UserRepository userRepository;
-<i>22</i>&nbsp;
-<i>23</i>&nbsp;	private final ArticleRepository articleRepository;
-<i>24</i>&nbsp;
-<i>25</i>&nbsp;	@Autowired
-<b class="fc"><i>26</i>&nbsp;	public UserServiceImpl(UserRepository userRepository, ArticleRepository articleRepository) {</b>
-<b class="fc"><i>27</i>&nbsp;		this.userRepository = userRepository;</b>
-<b class="fc"><i>28</i>&nbsp;		this.articleRepository = articleRepository;</b>
-<b class="fc"><i>29</i>&nbsp;	}</b>
-<i>30</i>&nbsp;
-<i>31</i>&nbsp;	public User findUserByName(String name) throws Exception{
-<b class="fc"><i>32</i>&nbsp;		Optional&lt;User&gt; optionalUser = userRepository.findUserByName(name);</b>
-<b class="fc"><i>33</i>&nbsp;		if(optionalUser.isPresent()){</b>
-<b class="fc"><i>34</i>&nbsp;			return optionalUser.get();</b>
-<i>35</i>&nbsp;		}
-<i>36</i>&nbsp;		else{
-<b class="fc"><i>37</i>&nbsp;			throw new UserNotFoundException();</b>
-<i>38</i>&nbsp;		}
-<i>39</i>&nbsp;	}
-<i>40</i>&nbsp;	
-<i>41</i>&nbsp;	public Article createArticleByUser(String name, String channelId) throws Exception{
-<i>42</i>&nbsp;		User user;
-<i>43</i>&nbsp;		List&lt;Article&gt; articles;
-<i>44</i>&nbsp;
-<i>45</i>&nbsp;		try {
-<b class="fc"><i>46</i>&nbsp;			user = findUserByName(name);</b>
-<b class="fc"><i>47</i>&nbsp;			articles = articleRepository.findAllArticlesByUserId(user.getId());</b>
-<i>48</i>&nbsp;
-<b class="fc"><i>49</i>&nbsp;			Article newArticle = new ArticleBuilder()</b>
-<b class="fc"><i>50</i>&nbsp;					.id(new ObjectId())</b>
-<b class="fc"><i>51</i>&nbsp;					.userId(user.getId())</b>
-<b class="fc"><i>52</i>&nbsp;					.status(Status.INITIAL)</b>
-<b class="fc"><i>53</i>&nbsp;					.channelId(channelId)</b>
-<b class="fc"><i>54</i>&nbsp;					.editable(true)</b>
-<b class="fc"><i>55</i>&nbsp;					.build();</b>
-<i>56</i>&nbsp;
-<b class="fc"><i>57</i>&nbsp;			articles.add(newArticle);</b>
-<i>58</i>&nbsp;
-<b class="fc"><i>59</i>&nbsp;			user.setArticles(articles);</b>
-<b class="fc"><i>60</i>&nbsp;			articleRepository.save(newArticle);</b>
-<b class="fc"><i>61</i>&nbsp;			userRepository.save(user);</b>
-<b class="fc"><i>62</i>&nbsp;			return newArticle;</b>
-<i>63</i>&nbsp;		}
-<b class="nc"><i>64</i>&nbsp;		catch(UserNotFoundException e){</b>
-<b class="nc"><i>65</i>&nbsp;			throw new UserNotFoundException();</b>
-<i>66</i>&nbsp;		}
-<i>67</i>&nbsp;	}
-<i>68</i>&nbsp;}
+<i>18</i>&nbsp;import java.util.List;
+<i>19</i>&nbsp;import java.util.Optional;
+<i>20</i>&nbsp;/**
+<i>21</i>&nbsp; * 
+<i>22</i>&nbsp; * User Service Implementations
+<i>23</i>&nbsp; * @Service - declared ArticleService class as a Service class
+<i>24</i>&nbsp; *
+<i>25</i>&nbsp; */
+<i>26</i>&nbsp;@Service(value=&quot;userService&quot;)
+<i>27</i>&nbsp;public class UserServiceImpl implements UserService {
+<i>28</i>&nbsp;	
+<i>29</i>&nbsp;	private final UserRepository userRepository;
+<i>30</i>&nbsp;	private final ArticleRepository articleRepository;
+<i>31</i>&nbsp;	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;	/**
+<i>34</i>&nbsp;	 * Constructor using constructor injection
+<i>35</i>&nbsp;	 */
+<i>36</i>&nbsp;	@Autowired
+<b class="fc"><i>37</i>&nbsp;	public UserServiceImpl(UserRepository userRepository, ArticleRepository articleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {</b>
+<b class="fc"><i>38</i>&nbsp;		this.userRepository = userRepository;</b>
+<b class="fc"><i>39</i>&nbsp;		this.articleRepository = articleRepository;</b>
+<b class="fc"><i>40</i>&nbsp;		this.bCryptPasswordEncoder = bCryptPasswordEncoder;</b>
+<b class="fc"><i>41</i>&nbsp;	}</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;	/**
+<i>44</i>&nbsp;	 * @name findUserByEmail
+<i>45</i>&nbsp;	 * @Desciption Find user of given email
+<i>46</i>&nbsp;	 * @param email
+<i>47</i>&nbsp;	 * @return user object
+<i>48</i>&nbsp;	 */
+<i>49</i>&nbsp;	public User findUserByEmail(String email) throws Exception{
+<i>50</i>&nbsp;		// Called findUserByEmail() from userRepository class to find user of given name
+<b class="fc"><i>51</i>&nbsp;		Optional&lt;User&gt; optionalUser = userRepository.findUserByEmail(email);</b>
+<i>52</i>&nbsp;		// if user is present
+<b class="fc"><i>53</i>&nbsp;		if(optionalUser.isPresent()){</b>
+<b class="fc"><i>54</i>&nbsp;			return optionalUser.get();</b>
+<i>55</i>&nbsp;		}
+<i>56</i>&nbsp;		else{
+<b class="fc"><i>57</i>&nbsp;			throw new UserNotFoundException();</b>
+<i>58</i>&nbsp;		}
+<i>59</i>&nbsp;	}
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;	public User findUserByEmailAndPassword(String email, String password) throws Exception{
+<b class="nc"><i>62</i>&nbsp;		Optional&lt;User&gt; optionalUser = userRepository.findUserByEmail(email);</b>
+<b class="nc"><i>63</i>&nbsp;		if(optionalUser.isPresent()){</b>
+<b class="nc"><i>64</i>&nbsp;			if(bCryptPasswordEncoder.matches(password, optionalUser.get().getPassword())){</b>
+<b class="nc"><i>65</i>&nbsp;				return optionalUser.get();</b>
+<i>66</i>&nbsp;			}
+<i>67</i>&nbsp;			else{
+<b class="nc"><i>68</i>&nbsp;				throw new PasswordIncorrectException();</b>
+<i>69</i>&nbsp;			}
+<i>70</i>&nbsp;		}
+<i>71</i>&nbsp;		else{
+<b class="nc"><i>72</i>&nbsp;			throw new UserNotFoundException();</b>
+<i>73</i>&nbsp;		}
+<i>74</i>&nbsp;	}
+<i>75</i>&nbsp;
+<i>76</i>&nbsp;	/**
+<i>77</i>&nbsp;	 * @name createArticleByEmail
+<i>78</i>&nbsp;	 * @Desciption Create new article with given emailId and channelId
+<i>79</i>&nbsp;	 * @param emailId
+<i>80</i>&nbsp;	 * @param channelId
+<i>81</i>&nbsp;	 * @return article object
+<i>82</i>&nbsp;	 */
+<i>83</i>&nbsp;	public Article createArticleByEmail(String emailId, String channelId) throws Exception{
+<i>84</i>&nbsp;		// User object declared
+<i>85</i>&nbsp;		User user;
+<i>86</i>&nbsp;		// List of article declared
+<i>87</i>&nbsp;		List&lt;Article&gt; articles;
+<i>88</i>&nbsp;
+<i>89</i>&nbsp;		try {
+<i>90</i>&nbsp;			// call findUserByName to find user of given name
+<i>91</i>&nbsp;			// receive back a user object
+<b class="fc"><i>92</i>&nbsp;			user = findUserByEmail(emailId);</b>
+<i>93</i>&nbsp;			// called findAllArticlesByUserId() from articleRepository with users email
+<i>94</i>&nbsp;			// receive back an article object
+<b class="fc"><i>95</i>&nbsp;			articles = articleRepository.findAllArticlesByEmailId(emailId);</b>
+<i>96</i>&nbsp;			
+<i>97</i>&nbsp;			// Declared new article object and
+<i>98</i>&nbsp;			// set with with the article builder with initial parameters
+<b class="fc"><i>99</i>&nbsp;			Article newArticle = new ArticleBuilder()</b>
+<b class="fc"><i>100</i>&nbsp;					.id(new ObjectId())</b>
+<b class="fc"><i>101</i>&nbsp;					.emailId(user.getEmail())</b>
+<b class="fc"><i>102</i>&nbsp;					.status(Status.INITIAL)</b>
+<b class="fc"><i>103</i>&nbsp;					.channelId(channelId)</b>
+<b class="fc"><i>104</i>&nbsp;					.editable(true)</b>
+<b class="fc"><i>105</i>&nbsp;					.build();</b>
+<i>106</i>&nbsp;			// add new article to list
+<b class="fc"><i>107</i>&nbsp;			articles.add(newArticle);</b>
+<i>108</i>&nbsp;			// set article list to users articles
+<b class="fc"><i>109</i>&nbsp;			user.setArticles(articles);</b>
+<i>110</i>&nbsp;			// save article to database
+<b class="fc"><i>111</i>&nbsp;			articleRepository.save(newArticle);</b>
+<i>112</i>&nbsp;			// save user class to database
+<b class="fc"><i>113</i>&nbsp;			userRepository.save(user);</b>
+<i>114</i>&nbsp;			// return new article object
+<b class="fc"><i>115</i>&nbsp;			return newArticle;</b>
+<i>116</i>&nbsp;		}
+<b class="nc"><i>117</i>&nbsp;		catch(UserNotFoundException e){</b>
+<i>118</i>&nbsp;			// throw User Not Found Exception
+<b class="nc"><i>119</i>&nbsp;			throw new UserNotFoundException();</b>
+<i>120</i>&nbsp;		}
+<i>121</i>&nbsp;	}
+<i>122</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-03-09 00:48</div>
+    <div style="float:right;">generated on 2020-03-10 21:06</div>
 </div>
 </body>
 </html>

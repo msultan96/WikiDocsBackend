@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -27,17 +29,15 @@ public class UserAPI {
 
 	private final UserService userService;
 	private final ArticleService articleService;
-	private final PasswordEncoder passwordEncoder;
 	private final Environment environment;
 
 	/**
 	 * Constructor using constructor injection
 	 */
 	@Autowired
-	public UserAPI(UserService userService, ArticleService articleService, PasswordEncoder passwordEncoder, Environment environment) {
+	public UserAPI(UserService userService, ArticleService articleService, Environment environment) {
 		this.userService = userService;
 		this.articleService = articleService;
-		this.passwordEncoder = passwordEncoder;
 		this.environment = environment;
 	}
 
@@ -54,10 +54,9 @@ public class UserAPI {
 		try{
 			// Called findUserByEmail() from userService class to find user
 			//  with given email and provided password
-			System.out.println(user.getPassword());
 			User returnedUser = userService.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
 			// Called getAllArticleByUser() from articleService class to find all articles of user by the email
-			List<Article> articleList = articleService.getAllArticlesByEmail(returnedUser.getEmail());
+			List<Article> articleList = articleService.getAllArticlesByEmailId(returnedUser.getEmail());
 			// Set user's articles with list of articles from above.
 			user.setArticles(articleList);
 			// return user object
@@ -81,7 +80,7 @@ public class UserAPI {
 	public ResponseEntity<List<Article>> getUsersArticles(@PathVariable String email) throws Exception{
 		try{
 			// Called getAllArticleByUser() from articleService class to find all article of user by that "name"
-			List<Article> articles = articleService.getAllArticlesByEmail(email);
+			List<Article> articles = articleService.getAllArticlesByEmailId(email);
 			// Return list of articles
 			return new ResponseEntity<List<Article>>(articles, HttpStatus.OK);
 		}
@@ -94,17 +93,17 @@ public class UserAPI {
 
 	/**
 	 * Method name: createNewArticle
-	 * @param email
-	 * @param channelId
+	 * @param map
 	 * @return
 	 * @throws Exception
 	 */
 	// @GetMapping to expose API endpoint
-	@PostMapping("createNewArticle/{email}/{channelId}")
-	public ResponseEntity<Article> createNewArticle(@PathVariable String email, @PathVariable String channelId) throws Exception {
+	@PostMapping("createNewArticle")
+	public ResponseEntity<Article> createNewArticle(@RequestBody Map<String, String> map) throws Exception {
 		try{
+
 			// Called createArticleByUser() from userService class to create a new article with name and channelId
-			Article article = userService.createArticleByEmail(email, channelId);
+			Article article = userService.createArticleByEmail(map.get("email"), map.get("channelId"));
 			return new ResponseEntity<Article>(article, HttpStatus.OK);
 		}
 		catch(Exception e){

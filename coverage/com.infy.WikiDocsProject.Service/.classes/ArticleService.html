@@ -39,29 +39,40 @@
 <div class="sourceCode"><i>1</i>&nbsp;package com.infy.WikiDocsProject.Service;
 <i>2</i>&nbsp;
 <i>3</i>&nbsp;import java.util.List;
-<i>4</i>&nbsp;import java.util.Optional;
-<i>5</i>&nbsp;
-<i>6</i>&nbsp;import com.infy.WikiDocsProject.Model.Article;
-<i>7</i>&nbsp;import com.infy.WikiDocsProject.Model.User;
-<i>8</i>&nbsp;
-<i>9</i>&nbsp;public interface ArticleService {
-<i>10</i>&nbsp;
-<i>11</i>&nbsp;	List&lt;Article&gt; getAllArticlesByUser(String name) throws Exception;
-<i>12</i>&nbsp;	List&lt;Article&gt; getApprovedArticles();
-<i>13</i>&nbsp;	List&lt;Article&gt; getBetaArticles();
-<i>14</i>&nbsp;	Article getArticleByChannelId(String channelId) throws Exception;
-<i>15</i>&nbsp;
-<i>16</i>&nbsp;	Article submitArticle(String channelId) throws Exception;
-<i>17</i>&nbsp;	Article approveArticle(String channelId) throws Exception;
-<i>18</i>&nbsp;	Article rejectArticle(String channelId) throws Exception;
-<i>19</i>&nbsp;
-<i>20</i>&nbsp;}
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import com.infy.WikiDocsProject.Model.Article;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * Article Service Class 
+<i>9</i>&nbsp; * Headers
+<i>10</i>&nbsp; */
+<i>11</i>&nbsp;public interface ArticleService {
+<i>12</i>&nbsp;	
+<i>13</i>&nbsp;	//Method declarations
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;	List&lt;Article&gt; getAllArticlesByEmailId(String email) throws Exception;
+<i>16</i>&nbsp;	List&lt;Article&gt; getAllApprovedArticlesByEmailId(String email) throws Exception;
+<i>17</i>&nbsp;	List&lt;Article&gt; getAllBetaArticlesByEmailId(String email) throws Exception;
+<i>18</i>&nbsp;	List&lt;Article&gt; getAllInitialArticlesByEmailId(String email) throws Exception;
+<i>19</i>&nbsp;	List&lt;Article&gt; getAllRejectedArticlesByEmailId(String email) throws Exception;
+<i>20</i>&nbsp;	List&lt;Article&gt; getAllDiscardedArticlesByEmailId(String email) throws Exception;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;	Article getArticleByChannelId(String channelId) throws Exception;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;	List&lt;Article&gt; getApprovedArticles();
+<i>25</i>&nbsp;	List&lt;Article&gt; getBetaArticles();
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;	Article submitArticle(String channelId) throws Exception;
+<i>28</i>&nbsp;	Article approveArticle(String channelId) throws Exception;
+<i>29</i>&nbsp;	Article rejectArticle(String channelId) throws Exception;
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-03-09 00:48</div>
+    <div style="float:right;">generated on 2020-03-10 21:06</div>
 </div>
 </body>
 </html>

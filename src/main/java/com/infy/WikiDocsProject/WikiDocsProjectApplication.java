@@ -1,5 +1,9 @@
 package com.infy.WikiDocsProject;
 
+import com.devskiller.jfairy.Fairy;
+import com.devskiller.jfairy.producer.BaseProducer;
+import com.devskiller.jfairy.producer.person.Person;
+import com.devskiller.jfairy.producer.text.TextProducer;
 import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.Repository.ArticleRepository;
@@ -55,85 +59,52 @@ public class WikiDocsProjectApplication {
 			articleRepository.deleteAll();
 			userRepository.deleteAll();
 
-			User user = new UserBuilder()
-					.id(new ObjectId())
-					.email("muhammad@gmail.com")
-					.password(bCryptPasswordEncoder.encode("111111"))
-					.articles(Collections.emptyList())
-					.role(Role.USER)
-					.build();
+			Fairy fairy = Fairy.create();
+			Person person;
+			BaseProducer baseProducer;
+			TextProducer textProducer;
 
-			User admin = new UserBuilder()
-					.id(new ObjectId())
-					.email("daniel@gmail.com")
-					.password(bCryptPasswordEncoder.encode("222222"))
-					.articles(Collections.emptyList())
-					.role(Role.ADMIN)
-					.build();
+			for(int i=0; i<50; i++){
+				person = fairy.person();
+				baseProducer = fairy.baseProducer();
+				textProducer = fairy.textProducer();
 
-			Article initialArtcile = new ArticleBuilder()
-					.id(new ObjectId())
-					.emailId("muhammad@gmail.com")
-					.name("Article Initial")
-					.status(Status.INITIAL)
-					.rejectedCount(0)
-					.editable(true)
-					.build();
+				List<Article> articles = new ArrayList<>();
+				Article article;
+				for(int j=0; j<50; j++){
+					article = new ArticleBuilder()
+							.id(new ObjectId())
+							.emailId(person.getEmail())
+							.channelId(baseProducer.bothify("??##??##??##"))
+							.name(textProducer.sentence(baseProducer.randomBetween(3,8)))
+							.content(textProducer.paragraph(baseProducer.randomBetween(5,25)))
+							.status(baseProducer.randomElement(Status.class))
+							.editable(baseProducer.trueOrFalse())
+							.rejectedCount(baseProducer.randomBetween(0,2))
+							.build();
+					if(article.getStatus() == Status.APPROVED || article.getStatus() == Status.DISCARDED)
+						article.setEditable(false);
+					if(article.getStatus() == Status.DISCARDED) article.setRejectedCount(4);
+					if(article.getStatus() == Status.INITIAL) article.setRejectedCount(0);
+					articles.add(article);
+					articleRepository.insert(article);
+				}
 
-			Article betaArticle = new ArticleBuilder()
-					.id(new ObjectId())
-					.emailId("muhammad@gmail.com")
-					.name("Article Beta")
-					.status(Status.BETA)
-					.rejectedCount(0)
-					.editable(true)
-					.build();
+				User user = new UserBuilder()
+						.id(new ObjectId())
+						.email(person.getEmail())
+						.name(person.getFullName())
+						.password(bCryptPasswordEncoder.encode(person.getPassword()))
+						.role(baseProducer.randomElement(Role.class))
+						.articles(articles)
+						.build();
+				userRepository.insert(user);
 
-			Article approvedArticle = new ArticleBuilder()
-					.id(new ObjectId())
-					.emailId("muhammad@gmail.com")
-					.name("Article Approved")
-					.status(Status.APPROVED)
-					.rejectedCount(0)
-					.editable(true)
-					.build();
-
-			Article rejectedArticle = new ArticleBuilder()
-					.id(new ObjectId())
-					.emailId("muhammad@gmail.com")
-					.name("Article Rejected")
-					.status(Status.REJECTED)
-					.rejectedCount(0)
-					.editable(true)
-					.build();
-
-			Article discardedArticle = new ArticleBuilder()
-					.id(new ObjectId())
-					.emailId("muhammad@gmail.com")
-					.name("Article Discarded")
-					.status(Status.DISCARDED)
-					.rejectedCount(0)
-					.editable(true)
-					.build();
-
-			List<Article> articles = new ArrayList<>();
-
-			articles.add(initialArtcile);
-			articles.add(betaArticle);
-			articles.add(approvedArticle);
-			articles.add(rejectedArticle);
-			articles.add(discardedArticle);
-
-			user.setArticles(articles);
-
-			articleRepository.insert(initialArtcile);
-			articleRepository.insert(approvedArticle);
-			articleRepository.insert(betaArticle);
-			articleRepository.insert(rejectedArticle);
-			articleRepository.insert(discardedArticle);
-
-			userRepository.insert(user);
-			userRepository.insert(admin);
+				System.out.println(person.getFullName());
+				System.out.println(person.getEmail());
+				System.out.println(person.getPassword());
+				System.out.println(user.getRole());
+			}
 		};
 	}
 
