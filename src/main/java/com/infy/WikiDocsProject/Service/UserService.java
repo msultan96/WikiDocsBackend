@@ -10,7 +10,7 @@ import com.infy.WikiDocsProject.Model.User;
  */
 public interface UserService {
 
-	User findUserByEmail(String email) throws Exception;
-	User findUserByEmailAndPassword(String email, String encode) throws Exception;
+	User findUserByEmail(String email);
+	User findUserByEmailAndPassword(String email, String encode);
 
 }

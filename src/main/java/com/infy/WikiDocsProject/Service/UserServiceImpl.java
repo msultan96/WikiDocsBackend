@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 	 * @param email
 	 * @return user object
 	 */
-	public User findUserByEmail(String email) throws Exception{
+	public User findUserByEmail(String email) {
 		// Called findUserByEmail() from userRepository class to find user of given name
 		Optional<User> optionalUser = userRepository.findUserByEmail(email);
 		// if user is present
@@ -52,22 +52,22 @@ public class UserServiceImpl implements UserService {
 			return optionalUser.get();
 		}
 		else{
-			throw new UserNotFoundException();
+			throw new UserNotFoundException("UserService.USER_NOT_FOUND");
 		}
 	}
 
-	public User findUserByEmailAndPassword(String email, String password) throws Exception{
+	public User findUserByEmailAndPassword(String email, String password) {
 		Optional<User> optionalUser = userRepository.findUserByEmail(email);
 		if(optionalUser.isPresent()){
 			if(bCryptPasswordEncoder.matches(password, optionalUser.get().getPassword())){
 				return optionalUser.get();
 			}
 			else{
-				throw new PasswordIncorrectException();
+				throw new PasswordIncorrectException("UserService.INCORRECT_PASSWORD");
 			}
 		}
 		else{
-			throw new UserNotFoundException();
+			throw new UserNotFoundException("UserService.USER_NOT_FOUND");
 		}
 	}
 }
