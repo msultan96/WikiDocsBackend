@@ -1,9 +1,9 @@
 package com.infy.WikiDocsProject.Exception;
 
-public class SubmittingArticleIsDiscardedException extends Exception {
+public class SubmittingArticleIsDiscardedException extends RuntimeException {
 
-    public SubmittingArticleIsDiscardedException() {
+    public SubmittingArticleIsDiscardedException( String message ) {
     	// Initialize Exception class with below message
-        super("ArticleService.SUBMITTING_ARTICLE_DISCARDED");
+        super( message ); //"ArticleService.SUBMITTING_ARTICLE_DISCARDED"
     }
 }

@@ -1,8 +1,8 @@
 package com.infy.WikiDocsProject.Exception;
 
-public class SubmittingArticleIsApprovedException extends Exception {
-    public SubmittingArticleIsApprovedException() {
+public class SubmittingArticleIsApprovedException extends RuntimeException {
+    public SubmittingArticleIsApprovedException( String message ) {
     	// Initialize Exception class with below message
-        super("ArticleService.SUBMITTING_ARTICLE_APPROVED");
+        super( message ); //"ArticleService.SUBMITTING_ARTICLE_APPROVED"
     }
 }

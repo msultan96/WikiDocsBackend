@@ -1,10 +1,10 @@
 package com.infy.WikiDocsProject.Exception;
 
-public class ArticleNotFoundException extends Exception {
+public class ArticleNotFoundException extends RuntimeException {
 
-    public ArticleNotFoundException() {
+    public ArticleNotFoundException( String message ) {
     	// Initialize Exception class with below message
-        super("ArticleService.INVALID_CHANNEL_ID");
+        super( message ); //"ArticleService.INVALID_CHANNEL_ID"
     }
 
 }
