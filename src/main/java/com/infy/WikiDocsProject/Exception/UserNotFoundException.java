@@ -1,9 +1,9 @@
 package com.infy.WikiDocsProject.Exception;
 
-public class UserNotFoundException extends Exception {
+public class UserNotFoundException extends RuntimeException {
 
-    public UserNotFoundException() {
+    public UserNotFoundException( String message ) {
     	// Initialize Exception class with below message
-        super("UserService.USER_NOT_FOUND");
+        super( message ); //"UserService.USER_NOT_FOUND"
     }
 }

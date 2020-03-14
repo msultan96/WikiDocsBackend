@@ -1,9 +1,9 @@
 package com.infy.WikiDocsProject.Exception;
 
-public class ApprovingArticleIsStillRejectedException extends Exception {
+public class ApprovingArticleIsStillRejectedException extends RuntimeException {
 
-    public ApprovingArticleIsStillRejectedException() {
+    public ApprovingArticleIsStillRejectedException( String message ) {
     	// Initialize Exception class with below message
-        super("ArticleService.APPROVING_ARTICLE_REJECTED");
+        super( message ); //"ArticleService.APPROVING_ARTICLE_REJECTED"
     }
 }

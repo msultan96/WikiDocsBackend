@@ -1,7 +1,7 @@
 package com.infy.WikiDocsProject.Exception;
 
-public class PasswordIncorrectException extends Exception {
-    public PasswordIncorrectException() {
-        super("UserService.INCORRECT_PASSWORD");
+public class PasswordIncorrectException extends RuntimeException {
+    public PasswordIncorrectException( String message ) {
+        super( message ); //"UserService.INCORRECT_PASSWORD"
     }
 }
