@@ -12,22 +12,22 @@ public interface ArticleService {
 	
 	//Method declarations
 
-	Article createArticleByEmail(String email, String channelId) throws Exception;
+	Article createArticleByEmail(String email, String channelId);
 
-	List<Article> getAllArticlesByEmailId(String email) throws Exception;
-	List<Article> getAllApprovedArticlesByEmailId(String email) throws Exception;
-	List<Article> getAllBetaArticlesByEmailId(String email) throws Exception;
-	List<Article> getAllInitialArticlesByEmailId(String email) throws Exception;
-	List<Article> getAllRejectedArticlesByEmailId(String email) throws Exception;
-	List<Article> getAllDiscardedArticlesByEmailId(String email) throws Exception;
+	List<Article> getAllArticlesByEmailId(String email);
+	List<Article> getAllApprovedArticlesByEmailId(String email);
+	List<Article> getAllBetaArticlesByEmailId(String email);
+	List<Article> getAllInitialArticlesByEmailId(String email);
+	List<Article> getAllRejectedArticlesByEmailId(String email);
+	List<Article> getAllDiscardedArticlesByEmailId(String email);
 
-	Article getArticleByChannelId(String channelId) throws Exception;
+	Article getArticleByChannelId(String channelId);
 
 	List<Article> getApprovedArticles();
 	List<Article> getBetaArticles();
 
-	Article submitArticle(String channelId) throws Exception;
-	Article approveArticle(String channelId) throws Exception;
-	Article rejectArticle(String channelId) throws Exception;
+	Article submitArticle(String channelId);
+	Article approveArticle(String channelId);
+	Article rejectArticle(String channelId);
 
 }

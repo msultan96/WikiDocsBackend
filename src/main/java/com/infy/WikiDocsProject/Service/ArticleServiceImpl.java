@@ -47,24 +47,26 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param email
 	 * @return List of articles
 	 */
-	public List<Article> getAllArticlesByEmailId(String email) throws Exception{
+	public User getUserByEmail(String email)
+	{
+		User user = userService.findUserByEmail(email);
+		if(user == null)
+			throw new UserNotFoundException("UserService.USER_NOT_FOUND");
+		return user;
+	}
+	public List<Article> getAllArticlesByEmailId(String email) {
 		// User object declared
-		User user;
-		try{
+		getUserByEmail(email);
 			// called findUserByEmail() from userService class to find user of given name
 			// receive back a user object
-			user = userService.findUserByEmail(email);
+
 			// called findAllArticleByEmailId() from articleRepository class to
 			//		find all articles of given user by email
 			// 		and receive back a list of articles
-			List<Article> articles = articleRepository.findAllArticlesByEmailId(email);
+		List<Article> articles = articleRepository.findAllArticlesByEmailId(email);
 			// return list of article
-			return articles;
-		}
-		catch(UserNotFoundException e){
-			// throw not found exception if user is not found
-			throw new UserNotFoundException();
-		}
+		return articles;
+
 	}
 
 	/**
@@ -73,60 +75,35 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param email
 	 * @return List of articles
 	 */
-	public List<Article> getAllApprovedArticlesByEmailId(String email) throws Exception{
-        User user;
-        try{
-            user = userService.findUserByEmail(email);
-            List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.APPROVED);
-            return articles;
-        }
-        catch(UserNotFoundException e){
-            throw new UserNotFoundException();
-        }
+	public List<Article> getAllApprovedArticlesByEmailId(String email) {
+
+		getUserByEmail(email);
+        List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.APPROVED);
+        return articles;
     }
 
-    public List<Article> getAllBetaArticlesByEmailId(String email) throws Exception {
-        User user;
-        try {
-            user = userService.findUserByEmail(email);
-            List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.BETA);
-            return articles;
-        } catch (UserNotFoundException e) {
-            throw new UserNotFoundException();
-        }
+    public List<Article> getAllBetaArticlesByEmailId(String email)  {
+		getUserByEmail(email);
+        List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.BETA);
+        return articles;
     }
 
-    public List<Article> getAllInitialArticlesByEmailId(String email) throws Exception {
-        User user;
-        try {
-            user = userService.findUserByEmail(email);
-            List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.INITIAL);
-            return articles;
-        } catch (UserNotFoundException e) {
-            throw new UserNotFoundException();
-        }
+    public List<Article> getAllInitialArticlesByEmailId(String email)  {
+		getUserByEmail(email);
+        List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.INITIAL);
+        return articles;
     }
 
-    public List<Article> getAllRejectedArticlesByEmailId(String email) throws Exception{
-        User user;
-        try {
-            user = userService.findUserByEmail(email);
-            List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.REJECTED);
-            return articles;
-        } catch (UserNotFoundException e) {
-            throw new UserNotFoundException();
-        }
+    public List<Article> getAllRejectedArticlesByEmailId(String email) {
+		getUserByEmail(email);
+		List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.REJECTED);
+		return articles;
     }
 
-    public List<Article> getAllDiscardedArticlesByEmailId(String email) throws Exception{
-        User user;
-        try {
-            user = userService.findUserByEmail(email);
-            List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.DISCARDED);
-            return articles;
-        } catch (UserNotFoundException e) {
-            throw new UserNotFoundException();
-        }
+    public List<Article> getAllDiscardedArticlesByEmailId(String email) {
+		getUserByEmail(email);
+		List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.DISCARDED);
+		return articles;
     }
 
 	/**
@@ -159,7 +136,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param channelId
 	 * @return article object
 	 */	
-	public Article getArticleByChannelId(String channelId) throws Exception{
+	public Article getArticleByChannelId(String channelId) {
 		// called findArticleByChannelId() from articleRepository class to find article of given channelId
 		// receive back an article object
 		Optional<Article> optionalArticle = articleRepository.findArticleByChannelId(channelId);
@@ -169,7 +146,7 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 		// else throw article not found exception
 		else{
-			throw new ArticleNotFoundException();
+			throw new ArticleNotFoundException("ArticleService.INVALID_CHANNEL_ID");
 		}
 	}
 
@@ -179,7 +156,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param channelId
 	 * @return article object
 	 */	
-	public Article submitArticle(String channelId) throws Exception{
+	public Article submitArticle(String channelId) {
 		// called findArticleByChannelId() from articleRepository class to find article of given channelId
 		// receive back an article object
 		Optional<Article> optionalArticle = articleRepository.findArticleByChannelId(channelId);
@@ -203,16 +180,16 @@ public class ArticleServiceImpl implements ArticleService {
 			// If article's status is DISCARDED throw exception
 			if(article.getStatus() == Status.DISCARDED){
 				// Submitting Article Is Discarded Exception thrown
-				throw new SubmittingArticleIsDiscardedException();
+				throw new SubmittingArticleIsDiscardedException("ArticleService.SUBMITTING_ARTICLE_DISCARDED");
 			}
 			// If article's status is APPROVED throw exception
 			if(article.getStatus() == Status.APPROVED) {
 				// Submitting Article Is Approved Exception thrown
-				throw new SubmittingArticleIsApprovedException();
+				throw new SubmittingArticleIsApprovedException("ArticleService.SUBMITTING_ARTICLE_APPROVED");
 			}
 		}
 		// Throw Article Not Found Exception
-		throw new ArticleNotFoundException();
+		throw new ArticleNotFoundException("ArticleService.INVALID_CHANNEL_ID");
 	}
 
 	/**
@@ -221,7 +198,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param channelId
 	 * @return article object
 	 */	
-	public Article approveArticle(String channelId) throws Exception{
+	public Article approveArticle(String channelId) {
 		// called findArticleByChannelId() from articleRepository class to find article of given channelId
 		// receive back an article object
 		Optional<Article> optionalArticle = articleRepository.findArticleByChannelId(channelId);
@@ -241,26 +218,26 @@ public class ArticleServiceImpl implements ArticleService {
 			// If article status is REJECTED
 			if(article.getStatus() == Status.REJECTED){
 				// throw Approving Article Is Still Rejected Exception
-				throw new ApprovingArticleIsStillRejectedException();
+				throw new ApprovingArticleIsStillRejectedException("ArticleService.APPROVING_ARTICLE_REJECTED");
 			}
 			// If article status is INITIAL
 			if(article.getStatus() == Status.INITIAL){
 				// throw Approving Article Is Initial Exception
-				throw new ApprovingArticleIsInitialException();
+				throw new ApprovingArticleIsInitialException("ArticleService.APPROVING_ARTICLE_INITIAL");
 			}
 			// If article status is APPROVED
 			if(article.getStatus() == Status.APPROVED){
 				// throw Approving Article Is Approved Exception
-				throw new ApprovingArticleIsApprovedException();
+				throw new ApprovingArticleIsApprovedException("ArticleService.APPROVING_ARTICLE_APPROVED");
 			}
 			// If article status is DISCARDED
 			if(article.getStatus() == Status.DISCARDED){
 				// throw Approving Article Is Discarded Exception
-				throw new ApprovingArticleIsDiscardedException();
+				throw new ApprovingArticleIsDiscardedException("ArticleService.APPROVING_ARTICLE_DISCARDED");
 			}
 		}
 		// throw Article Not Found Exception
-		throw new ArticleNotFoundException();
+		throw new ArticleNotFoundException("ArticleService.INVALID_CHANNEL_ID");
 	}
 
 	/**
@@ -269,7 +246,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param channelId
 	 * @return article object
 	 */	
-	public Article rejectArticle(String channelId) throws Exception{
+	public Article rejectArticle(String channelId) {
 		// called findArticleByChannelId() from articleRepository class to find article of given channelId
 		// receive back an article object
 		Optional<Article> optionalArticle = articleRepository.findArticleByChannelId(channelId);
@@ -293,26 +270,26 @@ public class ArticleServiceImpl implements ArticleService {
 			// If article's status is INITIAL
 			if(article.getStatus() == Status.INITIAL){
 				// throw Rejecting Article Is Initial Exception
-				throw new RejectingArticleIsInitialException();
+				throw new RejectingArticleIsInitialException("ArticleService.REJECTING_ARTICLE_INITIAL");
 			}
 			// If article's status is APPROVED
 			if(article.getStatus() == Status.APPROVED){
 				// throw Rejecting Article Is Approved Exception
-				throw new RejectingArticleIsApprovedException();
+				throw new RejectingArticleIsApprovedException("ArticleService.REJECTING_ARTICLE_APPROVED");
 			}
 			// If article's status is REJECTED
 			if(article.getStatus() == Status.REJECTED){
 				// throw Rejecting Article Is Still Rejected Exception
-				throw new RejectingArticleIsStillRejectedException();
+				throw new RejectingArticleIsStillRejectedException("ArticleService.REJECTING_ARTICLE_REJECTED");
 			}
 			// If article's status is DISCARDED
 			if(article.getStatus() == Status.DISCARDED){
 				//throw Rejecting Article Is Discarded Exception
-				throw new RejectingArticleIsDiscardedException();
+				throw new RejectingArticleIsDiscardedException("ArticleService.REJECTING_ARTICLE_DISCARDED");
 			}
 		}
 		// throw Article Not Found Exception
-		throw new ArticleNotFoundException();
+		throw new ArticleNotFoundException("ArticleService.INVALID_CHANNEL_ID");
 	}
 
 	/**
@@ -322,24 +299,14 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param channelId
 	 * @return article object
 	 */
-	public Article createArticleByEmail(String emailId, String channelId) throws Exception{
+	public Article createArticleByEmail(String emailId, String channelId) {
 		// User object declared
-		User user;
+		User user = getUserByEmail(emailId);
 		// List of article declared
-		List<Article> articles;
+		List<Article> articles = articleRepository.findAllArticlesByEmailId(emailId);
 
-		try {
-			// call findUserByName to find user of given name
-			// receive back a user object
-			user = userService.findUserByEmail(emailId);
-		}
-		catch(UserNotFoundException e){
-			// throw User Not Found Exception
-			throw new UserNotFoundException();
-		}
 		// called findAllArticlesByUserId() from articleRepository with users email
 		// receive back an article object
-		articles = articleRepository.findAllArticlesByEmailId(emailId);
 
 		// Declared new article object and
 		// set with with the article builder with initial parameters
