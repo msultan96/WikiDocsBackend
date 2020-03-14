@@ -1,8 +1,9 @@
 package com.infy.WikiDocsProject.Exception;
 
-public class ApprovingArticleIsDiscardedException extends Exception {
-    public ApprovingArticleIsDiscardedException() {
+public class ApprovingArticleIsDiscardedException extends RuntimeException {
+    static final long serialVersionUID = 1L;
+    public ApprovingArticleIsDiscardedException( String message ) {
     	// Initialize Exception class with below message
-        super("ArticleService.APPROVING_ARTICLE_DISCARDED");
+        super( message ); //"ArticleService.APPROVING_ARTICLE_DISCARDED"
     }
 }

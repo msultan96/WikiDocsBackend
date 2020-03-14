@@ -1,9 +1,9 @@
 package com.infy.WikiDocsProject.Exception;
 
-public class RejectingArticleIsStillRejectedException extends Exception {
-
-    public RejectingArticleIsStillRejectedException() {
+public class RejectingArticleIsStillRejectedException extends RuntimeException {
+    static final long serialVersionUID = 1L;
+    public RejectingArticleIsStillRejectedException( String message ) {
     	// Initialize Exception class with below message
-        super("ArticleService.REJECTING_ARTICLE_REJECTED");
+        super( message ); //"ArticleService.REJECTING_ARTICLE_REJECTED"
     }
 }
