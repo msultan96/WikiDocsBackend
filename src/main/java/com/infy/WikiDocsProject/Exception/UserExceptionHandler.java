@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 
 import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 @ControllerAdvice
 public class UserExceptionHandler extends ResponseEntityExceptionHandler {
@@ -25,7 +26,7 @@ public class UserExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({ApprovingArticleIsDiscardedException.class})
     public ResponseEntity<ErrorMessage> approvingArticleIsDiscardedException(ApprovingArticleIsDiscardedException e) {
-        return error(NOT_FOUND, e);
+        return error(BAD_REQUEST, e);
     }
 
     @ExceptionHandler({ApprovingArticleIsInitialException.class})
@@ -45,7 +46,7 @@ public class UserExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({PasswordIncorrectException.class})
     public ResponseEntity<ErrorMessage> passwordIncorrectException(PasswordIncorrectException e) {
-        return error(BAD_REQUEST, e);
+        return error(NOT_FOUND, e);
     }
 
     @ExceptionHandler({RejectingArticleIsApprovedException.class})
@@ -55,7 +56,7 @@ public class UserExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({RejectingArticleIsDiscardedException.class})
     public ResponseEntity<ErrorMessage> rejectingArticleIsDiscardedException(RejectingArticleIsDiscardedException e) {
-        return error(NOT_FOUND, e);
+        return error(BAD_REQUEST, e);
     }
 
     @ExceptionHandler({RejectingArticleIsInitialException.class})
@@ -70,7 +71,7 @@ public class UserExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({SubmittingArticleIsApprovedException.class})
     public ResponseEntity<ErrorMessage> submittingArticleIsApprovedException(SubmittingArticleIsApprovedException e) {
-        return error(NOT_FOUND, e);
+        return error(BAD_REQUEST, e);
     }
 
     @ExceptionHandler({SubmittingArticleIsDiscardedException.class})
@@ -80,7 +81,7 @@ public class UserExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({UserNotFoundException.class})
     public ResponseEntity<ErrorMessage> userNotFoundException(UserNotFoundException e) {
-        return error(BAD_REQUEST, e);
+        return error(NOT_FOUND, e);
     }
 
     @ExceptionHandler({RuntimeException.class})
@@ -89,7 +90,7 @@ public class UserExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private ResponseEntity<ErrorMessage> error(HttpStatus status, Exception e) {
-        log.error("Exception occurred during processing=", e);
+        //log.error("Exception occurred during processing=", e);
         ErrorMessage error = new ErrorMessage(status.value(), e.getMessage());
         return new ResponseEntity<>(error, status);
     }
