@@ -53,79 +53,57 @@ public class WikiDocsProjectApplication {
 		SpringApplication.run(WikiDocsProjectApplication.class, args);
 	}
 
-//	@Bean
-//	ApplicationRunner init(){
-//		return args -> {
-//			articleRepository.deleteAll();
-//			userRepository.deleteAll();
-//
-//			Fairy fairy = Fairy.create();
-//			Person person;
-//			BaseProducer baseProducer;
-//			TextProducer textProducer;
-//
-//			for(int i=0; i<50; i++){
-//				person = fairy.person();
-//				baseProducer = fairy.baseProducer();
-//				textProducer = fairy.textProducer();
-//
-//				List<Article> articles = new ArrayList<>();
-//				Article article;
-//				Role role = baseProducer.randomElement(Role.class);
-//				for(int j=0; j<50; j++){
-//					if(role == Role.ADMIN) break;
-//					article = new ArticleBuilder()
-//							.id(new ObjectId())
-//							.emailId(person.getEmail())
-//							.channelId(baseProducer.bothify("??##??##??##"))
-//							.name(textProducer.sentence(baseProducer.randomBetween(3,8)))
-//							.content(textProducer.paragraph(baseProducer.randomBetween(5,25)))
-//							.status(baseProducer.randomElement(Status.class))
-//							.editable(baseProducer.trueOrFalse())
-//							.rejectedCount(baseProducer.randomBetween(0,2))
-//							.build();
-//					if(article.getStatus() == Status.APPROVED || article.getStatus() == Status.DISCARDED)
-//						article.setEditable(false);
-//					if(article.getStatus() == Status.DISCARDED) article.setRejectedCount(4);
-//					if(article.getStatus() == Status.INITIAL) article.setRejectedCount(0);
-//					articles.add(article);
-//					articleRepository.insert(article);
-//				}
-//
-//				User user = new UserBuilder()
-//						.id(new ObjectId())
-//						.email(person.getEmail())
-//						.name(person.getFullName())
-//						.password(bCryptPasswordEncoder.encode(person.getPassword()))
-//						.role(role)
-//						.articles(articles)
-//						.build();
-//				userRepository.insert(user);
-//
-//				System.out.println(person.getFullName());
-//				System.out.println(person.getEmail());
-//				System.out.println(person.getPassword());
-//				System.out.println(user.getRole());
+	@Bean
+	ApplicationRunner init(){
+		return args -> {
+////			articleRepository.deleteAll();
+////			userRepository.deleteAll();
+////
+////			Fairy fairy = Fairy.create();
+////			Person person;
+////			BaseProducer baseProducer;
+////			TextProducer textProducer;
+////
+////			for(int i=0; i<50; i++){
+////				person = fairy.person();
+////				baseProducer = fairy.baseProducer();
+////				textProducer = fairy.textProducer();
+////
+////				List<Article> articles = new ArrayList<>();
+////				Article article;
+////				for(int j=0; j<50; j++){
+////					article = new ArticleBuilder()
+////							.id(new ObjectId())
+////							.emailId(person.getEmail())
+////							.name(textProducer.sentence(baseProducer.randomBetween(3,8)))
+////							.content(textProducer.paragraph(baseProducer.randomBetween(5,25)))
+////							.status(baseProducer.randomElement(Status.class))
+////							.readOnly(baseProducer.trueOrFalse())
+////							.rejectedCount(baseProducer.randomBetween(0,2))
+////							.build();
+////					if(article.getStatus() == Status.APPROVED || article.getStatus() == Status.DISCARDED)
+////						article.setReadOnly(true);
+////					if(article.getStatus() == Status.DISCARDED) article.setRejectedCount(4);
+////					if(article.getStatus() == Status.INITIAL) article.setRejectedCount(0);
+////					articles.add(article);
+////					articleRepository.insert(article);
+////				}
+////
+////				User user = new UserBuilder()
+////						.id(new ObjectId())
+////						.email(person.getEmail())
+////						.name(person.getFullName())
+////						.password(bCryptPasswordEncoder.encode(person.getPassword()))
+////						.role(baseProducer.randomElement(Role.class))
+////						.articles(articles)
+////						.build();
+////				userRepository.insert(user);
+////
+////				System.out.println(person.getFullName());
+////				System.out.println(person.getEmail());
+////				System.out.println(person.getPassword());
+////				System.out.println(user.getRole());
 //			}
-//		};
-//	}
-
-	@Bean
-	public CorsFilter corsFilter() {
-		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-		final CorsConfiguration config = new CorsConfiguration();
-		config.setAllowCredentials(true);
-		config.setAllowedOrigins(Collections.singletonList("*"));
-		config.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept"));
-		config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-
-		source.registerCorsConfiguration("/**", config);
-		return new CorsFilter(source);
-	}
-
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
+		};
 	}
 }

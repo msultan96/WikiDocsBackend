@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 public class ArticleServiceImpl implements ArticleService {
 
 	private final UserService userService;
+	private final EtherPadService etherPadService;
 	private final ArticleRepository articleRepository;
 	private final UserRepository userRepository;
 
@@ -34,9 +35,11 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param userRepository
 	 */
 	@Autowired
-	public ArticleServiceImpl(UserService userService, ArticleRepository articleRepository, UserRepository userRepository) {
+	public ArticleServiceImpl(UserService userService, EtherPadService etherPadService,
+							  ArticleRepository articleRepository, UserRepository userRepository) {
 		// Initialize local objects with params
 		this.userService = userService;
+		this.etherPadService = etherPadService;
 		this.articleRepository = articleRepository;
 		this.userRepository = userRepository;
 	}
@@ -131,15 +134,17 @@ public class ArticleServiceImpl implements ArticleService {
 		return articles;
 	}
 	/**
-	 * @name: getArticleByChannelId
+	 * @name: getArticleById
 	 * @Desciption Retrieve an article with a specific channelId
-	 * @param channelId
+	 * @param id
 	 * @return article object
 	 */	
-	public Article getArticleByChannelId(String channelId) {
+
+	public Article getArticleById(String id) throws Exception{
 		// called findArticleByChannelId() from articleRepository class to find article of given channelId
 		// receive back an article object
-		Optional<Article> optionalArticle = articleRepository.findArticleByChannelId(channelId);
+        ObjectId objectId = new ObjectId(id);
+		Optional<Article> optionalArticle = articleRepository.findArticleById(objectId);
 		// If article is present return article
 		if(optionalArticle.isPresent()){
 			return optionalArticle.get();
@@ -153,13 +158,14 @@ public class ArticleServiceImpl implements ArticleService {
 	/**
 	 * @name: submitArticle
 	 * @Desciption Submit an initial or beta or rejected article
-	 * @param channelId
+	 * @param id
 	 * @return article object
 	 */	
-	public Article submitArticle(String channelId) {
+
+	public Article submitArticle(ObjectId id) throws Exception{
 		// called findArticleByChannelId() from articleRepository class to find article of given channelId
 		// receive back an article object
-		Optional<Article> optionalArticle = articleRepository.findArticleByChannelId(channelId);
+		Optional<Article> optionalArticle = articleRepository.findArticleById(id);
 		// If article is present create new article object and assign article to it
 		if(optionalArticle.isPresent()){
 			Article article = optionalArticle.get();
@@ -195,13 +201,13 @@ public class ArticleServiceImpl implements ArticleService {
 	/**
 	 * @name: approveArticle
 	 * @Desciption Approve an article
-	 * @param channelId
+	 * @param id
 	 * @return article object
 	 */	
-	public Article approveArticle(String channelId) {
+	public Article approveArticle(ObjectId id) throws Exception{
 		// called findArticleByChannelId() from articleRepository class to find article of given channelId
 		// receive back an article object
-		Optional<Article> optionalArticle = articleRepository.findArticleByChannelId(channelId);
+		Optional<Article> optionalArticle = articleRepository.findArticleById(id);
 		// If article is present create new article object and assign article to it
 		if(optionalArticle.isPresent()) {
 			Article article = optionalArticle.get();
@@ -243,13 +249,13 @@ public class ArticleServiceImpl implements ArticleService {
 	/**
 	 * @name: rejectArticle
 	 * @Desciption Reject an article
-	 * @param channelId
+	 * @param id
 	 * @return article object
 	 */	
-	public Article rejectArticle(String channelId) {
+	public Article rejectArticle(ObjectId id) throws Exception{
 		// called findArticleByChannelId() from articleRepository class to find article of given channelId
 		// receive back an article object
-		Optional<Article> optionalArticle = articleRepository.findArticleByChannelId(channelId);
+		Optional<Article> optionalArticle = articleRepository.findArticleById(id);
 		// If article is present create new article object and assign article to it
 		if(optionalArticle.isPresent()) {
 			Article article = optionalArticle.get();
@@ -296,10 +302,9 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @name createArticleByEmail
 	 * @Desciption Create new article with given emailId and channelId
 	 * @param emailId
-	 * @param channelId
 	 * @return article object
 	 */
-	public Article createArticleByEmail(String emailId, String channelId) {
+	public Article createArticleByEmail(String emailId) throws Exception{
 		// User object declared
 		User user = getUserByEmail(emailId);
 		// List of article declared
@@ -313,19 +318,38 @@ public class ArticleServiceImpl implements ArticleService {
 		Article newArticle = new ArticleBuilder()
 				.id(new ObjectId())
 				.emailId(user.getEmail())
+				.name("New Article")
 				.status(Status.INITIAL)
-				.channelId(channelId)
-				.editable(true)
+				.readOnly(false)
 				.build();
 		// add new article to list
 		articles.add(newArticle);
 		// set article list to users articles
 		user.setArticles(articles);
+		//create an etherPad with the article's ObjectId
+		etherPadService.createPad(newArticle.getId().toString());
 		// save article to database
 		articleRepository.save(newArticle);
 		// save user class to database
 		userRepository.save(user);
 		// return new article object
 		return newArticle;
+	}
+
+	public Article saveArticle(String etherPadId) {
+		etherPadService.getContent(etherPadId);
+		ObjectId articleId = new ObjectId(etherPadId);
+		Optional<Article> optionalArticle = articleRepository.findArticleById(articleId);
+		if(optionalArticle.isPresent()){
+			Article article = optionalArticle.get();
+			String content = etherPadService.getContent(etherPadId);
+			article.setContent(content);
+			articleRepository.save(article);
+			return article;
+		}
+		else{
+			//Throw exception
+			return null;
+		}
 	}
 }

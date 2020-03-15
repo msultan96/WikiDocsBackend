@@ -2,20 +2,11 @@ package com.infy.WikiDocsProject.Service;
 
 import com.infy.WikiDocsProject.Exception.PasswordIncorrectException;
 import com.infy.WikiDocsProject.Exception.UserNotFoundException;
-import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Model.User;
-import com.infy.WikiDocsProject.Repository.ArticleRepository;
 import com.infy.WikiDocsProject.Repository.UserRepository;
-
-import com.infy.WikiDocsProject.Utility.ArticleBuilder;
-import com.infy.WikiDocsProject.enums.Status;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.Optional;
 /**
  * 
@@ -33,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	 * Constructor using constructor injection
 	 */
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+	public UserServiceImpl(UserRepository userRepository , BCryptPasswordEncoder bCryptPasswordEncoder) {
 		this.userRepository = userRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
@@ -60,6 +51,7 @@ public class UserServiceImpl implements UserService {
 		Optional<User> optionalUser = userRepository.findUserByEmail(email);
 		if(optionalUser.isPresent()){
 			if(bCryptPasswordEncoder.matches(password, optionalUser.get().getPassword())){
+//			if(password.equals(optionalUser.get().getPassword())){
 				return optionalUser.get();
 			}
 			else{
