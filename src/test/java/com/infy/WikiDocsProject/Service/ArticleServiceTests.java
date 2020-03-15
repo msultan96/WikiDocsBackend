@@ -96,7 +96,7 @@ public class ArticleServiceTests {
         // when findUserByEmailId() is called with any string param from userService
         // then throw UserNotFoundException()
         when(userService.findUserByEmail(anyString()))
-                .thenThrow(new UserNotFoundException());
+                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
         // Actual call to getAllArticlesByEmailId() from articleService class with given email
         // should throw expected exception
         articleService.getAllArticlesByEmailId("john@gmail.com");
@@ -776,7 +776,7 @@ public class ArticleServiceTests {
                 .build());
 
         when(userService.findUserByEmail(expectedUser.get().getEmail()))
-                .thenThrow(new UserNotFoundException());
+                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
 
         articleService.getAllApprovedArticlesByEmailId("John@gmail.com");
     }
@@ -825,7 +825,7 @@ public class ArticleServiceTests {
                 .build());
 
         when(userService.findUserByEmail(expectedUser.get().getEmail()))
-                .thenThrow(new UserNotFoundException());
+                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
 
         articleService.getAllBetaArticlesByEmailId("John@gmail.com");
     }
@@ -874,7 +874,7 @@ public class ArticleServiceTests {
                 .build());
 
         when(userService.findUserByEmail(expectedUser.get().getEmail()))
-                .thenThrow(new UserNotFoundException());
+                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
 
         articleService.getAllInitialArticlesByEmailId("John@gmail.com");
     }
@@ -923,7 +923,7 @@ public class ArticleServiceTests {
                 .build());
 
         when(userService.findUserByEmail(expectedUser.get().getEmail()))
-                .thenThrow(new UserNotFoundException());
+                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
 
         articleService.getAllRejectedArticlesByEmailId("John@gmail.com");
     }
@@ -972,7 +972,7 @@ public class ArticleServiceTests {
                 .build());
 
         when(userService.findUserByEmail(expectedUser.get().getEmail()))
-                .thenThrow(new UserNotFoundException());
+                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
 
         articleService.getAllDiscardedArticlesByEmailId("John@gmail.com");
     }
@@ -1028,7 +1028,7 @@ public class ArticleServiceTests {
         // when findUserByEmail() is called with any string param from userService
         // then throw User Not Found Exception
         when(userService.findUserByEmail(anyString()))
-                .thenThrow(new UserNotFoundException());
+                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
 
         // actual call to createArticleByEmail() with "John@gmail.com", "Invalid" param
         articleService.createArticleByEmail("John@gmail.com", "invalid");
