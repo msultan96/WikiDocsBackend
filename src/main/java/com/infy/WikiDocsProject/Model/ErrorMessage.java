@@ -1,13 +1,14 @@
 package com.infy.WikiDocsProject.Model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter @Setter @NoArgsConstructor
+@Data
+@NoArgsConstructor
 public class ErrorMessage {
+
     private int errorCode;
     private String errorMessage;
+
     public ErrorMessage(int errorCode, String errorMessage) {
         super();
         this.errorCode = errorCode;

@@ -1,0 +1,781 @@
+2020-03-14 00:03:01.445  INFO 58940 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 00:03:01.614  INFO 58940 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 14:20:56.080  INFO 40664 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 40664 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 14:20:56.105  INFO 40664 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 14:20:59.935  INFO 40664 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 14:21:00.202  INFO 40664 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 252ms. Found 2 MongoDB repository interfaces.
+2020-03-14 14:21:02.332  INFO 40664 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 14:21:02.373  INFO 40664 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 14:21:02.375  INFO 40664 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 14:21:02.698  INFO 40664 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 14:21:02.700  INFO 40664 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4999 ms
+2020-03-14 14:21:03.849  INFO 40664 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 14:21:04.027  INFO 40664 --- [cluster-ClusterId{value='5e6d2e9f66d67e5e6f331e5c', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:193}] to localhost:27017
+2020-03-14 14:21:04.042  INFO 40664 --- [cluster-ClusterId{value='5e6d2e9f66d67e5e6f331e5c', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=8487804}
+2020-03-14 14:21:05.765  INFO 40664 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 14:21:07.229  INFO 40664 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 14:21:07.250  INFO 40664 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 13.855 seconds (JVM running for 16.376)
+2020-03-14 14:21:07.459  INFO 40664 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:195}] to localhost:27017
+2020-03-14 14:36:37.872  INFO 9528 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 9528 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 14:36:37.892  INFO 9528 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 14:36:41.746  INFO 9528 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 14:36:42.099  INFO 9528 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 337ms. Found 2 MongoDB repository interfaces.
+2020-03-14 14:36:44.745  INFO 9528 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 14:36:44.805  INFO 9528 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 14:36:44.807  INFO 9528 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 14:36:45.271  INFO 9528 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 14:36:45.272  INFO 9528 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5877 ms
+2020-03-14 14:36:46.163  INFO 9528 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 14:36:46.317  INFO 9528 --- [cluster-ClusterId{value='5e6d324ef722c918e23b6e2d', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:226}] to localhost:27017
+2020-03-14 14:36:46.332  INFO 9528 --- [cluster-ClusterId{value='5e6d324ef722c918e23b6e2d', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=7747674}
+2020-03-14 14:36:47.796  INFO 9528 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 14:36:49.048  INFO 9528 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 14:36:49.061  INFO 9528 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 13.099 seconds (JVM running for 15.627)
+2020-03-14 14:36:49.185  INFO 9528 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:227}] to localhost:27017
+2020-03-14 14:38:35.673  INFO 9528 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 14:38:35.675  INFO 9528 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 14:38:35.720  INFO 9528 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 44 ms
+2020-03-14 14:38:36.287  INFO 9528 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: null
+2020-03-14 14:38:36.555 ERROR 9528 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER CREDENTIALS COULD NOT BE VALIDATED: null
+2020-03-14 14:38:36.556 ERROR 9528 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : NO USER WAS FOUND WITH THE EMAIL PROVIDED
+2020-03-14 14:38:43.770  INFO 9528 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: nataliedalton@mail.com
+2020-03-14 14:38:43.778 ERROR 9528 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER CREDENTIALS COULD NOT BE VALIDATED: nataliedalton@mail.com
+2020-03-14 14:38:43.781 ERROR 9528 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : NO USER WAS FOUND WITH THE EMAIL PROVIDED
+2020-03-14 14:38:49.611  INFO 9528 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: nataliedalton@yahoo.com
+2020-03-14 14:38:49.849  INFO 9528 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 14:38:49.905  INFO 9528 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: nataliedalton@yahoo.com
+2020-03-14 14:38:50.055  INFO 9528 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 14:38:50.228  INFO 9528 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 14:38:54.997  INFO 9528 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:38:55.883  INFO 9528 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:44:23.219  INFO 9528 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:44:23.348  INFO 9528 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:47:44.829  INFO 9528 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:47:44.929  INFO 9528 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:48:14.209  INFO 9528 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:48:14.299  INFO 9528 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:48:31.059  INFO 9528 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:48:31.160  INFO 9528 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:52:20.382  INFO 9528 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:52:20.472  INFO 9528 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:52:41.832  INFO 9528 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:52:41.923  INFO 9528 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:58:55.412  INFO 9528 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 14:58:55.532  INFO 9528 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 15:01:38.124  INFO 9528 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 15:01:38.211  INFO 9528 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 15:02:55.860  INFO 9528 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: conner@yahoo.com
+2020-03-14 15:02:55.984  INFO 9528 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 15:02:55.999  INFO 9528 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: conner@yahoo.com
+2020-03-14 15:02:56.095  INFO 9528 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 15:02:56.098  INFO 9528 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 15:02:56.145  INFO 9528 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 15:02:56.313  INFO 9528 --- [http-nio-8080-exec-8] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:280}] to localhost:27017
+2020-03-14 15:02:56.359  INFO 9528 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 15:03:15.601  INFO 9528 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: nataliedalton@yahoo.com
+2020-03-14 15:03:15.724  INFO 9528 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 15:03:15.741  INFO 9528 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: nataliedalton@yahoo.com
+2020-03-14 15:03:15.798  INFO 9528 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 15:03:15.845  INFO 9528 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 15:03:18.966  INFO 9528 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 15:03:19.046  INFO 9528 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL nataliedalton@yahoo.com
+2020-03-14 15:05:57.717  INFO 9528 --- [http-nio-8080-exec-6] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:416) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:260) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-03-14 15:14:37.340  INFO 74108 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 74108 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 15:14:37.391  INFO 74108 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 15:14:41.062  INFO 74108 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 15:14:41.388  INFO 74108 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 310ms. Found 2 MongoDB repository interfaces.
+2020-03-14 15:14:43.748  INFO 74108 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 15:14:43.792  INFO 74108 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 15:14:43.794  INFO 74108 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 15:14:44.163  INFO 74108 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 15:14:44.165  INFO 74108 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5328 ms
+2020-03-14 15:14:45.027  INFO 74108 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 15:14:45.221  INFO 74108 --- [cluster-ClusterId{value='5e6d3b3564e84620ed00f67f', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:304}] to localhost:27017
+2020-03-14 15:14:45.239  INFO 74108 --- [cluster-ClusterId{value='5e6d3b3564e84620ed00f67f', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=10599740}
+2020-03-14 15:14:46.728  INFO 74108 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 15:14:48.103  INFO 74108 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 15:14:48.121  INFO 74108 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 12.812 seconds (JVM running for 14.849)
+2020-03-14 15:14:48.233  INFO 74108 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:305}] to localhost:27017
+2020-03-14 15:15:19.427  INFO 74108 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 15:15:19.428  INFO 74108 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 15:15:19.446  INFO 74108 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 17 ms
+2020-03-14 15:15:19.775  INFO 74108 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: gabriel.richard@yahoo.com
+2020-03-14 15:15:20.078  INFO 74108 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 15:15:20.125  INFO 74108 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: gabriel.richard@yahoo.com
+2020-03-14 15:15:20.376  INFO 74108 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 15:15:20.523  INFO 74108 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 15:15:29.646  INFO 74108 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL gabriel.richard@yahoo.com
+2020-03-14 15:15:30.021  INFO 74108 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL gabriel.richard@yahoo.com
+2020-03-14 15:15:40.540  INFO 74108 --- [http-nio-8080-exec-6] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in method name. HTTP method names must be tokens
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:416) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:260) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-03-14 15:20:42.211  INFO 74108 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: william@mail.com
+2020-03-14 15:20:42.339  INFO 74108 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 15:20:42.358  INFO 74108 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: william@mail.com
+2020-03-14 15:20:42.440  INFO 74108 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 15:20:42.501  INFO 74108 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 15:20:51.044  INFO 74108 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL ARTICLES BELONGING TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:20:51.069  INFO 74108 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ARTICLES BELONGING TO USER WITH EMAIL : william@mail.com
+2020-03-14 15:20:52.824  INFO 74108 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:20:52.851  INFO 74108 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:20:54.234  INFO 74108 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:20:54.253  INFO 74108 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:20:56.003  INFO 74108 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:20:56.022  INFO 74108 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:20:58.377  INFO 74108 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL william@mail.com
+2020-03-14 15:21:30.718  INFO 74108 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: william@yahoo.com
+2020-03-14 15:21:30.722 ERROR 74108 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.UserAPI     : USER CREDENTIALS COULD NOT BE VALIDATED: william@yahoo.com
+2020-03-14 15:21:30.724 ERROR 74108 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.UserAPI     : NO USER WAS FOUND WITH THE EMAIL PROVIDED
+2020-03-14 15:21:34.371  INFO 74108 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: william@ymailcom
+2020-03-14 15:21:34.375 ERROR 74108 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.UserAPI     : USER CREDENTIALS COULD NOT BE VALIDATED: william@ymailcom
+2020-03-14 15:21:34.377 ERROR 74108 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.UserAPI     : NO USER WAS FOUND WITH THE EMAIL PROVIDED
+2020-03-14 15:21:36.408  INFO 74108 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: william@mailcom
+2020-03-14 15:21:36.413 ERROR 74108 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.UserAPI     : USER CREDENTIALS COULD NOT BE VALIDATED: william@mailcom
+2020-03-14 15:21:36.413 ERROR 74108 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.UserAPI     : NO USER WAS FOUND WITH THE EMAIL PROVIDED
+2020-03-14 15:21:38.380  INFO 74108 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: william@mail.com
+2020-03-14 15:21:38.538  INFO 74108 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 15:21:38.555  INFO 74108 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: william@mail.com
+2020-03-14 15:21:38.656  INFO 74108 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 15:21:38.704  INFO 74108 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 15:21:41.599  INFO 74108 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:21:41.617  INFO 74108 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:21:43.154  INFO 74108 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:21:43.216  INFO 74108 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:21:44.809  INFO 74108 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:21:44.833  INFO 74108 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:21:47.156  INFO 74108 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL ARTICLES BELONGING TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:21:47.177  INFO 74108 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ARTICLES BELONGING TO USER WITH EMAIL : william@mail.com
+2020-03-14 15:21:49.676  INFO 74108 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:21:49.700  INFO 74108 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:21:52.103  INFO 74108 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:21:52.134  INFO 74108 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:21:56.339  INFO 74108 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL william@mail.com
+2020-03-14 15:22:14.964  INFO 74108 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL ARTICLES BELONGING TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:22:14.990  INFO 74108 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ARTICLES BELONGING TO USER WITH EMAIL : william@mail.com
+2020-03-14 15:22:16.258  INFO 74108 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL william@mail.com
+2020-03-14 15:24:13.837  INFO 74108 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: william@yahoo.com
+2020-03-14 15:24:13.843 ERROR 74108 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.UserAPI     : USER CREDENTIALS COULD NOT BE VALIDATED: william@yahoo.com
+2020-03-14 15:24:13.844 ERROR 74108 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.UserAPI     : NO USER WAS FOUND WITH THE EMAIL PROVIDED
+2020-03-14 15:24:27.337  INFO 74108 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: william@mail.com
+2020-03-14 15:24:27.460  INFO 74108 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 15:24:27.478  INFO 74108 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: william@mail.com
+2020-03-14 15:24:27.533  INFO 74108 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 15:24:27.587  INFO 74108 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 15:24:31.140  INFO 74108 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL william@mail.com
+2020-03-14 15:24:47.562  INFO 74108 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL ARTICLES BELONGING TO USER WITH EMAIL: william@mail.com
+2020-03-14 15:24:47.592  INFO 74108 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ARTICLES BELONGING TO USER WITH EMAIL : william@mail.com
+2020-03-14 15:24:48.583  INFO 74108 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL william@mail.com
+2020-03-14 15:26:24.278  INFO 59816 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 59816 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 15:26:24.299  INFO 59816 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 15:26:28.221  INFO 59816 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 15:26:28.464  INFO 59816 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 226ms. Found 2 MongoDB repository interfaces.
+2020-03-14 15:26:30.569  INFO 59816 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 15:26:30.601  INFO 59816 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 15:26:30.602  INFO 59816 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 15:26:30.900  INFO 59816 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 15:26:30.901  INFO 59816 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5206 ms
+2020-03-14 15:26:31.544  INFO 59816 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 15:26:31.699  INFO 59816 --- [cluster-ClusterId{value='5e6d3df7db869f47cc2dc3fc', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:329}] to localhost:27017
+2020-03-14 15:26:31.717  INFO 59816 --- [cluster-ClusterId{value='5e6d3df7db869f47cc2dc3fc', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=9393059}
+2020-03-14 15:26:33.141  INFO 59816 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 15:26:34.431  INFO 59816 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 15:26:34.439  INFO 59816 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 12.053 seconds (JVM running for 13.863)
+2020-03-14 15:26:34.539  INFO 59816 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:330}] to localhost:27017
+2020-03-14 16:18:54.187  INFO 59816 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 16:18:54.188  INFO 59816 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 16:18:54.290  INFO 59816 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 101 ms
+2020-03-14 16:18:55.303  INFO 59816 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL william@mail.com
+2020-03-14 16:21:05.670  INFO 59816 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL william@mail.com
+2020-03-14 16:21:43.057  INFO 59816 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: makaylacarson@gmail.com
+2020-03-14 16:21:43.218  INFO 59816 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 16:21:43.297  INFO 59816 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: makaylacarson@gmail.com
+2020-03-14 16:21:43.400  INFO 59816 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 16:21:43.533  INFO 59816 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 16:21:45.615  INFO 59816 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL makaylacarson@gmail.com
+2020-03-14 16:21:45.798  INFO 59816 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL makaylacarson@gmail.com
+2020-03-14 16:35:35.796  INFO 68672 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 68672 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 16:35:35.807  INFO 68672 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 16:35:39.824  INFO 68672 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 16:35:40.151  INFO 68672 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 312ms. Found 2 MongoDB repository interfaces.
+2020-03-14 16:35:42.384  INFO 68672 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 16:35:42.427  INFO 68672 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 16:35:42.428  INFO 68672 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 16:35:42.835  INFO 68672 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 16:35:42.841  INFO 68672 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5302 ms
+2020-03-14 16:35:43.712  INFO 68672 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 16:35:43.872  INFO 68672 --- [cluster-ClusterId{value='5e6d4e2f0e35c80e592e52fc', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:428}] to localhost:27017
+2020-03-14 16:35:43.888  INFO 68672 --- [cluster-ClusterId{value='5e6d4e2f0e35c80e592e52fc', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=8197614}
+2020-03-14 16:35:45.200  INFO 68672 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 16:35:46.525  INFO 68672 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 16:35:46.550  INFO 68672 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 12.957 seconds (JVM running for 15.71)
+2020-03-14 16:35:46.663  INFO 68672 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:429}] to localhost:27017
+2020-03-14 16:36:13.563  INFO 68672 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 16:36:13.565  INFO 68672 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 16:36:13.585  INFO 68672 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 19 ms
+2020-03-14 16:36:13.966  INFO 68672 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: taylorbenson@mail.com
+2020-03-14 16:36:14.291  INFO 68672 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : 5e6d4e410e35c80e592e5cbf
+2020-03-14 16:36:14.292  INFO 68672 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : 5e6d4e410e35c80e592e5cbf
+2020-03-14 16:36:14.293  INFO 68672 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 16:36:14.344  INFO 68672 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: taylorbenson@mail.com
+2020-03-14 16:36:14.624  INFO 68672 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 16:36:14.757  INFO 68672 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 16:38:47.856  INFO 74988 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 74988 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 16:38:47.872  INFO 74988 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 16:38:51.493  INFO 74988 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 16:38:51.740  INFO 74988 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 232ms. Found 2 MongoDB repository interfaces.
+2020-03-14 16:38:53.741  INFO 74988 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 16:38:53.773  INFO 74988 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 16:38:53.774  INFO 74988 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 16:38:54.140  INFO 74988 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 16:38:54.141  INFO 74988 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5001 ms
+2020-03-14 16:38:55.035  INFO 74988 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 16:38:55.214  INFO 74988 --- [cluster-ClusterId{value='5e6d4eef7d1b2762a7bc167e', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:437}] to localhost:27017
+2020-03-14 16:38:55.235  INFO 74988 --- [cluster-ClusterId{value='5e6d4eef7d1b2762a7bc167e', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=12170379}
+2020-03-14 16:38:57.577  INFO 74988 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 16:38:59.624  INFO 74988 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 16:38:59.667  INFO 74988 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 13.746 seconds (JVM running for 15.703)
+2020-03-14 16:38:59.860  INFO 74988 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:438}] to localhost:27017
+2020-03-14 16:39:27.926  INFO 74988 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 16:39:27.928  INFO 74988 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 16:39:27.948  INFO 74988 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 19 ms
+2020-03-14 16:39:28.314  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: kerr@mail.com
+2020-03-14 16:39:28.585  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 16:39:28.632  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: kerr@mail.com
+2020-03-14 16:39:28.892  INFO 74988 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 16:39:29.060  INFO 74988 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 16:39:32.051  INFO 74988 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL kerr@mail.com
+2020-03-14 16:39:32.178  INFO 74988 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL kerr@mail.com
+2020-03-14 16:40:46.741  INFO 74988 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL kerr@mail.com
+2020-03-14 16:40:46.809  INFO 74988 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL kerr@mail.com
+2020-03-14 16:44:47.162  INFO 74988 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL kerr@mail.com
+2020-03-14 16:44:47.217  INFO 74988 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL kerr@mail.com
+2020-03-14 16:49:22.986  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL kerr@mail.com
+2020-03-14 16:49:23.037  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL kerr@mail.com
+2020-03-14 16:57:42.284  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL kerr@mail.com
+2020-03-14 16:57:42.335  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL kerr@mail.com
+2020-03-14 17:00:00.933  INFO 74988 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL kerr@mail.com
+2020-03-14 17:00:00.982  INFO 74988 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL kerr@mail.com
+2020-03-14 17:07:36.859  INFO 74988 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: nathan.holt@mail.com
+2020-03-14 17:07:36.987  INFO 74988 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 17:07:37.005  INFO 74988 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: nathan.holt@mail.com
+2020-03-14 17:07:37.093  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 17:07:37.154  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 17:07:39.537  INFO 74988 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:07:39.592  INFO 74988 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:07:45.037  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:07:45.055  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:09:53.997  INFO 74988 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:09:54.015  INFO 74988 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:10:10.897  INFO 74988 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:10:10.915  INFO 74988 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:10:25.085  INFO 74988 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:10:25.106  INFO 74988 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:11:02.267  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: nathan.holt@mail.com
+2020-03-14 17:11:02.381 ERROR 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER CREDENTIALS COULD NOT BE VALIDATED: nathan.holt@mail.com
+2020-03-14 17:11:02.381 ERROR 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : THE PASSWORD ENTERED WAS INCORRECT
+2020-03-14 17:11:08.247  INFO 74988 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: nathan.holt@mail.com
+2020-03-14 17:11:08.376  INFO 74988 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 17:11:08.399  INFO 74988 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: nathan.holt@mail.com
+2020-03-14 17:11:08.490  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 17:11:08.533  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 17:11:11.462  INFO 74988 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:11:11.480  INFO 74988 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:12:18.045  INFO 74988 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:12:18.061  INFO 74988 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:12:23.662  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : SUBMITTING ARTICLE FOR APPROVAL FOR USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:12:23.695  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : ARTICLE SUBMITTED FOR APPROVAL FOR USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:12:23.718  INFO 74988 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:12:23.735  INFO 74988 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:12:42.986  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:12:42.999  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:13:28.766  INFO 74988 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: calebcotton@mail.com
+2020-03-14 17:13:28.882  INFO 74988 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 17:13:28.900  INFO 74988 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: calebcotton@mail.com
+2020-03-14 17:13:28.985  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 17:13:28.993  INFO 74988 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 17:13:29.044  INFO 74988 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 17:13:29.187  INFO 74988 --- [http-nio-8080-exec-5] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:506}] to localhost:27017
+2020-03-14 17:13:29.228  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 17:13:31.907  INFO 74988 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 17:13:31.949  INFO 74988 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 17:13:40.038  INFO 74988 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : REJECTING ARTICLE SUBMITTED BY USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:13:40.048  INFO 74988 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : REJECTED ARTICLE SUBMITTED BY USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:13:40.071  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 17:13:40.109  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 17:14:01.184  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: nathan.holt@mail.com
+2020-03-14 17:14:01.313  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 17:14:01.328  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: nathan.holt@mail.com
+2020-03-14 17:14:01.375  INFO 74988 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 17:14:01.432  INFO 74988 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 17:14:08.674  INFO 74988 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:14:08.699  INFO 74988 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:14:15.866  INFO 74988 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:14:15.884  INFO 74988 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:14:21.232  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:14:21.247  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:14:34.335  INFO 74988 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:14:34.366  INFO 74988 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:15:25.818  INFO 74988 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:15:25.842  INFO 74988 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:15:25.879  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 17:15:25.931  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 17:16:32.162  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:16:32.180  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:16:34.742  INFO 74988 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : SUBMITTING ARTICLE FOR APPROVAL FOR USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:16:34.748  INFO 74988 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : ARTICLE SUBMITTED FOR APPROVAL FOR USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:16:34.766  INFO 74988 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:16:34.780  INFO 74988 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:16:48.321  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 17:16:48.390  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 17:16:53.065  INFO 74988 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : APPROVING ARTICLE SUBMITTED BY USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:16:53.073  INFO 74988 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : APPROVED ARTICLE SUBMITTED BY USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:16:53.099  INFO 74988 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 17:16:53.137  INFO 74988 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 17:17:01.858  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 17:17:01.896  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 17:26:32.265  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 17:26:32.271  INFO 74988 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 17:26:32.427  INFO 74988 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 17:26:32.456  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 17:30:07.235  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:30:07.272  INFO 74988 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 17:30:07.267  INFO 74988 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:30:07.252  INFO 74988 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 17:30:07.379  INFO 74988 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 17:30:07.470  INFO 74988 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 17:30:50.186  INFO 74988 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 17:30:50.205  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 17:30:50.315  INFO 74988 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 17:30:50.403  INFO 74988 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 17:30:50.530  INFO 74988 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:30:50.552  INFO 74988 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: nathan.holt@mail.com
+2020-03-14 17:30:54.383  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:30:54.459  INFO 74988 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:48:11.961  INFO 71752 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 71752 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 17:48:11.997  INFO 71752 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 17:48:17.177  INFO 71752 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 17:48:17.541  INFO 71752 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 348ms. Found 2 MongoDB repository interfaces.
+2020-03-14 17:48:20.572  INFO 71752 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 17:48:20.622  INFO 71752 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 17:48:20.624  INFO 71752 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 17:48:21.131  INFO 71752 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 17:48:21.136  INFO 71752 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6994 ms
+2020-03-14 17:48:22.425  INFO 71752 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 17:48:22.665  INFO 71752 --- [cluster-ClusterId{value='5e6d5f36e25fbe686015b39f', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:576}] to localhost:27017
+2020-03-14 17:48:22.684  INFO 71752 --- [cluster-ClusterId{value='5e6d5f36e25fbe686015b39f', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=11262682}
+2020-03-14 17:48:25.488  INFO 71752 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 17:48:27.876  INFO 71752 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 17:48:27.912  INFO 71752 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 18.625 seconds (JVM running for 21.648)
+2020-03-14 17:48:28.140  INFO 71752 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:577}] to localhost:27017
+2020-03-14 17:49:01.360  INFO 71752 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 17:49:01.363  INFO 71752 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 17:49:01.444  INFO 71752 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 76 ms
+2020-03-14 17:49:01.890  INFO 71752 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 17:49:01.890  INFO 71752 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 17:49:02.230  INFO 71752 --- [http-nio-8080-exec-1] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:579}] to localhost:27017
+2020-03-14 17:49:03.072  INFO 71752 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 17:49:03.043  INFO 71752 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 17:49:05.844  INFO 71752 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL nathan.holt@mail.com
+2020-03-14 17:49:44.788  INFO 71752 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: adammartinez@gmail.com
+2020-03-14 17:49:44.792 ERROR 71752 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : USER CREDENTIALS COULD NOT BE VALIDATED: adammartinez@gmail.com
+2020-03-14 17:49:44.794 ERROR 71752 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : NO USER WAS FOUND WITH THE EMAIL PROVIDED
+2020-03-14 17:49:50.502  INFO 71752 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: adam.martinez@gmail.com
+2020-03-14 17:49:50.650  INFO 71752 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 17:49:50.669  INFO 71752 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: adam.martinez@gmail.com
+2020-03-14 17:49:50.815  INFO 71752 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 17:49:50.872  INFO 71752 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 17:49:53.831  INFO 71752 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL adam.martinez@gmail.com
+2020-03-14 17:49:53.986  INFO 71752 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL adam.martinez@gmail.com
+2020-03-14 17:50:59.546  INFO 72740 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 72740 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 17:50:59.558  INFO 72740 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 17:51:04.022  INFO 72740 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 17:51:04.321  INFO 72740 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 281ms. Found 2 MongoDB repository interfaces.
+2020-03-14 17:51:06.570  INFO 72740 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 17:51:06.608  INFO 72740 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 17:51:06.610  INFO 72740 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 17:51:06.970  INFO 72740 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 17:51:06.972  INFO 72740 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6095 ms
+2020-03-14 17:51:07.909  INFO 72740 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 17:51:08.113  INFO 72740 --- [cluster-ClusterId{value='5e6d5fdb9a9d8f611b76ba7e', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:585}] to localhost:27017
+2020-03-14 17:51:08.133  INFO 72740 --- [cluster-ClusterId{value='5e6d5fdb9a9d8f611b76ba7e', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=12667708}
+2020-03-14 17:51:09.747  INFO 72740 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 17:51:11.334  INFO 72740 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 17:51:11.351  INFO 72740 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 13.73 seconds (JVM running for 15.464)
+2020-03-14 17:51:11.493  INFO 72740 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:586}] to localhost:27017
+2020-03-14 17:51:49.461  INFO 72740 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 17:51:49.462  INFO 72740 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 17:51:49.478  INFO 72740 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
+2020-03-14 17:51:49.830  INFO 72740 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: lilian.whitaker@gmail.com
+2020-03-14 17:51:49.978 ERROR 72740 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER CREDENTIALS COULD NOT BE VALIDATED: lilian.whitaker@gmail.com
+2020-03-14 17:51:49.979 ERROR 72740 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : NO USER WAS FOUND WITH THE EMAIL PROVIDED
+2020-03-14 17:51:56.664  INFO 72740 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: lillian.whitaker@gmail.com
+2020-03-14 17:51:56.803  INFO 72740 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 17:51:56.852  INFO 72740 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: lillian.whitaker@gmail.com
+2020-03-14 17:51:56.954  INFO 72740 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 17:51:57.080  INFO 72740 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 17:51:58.771  INFO 72740 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL lillian.whitaker@gmail.com
+2020-03-14 17:51:58.888  INFO 72740 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL lillian.whitaker@gmail.com
+2020-03-14 17:54:45.109  INFO 58584 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 58584 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 17:54:45.124  INFO 58584 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 17:54:49.298  INFO 58584 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 17:54:49.516  INFO 58584 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 204ms. Found 2 MongoDB repository interfaces.
+2020-03-14 17:54:51.571  INFO 58584 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 17:54:51.606  INFO 58584 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 17:54:51.608  INFO 58584 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 17:54:51.935  INFO 58584 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 17:54:51.936  INFO 58584 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5517 ms
+2020-03-14 17:54:52.600  INFO 58584 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 17:54:52.749  INFO 58584 --- [cluster-ClusterId{value='5e6d60bc16b5671a05bdffaa', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:594}] to localhost:27017
+2020-03-14 17:54:52.765  INFO 58584 --- [cluster-ClusterId{value='5e6d60bc16b5671a05bdffaa', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=8630456}
+2020-03-14 17:54:54.245  INFO 58584 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 17:54:55.715  INFO 58584 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 17:54:55.726  INFO 58584 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 12.517 seconds (JVM running for 14.492)
+2020-03-14 17:55:41.780  INFO 58584 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 17:55:41.784  INFO 58584 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 17:55:41.810  INFO 58584 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 25 ms
+2020-03-14 17:55:42.864 ERROR 58584 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/DLM_Wiki] threw exception [Request processing failed; nested exception is net.gjerull.etherpad.client.EPLiteException: padID does not exist] with root cause
+
+net.gjerull.etherpad.client.EPLiteException: padID does not exist
+	at net.gjerull.etherpad.client.EPLiteConnection.handleResponse(EPLiteConnection.java:186) ~[etherpad_lite_client-1.2.13.jar:na]
+	at net.gjerull.etherpad.client.EPLiteConnection.call(EPLiteConnection.java:270) ~[etherpad_lite_client-1.2.13.jar:na]
+	at net.gjerull.etherpad.client.EPLiteConnection.getObject(EPLiteConnection.java:101) ~[etherpad_lite_client-1.2.13.jar:na]
+	at net.gjerull.etherpad.client.EPLiteConnection.get(EPLiteConnection.java:112) ~[etherpad_lite_client-1.2.13.jar:na]
+	at net.gjerull.etherpad.client.EPLiteClient.getText(EPLiteClient.java:350) ~[etherpad_lite_client-1.2.13.jar:na]
+	at com.infy.WikiDocsProject.Service.EtherPadService.getPad(EtherPadService.java:20) ~[classes/:na]
+	at com.infy.WikiDocsProject.Service.ArticleServiceImpl.saveArticle(ArticleServiceImpl.java:371) ~[classes/:na]
+	at com.infy.WikiDocsProject.API.ArticleAPI.saveArticle(ArticleAPI.java:274) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-03-14 17:57:10.718  INFO 74920 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 74920 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 17:57:10.732  INFO 74920 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 17:57:15.930  INFO 74920 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 17:57:16.316  INFO 74920 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 360ms. Found 2 MongoDB repository interfaces.
+2020-03-14 17:57:18.806  INFO 74920 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 17:57:18.856  INFO 74920 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 17:57:18.861  INFO 74920 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 17:57:19.299  INFO 74920 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 17:57:19.301  INFO 74920 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6904 ms
+2020-03-14 17:57:20.162  INFO 74920 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 17:57:20.584  INFO 74920 --- [cluster-ClusterId{value='5e6d61504769424bd50fdcf4', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:600}] to localhost:27017
+2020-03-14 17:57:20.612  INFO 74920 --- [cluster-ClusterId{value='5e6d61504769424bd50fdcf4', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=11729233}
+2020-03-14 17:57:24.071  INFO 74920 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 17:57:27.663  INFO 74920 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 17:57:27.704  INFO 74920 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 20.26 seconds (JVM running for 23.202)
+2020-03-14 17:57:29.768  INFO 74920 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 17:57:29.770  INFO 74920 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 17:57:29.902  INFO 74920 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 131 ms
+2020-03-14 17:57:30.984 ERROR 74920 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/DLM_Wiki] threw exception [Request processing failed; nested exception is net.gjerull.etherpad.client.EPLiteException: padID does not exist] with root cause
+
+net.gjerull.etherpad.client.EPLiteException: padID does not exist
+	at net.gjerull.etherpad.client.EPLiteConnection.handleResponse(EPLiteConnection.java:186) ~[etherpad_lite_client-1.2.13.jar:na]
+	at net.gjerull.etherpad.client.EPLiteConnection.call(EPLiteConnection.java:270) ~[etherpad_lite_client-1.2.13.jar:na]
+	at net.gjerull.etherpad.client.EPLiteConnection.getObject(EPLiteConnection.java:101) ~[etherpad_lite_client-1.2.13.jar:na]
+	at net.gjerull.etherpad.client.EPLiteConnection.get(EPLiteConnection.java:112) ~[etherpad_lite_client-1.2.13.jar:na]
+	at net.gjerull.etherpad.client.EPLiteClient.getText(EPLiteClient.java:350) ~[etherpad_lite_client-1.2.13.jar:na]
+	at com.infy.WikiDocsProject.Service.EtherPadService.getPad(EtherPadService.java:20) ~[classes/:na]
+	at com.infy.WikiDocsProject.Service.ArticleServiceImpl.saveArticle(ArticleServiceImpl.java:371) ~[classes/:na]
+	at com.infy.WikiDocsProject.API.ArticleAPI.saveArticle(ArticleAPI.java:274) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-03-14 18:00:57.130  INFO 74920 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 18:00:57.134  INFO 74920 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 18:00:57.494  INFO 74920 --- [http-nio-8080-exec-4] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:608}] to localhost:27017
+2020-03-14 18:00:57.564  INFO 74920 --- [http-nio-8080-exec-3] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:609}] to localhost:27017
+2020-03-14 18:00:58.013  INFO 74920 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 18:00:58.042  INFO 74920 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 18:01:00.456  INFO 74920 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL lillian.whitaker@gmail.com
+2020-03-14 18:01:00.713  INFO 74920 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL lillian.whitaker@gmail.com
+2020-03-14 18:01:16.788  INFO 74920 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 18:01:16.858  INFO 74920 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 18:01:16.909  INFO 74920 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 18:01:16.963  INFO 74920 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 18:01:19.341  INFO 74920 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL lillian.whitaker@gmail.com
+2020-03-14 18:01:19.416  INFO 74920 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL lillian.whitaker@gmail.com
+2020-03-14 18:02:31.990  INFO 75136 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 75136 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 18:02:32.019  INFO 75136 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 18:02:36.044  INFO 75136 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 18:02:36.275  INFO 75136 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 215ms. Found 2 MongoDB repository interfaces.
+2020-03-14 18:02:38.561  INFO 75136 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 18:02:38.593  INFO 75136 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 18:02:38.594  INFO 75136 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 18:02:39.087  INFO 75136 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 18:02:39.090  INFO 75136 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5804 ms
+2020-03-14 18:02:39.751  INFO 75136 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 18:02:39.911  INFO 75136 --- [cluster-ClusterId{value='5e6d628fc563fc693f3f3b72', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:613}] to localhost:27017
+2020-03-14 18:02:39.926  INFO 75136 --- [cluster-ClusterId{value='5e6d628fc563fc693f3f3b72', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=8604564}
+2020-03-14 18:02:41.448  INFO 75136 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 18:02:42.916  INFO 75136 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 18:02:42.925  INFO 75136 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 12.803 seconds (JVM running for 14.482)
+2020-03-14 18:02:51.030  INFO 75136 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 18:02:51.032  INFO 75136 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 18:02:51.057  INFO 75136 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 24 ms
+2020-03-14 18:03:40.189  INFO 71812 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 71812 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 18:03:40.207  INFO 71812 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 18:03:44.339  INFO 71812 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 18:03:44.596  INFO 71812 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 239ms. Found 2 MongoDB repository interfaces.
+2020-03-14 18:03:46.738  INFO 71812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 18:03:46.771  INFO 71812 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 18:03:46.772  INFO 71812 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 18:03:47.261  INFO 71812 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 18:03:47.263  INFO 71812 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5818 ms
+2020-03-14 18:03:47.925  INFO 71812 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 18:03:48.086  INFO 71812 --- [cluster-ClusterId{value='5e6d62d3be57e20ea77dbbe7', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:616}] to localhost:27017
+2020-03-14 18:03:48.101  INFO 71812 --- [cluster-ClusterId{value='5e6d62d3be57e20ea77dbbe7', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=8661722}
+2020-03-14 18:03:49.528  INFO 71812 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 18:03:51.037  INFO 71812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 18:03:51.046  INFO 71812 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 12.767 seconds (JVM running for 14.58)
+2020-03-14 18:03:54.958  INFO 71812 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 18:03:54.960  INFO 71812 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 18:03:54.992  INFO 71812 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 31 ms
+2020-03-14 18:09:58.763  INFO 60004 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 60004 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 18:09:58.784  INFO 60004 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 18:10:04.369  INFO 60004 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 18:10:04.710  INFO 60004 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 319ms. Found 2 MongoDB repository interfaces.
+2020-03-14 18:10:07.738  INFO 60004 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 18:10:07.797  INFO 60004 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 18:10:07.800  INFO 60004 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 18:10:08.375  INFO 60004 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 18:10:08.384  INFO 60004 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 7509 ms
+2020-03-14 18:10:09.338  INFO 60004 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 18:10:09.568  INFO 60004 --- [cluster-ClusterId{value='5e6d64519f20923f6a25335e', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:630}] to localhost:27017
+2020-03-14 18:10:09.590  INFO 60004 --- [cluster-ClusterId{value='5e6d64519f20923f6a25335e', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=13861199}
+2020-03-14 18:10:12.037  INFO 60004 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 18:10:14.439  INFO 60004 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 18:10:14.476  INFO 60004 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 18.468 seconds (JVM running for 21.099)
+2020-03-14 18:10:34.249  INFO 60004 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 18:10:34.251  INFO 60004 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 18:10:34.274  INFO 60004 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 22 ms
+2020-03-14 18:10:35.250  INFO 60004 --- [http-nio-8080-exec-2] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:632}] to localhost:27017
+2020-03-14 18:12:22.908  INFO 74388 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 74388 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 18:12:22.930  INFO 74388 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 18:12:26.740  INFO 74388 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 18:12:26.974  INFO 74388 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 219ms. Found 2 MongoDB repository interfaces.
+2020-03-14 18:12:29.082  INFO 74388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 18:12:29.119  INFO 74388 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 18:12:29.121  INFO 74388 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 18:12:29.461  INFO 74388 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 18:12:29.464  INFO 74388 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5228 ms
+2020-03-14 18:12:30.281  INFO 74388 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 18:12:30.465  INFO 74388 --- [cluster-ClusterId{value='5e6d64de3c0d44374032d571', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:641}] to localhost:27017
+2020-03-14 18:12:30.482  INFO 74388 --- [cluster-ClusterId{value='5e6d64de3c0d44374032d571', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=9249430}
+2020-03-14 18:12:31.829  INFO 74388 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 18:12:33.154  INFO 74388 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 18:12:33.164  INFO 74388 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 12.001 seconds (JVM running for 13.883)
+2020-03-14 18:13:02.837  INFO 74388 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 18:13:02.848  INFO 74388 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 18:13:02.887  INFO 74388 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 38 ms
+2020-03-14 18:13:03.857  INFO 74388 --- [http-nio-8080-exec-2] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:643}] to localhost:27017
+2020-03-14 18:14:24.476  INFO 74388 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:14:24.551  INFO 74388 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:29:43.882  INFO 74388 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:29:43.913  INFO 74388 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:29:47.728  INFO 74388 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 18:29:47.730  INFO 74388 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 18:29:47.749  INFO 74388 --- [http-nio-8080-exec-7] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:677}] to localhost:27017
+2020-03-14 18:29:47.918  INFO 74388 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 18:29:47.948  INFO 74388 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 18:44:17.969  INFO 74388 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 18:44:18.067  INFO 74388 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 18:44:18.285  INFO 74388 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 18:44:18.365  INFO 74388 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 18:44:19.317  INFO 74388 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:44:19.344  INFO 74388 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:45:04.779  INFO 74388 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 18:45:04.843  INFO 74388 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 18:45:04.852  INFO 74388 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 18:45:04.912  INFO 74388 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 18:45:05.449  INFO 74388 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:45:05.476  INFO 74388 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:51:13.162  INFO 74388 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:51:13.187  INFO 74388 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:51:13.260  INFO 74388 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 18:51:13.265  INFO 74388 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 18:51:13.344  INFO 74388 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 18:51:13.346  INFO 74388 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 18:51:36.341  INFO 74388 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 18:51:36.342  INFO 74388 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 18:51:36.523  INFO 74388 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 18:51:36.533  INFO 74388 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 18:51:37.728  INFO 74388 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:51:37.768  INFO 74388 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:53:41.792  INFO 74388 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:53:41.813  INFO 74388 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:53:42.809  INFO 74388 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 18:53:42.864  INFO 74388 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 18:53:43.143  INFO 74388 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 18:53:43.202  INFO 74388 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 18:55:41.430  INFO 74388 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 18:55:41.432  INFO 74388 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 18:55:41.488  INFO 74388 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 18:55:41.490  INFO 74388 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 18:55:41.933  INFO 74388 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 18:55:41.952  INFO 74388 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 19:49:43.015  INFO 74388 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 19:49:43.028  INFO 74388 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-14 19:49:43.067  INFO 74388 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 19:49:43.096  INFO 74388 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-14 19:49:43.321  INFO 74388 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 19:49:43.341  INFO 74388 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: lillian.whitaker@gmail.com
+2020-03-14 21:04:40.731  INFO 61408 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 61408 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-14 21:04:40.747  INFO 61408 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-14 21:04:46.516  INFO 61408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-14 21:04:46.897  INFO 61408 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 364ms. Found 2 MongoDB repository interfaces.
+2020-03-14 21:04:50.419  INFO 61408 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-14 21:04:50.512  INFO 61408 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-14 21:04:50.513  INFO 61408 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-14 21:04:50.973  INFO 61408 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-14 21:04:50.976  INFO 61408 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 8241 ms
+2020-03-14 21:04:52.798  INFO 61408 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-14 21:04:52.986  INFO 61408 --- [cluster-ClusterId{value='5e6d8d44d85d175255d811b0', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:1}] to localhost:27017
+2020-03-14 21:04:53.004  INFO 61408 --- [cluster-ClusterId{value='5e6d8d44d85d175255d811b0', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=10847395}
+2020-03-14 21:04:55.161  INFO 61408 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-14 21:04:56.913  INFO 61408 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-14 21:04:56.936  INFO 61408 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 20.358 seconds (JVM running for 25.859)
+2020-03-14 21:11:13.445  INFO 61408 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-14 21:11:13.447  INFO 61408 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-14 21:11:13.483  INFO 61408 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 36 ms
+2020-03-14 21:11:14.094  INFO 61408 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: david.salinas@gmail.com
+2020-03-14 21:11:14.376  INFO 61408 --- [http-nio-8080-exec-3] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:2}] to localhost:27017
+2020-03-14 21:11:14.606 ERROR 61408 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.UserAPI     : USER CREDENTIALS COULD NOT BE VALIDATED: david.salinas@gmail.com
+2020-03-14 21:11:14.607 ERROR 61408 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.UserAPI     : NO USER WAS FOUND WITH THE EMAIL PROVIDED
+2020-03-14 21:11:18.997  INFO 61408 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: david.salinas@yahoo.com
+2020-03-14 21:11:19.285  INFO 61408 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-14 21:11:19.486  INFO 61408 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: david.salinas@yahoo.com
+2020-03-14 21:11:19.666  INFO 61408 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-14 21:11:19.959  INFO 61408 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-14 21:11:21.941  INFO 61408 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL david.salinas@yahoo.com
+2020-03-14 21:11:22.976  INFO 61408 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL david.salinas@yahoo.com
+2020-03-14 21:13:01.563  INFO 61408 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES BELONG TO USER WITH EMAIL: david.salinas@yahoo.com
+2020-03-14 21:13:01.614  INFO 61408 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: david.salinas@yahoo.com

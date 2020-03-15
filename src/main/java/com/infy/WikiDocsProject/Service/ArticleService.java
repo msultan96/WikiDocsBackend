@@ -3,6 +3,7 @@ package com.infy.WikiDocsProject.Service;
 import java.util.List;
 
 import com.infy.WikiDocsProject.Model.Article;
+import org.bson.types.ObjectId;
 
 /**
  * Article Service Class 
@@ -11,8 +12,7 @@ import com.infy.WikiDocsProject.Model.Article;
 public interface ArticleService {
 	
 	//Method declarations
-
-	Article createArticleByEmail(String email, String channelId);
+	Article createArticleByEmail(String email) throws Exception;
 
 	List<Article> getAllArticlesByEmailId(String email);
 	List<Article> getAllApprovedArticlesByEmailId(String email);
@@ -21,13 +21,14 @@ public interface ArticleService {
 	List<Article> getAllRejectedArticlesByEmailId(String email);
 	List<Article> getAllDiscardedArticlesByEmailId(String email);
 
-	Article getArticleByChannelId(String channelId);
+	Article getArticleById(String id) throws Exception;
 
 	List<Article> getApprovedArticles();
 	List<Article> getBetaArticles();
 
-	Article submitArticle(String channelId);
-	Article approveArticle(String channelId);
-	Article rejectArticle(String channelId);
+	Article submitArticle(ObjectId id) throws Exception;
+	Article approveArticle(ObjectId id) throws Exception;
+	Article rejectArticle(ObjectId id) throws Exception;
 
+	Article saveArticle(String etherPadId);
 }
