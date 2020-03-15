@@ -16,33 +16,29 @@ public class Article {
 	@Id
 	private ObjectId id;
 	private String emailId;
-	private String channelId;
 	private String name;
 	private String content;
 	private Status status;
 	private int rejectedCount;
-	private boolean editable;
+	private boolean readOnly;
 
 	/**
 	 * All Args Constructor
 	 */
-	public Article(ObjectId id, String emailId, String channelId, String name, String content, Status status, int rejectedCount, boolean editable) {
+	public Article(ObjectId id, String emailId, String name, String content, Status status, int rejectedCount, boolean readOnly) {
 		this.id = id;
 		this.emailId = emailId;
-		this.channelId = channelId;
 		this.name = name;
 		this.content = content;
 		this.status = status;
 		this.rejectedCount = rejectedCount;
-		this.editable = editable;
+		this.readOnly = readOnly;
 	}
 
 	/**
 	 * No Args Constructor
 	 */
-	public Article(){
-
-	}
+	public Article(){}
 
 	public ObjectId getId() {
 		return id;
@@ -92,32 +88,23 @@ public class Article {
 		this.rejectedCount = rejectedCount;
 	}
 
-	public boolean isEditable() {
-		return editable;
+	public boolean isReadOnly() {
+		return readOnly;
 	}
 
-	public void setEditable(boolean editable) {
-		this.editable = editable;
+	public void setReadOnly(boolean readOnly) {
+		this.readOnly = readOnly;
 	}
 
-	public String getChannelId() {
-		return channelId;
-	}
-
-	public void setChannelId(String channelId) {
-		this.channelId = channelId;
-	}
-	
 	@Override
 	public String toString() {
 		return "Article{" +
 				"id='" + id + '\'' +
 				", emailId='" + emailId + '\'' +
-				", channelId='" + channelId + '\'' +
 				", name='" + name + '\'' +
 				", status=" + status +
 				", rejectedCount=" + rejectedCount +
-				", editable=" + editable +
+				", readOnly=" + readOnly +
 				'}';
 	}
 }
