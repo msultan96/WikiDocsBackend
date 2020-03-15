@@ -5,12 +5,17 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  * 
  * Article model class
  *
  */
 @Document
+@Getter @Setter @NoArgsConstructor
 public class Article {
 
 	@Id
@@ -35,77 +40,6 @@ public class Article {
 		this.status = status;
 		this.rejectedCount = rejectedCount;
 		this.editable = editable;
-	}
-
-	/**
-	 * No Args Constructor
-	 */
-	public Article(){
-
-	}
-
-	public ObjectId getId() {
-		return id;
-	}
-
-	public void setId(ObjectId id) {
-		this.id = id;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
-	public int getRejectedCount() {
-		return rejectedCount;
-	}
-
-	public void setRejectedCount(int rejectedCount) {
-		this.rejectedCount = rejectedCount;
-	}
-
-	public boolean isEditable() {
-		return editable;
-	}
-
-	public void setEditable(boolean editable) {
-		this.editable = editable;
-	}
-
-	public String getChannelId() {
-		return channelId;
-	}
-
-	public void setChannelId(String channelId) {
-		this.channelId = channelId;
 	}
 	
 	@Override
