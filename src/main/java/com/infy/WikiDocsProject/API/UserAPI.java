@@ -73,6 +73,18 @@ public class UserAPI {
 		}
 	}
 
+	@PostMapping("register")
+	public ResponseEntity<User> register(@RequestBody User user) throws Exception{
+		try{
+
+			User returnedUser = userService.register(user);
+			return new ResponseEntity<User>(returnedUser, HttpStatus.OK);
+		}
+		catch(Exception e){
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, environment.getProperty(e.getMessage()));
+		}
+	}
+
 	/**
 	 * Method name: getUsersArticles
 	 * @param email

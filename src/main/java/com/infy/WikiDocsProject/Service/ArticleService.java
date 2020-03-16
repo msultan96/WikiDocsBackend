@@ -31,4 +31,6 @@ public interface ArticleService {
 	Article rejectArticle(ObjectId id) throws Exception;
 
 	Article saveArticle(String etherPadId);
+
+	String getEtherPadUrl(String id);
 }
