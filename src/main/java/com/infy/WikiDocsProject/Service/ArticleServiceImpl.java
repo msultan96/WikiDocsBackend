@@ -5,7 +5,6 @@ import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.Repository.ArticleRepository;
 import com.infy.WikiDocsProject.Repository.UserRepository;
-import com.infy.WikiDocsProject.Utility.ArticleBuilder;
 import com.infy.WikiDocsProject.enums.Status;
 
 import java.util.List;
@@ -315,7 +314,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 		// Declared new article object and
 		// set with with the article builder with initial parameters
-		Article newArticle = new ArticleBuilder()
+		Article newArticle = Article.builder()
 				.id(new ObjectId())
 				.emailId(user.getEmail())
 				.name("New Article")

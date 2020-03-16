@@ -41,40 +41,43 @@
 <i>3</i>&nbsp;import java.util.List;
 <i>4</i>&nbsp;
 <i>5</i>&nbsp;import com.infy.WikiDocsProject.Model.Article;
-<i>6</i>&nbsp;
-<i>7</i>&nbsp;/**
-<i>8</i>&nbsp; * Article Service Class 
-<i>9</i>&nbsp; * Headers
-<i>10</i>&nbsp; */
-<i>11</i>&nbsp;public interface ArticleService {
-<i>12</i>&nbsp;	
-<i>13</i>&nbsp;	//Method declarations
-<i>14</i>&nbsp;
-<i>15</i>&nbsp;	Article createArticleByEmail(String email, String channelId) throws Exception;
+<i>6</i>&nbsp;import org.bson.types.ObjectId;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * Article Service Class 
+<i>10</i>&nbsp; * Headers
+<i>11</i>&nbsp; */
+<i>12</i>&nbsp;public interface ArticleService {
+<i>13</i>&nbsp;	
+<i>14</i>&nbsp;	//Method declarations
+<i>15</i>&nbsp;	Article createArticleByEmail(String email) throws Exception;
 <i>16</i>&nbsp;
-<i>17</i>&nbsp;	List&lt;Article&gt; getAllArticlesByEmailId(String email) throws Exception;
-<i>18</i>&nbsp;	List&lt;Article&gt; getAllApprovedArticlesByEmailId(String email) throws Exception;
-<i>19</i>&nbsp;	List&lt;Article&gt; getAllBetaArticlesByEmailId(String email) throws Exception;
-<i>20</i>&nbsp;	List&lt;Article&gt; getAllInitialArticlesByEmailId(String email) throws Exception;
-<i>21</i>&nbsp;	List&lt;Article&gt; getAllRejectedArticlesByEmailId(String email) throws Exception;
-<i>22</i>&nbsp;	List&lt;Article&gt; getAllDiscardedArticlesByEmailId(String email) throws Exception;
+<i>17</i>&nbsp;	List&lt;Article&gt; getAllArticlesByEmailId(String email);
+<i>18</i>&nbsp;	List&lt;Article&gt; getAllApprovedArticlesByEmailId(String email);
+<i>19</i>&nbsp;	List&lt;Article&gt; getAllBetaArticlesByEmailId(String email);
+<i>20</i>&nbsp;	List&lt;Article&gt; getAllInitialArticlesByEmailId(String email);
+<i>21</i>&nbsp;	List&lt;Article&gt; getAllRejectedArticlesByEmailId(String email);
+<i>22</i>&nbsp;	List&lt;Article&gt; getAllDiscardedArticlesByEmailId(String email);
 <i>23</i>&nbsp;
-<i>24</i>&nbsp;	Article getArticleByChannelId(String channelId) throws Exception;
+<i>24</i>&nbsp;	Article getArticleById(String id) throws Exception;
 <i>25</i>&nbsp;
 <i>26</i>&nbsp;	List&lt;Article&gt; getApprovedArticles();
 <i>27</i>&nbsp;	List&lt;Article&gt; getBetaArticles();
 <i>28</i>&nbsp;
-<i>29</i>&nbsp;	Article submitArticle(String channelId) throws Exception;
-<i>30</i>&nbsp;	Article approveArticle(String channelId) throws Exception;
-<i>31</i>&nbsp;	Article rejectArticle(String channelId) throws Exception;
+<i>29</i>&nbsp;	Article submitArticle(ObjectId id) throws Exception;
+<i>30</i>&nbsp;	Article approveArticle(ObjectId id) throws Exception;
+<i>31</i>&nbsp;	Article rejectArticle(ObjectId id) throws Exception;
 <i>32</i>&nbsp;
-<i>33</i>&nbsp;}
+<i>33</i>&nbsp;	Article saveArticle(String etherPadId);
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;	String getEtherPadUrl(String id);
+<i>36</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-03-11 19:01</div>
+    <div style="float:right;">generated on 2020-03-16 00:30</div>
 </div>
 </body>
 </html>
