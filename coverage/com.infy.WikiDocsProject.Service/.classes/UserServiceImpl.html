@@ -50,18 +50,18 @@
 </td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    75%
   </span>
   <span class="absValue">
-    (3/ 3)
+    (3/ 4)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    51.9%
   </span>
   <span class="absValue">
-    (14/ 14)
+    (14/ 27)
   </span>
 </td>
 </tr>
@@ -75,82 +75,99 @@
 <div class="sourceCode"><i>1</i>&nbsp;package com.infy.WikiDocsProject.Service;
 <i>2</i>&nbsp;
 <i>3</i>&nbsp;import com.infy.WikiDocsProject.Exception.PasswordIncorrectException;
-<i>4</i>&nbsp;import com.infy.WikiDocsProject.Exception.UserNotFoundException;
-<i>5</i>&nbsp;import com.infy.WikiDocsProject.Model.Article;
-<i>6</i>&nbsp;import com.infy.WikiDocsProject.Model.User;
-<i>7</i>&nbsp;import com.infy.WikiDocsProject.Repository.ArticleRepository;
+<i>4</i>&nbsp;import com.infy.WikiDocsProject.Exception.UserAlreadyExistsException;
+<i>5</i>&nbsp;import com.infy.WikiDocsProject.Exception.UserNotFoundException;
+<i>6</i>&nbsp;import com.infy.WikiDocsProject.Model.Article;
+<i>7</i>&nbsp;import com.infy.WikiDocsProject.Model.User;
 <i>8</i>&nbsp;import com.infy.WikiDocsProject.Repository.UserRepository;
-<i>9</i>&nbsp;
-<i>10</i>&nbsp;import com.infy.WikiDocsProject.Utility.ArticleBuilder;
-<i>11</i>&nbsp;import com.infy.WikiDocsProject.enums.Status;
-<i>12</i>&nbsp;import org.bson.types.ObjectId;
-<i>13</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
-<i>14</i>&nbsp;import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-<i>15</i>&nbsp;import org.springframework.security.crypto.password.PasswordEncoder;
-<i>16</i>&nbsp;import org.springframework.stereotype.Service;
-<i>17</i>&nbsp;
-<i>18</i>&nbsp;import java.util.List;
-<i>19</i>&nbsp;import java.util.Optional;
-<i>20</i>&nbsp;/**
-<i>21</i>&nbsp; * 
-<i>22</i>&nbsp; * User Service Implementations
-<i>23</i>&nbsp; * @Service - declared ArticleService class as a Service class
-<i>24</i>&nbsp; *
-<i>25</i>&nbsp; */
-<i>26</i>&nbsp;@Service(value=&quot;userService&quot;)
-<i>27</i>&nbsp;public class UserServiceImpl implements UserService {
-<i>28</i>&nbsp;	
-<i>29</i>&nbsp;	private final UserRepository userRepository;
-<i>30</i>&nbsp;	private final BCryptPasswordEncoder bCryptPasswordEncoder;
-<i>31</i>&nbsp;
-<i>32</i>&nbsp;	/**
-<i>33</i>&nbsp;	 * Constructor using constructor injection
-<i>34</i>&nbsp;	 */
-<i>35</i>&nbsp;	@Autowired
-<b class="fc"><i>36</i>&nbsp;	public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {</b>
-<b class="fc"><i>37</i>&nbsp;		this.userRepository = userRepository;</b>
-<b class="fc"><i>38</i>&nbsp;		this.bCryptPasswordEncoder = bCryptPasswordEncoder;</b>
-<b class="fc"><i>39</i>&nbsp;	}</b>
-<i>40</i>&nbsp;
-<i>41</i>&nbsp;	/**
-<i>42</i>&nbsp;	 * @name findUserByEmail
-<i>43</i>&nbsp;	 * @Desciption Find user of given email
-<i>44</i>&nbsp;	 * @param email
-<i>45</i>&nbsp;	 * @return user object
-<i>46</i>&nbsp;	 */
-<i>47</i>&nbsp;	public User findUserByEmail(String email) throws Exception{
-<i>48</i>&nbsp;		// Called findUserByEmail() from userRepository class to find user of given name
-<b class="fc"><i>49</i>&nbsp;		Optional&lt;User&gt; optionalUser = userRepository.findUserByEmail(email);</b>
-<i>50</i>&nbsp;		// if user is present
-<b class="fc"><i>51</i>&nbsp;		if(optionalUser.isPresent()){</b>
-<b class="fc"><i>52</i>&nbsp;			return optionalUser.get();</b>
+<i>9</i>&nbsp;import com.infy.WikiDocsProject.enums.Role;
+<i>10</i>&nbsp;import org.bson.types.ObjectId;
+<i>11</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>12</i>&nbsp;import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+<i>13</i>&nbsp;import org.springframework.stereotype.Service;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;import java.util.ArrayList;
+<i>16</i>&nbsp;import java.util.Optional;
+<i>17</i>&nbsp;/**
+<i>18</i>&nbsp; * 
+<i>19</i>&nbsp; * User Service Implementations
+<i>20</i>&nbsp; * @Service - declared ArticleService class as a Service class
+<i>21</i>&nbsp; *
+<i>22</i>&nbsp; */
+<i>23</i>&nbsp;@Service(value=&quot;userService&quot;)
+<i>24</i>&nbsp;public class UserServiceImpl implements UserService {
+<i>25</i>&nbsp;	
+<i>26</i>&nbsp;	private final UserRepository userRepository;
+<i>27</i>&nbsp;	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;	/**
+<i>30</i>&nbsp;	 * Constructor using constructor injection
+<i>31</i>&nbsp;	 */
+<i>32</i>&nbsp;	@Autowired
+<b class="fc"><i>33</i>&nbsp;	public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {</b>
+<b class="fc"><i>34</i>&nbsp;		this.userRepository = userRepository;</b>
+<b class="fc"><i>35</i>&nbsp;		this.bCryptPasswordEncoder = bCryptPasswordEncoder;</b>
+<b class="fc"><i>36</i>&nbsp;	}</b>
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;	/**
+<i>39</i>&nbsp;	 * @name findUserByEmail
+<i>40</i>&nbsp;	 * @Desciption Find user of given email
+<i>41</i>&nbsp;	 * @param email
+<i>42</i>&nbsp;	 * @return user object
+<i>43</i>&nbsp;	 */
+<i>44</i>&nbsp;	public User findUserByEmail(String email) {
+<i>45</i>&nbsp;		// Called findUserByEmail() from userRepository class to find user of given name
+<b class="fc"><i>46</i>&nbsp;		Optional&lt;User&gt; optionalUser = userRepository.findUserByEmail(email);</b>
+<i>47</i>&nbsp;		// if user is present
+<b class="fc"><i>48</i>&nbsp;		if(optionalUser.isPresent()){</b>
+<b class="fc"><i>49</i>&nbsp;			return optionalUser.get();</b>
+<i>50</i>&nbsp;		}
+<i>51</i>&nbsp;		else{
+<b class="fc"><i>52</i>&nbsp;			throw new UserNotFoundException(&quot;UserService.USER_NOT_FOUND&quot;);</b>
 <i>53</i>&nbsp;		}
-<i>54</i>&nbsp;		else{
-<b class="fc"><i>55</i>&nbsp;			throw new UserNotFoundException();</b>
-<i>56</i>&nbsp;		}
-<i>57</i>&nbsp;	}
-<i>58</i>&nbsp;
-<i>59</i>&nbsp;	public User findUserByEmailAndPassword(String email, String password) throws Exception{
-<b class="fc"><i>60</i>&nbsp;		Optional&lt;User&gt; optionalUser = userRepository.findUserByEmail(email);</b>
-<b class="fc"><i>61</i>&nbsp;		if(optionalUser.isPresent()){</b>
-<b class="fc"><i>62</i>&nbsp;			if(bCryptPasswordEncoder.matches(password, optionalUser.get().getPassword())){</b>
-<b class="fc"><i>63</i>&nbsp;				return optionalUser.get();</b>
-<i>64</i>&nbsp;			}
-<i>65</i>&nbsp;			else{
-<b class="fc"><i>66</i>&nbsp;				throw new PasswordIncorrectException();</b>
-<i>67</i>&nbsp;			}
-<i>68</i>&nbsp;		}
-<i>69</i>&nbsp;		else{
-<b class="fc"><i>70</i>&nbsp;			throw new UserNotFoundException();</b>
-<i>71</i>&nbsp;		}
-<i>72</i>&nbsp;	}
-<i>73</i>&nbsp;}
+<i>54</i>&nbsp;	}
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;	public User findUserByEmailAndPassword(String email, String password) {
+<b class="fc"><i>57</i>&nbsp;		Optional&lt;User&gt; optionalUser = userRepository.findUserByEmail(email);</b>
+<b class="fc"><i>58</i>&nbsp;		if(optionalUser.isPresent()){</b>
+<b class="fc"><i>59</i>&nbsp;			if(bCryptPasswordEncoder.matches(password, optionalUser.get().getPassword())){</b>
+<i>60</i>&nbsp;//			if(password.equals(optionalUser.get().getPassword())){
+<b class="fc"><i>61</i>&nbsp;				return optionalUser.get();</b>
+<i>62</i>&nbsp;			}
+<i>63</i>&nbsp;			else{
+<b class="fc"><i>64</i>&nbsp;				throw new PasswordIncorrectException(&quot;UserService.INCORRECT_PASSWORD&quot;);</b>
+<i>65</i>&nbsp;			}
+<i>66</i>&nbsp;		}
+<i>67</i>&nbsp;		else{
+<b class="fc"><i>68</i>&nbsp;			throw new UserNotFoundException(&quot;UserService.USER_NOT_FOUND&quot;);</b>
+<i>69</i>&nbsp;		}
+<i>70</i>&nbsp;	}
+<i>71</i>&nbsp;
+<i>72</i>&nbsp;	public User register(User user) {
+<b class="nc"><i>73</i>&nbsp;		Optional&lt;User&gt; optionalUser = userRepository.findUserByEmail(user.getEmail());</b>
+<b class="nc"><i>74</i>&nbsp;		if(optionalUser.isPresent()){</b>
+<b class="nc"><i>75</i>&nbsp;			throw new UserAlreadyExistsException(&quot;UserService.USER_EXISTS&quot;);</b>
+<i>76</i>&nbsp;		}
+<i>77</i>&nbsp;		else{
+<b class="nc"><i>78</i>&nbsp;			User newUser = User.builder()</b>
+<b class="nc"><i>79</i>&nbsp;					.id(new ObjectId())</b>
+<b class="nc"><i>80</i>&nbsp;					.name(user.getName())</b>
+<b class="nc"><i>81</i>&nbsp;					.email(user.getEmail())</b>
+<b class="nc"><i>82</i>&nbsp;					.articles(new ArrayList&lt;Article&gt;())</b>
+<b class="nc"><i>83</i>&nbsp;					.password(bCryptPasswordEncoder.encode(user.getPassword()))</b>
+<b class="nc"><i>84</i>&nbsp;					.role(Role.USER)</b>
+<b class="nc"><i>85</i>&nbsp;					.build();</b>
+<b class="nc"><i>86</i>&nbsp;			userRepository.insert(newUser);</b>
+<b class="nc"><i>87</i>&nbsp;			return newUser;</b>
+<i>88</i>&nbsp;		}
+<i>89</i>&nbsp;	}
+<i>90</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-03-11 19:01</div>
+    <div style="float:right;">generated on 2020-03-16 00:30</div>
 </div>
 </body>
 </html>
