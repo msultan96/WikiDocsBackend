@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArticleRepository extends MongoRepository<Article, String> {
 
-	Optional<Article> findArticleById(ObjectId id);
+	Optional<Article> findById(ObjectId id);
 
 	List<Article> findArticlesByStatus(Status status);
 

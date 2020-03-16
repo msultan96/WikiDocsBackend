@@ -20,4 +20,8 @@ public class EtherPadService {
         return epLiteClient.getText(padId).get("text").toString();
     }
 
+    public EPLiteClient getEpLiteClient(){
+        return this.epLiteClient;
+    }
+
 }

@@ -140,11 +140,11 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @return article object
 	 */	
 
-	public Article getArticleById(String id) throws Exception{
+	public Article getArticleById(String id){
 		// called findArticleByChannelId() from articleRepository class to find article of given channelId
 		// receive back an article object
         ObjectId objectId = new ObjectId(id);
-		Optional<Article> optionalArticle = articleRepository.findArticleById(objectId);
+		Optional<Article> optionalArticle = articleRepository.findById(objectId);
 		// If article is present return article
 		if(optionalArticle.isPresent()){
 			return optionalArticle.get();
@@ -162,10 +162,10 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @return article object
 	 */	
 
-	public Article submitArticle(ObjectId id) throws Exception{
+	public Article submitArticle(ObjectId id){
 		// called findArticleByChannelId() from articleRepository class to find article of given channelId
 		// receive back an article object
-		Optional<Article> optionalArticle = articleRepository.findArticleById(id);
+		Optional<Article> optionalArticle = articleRepository.findById(id);
 		// If article is present create new article object and assign article to it
 		if(optionalArticle.isPresent()){
 			Article article = optionalArticle.get();
@@ -204,10 +204,10 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param id
 	 * @return article object
 	 */	
-	public Article approveArticle(ObjectId id) throws Exception{
+	public Article approveArticle(ObjectId id){
 		// called findArticleByChannelId() from articleRepository class to find article of given channelId
 		// receive back an article object
-		Optional<Article> optionalArticle = articleRepository.findArticleById(id);
+		Optional<Article> optionalArticle = articleRepository.findById(id);
 		// If article is present create new article object and assign article to it
 		if(optionalArticle.isPresent()) {
 			Article article = optionalArticle.get();
@@ -252,10 +252,10 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param id
 	 * @return article object
 	 */	
-	public Article rejectArticle(ObjectId id) throws Exception{
+	public Article rejectArticle(ObjectId id){
 		// called findArticleByChannelId() from articleRepository class to find article of given channelId
 		// receive back an article object
-		Optional<Article> optionalArticle = articleRepository.findArticleById(id);
+		Optional<Article> optionalArticle = articleRepository.findById(id);
 		// If article is present create new article object and assign article to it
 		if(optionalArticle.isPresent()) {
 			Article article = optionalArticle.get();
@@ -304,7 +304,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param emailId
 	 * @return article object
 	 */
-	public Article createArticleByEmail(String emailId) throws Exception{
+	public Article createArticleByEmail(String emailId){
 		// User object declared
 		User user = getUserByEmail(emailId);
 		// List of article declared
@@ -337,12 +337,12 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	public Article saveArticle(String etherPadId) {
-		etherPadService.getContent(etherPadId);
 		ObjectId articleId = new ObjectId(etherPadId);
-		Optional<Article> optionalArticle = articleRepository.findArticleById(articleId);
+		Optional<Article> optionalArticle = articleRepository.findById(articleId);
 		if(optionalArticle.isPresent()){
 			Article article = optionalArticle.get();
 			String content = etherPadService.getContent(etherPadId);
+			etherPadService.getEpLiteClient().setText(etherPadId, content);
 			article.setContent(content);
 			articleRepository.save(article);
 			return article;
@@ -350,6 +350,32 @@ public class ArticleServiceImpl implements ArticleService {
 		else{
 			//Throw exception
 			return null;
+		}
+	}
+
+	public String getEtherPadUrl(String id){
+		ObjectId objectId = new ObjectId(id);
+		Optional<Article> optionalArticle = articleRepository.findById(objectId);
+		if(optionalArticle.isPresent()){
+			String etherPadUrl = "http://localhost:9001/p/";
+			Article article = optionalArticle.get();
+			String appendingId = null;
+			switch(article.getStatus()){
+				case APPROVED:
+                case BETA:
+				case DISCARDED:
+					appendingId = etherPadService.getEpLiteClient().getReadOnlyID(id).get("readOnlyID").toString() + "?";
+					appendingId = appendingId +  "showControls=false";
+					break;
+                case INITIAL:
+                case REJECTED:
+                    appendingId = id;
+			}
+			etherPadUrl = etherPadUrl + appendingId;
+			return etherPadUrl;
+		}
+		else{
+			throw new ArticleNotFoundException("ArticleService.INVALID_CHANNEL_ID");
 		}
 	}
 }

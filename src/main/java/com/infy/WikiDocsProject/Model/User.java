@@ -17,6 +17,7 @@ public class User {
 
 	@Id
 	private ObjectId id;
+	private String authorId;
 	private String email;
 	private String name;
 	private String password;

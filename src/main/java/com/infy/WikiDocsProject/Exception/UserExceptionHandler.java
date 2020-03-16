@@ -1,9 +1,5 @@
 package com.infy.WikiDocsProject.Exception;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-
 import com.infy.WikiDocsProject.Model.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +10,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import lombok.extern.slf4j.Slf4j;
 
+import static org.springframework.http.HttpStatus.*;
+
 @Slf4j
 @ControllerAdvice
 public class UserExceptionHandler extends ResponseEntityExceptionHandler {
-
 
     @ExceptionHandler({ApprovingArticleIsApprovedException.class})
     public ResponseEntity<ErrorMessage> approvingArticleIsApprovedException(ApprovingArticleIsApprovedException e) {
@@ -82,6 +79,11 @@ public class UserExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({UserNotFoundException.class})
     public ResponseEntity<ErrorMessage> userNotFoundException(UserNotFoundException e) {
         return error(NOT_FOUND, e);
+    }
+
+    @ExceptionHandler({UserAlreadyExistsException.class})
+    public ResponseEntity<ErrorMessage> userAlreadyExistsException(UserAlreadyExistsException e){
+        return error(CONFLICT, e);
     }
 
     @ExceptionHandler({RuntimeException.class})

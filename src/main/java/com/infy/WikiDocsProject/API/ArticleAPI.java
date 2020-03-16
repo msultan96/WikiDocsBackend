@@ -275,4 +275,9 @@ public class ArticleAPI {
 		return null;
 	}
 
+	@PostMapping("getEtherPadUrl")
+	public ResponseEntity<String> getEtherPadUrl(@RequestBody String etherPadId){
+		String etherPadUrl = articleService.getEtherPadUrl(etherPadId);
+		return new ResponseEntity<String>(etherPadUrl, HttpStatus.OK);
+	}
 }
