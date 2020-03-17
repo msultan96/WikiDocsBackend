@@ -35,13 +35,11 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * Retrieves the user associated with the email
-	 *
 	 * @param email Used to locate the user
 	 * @return The user found
 	 * @throws UserNotFoundException If the email isn't found
 	 */
-	public User findByEmail(String email)
-	{
+	public User findByEmail(String email) {
 		Optional<User> user = userRepository.findByEmail(email);
 		if(user.isPresent()){
 			return user.get();
@@ -53,7 +51,6 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * Retrieves the user with entered email and validates the password
-	 *
 	 * @param email Email of the user logging in
 	 * @param password Password of the user logging in
 	 * @return The authenticated user
@@ -72,7 +69,6 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * The method to register a user.
-	 *
 	 * @param user The registrants information
 	 * @return The registered user
 	 */

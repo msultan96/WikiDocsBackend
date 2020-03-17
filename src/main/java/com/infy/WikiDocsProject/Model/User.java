@@ -17,15 +17,10 @@ public class User {
 
 	@Id
 	private ObjectId id;
-	private String authorId;
 	private String email;
 	private String name;
 	private String password;
-	/**
-	 * Reference to Article in database
-	 */
-	@DBRef(db = "article")
-	private List<Article> articles;
+	private @DBRef(db = "article") List<Article> articles;
 	private Role role;
 
 }

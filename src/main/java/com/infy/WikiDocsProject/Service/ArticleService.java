@@ -5,14 +5,9 @@ import java.util.List;
 import com.infy.WikiDocsProject.Model.Article;
 import org.bson.types.ObjectId;
 
-/**
- * Article Service Class 
- * Headers
- */
 public interface ArticleService {
 	
-	//Method declarations
-	Article createArticleByEmail(String email) throws Exception;
+	Article createArticleByEmail(String email);
 
 	List<Article> getAllArticlesByEmailId(String email);
 	List<Article> getAllApprovedArticlesByEmailId(String email);
@@ -21,14 +16,14 @@ public interface ArticleService {
 	List<Article> getAllRejectedArticlesByEmailId(String email);
 	List<Article> getAllDiscardedArticlesByEmailId(String email);
 
-	Article findById(String id) throws Exception;
+	Article findById(String id);
 
 	List<Article> getApprovedArticles();
 	List<Article> getBetaArticles();
 
-	Article submitArticle(ObjectId id) throws Exception;
-	Article approveArticle(ObjectId id) throws Exception;
-	Article rejectArticle(ObjectId id) throws Exception;
+	Article submitArticle(ObjectId id);
+	Article approveArticle(ObjectId id);
+	Article rejectArticle(ObjectId id);
 
 	Article saveArticle(String etherPadId);
 
