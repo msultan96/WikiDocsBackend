@@ -10,6 +10,7 @@ import com.infy.WikiDocsProject.enums.Status;
 import java.util.List;
 import java.util.Optional;
 
+import net.gjerull.etherpad.client.EPLiteClient;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ import org.springframework.stereotype.Service;
 public class ArticleServiceImpl implements ArticleService {
 
 	private final UserService userService;
-	private final EtherPadService etherPadService;
+	private final EPLiteClient epLiteClient;
 	private final ArticleRepository articleRepository;
 	private final UserRepository userRepository;
 
@@ -34,84 +35,136 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param userRepository
 	 */
 	@Autowired
-	public ArticleServiceImpl(UserService userService, EtherPadService etherPadService,
+	public ArticleServiceImpl(UserService userService, EPLiteClient epLiteClient,
 							  ArticleRepository articleRepository, UserRepository userRepository) {
-		// Initialize local objects with params
 		this.userService = userService;
-		this.etherPadService = etherPadService;
+		this.epLiteClient = epLiteClient;
 		this.articleRepository = articleRepository;
 		this.userRepository = userRepository;
 	}
 
 	/**
-	 * @name getAllArticlesByEmailId
-	 * @Desciption Get all article by user's email
-	 * @param email
-	 * @return List of articles
+	 * Retrieves the list of articles of a user
+	 *
+	 * @param email Used to locate the user
+	 * @return The list of articles of a user
 	 */
-	public User getUserByEmail(String email)
-	{
-		User user = userService.findUserByEmail(email);
-		if(user == null)
-			throw new UserNotFoundException("UserService.USER_NOT_FOUND");
-		return user;
-	}
 	public List<Article> getAllArticlesByEmailId(String email) {
-		// User object declared
-		getUserByEmail(email);
-			// called findUserByEmail() from userService class to find user of given name
-			// receive back a user object
+		// Call the userService's findByEmail method
+		// To validate that the user with the given email exists
+		userService.findByEmail(email);
 
-			// called findAllArticleByEmailId() from articleRepository class to
-			//		find all articles of given user by email
-			// 		and receive back a list of articles
+		// call articleRepository's findAllArticleByEmailId() method
+		// to find all articles of given user by email
+		// and receive back a list of articles
 		List<Article> articles = articleRepository.findAllArticlesByEmailId(email);
-			// return list of article
 		return articles;
-
 	}
 
 	/**
-	 * @name: getAllApprovedArticlesByEmailId
-	 * @Desciption Get all approved articles a user has
-	 * @param email
-	 * @return List of articles
+	 * Retrieves the list of articles of a user
+	 * with the status of APPROVED
+	 *
+	 * @param email Used to locate the user
+	 * @return The list of approved articles of a user
+	 * @throws UserNotFoundException If the email isn't found
 	 */
 	public List<Article> getAllApprovedArticlesByEmailId(String email) {
+		// Call the userService's findByEmail method
+		// To validate that the user with the given email exists
+		userService.findByEmail(email);
 
-		getUserByEmail(email);
+		// call articleRepository's findAllArticlesByEmailIdAndStatus() method to
+		// find all articles of given user by email and status APPROVED
+		// and receive back the list of articles
         List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.APPROVED);
         return articles;
     }
 
+	/**
+	 * Retrieves the list of articles of a user
+	 * with the status of BETA
+	 *
+	 * @param email Used to locate the user
+	 * @return the list of beta articles of a user
+	 * @throws UserNotFoundException If the email isn't found
+	 */
     public List<Article> getAllBetaArticlesByEmailId(String email)  {
-		getUserByEmail(email);
+		// Call the userService's findByEmail method
+		// To validate that the user with the given email exists
+		userService.findByEmail(email);
+
+		// call articleRepository's findAllArticlesByEmailIdAndStatus() method to
+		// find all articles of given user by email and status BETA
+		// and receive back the list of articles
         List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.BETA);
         return articles;
     }
 
+	/**
+	 * Retrieves the list of articles of a user
+	 * with the status of INITIAL
+	 *
+	 * @param email Used to locate the user
+	 * @return the list of initial articles of a user
+	 * @throws UserNotFoundException If the email isn't found
+	 */
     public List<Article> getAllInitialArticlesByEmailId(String email)  {
-		getUserByEmail(email);
+		// Call the userService's findByEmail method
+		// To validate that the user with the given email exists
+		userService.findByEmail(email);
+
+		// call articleRepository's findAllArticlesByEmailIdAndStatus() method to
+		// find all articles of given user by email and status INITIAL
+		// and receive back the list of articles
         List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.INITIAL);
         return articles;
     }
 
+	/**
+	 * Retrieves the list of articles of a user
+	 * with the status of REJECTED
+	 *
+	 * @param email Used to locate the user
+	 * @return the list of rejected articles of a user
+	 * @throws UserNotFoundException If the email isn't found
+	 */
     public List<Article> getAllRejectedArticlesByEmailId(String email) {
-		getUserByEmail(email);
+		// Call the userService's findByEmail method
+		// To validate that the user with the given email exists
+		userService.findByEmail(email);
+
+		// call articleRepository's findAllArticlesByEmailIdAndStatus() method to
+		// find all articles of given user by email and status REJECTED
+		// and receive back the list of articles
 		List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.REJECTED);
 		return articles;
     }
 
+	/**
+	 * Retrieves the list of articles of a user
+	 * with the status of DISCARDED
+	 *
+	 * @param email Used to locate the user
+	 * @return the list of discarded articles of a user
+	 * @throws UserNotFoundException If the email isn't found
+	 */
     public List<Article> getAllDiscardedArticlesByEmailId(String email) {
-		getUserByEmail(email);
+		// Call the userService's findByEmail method
+		// To validate that the user with the given email exists
+		userService.findByEmail(email);
+
+		// call articleRepository's findAllArticlesByEmailIdAndStatus() method to
+		// find all articles of given user by email and status DISCARDED
+		// and receive back the list of articles
 		List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.DISCARDED);
 		return articles;
     }
 
 	/**
-	 * @name: getApprovedArticles
-	 * @Desciption Get all approved articles across all users
-	 * @return List of articles
+	 * Retrieves all APPROVED articles across all users
+	 *
+	 * @return the list of approved articles
 	 */
 	public List<Article> getApprovedArticles(){
 		// called findArticlesByStatus() from articleRepository class to find article of given status APPROVED
@@ -120,10 +173,11 @@ public class ArticleServiceImpl implements ArticleService {
 		// return article list
 		return articles;
 	}
+
 	/**
-	 * @name: getBetaArticles
-	 * @Desciption Get all beta articles across all users
-	 * @return List of articles
+	 * Retrieves all BETA articles across all users
+	 *
+	 * @return the list of approved articles
 	 */
 	public List<Article> getBetaArticles(){
 		// called findArticlesByStatus() from articleRepository class to find article of given status BETA
@@ -132,185 +186,164 @@ public class ArticleServiceImpl implements ArticleService {
 		// return article list
 		return articles;
 	}
-	/**
-	 * @name: getArticleById
-	 * @Desciption Retrieve an article with a specific channelId
-	 * @param id
-	 * @return article object
-	 */	
 
-	public Article getArticleById(String id){
-		// called findArticleByChannelId() from articleRepository class to find article of given channelId
-		// receive back an article object
-        ObjectId objectId = new ObjectId(id);
-		Optional<Article> optionalArticle = articleRepository.findById(objectId);
-		// If article is present return article
+	/**
+	 * Retrieve an article with a specific id.
+	 *
+	 * @param id Used to locate the article
+	 * @return the article found
+	 * @throws ArticleNotFoundException If the id isn't associated with an article
+	 */
+	public Article findById(ObjectId id){
+		// Call findById from articleRepository to find the article with the given id
+		Optional<Article> optionalArticle = articleRepository.findById(id);
+
+		// If the article is present, then return it
+		// otherwise, throw an Article Not Found Exception
 		if(optionalArticle.isPresent()){
 			return optionalArticle.get();
 		}
-		// else throw article not found exception
 		else{
-			throw new ArticleNotFoundException("ArticleService.INVALID_CHANNEL_ID");
+			throw new ArticleNotFoundException();
 		}
 	}
 
 	/**
-	 * @name: submitArticle
-	 * @Desciption Submit an initial or beta or rejected article
-	 * @param id
-	 * @return article object
-	 */	
-
-	public Article submitArticle(ObjectId id){
-		// called findArticleByChannelId() from articleRepository class to find article of given channelId
-		// receive back an article object
-		Optional<Article> optionalArticle = articleRepository.findById(id);
-		// If article is present create new article object and assign article to it
-		if(optionalArticle.isPresent()){
-			Article article = optionalArticle.get();
-			// If article's status is INITIAL or BETA or REJECTED
-			if(article.getStatus() == Status.INITIAL
-					|| article.getStatus() == Status.BETA
-					|| article.getStatus() == Status.REJECTED) {
-				// then set status to BETA inorder to submit
-				article.setStatus(Status.BETA);
-				/*
-				TODO: Send an email to Administrator
-				 */
-				// Save article to database
-				articleRepository.save(article);
-				// return the article object
-				return article;
-			}
-			// If article's status is DISCARDED throw exception
-			if(article.getStatus() == Status.DISCARDED){
-				// Submitting Article Is Discarded Exception thrown
-				throw new SubmittingArticleIsDiscardedException("ArticleService.SUBMITTING_ARTICLE_DISCARDED");
-			}
-			// If article's status is APPROVED throw exception
-			if(article.getStatus() == Status.APPROVED) {
-				// Submitting Article Is Approved Exception thrown
-				throw new SubmittingArticleIsApprovedException("ArticleService.SUBMITTING_ARTICLE_APPROVED");
-			}
-		}
-		// Throw Article Not Found Exception
-		throw new ArticleNotFoundException("ArticleService.INVALID_CHANNEL_ID");
-	}
-
-	/**
-	 * @name: approveArticle
-	 * @Desciption Approve an article
-	 * @param id
-	 * @return article object
-	 */	
-	public Article approveArticle(ObjectId id){
-		// called findArticleByChannelId() from articleRepository class to find article of given channelId
-		// receive back an article object
-		Optional<Article> optionalArticle = articleRepository.findById(id);
-		// If article is present create new article object and assign article to it
-		if(optionalArticle.isPresent()) {
-			Article article = optionalArticle.get();
-			// If article's status is BETA
-			if(article.getStatus() == Status.BETA){
-				// then set article status to APPROVED
-				article.setStatus(Status.APPROVED);
-				// Save article to database
-				articleRepository.save(article);
-				// return article object
-				return article;
-			}
-
-			// If article status is REJECTED
-			if(article.getStatus() == Status.REJECTED){
-				// throw Approving Article Is Still Rejected Exception
-				throw new ApprovingArticleIsStillRejectedException("ArticleService.APPROVING_ARTICLE_REJECTED");
-			}
-			// If article status is INITIAL
-			if(article.getStatus() == Status.INITIAL){
-				// throw Approving Article Is Initial Exception
-				throw new ApprovingArticleIsInitialException("ArticleService.APPROVING_ARTICLE_INITIAL");
-			}
-			// If article status is APPROVED
-			if(article.getStatus() == Status.APPROVED){
-				// throw Approving Article Is Approved Exception
-				throw new ApprovingArticleIsApprovedException("ArticleService.APPROVING_ARTICLE_APPROVED");
-			}
-			// If article status is DISCARDED
-			if(article.getStatus() == Status.DISCARDED){
-				// throw Approving Article Is Discarded Exception
-				throw new ApprovingArticleIsDiscardedException("ArticleService.APPROVING_ARTICLE_DISCARDED");
-			}
-		}
-		// throw Article Not Found Exception
-		throw new ArticleNotFoundException("ArticleService.INVALID_CHANNEL_ID");
-	}
-
-	/**
-	 * @name: rejectArticle
-	 * @Desciption Reject an article
-	 * @param id
-	 * @return article object
-	 */	
-	public Article rejectArticle(ObjectId id){
-		// called findArticleByChannelId() from articleRepository class to find article of given channelId
-		// receive back an article object
-		Optional<Article> optionalArticle = articleRepository.findById(id);
-		// If article is present create new article object and assign article to it
-		if(optionalArticle.isPresent()) {
-			Article article = optionalArticle.get();
-
-			// If article's status is BETA
-			if(article.getStatus() == Status.BETA){
-				// then set article's status to REJECTED
-				article.setStatus(Status.REJECTED);
-				// Increase article rejected count by 1
-				article.setRejectedCount(article.getRejectedCount() + 1);
-				// If article's rejected count greater than 3, article status is set DISCARDED
-				if (article.getRejectedCount() > 3) article.setStatus(Status.DISCARDED);
-				// Save article to database
-				articleRepository.save(article);
-				// return article object
-				return article;
-			}
-			// If article's status is INITIAL
-			if(article.getStatus() == Status.INITIAL){
-				// throw Rejecting Article Is Initial Exception
-				throw new RejectingArticleIsInitialException("ArticleService.REJECTING_ARTICLE_INITIAL");
-			}
-			// If article's status is APPROVED
-			if(article.getStatus() == Status.APPROVED){
-				// throw Rejecting Article Is Approved Exception
-				throw new RejectingArticleIsApprovedException("ArticleService.REJECTING_ARTICLE_APPROVED");
-			}
-			// If article's status is REJECTED
-			if(article.getStatus() == Status.REJECTED){
-				// throw Rejecting Article Is Still Rejected Exception
-				throw new RejectingArticleIsStillRejectedException("ArticleService.REJECTING_ARTICLE_REJECTED");
-			}
-			// If article's status is DISCARDED
-			if(article.getStatus() == Status.DISCARDED){
-				//throw Rejecting Article Is Discarded Exception
-				throw new RejectingArticleIsDiscardedException("ArticleService.REJECTING_ARTICLE_DISCARDED");
-			}
-		}
-		// throw Article Not Found Exception
-		throw new ArticleNotFoundException("ArticleService.INVALID_CHANNEL_ID");
-	}
-
-	/**
-	 * @name createArticleByEmail
-	 * @Desciption Create new article with given emailId and channelId
-	 * @param emailId
-	 * @return article object
+	 * Overloaded method using ObjectId as parameter
+	 *
+	 * @see ArticleServiceImpl#findById(ObjectId)
 	 */
-	public Article createArticleByEmail(String emailId){
-		// User object declared
-		User user = getUserByEmail(emailId);
-		// List of article declared
-		List<Article> articles = articleRepository.findAllArticlesByEmailId(emailId);
+	public Article findById(String id){
+		// Convert the string to an objectId
+		ObjectId objectId = new ObjectId(id);
 
-		// called findAllArticlesByUserId() from articleRepository with users email
-		// receive back an article object
+		// Use the converted objectId as the parameter for the original method
+		return findById(objectId);
+	}
+
+	/**
+	 * Submit an article for approval.
+	 * If it passes the requirements for submission,
+	 * then change its status to BETA
+	 * and send an email to an administrator about the submission
+	 *
+	 * @param id Used to locate the article
+	 * @return the updated Article
+	 */
+	public Article submitArticle(ObjectId id) {
+		// Call findById to retrieve the article and validate that it exists
+		Article article = findById(id);
+
+		// A submitting article can't be of status DISCARDED or APPROVED
+		// throw appropriate exception
+		if (article.getStatus() == Status.DISCARDED) {
+			throw new SubmittingArticleIsDiscardedException();
+		} else if (article.getStatus() == Status.APPROVED) {
+			throw new SubmittingArticleIsApprovedException();
+		} else if(article.getStatus() == Status.BETA) {
+			throw new SubmittingArticleIsBetaException();
+		}
+		else{
+			// If the article is of status INITIAL or REJECTED
+			// Set the status to BETA
+			article.setStatus(Status.BETA);
+			/*
+			TODO: Send an email to Administrator
+			 */
+			// Save the article
+			articleRepository.save(article);
+			// return the article with the new status
+			return article;
+		}
+	}
+
+	/**
+	 * Approve an article that's been submitted.
+	 * If it passes the requirements for approval,
+	 * then change its status to APPROVED.
+	 *
+	 * @param id Used to locate the article
+	 * @return the updated Article
+	 */
+	public Article approveArticle(ObjectId id){
+		// Call findById to retrieve the article and validate that it exists
+		Article article = findById(id);
+
+		// An article being approved can only be of status BETA
+		// throw appropriate exceptions otherwise
+		if(article.getStatus() == Status.REJECTED){
+			throw new ApprovingArticleIsStillRejectedException();
+		} else if(article.getStatus() == Status.INITIAL){
+			throw new ApprovingArticleIsInitialException();
+		} else if(article.getStatus() == Status.APPROVED){
+			throw new ApprovingArticleIsApprovedException();
+		} else if(article.getStatus() == Status.DISCARDED){
+			throw new ApprovingArticleIsDiscardedException();
+		}
+		else{
+			// If the article is of status BETA
+			// Set the status to APPROVED
+			article.setStatus(Status.APPROVED);
+			// Save the article
+			articleRepository.save(article);
+			// return the article with the new status
+			return article;
+		}
+
+	}
+
+	/**
+	 * Reject an article that's been submitted.
+	 * If it passes the requirements for rejection,
+	 * then change its status to REJECTED.
+	 *
+	 * @param id Used to locate the article
+	 * @return the updated Article
+	 */
+	public Article rejectArticle(ObjectId id){
+		// Call findById to retrieve the article and validate that it exists
+		Article article = findById(id);
+
+		// An article being rejected can only be of status BETA
+		// throw appropriate exceptions otherwise
+		if(article.getStatus() == Status.REJECTED){
+			throw new RejectingArticleIsStillRejectedException();
+		} else if(article.getStatus() == Status.INITIAL){
+			throw new RejectingArticleIsInitialException();
+		} else if(article.getStatus() == Status.APPROVED){
+			throw new RejectingArticleIsApprovedException();
+		} else if(article.getStatus() == Status.DISCARDED){
+			throw new RejectingArticleIsDiscardedException();
+		}
+		else{
+			// Increase the rejection count of the article
+			article.setRejectedCount(article.getRejectedCount() + 1);
+			// If it's been allowed more than 3 edits,
+			// then change status to DISCARDED
+			// otherwise change the status to REJECTED
+			if (article.getRejectedCount() >= 4) article.setStatus(Status.DISCARDED);
+			else article.setStatus(Status.REJECTED);
+			// Save the article
+			articleRepository.save(article);
+			// return the article with the new status
+			return article;
+		}
+	}
+
+	/**
+	 * Create a new article for a user with the given email.
+	 * Also, create a new ether pad with the new article's id.
+	 * @param email Email associated with the user
+	 * @return article The new article created
+	 */
+	public Article createArticleByEmail(String email){
+		// Call the userService's findByEmail method
+		// To validate that the user with the given email exists
+		User user = userService.findByEmail(email);
+
+		// Get that user's articles using the articleRepository
+		// (We could have used user.getArticles()
+		List<Article> articles = articleRepository.findAllArticlesByEmailId(email);
 
 		// Declared new article object and
 		// set with with the article builder with initial parameters
@@ -321,60 +354,71 @@ public class ArticleServiceImpl implements ArticleService {
 				.status(Status.INITIAL)
 				.readOnly(false)
 				.build();
-		// add new article to list
+
+		// add the new article to the list of articles
 		articles.add(newArticle);
-		// set article list to users articles
+
+		// set the articles list to the users articles
 		user.setArticles(articles);
+
 		//create an etherPad with the article's ObjectId
-		etherPadService.createPad(newArticle.getId().toString());
+		epLiteClient.createPad(newArticle.getId().toString());
+
 		// save article to database
 		articleRepository.save(newArticle);
-		// save user class to database
+
+		// save user to database
 		userRepository.save(user);
+
 		// return new article object
 		return newArticle;
 	}
 
+	/**
+	 * Save an article with the given id
+	 *
+	 * @param etherPadId id of the ether pad and article
+	 * @return article The saved article
+	 */
 	public Article saveArticle(String etherPadId) {
-		ObjectId articleId = new ObjectId(etherPadId);
-		Optional<Article> optionalArticle = articleRepository.findById(articleId);
-		if(optionalArticle.isPresent()){
-			Article article = optionalArticle.get();
-			String content = etherPadService.getContent(etherPadId);
-			etherPadService.getEpLiteClient().setText(etherPadId, content);
-			article.setContent(content);
-			articleRepository.save(article);
-			return article;
-		}
-		else{
-			//Throw exception
-			return null;
-		}
+		// Call findById to validate that the article does exist
+		Article article = findById(etherPadId);
+		// Retrieve the contents of the ether pad
+		String content = epLiteClient.getText(etherPadId).get("text").toString();
+		epLiteClient.setText(etherPadId, content);
+		// Set the article's contents to the ether pad content
+		article.setContent(content);
+		// Save the article with updated content
+		articleRepository.save(article);
+		return article;
 	}
 
+	/**
+	 * Get the appropriate URL for the ether pad requested
+	 * @param id the id of the article
+	 * @return ether pad url
+	 */
 	public String getEtherPadUrl(String id){
-		ObjectId objectId = new ObjectId(id);
-		Optional<Article> optionalArticle = articleRepository.findById(objectId);
-		if(optionalArticle.isPresent()){
-			String etherPadUrl = "http://localhost:9001/p/";
-			Article article = optionalArticle.get();
-			String appendingId = null;
-			switch(article.getStatus()){
-				case APPROVED:
-                case BETA:
-				case DISCARDED:
-					appendingId = etherPadService.getEpLiteClient().getReadOnlyID(id).get("readOnlyID").toString() + "?";
-					appendingId = appendingId +  "showControls=false";
-					break;
-                case INITIAL:
-                case REJECTED:
-                    appendingId = id;
-			}
-			etherPadUrl = etherPadUrl + appendingId;
-			return etherPadUrl;
+		// Call findById to validate that the article does exist
+		Article article = findById(id);
+
+		// TODO: Change to retrieve from application.properties
+		String etherPadUrl = "http://localhost:9001/p/";
+
+		// Get either the readOnly id or the editable id
+		String appendingId = null;
+		switch(article.getStatus()){
+			case APPROVED:
+			case BETA:
+			case DISCARDED:
+				appendingId = epLiteClient.getReadOnlyID(id).get("readOnlyID").toString() + "?";
+				appendingId = appendingId +  "showControls=false";
+				break;
+			case INITIAL:
+			case REJECTED:
+				appendingId = id;
 		}
-		else{
-			throw new ArticleNotFoundException("ArticleService.INVALID_CHANNEL_ID");
-		}
+		etherPadUrl = etherPadUrl + appendingId;
+		return etherPadUrl;
 	}
 }

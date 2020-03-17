@@ -54,7 +54,7 @@ public class UserAPI {
 			logger.info("USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: " + user.getEmail());
 			// Called findUserByEmail() from userService class to find user
 			//  with given email and provided password
-			User returnedUser = userService.findUserByEmailAndPassword(user.getEmail(), user.getPassword());
+			User returnedUser = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
 			logger.info("USER FOUND, RETRIEVING USER ARTICLES");
 			// Called getAllArticleByUser() from articleService class to find all articles of user by the email
 			List<Article> articleList = articleService.getAllArticlesByEmailId(returnedUser.getEmail());

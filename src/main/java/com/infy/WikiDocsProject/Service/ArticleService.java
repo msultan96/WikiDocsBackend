@@ -21,7 +21,7 @@ public interface ArticleService {
 	List<Article> getAllRejectedArticlesByEmailId(String email);
 	List<Article> getAllDiscardedArticlesByEmailId(String email);
 
-	Article getArticleById(String id) throws Exception;
+	Article findById(String id) throws Exception;
 
 	List<Article> getApprovedArticles();
 	List<Article> getBetaArticles();

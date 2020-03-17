@@ -10,6 +10,7 @@ import com.infy.WikiDocsProject.Repository.ArticleRepository;
 import com.infy.WikiDocsProject.Repository.UserRepository;
 import com.infy.WikiDocsProject.Utility.TestDataCreator;
 import com.infy.WikiDocsProject.enums.Status;
+import net.gjerull.etherpad.client.EPLiteClient;
 import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Rule;
@@ -18,6 +19,7 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
@@ -29,6 +31,7 @@ import java.util.stream.Collectors;
  * Article Service Tests Class
  *
  */
+@SuppressWarnings("OptionalGetWithoutIsPresent")
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 public class ArticleServiceTests {
@@ -43,13 +46,12 @@ public class ArticleServiceTests {
     UserService userService;
 
     @Mock
-    EtherPadService etherPadService;
+    EPLiteClient epLiteClient;
 
-    // Inject mock services
     @InjectMocks
+    @Spy
     ArticleServiceImpl articleService;
 
-    // Set Expected Exception rule
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
@@ -81,7 +83,7 @@ public class ArticleServiceTests {
         List<Article> expectedArticles = expectedUser.get().getArticles();
 
         // when findUserByEmailId() is called with any string param then return expectedUser
-        when(userService.findUserByEmail(anyString()))
+        when(userService.findByEmail(anyString()))
                 .thenReturn(expectedUser.get());
         // when findAllArticlesByEmailIdId() is called with any param then return expectedArticles
         when(articleRepository.findAllArticlesByEmailId(anyString()))
@@ -104,8 +106,9 @@ public class ArticleServiceTests {
     public void testGetAllArticlesByEmailId_UserNotFound(){
         // when findUserByEmailId() is called with any string param from userService
         // then throw UserNotFoundException()
-        when(userService.findUserByEmail(anyString()))
-                .thenReturn(null);
+        when(userService.findByEmail(anyString()))
+                .thenThrow(UserNotFoundException.class);
+
         // Actual call to getAllArticlesByEmailId() from articleService class with given email
         // should throw expected exception
         articleService.getAllArticlesByEmailId("john@gmail.com");
@@ -118,8 +121,9 @@ public class ArticleServiceTests {
      */
     @Test
     public void testGetApprovedArticles(){
-        // create new list of article named expectedArticles
+
         List<Article> expectedArticles = articles;
+
         // Set expectedArticles status to APPROVED
         expectedArticles.forEach(article -> {article.setStatus(Status.APPROVED);});
 
@@ -143,7 +147,6 @@ public class ArticleServiceTests {
      */
     @Test
     public void testGetBetaArticles(){
-        // create new list of article named expectedArticles
         List<Article> expectedArticles = articles;
         // Set expectedArticles status to BETA
         expectedArticles.forEach(article -> {article.setStatus(Status.BETA);});
@@ -164,20 +167,22 @@ public class ArticleServiceTests {
 
     /**
      * @Test
-     * @Name testGetArticleByChannelId
-     * @Desciption Test get all articles by channelId to be valid
+     * @Name testGetArticleById
+     * @Desciption Test get articles by id
      */
     @Test
-    public void testGetArticleById(){
-        // Auto generate new user using UserBuilder class
+    public void testFindById(){
         Optional<Article> expectedArticle = optionalArticles.get(0);
+
         // when findArticleByChannelId() is called from articleRepository with any string param
         // then return expectedArticle
         when(articleRepository.findById(any(ObjectId.class)))
                 .thenReturn(expectedArticle);
+
         // actual call to getArticleByChannelId() from articleService class with given param "testArticle"
         // receive back actualArticle
-        Article actualArticle = articleService.getArticleById("5e6eae198b743a023913779a");
+        Article actualArticle = articleService.findById("5e6eae198b743a023913779a");
+
         // compare expectedArticle and actualArticle
         assertEquals(expectedArticle.get(), actualArticle);
     }
@@ -188,7 +193,7 @@ public class ArticleServiceTests {
      * @Desciption Test get all articles by channelId to be invalid
      */
     @Test(expected = ArticleNotFoundException.class)
-    public void testGetArticleByChannelId_ArticleNotFound(){
+    public void testFindById_ArticleNotFound(){
         // set expectedArticle to be empty
         Optional<Article> expectedArticle = Optional.empty();
 
@@ -196,24 +201,24 @@ public class ArticleServiceTests {
         // then return expectedArticle
         when(articleRepository.findById((any(ObjectId.class))))
                 .thenReturn(expectedArticle);
+
         // actual call getArticleByChannelId() with "Invalid" param from articleService class
-        articleService.getArticleById("5e6eae198b743a023913779a");
+        articleService.findById("5e6eae198b743a023913779a");
     }
 
     /**
      * @Test
      * @Name testSubmitArticle_InitialArticle
-     * @Desciption Test submit and initial article to be valid
+     * @Desciption Test submit of initial article to be valid
      */
     @Test
     public void testSubmitArticle_InitialArticle(){
-        // Auto generate new user using UserBuilder class
-        Optional<Article> expectedArticle = optionalArticles.get(2);
+        Article expectedArticle = articles.get(2);
 
         // when findArticleByChannelId() is called from articleRepository with any string param
         // then return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
 
         //actual call to submitArticle() from articleService with "Invalid" param
         Article actualArticle = articleService.submitArticle(new ObjectId());
@@ -224,80 +229,79 @@ public class ArticleServiceTests {
 
     /**
      * @Test
-     * @Name testSubmitArticle_BetaArticle
-     * @Desciption Test submit and beta article to be valid
-     */
-    @Test
-    public void testSubmitArticle_BetaArticle(){
-        // Auto generate new user using UserBuilder class
-        Optional<Article> expectedArticle = optionalArticles.get(1);
-
-        // when findArticleByChannelId() is called from articleRepository with any string param
-        // then return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
-        //actual call to submitArticle() from articleService with "testArticle" param
-        Article actualArticle = articleService.submitArticle(new ObjectId());
-        // compare Status.BETA and actualArticle.getStatus()
-        assertEquals(Status.BETA, actualArticle.getStatus());
-    }
-    /**
-     * @Test
      * @Name testSubmitArticle_RejectedArticle
-     * @Desciption Test submit and rejected article to be valid
+     * @Desciption Test submit of rejected article to be valid
      */
     @Test
     public void testSubmitArticle_RejectedArticle(){
-        // Auto generate new user using UserBuilder class
-        Optional<Article> expectedArticle = optionalArticles.get(3);
+        Article expectedArticle = articles.get(3);
         // when findArticleByChannelId() is called from articleRepository with any string param
         // then return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
+
         //actual call to submitArticle() from articleService with "testArticle" param
         Article actualArticle = articleService.submitArticle(new ObjectId());
         // compare Status.BETA and actualArticle.getStatus()
         assertEquals(Status.BETA, actualArticle.getStatus());
     }
+
     /**
      * @Test
      * @Name testSubmitArticle_ArticleApproved
-     * @Desciption Test submit and approved article to be valid
+     * @Desciption Test submit of approved article to be invalid
      *
      */
     @Test(expected = SubmittingArticleIsApprovedException.class)
     public void testSubmitArticle_ArticleApproved(){
         // Auto generate new user using UserBuilder class
-        Optional<Article> expectedArticle = optionalArticles.get(0);
+        Article expectedArticle = articles.get(0);
         // when findArticleByChannelId() is called from articleRepository with any string param
         // then return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
+
         //actual call to submitArticle() from articleService with "testArticle" param
-        Article actualArticle = articleService.submitArticle(new ObjectId());
-        // compare Status.APPROVED and actualArticle.getStatus()
-        assertEquals(Status.APPROVED, actualArticle.getStatus());
+        articleService.submitArticle(new ObjectId());
+    }
+
+    /**
+     * @Test
+     * @Name testSubmitArticle_BetaArticle
+     * @Desciption Test submit of beta article to be invalid
+     */
+    @Test(expected = SubmittingArticleIsBetaException.class)
+    public void testSubmitArticle_BetaArticle(){
+        // Auto generate new user using UserBuilder class
+        Article expectedArticle = articles.get(1);
+
+        // when findArticleByChannelId() is called from articleRepository with any string param
+        // then return expectedArticle
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
+
+        //actual call to submitArticle() from articleService with "testArticle" param
+        articleService.submitArticle(new ObjectId());
     }
 
     /**
      * @Test
      * @Name testSubmitArticle_ArticleDiscarded
-     * @Desciption Test submit and discarded article to be valid
+     * @Desciption Test submit of discarded article to be invalid
      *
      */
     @Test(expected = SubmittingArticleIsDiscardedException.class)
     public void testSubmitArticle_ArticleDiscarded(){
         // Auto generate new user using UserBuilder class
-        Optional<Article> expectedArticle = optionalArticles.get(4);
+        Article expectedArticle = articles.get(4);
 
         // when findArticleByChannelId() is called from articleRepository with any string param
         // then return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
+
         //actual call to submitArticle() from articleService with "testArticle" param
-        Article actualArticle = articleService.submitArticle(new ObjectId());
-        // compare Status.APPROVED and actualArticle.getStatus()
-        assertEquals(Status.DISCARDED, actualArticle.getStatus());
+        articleService.submitArticle(new ObjectId());
     }
 
     /**
@@ -308,12 +312,11 @@ public class ArticleServiceTests {
      */
     @Test(expected = ArticleNotFoundException.class)
     public void testSubmitArticle_ArticleNotFound(){
-        // Create expectedArticle set it to empty
-        Optional<Article> expectedArticle = Optional.empty();
         // when findArticleByChannelId() with any string param from articleRepository
         // then return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doThrow(new ArticleNotFoundException())
+                .when(articleService).findById(any(ObjectId.class));
+
         // actual submitArticle() with "Invalid" param from articleService
         articleService.submitArticle(new ObjectId());
     }
@@ -327,11 +330,13 @@ public class ArticleServiceTests {
     @Test
     public void testApproveArticle_BetaArticle(){
         // Generate expectedArticle using ArticleBuilder()
-        Optional<Article> expectedArticle = optionalArticles.get(1);
+        Article expectedArticle = articles.get(1);
+
         // when findArticleByChannelId() with any param from articleRepository
         // return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
+
         // actual call approveArticle() with "testArticle" param from articleService
         // return actualArticle
         Article actualArticle = articleService.approveArticle(new ObjectId());
@@ -348,12 +353,12 @@ public class ArticleServiceTests {
     @Test(expected = ApprovingArticleIsStillRejectedException.class)
     public void testApproveArticle_RejectedArticle(){
         // Generate expectedArticle using ArticleBuilder()
-        Optional<Article> expectedArticle = optionalArticles.get(3);
+        Article expectedArticle = articles.get(3);
 
         // when findArticleByChannelId() with any param from articleRepository
         // return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
         // actual call approveArticle() with "testArticle" param from articleService
         // return actualArticle
         Article actualArticle = articleService.approveArticle(new ObjectId());
@@ -370,11 +375,11 @@ public class ArticleServiceTests {
     @Test(expected = ApprovingArticleIsInitialException.class)
     public void testApproveArticle_InitialArticle(){
         // Generate expectedArticle using ArticleBuilder()
-        Optional<Article> expectedArticle = optionalArticles.get(2);
+        Article expectedArticle = articles.get(2);
         // when findArticleByChannelId() with any param from articleRepository
         // return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
         // actual call approveArticle() with "testArticle" param from articleService
         // return actualArticle
         Article actualArticle = articleService.approveArticle(new ObjectId());
@@ -391,11 +396,11 @@ public class ArticleServiceTests {
     @Test(expected = ApprovingArticleIsApprovedException.class)
     public void testApproveArticle_ApprovedArticle(){
         // Generate expectedArticle using ArticleBuilder()
-        Optional<Article> expectedArticle = optionalArticles.get(0);
+        Article expectedArticle = articles.get(0);
         // when findArticleByChannelId() with any param from articleRepository
         // return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
         // actual call approveArticle() with "testArticle" param from articleService
         // return actualArticle
         Article actualArticle = articleService.approveArticle(new ObjectId());
@@ -412,11 +417,11 @@ public class ArticleServiceTests {
     @Test(expected = ApprovingArticleIsDiscardedException.class)
     public void testApproveArticle_DiscardedArticle(){
         // Generate expectedArticle using ArticleBuilder()
-        Optional<Article> expectedArticle = optionalArticles.get(4);
+        Article expectedArticle = articles.get(4);
         // when findArticleByChannelId() with any string param from articleRepository
         // return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
         // actual call approveArticle() with "testArticle" param from articleService
         // return actualArticle
         Article actualArticle = articleService.approveArticle(new ObjectId());
@@ -431,12 +436,10 @@ public class ArticleServiceTests {
      */
     @Test(expected = ArticleNotFoundException.class)
     public void testApproveArticle_ArticleNotFound(){
-        // create expectedArticle set it to empty
-        Optional<Article> expectedArticle = Optional.empty();
         // when findArticleByChannelId() is called with any string param from articleRepository class
         // then return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doThrow(new ArticleNotFoundException())
+                .when(articleService).findById(any(ObjectId.class));
         // actual call to approveArticle() with "Invalid" param from articleService
         articleService.approveArticle(new ObjectId());
     }
@@ -451,11 +454,11 @@ public class ArticleServiceTests {
     @Test
     public void testRejectArticle_BetaArticle(){
         // Generate expectedArticle using ArticleBuilder()
-        Optional<Article> expectedArticle = optionalArticles.get(1);
+        Article expectedArticle = articles.get(1);
         // when findArticleByChannelId() with any string param from articleRepository
         // return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() with "testArticle" param from articleService
         // return actualArticle
         Article actualArticle = articleService.rejectArticle(new ObjectId());
@@ -473,12 +476,12 @@ public class ArticleServiceTests {
     @Test
     public void testRejectArticle_BetaArticleBecomesDiscarded(){
         // Generate expectedArticle using ArticleBuilder()
-        Optional<Article> expectedArticle = optionalArticles.get(1);
-        expectedArticle.get().setRejectedCount(3);
+        Article expectedArticle = articles.get(1);
+        expectedArticle.setRejectedCount(3);
         // when findArticleByChannelId() with any string param from articleRepository
         // return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() with "testArticle" param from articleService
         // return actualArticle
         Article actualArticle = articleService.rejectArticle(new ObjectId());
@@ -494,11 +497,11 @@ public class ArticleServiceTests {
     @Test(expected = RejectingArticleIsInitialException.class)
     public void testRejectArticle_InitialArticle(){
         // Generate expectedArticle using ArticleBuilder()
-        Optional<Article> expectedArticle = optionalArticles.get(2);
+        Article expectedArticle = articles.get(2);
         // when findArticleByChannelId() with any string param from articleRepository
         // return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() with "testArticle" param from articleService
         // return actualArticle
         Article actualArticle = articleService.rejectArticle(new ObjectId());
@@ -515,12 +518,12 @@ public class ArticleServiceTests {
     @Test(expected = RejectingArticleIsApprovedException.class)
     public void testRejectArticle_ApprovedArticle(){
         // Generate expectedArticle using ArticleBuilder()
-        Optional<Article> expectedArticle = optionalArticles.get(0);
+        Article expectedArticle = articles.get(0);
 
         // when findArticleByChannelId() with any string param from articleRepository
         // return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() with "testArticle" param from articleService
         // return actualArticle
         Article actualArticle = articleService.rejectArticle(new ObjectId());
@@ -537,11 +540,11 @@ public class ArticleServiceTests {
     @Test(expected = RejectingArticleIsStillRejectedException.class)
     public void testRejectArticle_RejectedArticle(){
         // Generate expectedArticle using ArticleBuilder()
-        Optional<Article> expectedArticle = optionalArticles.get(3);
+        Article expectedArticle = articles.get(3);
         // when findArticleByChannelId() with any string param from articleRepository
         // return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() with "testArticle" param from articleService
         // return actualArticle
         Article actualArticle = articleService.rejectArticle(new ObjectId());
@@ -556,11 +559,11 @@ public class ArticleServiceTests {
      */
     @Test(expected = RejectingArticleIsDiscardedException.class)
     public void testRejectArticle_DiscardedArticle(){
-        Optional<Article> expectedArticle = optionalArticles.get(4);
+        Article expectedArticle = articles.get(4);
         // when findArticleByChannelId() with any string param from articleRepository
         // return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() with "testArticle" param from articleService
         // return actualArticle
         Article actualArticle = articleService.rejectArticle(new ObjectId());
@@ -576,63 +579,70 @@ public class ArticleServiceTests {
      */
     @Test(expected = ArticleNotFoundException.class)
     public void testRejectArticle_ArticleNotFound(){
-        //create  expectedArticle set it to empty
-        Optional<Article> expectedArticle = Optional.empty();
         // when findArticleByChannelId() is called with any string param from articleRepository
         // then return expectedArticle
-        when(articleRepository.findById(any(ObjectId.class)))
-                .thenReturn(expectedArticle);
+        doThrow(new ArticleNotFoundException())
+                .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() from articleService with "Invalid" param
         articleService.rejectArticle(new ObjectId());
     }
 
     @Test
     public void testGetAllApprovedArticlesByEmailId(){
-        Optional<User> expectedUser = optionalUsers.get(0);
+        User expectedUser = users.get(0);
+
         List<Article> expectedArticles = articles.stream()
                 .filter(article -> article.getStatus() == Status.APPROVED)
                 .collect(Collectors.toList());
 
-        when(userService.findUserByEmail(anyString()))
-                .thenReturn(expectedUser.get());
+        doReturn(expectedUser)
+                .when(userService).findByEmail(anyString());
+
+        when(articleRepository.findAllArticlesByEmailIdAndStatus(anyString(), any(Status.class)))
+                .thenReturn(expectedArticles);
 
         List<Article> actualArticles =
                 articleService.getAllApprovedArticlesByEmailId("John@gmail.com");
+
+        assertEquals(expectedArticles, actualArticles);
     }
 
     @Test(expected = UserNotFoundException.class)
     public void testGetAllApprovedArticlesByEmailId_Invalid(){
         Optional<User> expectedUser = optionalUsers.get(0);
 
-        when(userService.findUserByEmail(anyString()))
-                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
+        when(userService.findByEmail(anyString()))
+                .thenThrow(new UserNotFoundException());
 
         articleService.getAllApprovedArticlesByEmailId("John@gmail.com");
     }
 
     @Test
     public void testGetAllBetaArticlesByEmailId(){
-        List<Article> userArticles = articles;
 
-        Optional<User> expectedUser = optionalUsers.get(0);
+        User expectedUser = users.get(0);
 
-        List<Article> expectedArticles = userArticles.stream()
+        List<Article> expectedArticles = articles.stream()
                 .filter(article -> article.getStatus() == Status.BETA)
                 .collect(Collectors.toList());
 
-        when(userService.findUserByEmail(anyString()))
-                .thenReturn(expectedUser.get());
+        doReturn(expectedUser)
+                .when(userService).findByEmail(anyString());
+
+        when(articleRepository.findAllArticlesByEmailIdAndStatus(anyString(), any(Status.class)))
+                .thenReturn(expectedArticles);
 
         List<Article> actualArticles =
                 articleService.getAllBetaArticlesByEmailId("John@gmail.com");
+
+        assertEquals(expectedArticles, actualArticles);
     }
 
     @Test(expected = UserNotFoundException.class)
     public void testGetAllBetaArticlesByEmailId_Invalid(){
-        Optional<User> expectedUser = optionalUsers.get(0);
 
-        when(userService.findUserByEmail(anyString()))
-                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
+        when(userService.findByEmail(anyString()))
+                .thenThrow(new UserNotFoundException());
 
         articleService.getAllBetaArticlesByEmailId("John@gmail.com");
     }
@@ -647,7 +657,7 @@ public class ArticleServiceTests {
                 .filter(article -> article.getStatus() == Status.INITIAL)
                 .collect(Collectors.toList());
 
-        when(userService.findUserByEmail(anyString()))
+        when(userService.findByEmail(anyString()))
                 .thenReturn(expectedUser.get());
 
         List<Article> actualArticles =
@@ -658,8 +668,8 @@ public class ArticleServiceTests {
     public void testGetAllInitialArticlesByEmailId_Invalid(){
         Optional<User> expectedUser = optionalUsers.get(0);
 
-        when(userService.findUserByEmail(anyString()))
-                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
+        when(userService.findByEmail(anyString()))
+                .thenThrow(new UserNotFoundException());
 
         articleService.getAllInitialArticlesByEmailId("John@gmail.com");
     }
@@ -674,7 +684,7 @@ public class ArticleServiceTests {
                 .filter(article -> article.getStatus() == Status.REJECTED)
                 .collect(Collectors.toList());
 
-        when(userService.findUserByEmail(anyString()))
+        when(userService.findByEmail(anyString()))
                 .thenReturn(expectedUser.get());
 
         List<Article> actualArticles =
@@ -685,8 +695,8 @@ public class ArticleServiceTests {
     public void testGetAllRejectedArticlesByEmailId_Invalid(){
         Optional<User> expectedUser = optionalUsers.get(0);
 
-        when(userService.findUserByEmail(anyString()))
-                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
+        when(userService.findByEmail(anyString()))
+                .thenThrow(new UserNotFoundException());
 
         articleService.getAllRejectedArticlesByEmailId("John@gmail.com");
     }
@@ -700,7 +710,7 @@ public class ArticleServiceTests {
                 .filter(article -> article.getStatus() == Status.BETA)
                 .collect(Collectors.toList());
 
-        when(userService.findUserByEmail(anyString()))
+        when(userService.findByEmail(anyString()))
                 .thenReturn(expectedUser.get());
 
         List<Article> actualArticles =
@@ -711,18 +721,12 @@ public class ArticleServiceTests {
     public void testGetAllDiscardedArticlesByEmailId_Invalid(){
         Optional<User> expectedUser = optionalUsers.get(0);
 
-        when(userService.findUserByEmail(anyString()))
-                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
+        when(userService.findByEmail(anyString()))
+                .thenThrow(new UserNotFoundException());
 
         articleService.getAllDiscardedArticlesByEmailId("John@gmail.com");
     }
 
-    /**
-     * @Test
-     * @Name testCreateArticleByEmail
-     * @Desciption Test create article by Email to be valid
-     *
-     */
     @Test
     public void testCreateArticleByEmail() {
         // Generate expectedUser using UserBuilder()
@@ -735,13 +739,13 @@ public class ArticleServiceTests {
 
         // when findUserByEmail() is called with any string param
         // then return expectedUser
-        when(userService.findUserByEmail(anyString()))
+        when(userService.findByEmail(anyString()))
                 .thenReturn(expectedUser.get());
-
-        doNothing().when(etherPadService).createPad(anyString());
 
         when(articleRepository.findAllArticlesByEmailId(anyString()))
                 .thenReturn(expectedUser.get().getArticles());
+
+        doNothing().when(epLiteClient).createPad(anyString());
 
         // actual call to createArticleByEmail with "John@gmail.com","testArticle" params
         Article actualArticle = articleService.createArticleByEmail("John@gmail.com");
@@ -762,8 +766,8 @@ public class ArticleServiceTests {
     public void testCreateArticleByEmail_UserNotFound(){
         // when findUserByEmail() is called with any string param from userService
         // then throw User Not Found Exception
-        when(userService.findUserByEmail(anyString()))
-                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
+        when(userService.findByEmail(anyString()))
+                .thenThrow(new UserNotFoundException());
 
         // actual call to createArticleByEmail() with "John@gmail.com", "Invalid" param
         articleService.createArticleByEmail("John@gmail.com");

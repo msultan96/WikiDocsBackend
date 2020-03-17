@@ -3,17 +3,16 @@ package com.infy.WikiDocsProject.Service;
 import com.infy.WikiDocsProject.Exception.PasswordIncorrectException;
 import com.infy.WikiDocsProject.Exception.UserNotFoundException;
 import com.infy.WikiDocsProject.Model.User;
-import com.infy.WikiDocsProject.Repository.ArticleRepository;
 import com.infy.WikiDocsProject.Repository.UserRepository;
 import com.infy.WikiDocsProject.Utility.TestDataCreator;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,23 +27,21 @@ import static org.mockito.Mockito.*;
  * User Service Tests Class
  *
  */
+@SuppressWarnings("OptionalGetWithoutIsPresent")
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 public class UserServiceTests {
 
-    // Mock repository and service objects declared
     @Mock
     UserRepository userRepository;
 
     @Mock
-    ArticleRepository articleRepository;
-    @Mock
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    // Inject mock services
     @InjectMocks
+    @Spy //Needed to mock methods that call class methods
     UserServiceImpl userService;
-    // Set Expected Exception rule
+
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
 
@@ -57,85 +54,53 @@ public class UserServiceTests {
         optionals = TestDataCreator.createOptionalUsers();
     }
 
-
-    /**
-     * @Test
-     * @Name testFindUserByEmail
-     * @Desciption Test find user by given email to be valid
-     * @throws Exception
-     */
     @Test
-    public void testFindUserByEmail() throws Exception {
-        // Generate expectedUser using UserBuilder()
+    public void testFindByEmail() {
         Optional<User> expectedUser = optionals.get(0);
 
-        // when findUserByEmail() is called with any string param form userRepository
-        // then return expectedUser
-        when(userRepository.findUserByEmail(anyString()))
+        when(userRepository.findByEmail(anyString()))
                 .thenReturn(expectedUser);
 
-        // Actual call to findUserByEmail() with "John@gmail.com" param from userService
-        // receive  back actualUser
-        User actualUser = userService.findUserByEmail("john@gmail.com");
+        User actualUser = userService.findByEmail("john@gmail.com");
 
-        // compare expectedUser.get() and actualUser
         assertEquals(expectedUser.get(), actualUser);
     }
-    /**
-     * @Test
-     * @Name testFindUserByEmail_UserNotFound
-     * @Desciption Test find user by given email to be invalid
-     * @throws Exception
-     */
+
     @Test(expected = UserNotFoundException.class)
-    public void testFindUserByEmail_UserNotFound() throws Exception {
-        // create expectedUser and set it to empty
+    public void testFindByEmail_UserNotFound() {
         Optional<User> expectedUser = Optional.empty();
 
-        // when findUserByEmail() is called with any string param from userRepository
-        // then return expectedUser
-        when(userRepository.findUserByEmail(anyString()))
+        when(userRepository.findByEmail(anyString()))
                 .thenReturn(expectedUser);
 
-        // actual call to findUserByEmail() with "noUser@gmail.com" param
-        userService.findUserByEmail("john@gmail.com");
+        userService.findByEmail("john@gmail.com");
     }
 
     @Test
-    public void findUserByEmailAndPassword() throws Exception {
-        Optional<User> expectedUser = optionals.get(0);
+    public void findUserByEmailAndPassword() {
+        User expectedUser = users.get(0);
 
-        when(userRepository.findUserByEmail(anyString()))
-                .thenReturn(expectedUser);
+        doReturn(expectedUser)
+                .when(userService).findByEmail(anyString());
 
         when(bCryptPasswordEncoder.matches(anyString(), anyString()))
                 .thenReturn(true);
 
-        User actualUser = userService.findUserByEmailAndPassword("John@gmail.com", "johnsPassword");
+        User actualUser = userService.findByEmailAndPassword("John@gmail.com", "johnsPassword");
 
-        assertEquals(expectedUser.get(), actualUser);
-    }
-
-    @Test(expected= UserNotFoundException.class)
-    public void findUserByEmailAndPassword_InvalidEmail() throws Exception {
-        Optional<User> expectedUser = Optional.empty();
-
-        when(userRepository.findUserByEmail(anyString()))
-                .thenReturn(expectedUser);
-
-        userService.findUserByEmailAndPassword("John@gmail.com", "johnsPassword");
+        assertEquals(expectedUser, actualUser);
     }
 
     @Test(expected= PasswordIncorrectException.class)
-    public void findUserByEmailAndPassword_InvalidPassword() throws Exception {
-        Optional<User> expectedUser = optionals.get(0);
+    public void findUserByEmailAndPassword_InvalidPassword() {
+        User expectedUser = users.get(0);
 
-        when(userRepository.findUserByEmail(anyString()))
-                .thenReturn(expectedUser);
+        doReturn(expectedUser)
+                .when(userService).findByEmail(anyString());
 
         when(bCryptPasswordEncoder.matches(anyString(), anyString()))
                 .thenReturn(false);
 
-        userService.findUserByEmailAndPassword("John@gmail.com", "johnsPassword");
+        userService.findByEmailAndPassword("John@gmail.com", "johnsPassword");
     }
 }
