@@ -21,8 +21,12 @@ public class TestDataCreator {
 
 //    private static final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
+    /**
+     * Creates 5 users using jFairy.
+     * @return the list of users generated
+     */
     public static List<User> createUsers() {
-        List<User> users = new ArrayList<User>();
+        List<User> users = new ArrayList<>();
         Person person;
 
         for (int i = 0; i <= 5; i++) {
@@ -43,15 +47,26 @@ public class TestDataCreator {
         return users;
     }
 
+    /**
+     * Creates a list of optional users.
+     * Calls createUsers to create users and
+     * uses a lambda expression to
+     * convert them into optionals
+     * @return The list of optional users generated
+     */
     public static List<Optional<User>> createOptionalUsers(){
         List<Optional<User>> optionals = new ArrayList<>();
         List<User> users = createUsers();
-        users.forEach(user -> {
-            optionals.add(Optional.of(user));
-        });
+        users.forEach(user -> optionals.add(Optional.of(user)));
         return optionals;
     }
 
+    /**
+     * Creates an Article with given email and status
+     * @param email provided email to set article's emailId
+     * @param status provided status to set article's status
+     * @return generated article
+     */
     public static Article createArticleByUserWithStatus(String email, Status status) {
         Article article = Article.builder()
                 .id(new ObjectId())
@@ -81,6 +96,12 @@ public class TestDataCreator {
         return article;
     }
 
+    /**
+     * Creates 5 articles reflecting the 5 Status enums
+     * with a given users email for the article's emailId
+     * @param email provided email to pass to createArticleByUserWithStatus()
+     * @return the list of articles generated
+     */
     public static List<Article> createArticles(String email) {
         List<Article> articles = new ArrayList<>();
         articles.add(createArticleByUserWithStatus(email, Status.APPROVED));
@@ -91,12 +112,16 @@ public class TestDataCreator {
         return articles;
     }
 
+    /**
+     * Creates a list of optional articles.
+     * Calls createArticles to create articles.
+     * Uses lambda expression to convert them to optionals.
+     * @return List of optional articles
+     */
     public static List<Optional<Article>> createOptionalArticles(){
         List<Optional<Article>> optionals = new ArrayList<>();
         List<Article> articles = createArticles("john@gmail.com");
-        articles.forEach(article -> {
-            optionals.add(Optional.of(article));
-        });
+        articles.forEach(article -> optionals.add(Optional.of(article)));
         return optionals;
     }
 }

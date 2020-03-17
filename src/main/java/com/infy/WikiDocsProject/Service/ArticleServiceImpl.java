@@ -17,9 +17,9 @@ import org.springframework.stereotype.Service;
 /**
  * 
  * Article Service Implementations
- * @Service - declared ArticleService class as a Service class
  *
  */
+@SuppressWarnings("UnnecessaryLocalVariable")
 @Service(value="articleService")
 public class ArticleServiceImpl implements ArticleService {
 
@@ -30,9 +30,6 @@ public class ArticleServiceImpl implements ArticleService {
 
 	/**
 	 * Constructor using constructor injection
-	 * @param userService
-	 * @param articleRepository
-	 * @param userRepository
 	 */
 	@Autowired
 	public ArticleServiceImpl(UserService userService, EPLiteClient epLiteClient,
@@ -416,7 +413,7 @@ public class ArticleServiceImpl implements ArticleService {
 				break;
 			case INITIAL:
 			case REJECTED:
-				appendingId = id;
+				appendingId = id + "?";
 		}
 		etherPadUrl = etherPadUrl + appendingId;
 		return etherPadUrl;
