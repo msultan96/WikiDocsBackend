@@ -10,8 +10,8 @@ import com.infy.WikiDocsProject.Model.User;
  */
 public interface UserService {
 
-	User findUserByEmail(String email);
-	User findUserByEmailAndPassword(String email, String password);
+	User findByEmail(String email);
+	User findByEmailAndPassword(String email, String password);
 	User register(User user);
 
 }

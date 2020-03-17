@@ -8,7 +8,6 @@ import com.infy.WikiDocsProject.Service.ArticleService;
 import java.util.List;
 import java.util.Map;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -236,7 +235,7 @@ public class ArticleAPI {
 	@PostMapping("getArticleById")
 	public ResponseEntity<Article> getArticleByChannelId(@RequestParam String id) throws Exception{
 		try{
-			Article article = articleService.getArticleById(id);
+			Article article = articleService.findById(id);
 			return new ResponseEntity<Article>(article, HttpStatus.OK);
 		}
 		catch(Exception e){

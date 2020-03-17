@@ -3,7 +3,6 @@ package com.infy.WikiDocsProject.Service;
 import com.infy.WikiDocsProject.Exception.PasswordIncorrectException;
 import com.infy.WikiDocsProject.Exception.UserAlreadyExistsException;
 import com.infy.WikiDocsProject.Exception.UserNotFoundException;
-import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.Repository.UserRepository;
 import com.infy.WikiDocsProject.enums.Role;
@@ -17,7 +16,6 @@ import java.util.Optional;
 /**
  * 
  * User Service Implementations
- * @Service - declared ArticleService class as a Service class
  *
  */
 @Service(value="userService")
@@ -36,50 +34,59 @@ public class UserServiceImpl implements UserService {
 	}
 
 	/**
-	 * @name findUserByEmail
-	 * @Desciption Find user of given email
-	 * @param email
-	 * @return user object
+	 * Retrieves the user associated with the email
+	 *
+	 * @param email Used to locate the user
+	 * @return The user found
+	 * @throws UserNotFoundException If the email isn't found
 	 */
-	public User findUserByEmail(String email) {
-		// Called findUserByEmail() from userRepository class to find user of given name
-		Optional<User> optionalUser = userRepository.findUserByEmail(email);
-		// if user is present
-		if(optionalUser.isPresent()){
-			return optionalUser.get();
+	public User findByEmail(String email)
+	{
+		Optional<User> user = userRepository.findByEmail(email);
+		if(user.isPresent()){
+			return user.get();
 		}
 		else{
-			throw new UserNotFoundException("UserService.USER_NOT_FOUND");
+			throw new UserNotFoundException();
 		}
 	}
 
-	public User findUserByEmailAndPassword(String email, String password) {
-		Optional<User> optionalUser = userRepository.findUserByEmail(email);
-		if(optionalUser.isPresent()){
-			if(bCryptPasswordEncoder.matches(password, optionalUser.get().getPassword())){
-//			if(password.equals(optionalUser.get().getPassword())){
-				return optionalUser.get();
-			}
-			else{
-				throw new PasswordIncorrectException("UserService.INCORRECT_PASSWORD");
-			}
+	/**
+	 * Retrieves the user with entered email and validates the password
+	 *
+	 * @param email Email of the user logging in
+	 * @param password Password of the user logging in
+	 * @return The authenticated user
+	 * @throws PasswordIncorrectException If the password is incorrect
+	 */
+	public User findByEmailAndPassword(String email, String password) {
+		User user = findByEmail(email);
+		if(bCryptPasswordEncoder.matches(password, user.getPassword())){
+//		if(password.equals(optionalUser.get().getPassword())){
+			return user;
 		}
 		else{
-			throw new UserNotFoundException("UserService.USER_NOT_FOUND");
+			throw new PasswordIncorrectException();
 		}
 	}
 
+	/**
+	 * The method to register a user.
+	 *
+	 * @param user The registrants information
+	 * @return The registered user
+	 */
 	public User register(User user) {
-		Optional<User> optionalUser = userRepository.findUserByEmail(user.getEmail());
+		Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
 		if(optionalUser.isPresent()){
-			throw new UserAlreadyExistsException("UserService.USER_EXISTS");
+			throw new UserAlreadyExistsException();
 		}
 		else{
 			User newUser = User.builder()
 					.id(new ObjectId())
 					.name(user.getName())
 					.email(user.getEmail())
-					.articles(new ArrayList<Article>())
+					.articles(new ArrayList<>())
 					.password(bCryptPasswordEncoder.encode(user.getPassword()))
 					.role(Role.USER)
 					.build();
