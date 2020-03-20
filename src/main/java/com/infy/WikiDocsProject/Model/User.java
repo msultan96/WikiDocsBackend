@@ -21,6 +21,7 @@ public class User {
 	private String name;
 	private String password;
 	private @DBRef(db = "article") List<Article> articles;
+//	private List<ObjectId> collaboratingArticles;
 	private Role role;
 
 }

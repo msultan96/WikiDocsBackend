@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArticleServiceTests.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">WikiDocsProject$ArticleServiceTests.exec</a> &gt; <a href="index.source.html" class="el_package">com.infy.WikiDocsProject.Service</a> &gt; <span class="el_source">ArticleServiceTests.java</span></div><h1>ArticleServiceTests.java</h1><pre class="source lang-java linenums">package com.infy.WikiDocsProject.Service;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
+import com.infy.WikiDocsProject.Exception.*;
+import com.infy.WikiDocsProject.Model.Article;
+import com.infy.WikiDocsProject.Model.User;
+import com.infy.WikiDocsProject.Repository.ArticleRepository;
+import com.infy.WikiDocsProject.Repository.UserRepository;
+import com.infy.WikiDocsProject.Utility.TestDataCreator;
+import com.infy.WikiDocsProject.enums.Status;
+import net.gjerull.etherpad.client.EPLiteClient;
+import org.bson.types.ObjectId;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+/**
+ *
+ * Article Service Tests Class
+ *
+ */
+@SuppressWarnings(&quot;OptionalGetWithoutIsPresent&quot;)
+@RunWith(MockitoJUnitRunner.class)
+@SpringBootTest
+<span class="fc" id="L37">public class ArticleServiceTests {</span>
+
+    @Mock
+    ArticleRepository articleRepository;
+
+    @Mock
+    UserRepository  userRepository;
+
+    @Mock
+    UserService userService;
+
+    @Mock
+    EPLiteClient epLiteClient;
+
+    @InjectMocks
+    @Spy //Needed to mock methods that call class methods
+    ArticleServiceImpl articleService;
+
+<span class="fc" id="L55">    @Rule</span>
+<span class="fc" id="L56">    public ExpectedException expectedException = ExpectedException.none();</span>
+
+    /**
+     * Test Data
+     */
+    private List&lt;User&gt; users;
+    private List&lt;Optional&lt;User&gt;&gt; optionalUsers;
+    private List&lt;Article&gt; articles;
+    private List&lt;Optional&lt;Article&gt;&gt; optionalArticles;
+
+    /**
+     * Populates test data.
+     * Special note for articles and optionalArticles:
+     *
+     * Articles.get(x) | Status(x)
+     *      0            APPROVED
+     *      1            BETA
+     *      2            INITIAL
+     *      3            REJECTED
+     *      4            DISCARDED
+     * @see TestDataCreator Class
+     */
+    @Before
+    public void populateTestData(){
+<span class="fc" id="L80">        users = TestDataCreator.createUsers();</span>
+<span class="fc" id="L81">        articles = users.get(0).getArticles();</span>
+
+<span class="fc" id="L83">        optionalUsers = TestDataCreator.createOptionalUsers();</span>
+<span class="fc" id="L84">        optionalArticles = TestDataCreator.createOptionalArticles();</span>
+<span class="fc" id="L85">    }</span>
+
+    /**
+     * Test validity of getAllArticlesByEmail
+     */
+    @Test
+    public void testGetAllArticlesByEmail(){
+<span class="fc" id="L92">        Optional&lt;User&gt; expectedUser = optionalUsers.get(0);</span>
+        // get all articles from expectedUser and set it to a list of expectedArticles
+<span class="fc" id="L94">        List&lt;Article&gt; expectedArticles = expectedUser.get().getArticles();</span>
+
+        // when findUserByEmailId() is called with any string param then return expectedUser
+<span class="fc" id="L97">        when(userService.findByEmail(anyString()))</span>
+<span class="fc" id="L98">                .thenReturn(expectedUser.get());</span>
+        // when findAllArticlesByEmailIdId() is called with any param then return expectedArticles
+<span class="fc" id="L100">        when(articleRepository.findAllArticlesByEmailId(anyString()))</span>
+<span class="fc" id="L101">                .thenReturn(expectedArticles);</span>
+
+        // Actual call to getAllArticlesByEmail() from articleService class give name = &quot;&quot;John&quot;
+        // receive back an actual list of articles
+<span class="fc" id="L105">        List&lt;Article&gt; actualArticles = articleService.getAllArticlesByEmailId(&quot;john@gmail.com&quot;);</span>
+        // compare expectedArticles and actualArticles
+<span class="fc" id="L107">        assertEquals(expectedArticles, actualArticles);</span>
+<span class="fc" id="L108">    }</span>
+
+    /**
+     * Test to make sure UserNotFoundException
+     * gets thrown
+     */
+    @Test(expected = UserNotFoundException.class)
+    public void testGetAllArticlesByEmailId_UserNotFound(){
+        // when findUserByEmailId() is called with any string param from userService
+        // then throw UserNotFoundException()
+<span class="fc" id="L118">        when(userService.findByEmail(anyString()))</span>
+<span class="fc" id="L119">                .thenThrow(UserNotFoundException.class);</span>
+
+        // Actual call to getAllArticlesByEmailId() from articleService class with given email
+        // should throw expected exception
+<span class="nc" id="L123">        articleService.getAllArticlesByEmailId(&quot;john@gmail.com&quot;);</span>
+<span class="nc" id="L124">    }</span>
+
+    /**
+     * Test validity of getApprovedArticles
+     */
+    @Test
+    public void testGetApprovedArticles(){
+
+<span class="fc" id="L132">        List&lt;Article&gt; expectedArticles = articles;</span>
+
+        // Set expectedArticles status to APPROVED
+<span class="fc" id="L135">        expectedArticles.forEach(article -&gt; article.setStatus(Status.APPROVED));</span>
+
+        // when findArticlesByStatus() is called from articleRepository class given any param
+        // return expectedArticles
+<span class="fc" id="L139">        when(articleRepository.findArticlesByStatus(any()))</span>
+<span class="fc" id="L140">                .thenReturn(expectedArticles);</span>
+
+        // Actual call to getApprovedArticles() from articleService class
+        // Receive a list of actualArticles
+<span class="fc" id="L144">        List&lt;Article&gt; actualArticles = articleService.getApprovedArticles();</span>
+
+        // compare expectedArticles and actualArticles
+<span class="fc" id="L147">        assertEquals(expectedArticles, actualArticles);</span>
+<span class="fc" id="L148">    }</span>
+
+    /**
+     * Test validity of getBetaArticles
+     */
+    @Test
+    public void testGetBetaArticles(){
+<span class="fc" id="L155">        List&lt;Article&gt; expectedArticles = articles;</span>
+        // Set expectedArticles status to BETA
+<span class="fc" id="L157">        expectedArticles.forEach(article -&gt; article.setStatus(Status.BETA));</span>
+
+        // when findArticlesByStatus() is called from articleRepository class given any param
+        // return expectedArticles
+<span class="fc" id="L161">        when(articleRepository.findArticlesByStatus(any()))</span>
+<span class="fc" id="L162">                .thenReturn(expectedArticles);</span>
+
+        // Actual call to getBetaArticles() from articleService class
+        // Receive a list of actualArticles
+<span class="fc" id="L166">        List&lt;Article&gt; actualArticles = articleService.getBetaArticles();</span>
+
+        // compare expectedArticles and actualArticles
+<span class="fc" id="L169">        assertEquals(expectedArticles, actualArticles);</span>
+
+<span class="fc" id="L171">    }</span>
+
+    /**
+     * Test validity of finding articles by their ID
+     */
+    @Test
+    public void testFindById(){
+<span class="fc" id="L178">        Optional&lt;Article&gt; expectedArticle = optionalArticles.get(0);</span>
+
+        // when findArticleByChannelId() is called from articleRepository with any string param
+        // then return expectedArticle
+<span class="fc" id="L182">        when(articleRepository.findById(any(ObjectId.class)))</span>
+<span class="fc" id="L183">                .thenReturn(expectedArticle);</span>
+
+        // actual call to getArticleByChannelId() from articleService class with given param &quot;testArticle&quot;
+        // receive back actualArticle
+<span class="fc" id="L187">        Article actualArticle = articleService.findById(new ObjectId());</span>
+
+        // compare expectedArticle and actualArticle
+<span class="fc" id="L190">        assertEquals(expectedArticle.get(), actualArticle);</span>
+<span class="fc" id="L191">    }</span>
+
+    /**
+     * Test validity of not finding articles with given ID
+     */
+    @Test(expected = ArticleNotFoundException.class)
+    public void testFindById_ArticleNotFound(){
+        // set expectedArticle to be empty
+<span class="fc" id="L199">        Optional&lt;Article&gt; expectedArticle = Optional.empty();</span>
+
+        // when findArticleByChannelId() is called from articleRepository class with any string param
+        // then return expectedArticle
+<span class="fc" id="L203">        when(articleRepository.findById((any(ObjectId.class))))</span>
+<span class="fc" id="L204">                .thenReturn(expectedArticle);</span>
+
+        // actual call getArticleByChannelId() with &quot;Invalid&quot; param from articleService class
+<span class="nc" id="L207">        articleService.findById(new ObjectId());</span>
+<span class="nc" id="L208">    }</span>
+
+    /**
+     * Test submitArticle with an initial article given
+     */
+    @Test
+    public void testSubmitArticle_InitialArticle(){
+<span class="fc" id="L215">        Article expectedArticle = articles.get(2);</span>
+
+        // when findArticleByChannelId() is called from articleRepository with any string param
+        // then return expectedArticle
+<span class="fc" id="L219">        doReturn(expectedArticle)</span>
+<span class="fc" id="L220">                .when(articleService).findById(any(ObjectId.class));</span>
+
+        //actual call to submitArticle() from articleService with &quot;Invalid&quot; param
+<span class="fc" id="L223">        Article actualArticle = articleService.submitArticle(new ObjectId());</span>
+
+        // compare Status.BETA and actualArticle.getStatus()
+<span class="fc" id="L226">        assertEquals(Status.BETA, actualArticle.getStatus());</span>
+<span class="fc" id="L227">    }</span>
+
+    /**
+     * Test submit article with reject article given
+     */
+    @Test
+    public void testSubmitArticle_RejectedArticle(){
+        //given
+<span class="fc" id="L235">        Article expectedArticle = articles.get(3);</span>
+        // when findArticleByChannelId() is called from articleRepository with any string param
+        // then return expectedArticle
+<span class="fc" id="L238">        doReturn(expectedArticle)</span>
+<span class="fc" id="L239">                .when(articleService).findById(any(ObjectId.class));</span>
+
+        //actual call to submitArticle() from articleService with &quot;testArticle&quot; param
+<span class="fc" id="L242">        Article actualArticle = articleService.submitArticle(new ObjectId());</span>
+        // compare Status.BETA and actualArticle.getStatus()
+<span class="fc" id="L244">        assertEquals(Status.BETA, actualArticle.getStatus());</span>
+<span class="fc" id="L245">    }</span>
+
+    /**
+     * Test submit article with approved article given
+     * throws SubmittingArticleIsApprovedException
+     */
+    @Test(expected = SubmittingArticleIsApprovedException.class)
+    public void testSubmitArticle_ArticleApproved(){
+<span class="fc" id="L253">        Article expectedArticle = articles.get(0);</span>
+        // when findArticleByChannelId() is called from articleRepository with any string param
+        // then return expectedArticle
+<span class="fc" id="L256">        doReturn(expectedArticle)</span>
+<span class="fc" id="L257">                .when(articleService).findById(any(ObjectId.class));</span>
+
+        //actual call to submitArticle() from articleService with &quot;testArticle&quot; param
+<span class="nc" id="L260">        articleService.submitArticle(new ObjectId());</span>
+<span class="nc" id="L261">    }</span>
+
+    /**
+     * Test submit article with beta article given
+     * throws SubmittingArticleIsBetaException
+     */
+    @Test(expected = SubmittingArticleIsBetaException.class)
+    public void testSubmitArticle_BetaArticle(){
+<span class="fc" id="L269">        Article expectedArticle = articles.get(1);</span>
+
+        // when findArticleByChannelId() is called from articleRepository with any string param
+        // then return expectedArticle
+<span class="fc" id="L273">        doReturn(expectedArticle)</span>
+<span class="fc" id="L274">                .when(articleService).findById(any(ObjectId.class));</span>
+
+        //actual call to submitArticle() from articleService with &quot;testArticle&quot; param
+<span class="nc" id="L277">        articleService.submitArticle(new ObjectId());</span>
+<span class="nc" id="L278">    }</span>
+
+    /**
+     * Test submit article with discarded article given
+     * throws SubmittingArticleIsDiscardedException
+     */
+    @Test(expected = SubmittingArticleIsDiscardedException.class)
+    public void testSubmitArticle_ArticleDiscarded(){
+<span class="fc" id="L286">        Article expectedArticle = articles.get(4);</span>
+
+        // when findArticleByChannelId() is called from articleRepository with any string param
+        // then return expectedArticle
+<span class="fc" id="L290">        doReturn(expectedArticle)</span>
+<span class="fc" id="L291">                .when(articleService).findById(any(ObjectId.class));</span>
+
+        //actual call to submitArticle() from articleService with &quot;testArticle&quot; param
+<span class="nc" id="L294">        articleService.submitArticle(new ObjectId());</span>
+<span class="nc" id="L295">    }</span>
+
+    /**
+     * Test submit article will
+     * throw ArticleNotFoundException
+     */
+    @Test(expected = ArticleNotFoundException.class)
+    public void testSubmitArticle_ArticleNotFound(){
+        // when findArticleByChannelId() with any string param from articleRepository
+        // then return expectedArticle
+<span class="fc" id="L305">        doThrow(new ArticleNotFoundException())</span>
+<span class="fc" id="L306">                .when(articleService).findById(any(ObjectId.class));</span>
+
+        // actual submitArticle() with &quot;Invalid&quot; param from articleService
+<span class="nc" id="L309">        articleService.submitArticle(new ObjectId());</span>
+<span class="nc" id="L310">    }</span>
+
+    /**
+     * Test approve article with beta article given
+     */
+    @Test
+    public void testApproveArticle_BetaArticle(){
+        // Generate expectedArticle using ArticleBuilder()
+<span class="fc" id="L318">        Article expectedArticle = articles.get(1);</span>
+
+        // when findArticleByChannelId() with any param from articleRepository
+        // return expectedArticle
+<span class="fc" id="L322">        doReturn(expectedArticle)</span>
+<span class="fc" id="L323">                .when(articleService).findById(any(ObjectId.class));</span>
+
+        // actual call approveArticle() with &quot;testArticle&quot; param from articleService
+        // return actualArticle
+<span class="fc" id="L327">        Article actualArticle = articleService.approveArticle(new ObjectId());</span>
+        // compare Status.APPROVED and actualArticle.getStatus()
+<span class="fc" id="L329">        assertEquals(Status.APPROVED, actualArticle.getStatus());</span>
+<span class="fc" id="L330">    }</span>
+
+    /**
+     * Test approve article with rejected article given
+     * throws ApprovingArticleIsStillRejectedException
+     */
+    @Test(expected = ApprovingArticleIsStillRejectedException.class)
+    public void testApproveArticle_RejectedArticle(){
+        // Generate expectedArticle using ArticleBuilder()
+<span class="fc" id="L339">        Article expectedArticle = articles.get(3);</span>
+
+        // when findArticleByChannelId() with any param from articleRepository
+        // return expectedArticle
+<span class="fc" id="L343">        doReturn(expectedArticle)</span>
+<span class="fc" id="L344">                .when(articleService).findById(any(ObjectId.class));</span>
+        // actual call approveArticle() with &quot;testArticle&quot; param from articleService
+        // return actualArticle
+<span class="nc" id="L347">        Article actualArticle = articleService.approveArticle(new ObjectId());</span>
+        // compare Status.REJECTED and actualArticle.getStatus()
+<span class="nc" id="L349">        assertEquals(Status.REJECTED, actualArticle.getStatus());</span>
+<span class="nc" id="L350">    }</span>
+
+    /**
+     * Test approve article with initial article given
+     * throws ApprovingArticleIsInitialException
+     */
+    @Test(expected = ApprovingArticleIsInitialException.class)
+    public void testApproveArticle_InitialArticle(){
+        // Generate expectedArticle using ArticleBuilder()
+<span class="fc" id="L359">        Article expectedArticle = articles.get(2);</span>
+        // when findArticleByChannelId() with any param from articleRepository
+        // return expectedArticle
+<span class="fc" id="L362">        doReturn(expectedArticle)</span>
+<span class="fc" id="L363">                .when(articleService).findById(any(ObjectId.class));</span>
+        // actual call approveArticle() with &quot;testArticle&quot; param from articleService
+        // return actualArticle
+<span class="nc" id="L366">        Article actualArticle = articleService.approveArticle(new ObjectId());</span>
+        // compare Status.INITIALand actualArticle.getStatus()
+<span class="nc" id="L368">        assertEquals(Status.INITIAL, actualArticle.getStatus());</span>
+<span class="nc" id="L369">    }</span>
+
+    /**
+     * Test approve article with approve article given
+     * throws ApprovingArticleIsApprovedException
+     */
+    @Test(expected = ApprovingArticleIsApprovedException.class)
+    public void testApproveArticle_ApprovedArticle(){
+        // Generate expectedArticle using ArticleBuilder()
+<span class="fc" id="L378">        Article expectedArticle = articles.get(0);</span>
+        // when findArticleByChannelId() with any param from articleRepository
+        // return expectedArticle
+<span class="fc" id="L381">        doReturn(expectedArticle)</span>
+<span class="fc" id="L382">                .when(articleService).findById(any(ObjectId.class));</span>
+        // actual call approveArticle() with &quot;testArticle&quot; param from articleService
+        // return actualArticle
+<span class="nc" id="L385">        Article actualArticle = articleService.approveArticle(new ObjectId());</span>
+        // compare Status.APPROVED and actualArticle.getStatus()
+<span class="nc" id="L387">        assertEquals(Status.APPROVED, actualArticle.getStatus());</span>
+<span class="nc" id="L388">    }</span>
+
+    /**
+     * Test approve article with discarded article given
+     * throws ApprovingArticleIsDiscardedException
+     */
+    @Test(expected = ApprovingArticleIsDiscardedException.class)
+    public void testApproveArticle_DiscardedArticle(){
+        // Generate expectedArticle using ArticleBuilder()
+<span class="fc" id="L397">        Article expectedArticle = articles.get(4);</span>
+        // when findArticleByChannelId() with any string param from articleRepository
+        // return expectedArticle
+<span class="fc" id="L400">        doReturn(expectedArticle)</span>
+<span class="fc" id="L401">                .when(articleService).findById(any(ObjectId.class));</span>
+        // actual call approveArticle() with &quot;testArticle&quot; param from articleService
+        // return actualArticle
+<span class="nc" id="L404">        Article actualArticle = articleService.approveArticle(new ObjectId());</span>
+        // compare Status.DISCARDED and actualArticle.getStatus()
+<span class="nc" id="L406">        assertEquals(Status.DISCARDED, actualArticle.getStatus());</span>
+<span class="nc" id="L407">    }</span>
+
+    /**
+     * Test approve article
+     * will throw ArticleNotFoundException
+     */
+    @Test(expected = ArticleNotFoundException.class)
+    public void testApproveArticle_ArticleNotFound(){
+        // when findArticleByChannelId() is called with any string param from articleRepository class
+        // then return expectedArticle
+<span class="fc" id="L417">        doThrow(new ArticleNotFoundException())</span>
+<span class="fc" id="L418">                .when(articleService).findById(any(ObjectId.class));</span>
+        // actual call to approveArticle() with &quot;Invalid&quot; param from articleService
+<span class="nc" id="L420">        articleService.approveArticle(new ObjectId());</span>
+<span class="nc" id="L421">    }</span>
+
+    /**
+     * Test reject article with beta article given
+     */
+    @Test
+    public void testRejectArticle_BetaArticle(){
+        // Generate expectedArticle using ArticleBuilder()
+<span class="fc" id="L429">        Article expectedArticle = articles.get(1);</span>
+        // when findArticleByChannelId() with any string param from articleRepository
+        // return expectedArticle
+<span class="fc" id="L432">        doReturn(expectedArticle)</span>
+<span class="fc" id="L433">                .when(articleService).findById(any(ObjectId.class));</span>
+        // actual call rejectArticle() with &quot;testArticle&quot; param from articleService
+        // return actualArticle
+<span class="fc" id="L436">        Article actualArticle = articleService.rejectArticle(new ObjectId());</span>
+        // compare Status REJECTED and actualArticle.getStatus()
+<span class="fc" id="L438">        assertEquals(Status.REJECTED, actualArticle.getStatus());</span>
+<span class="fc" id="L439">    }</span>
+
+
+    /**
+     * Test reject article with beta article given
+     * becomes discarded after more than 3 edits
+     */
+    @Test
+    public void testRejectArticle_BetaArticleBecomesDiscarded(){
+        // Generate expectedArticle using ArticleBuilder()
+<span class="fc" id="L449">        Article expectedArticle = articles.get(1);</span>
+<span class="fc" id="L450">        expectedArticle.setRejectedCount(3);</span>
+        // when findArticleByChannelId() with any string param from articleRepository
+        // return expectedArticle
+<span class="fc" id="L453">        doReturn(expectedArticle)</span>
+<span class="fc" id="L454">                .when(articleService).findById(any(ObjectId.class));</span>
+        // actual call rejectArticle() with &quot;testArticle&quot; param from articleService
+        // return actualArticle
+<span class="fc" id="L457">        Article actualArticle = articleService.rejectArticle(new ObjectId());</span>
+        // compare Status DISCARDED and actualArticle.getStatus()
+<span class="fc" id="L459">        assertEquals(Status.DISCARDED, actualArticle.getStatus());</span>
+<span class="fc" id="L460">    }</span>
+
+    /**
+     * Test reject article with initial article given
+     * throws RejectingArticleIsInitialException
+     */
+    @Test(expected = RejectingArticleIsInitialException.class)
+    public void testRejectArticle_InitialArticle(){
+        // Generate expectedArticle using ArticleBuilder()
+<span class="fc" id="L469">        Article expectedArticle = articles.get(2);</span>
+        // when findArticleByChannelId() with any string param from articleRepository
+        // return expectedArticle
+<span class="fc" id="L472">        doReturn(expectedArticle)</span>
+<span class="fc" id="L473">                .when(articleService).findById(any(ObjectId.class));</span>
+        // actual call rejectArticle() with &quot;testArticle&quot; param from articleService
+        // return actualArticle
+<span class="nc" id="L476">        Article actualArticle = articleService.rejectArticle(new ObjectId());</span>
+        // compare Status INITIAL and actualArticle.getStatus()
+<span class="nc" id="L478">        assertEquals(Status.INITIAL, actualArticle.getStatus());</span>
+<span class="nc" id="L479">    }</span>
+
+    /**
+     * Test reject article with approved article given
+     * throws RejectingArticleIsApprovedException
+     */
+    @Test(expected = RejectingArticleIsApprovedException.class)
+    public void testRejectArticle_ApprovedArticle(){
+        // Generate expectedArticle using ArticleBuilder()
+<span class="fc" id="L488">        Article expectedArticle = articles.get(0);</span>
+
+        // when findArticleByChannelId() with any string param from articleRepository
+        // return expectedArticle
+<span class="fc" id="L492">        doReturn(expectedArticle)</span>
+<span class="fc" id="L493">                .when(articleService).findById(any(ObjectId.class));</span>
+        // actual call rejectArticle() with &quot;testArticle&quot; param from articleService
+        // return actualArticle
+<span class="nc" id="L496">        Article actualArticle = articleService.rejectArticle(new ObjectId());</span>
+        // compare Status APPROVED and actualArticle.getStatus()
+<span class="nc" id="L498">        assertEquals(Status.APPROVED, actualArticle.getStatus());</span>
+<span class="nc" id="L499">    }</span>
+
+    /**
+     * Test reject article with rejected article given
+     * throws RejectingArticleIsStillRejectedException
+     */
+    @Test(expected = RejectingArticleIsStillRejectedException.class)
+    public void testRejectArticle_RejectedArticle(){
+        // Generate expectedArticle using ArticleBuilder()
+<span class="fc" id="L508">        Article expectedArticle = articles.get(3);</span>
+        // when findArticleByChannelId() with any string param from articleRepository
+        // return expectedArticle
+<span class="fc" id="L511">        doReturn(expectedArticle)</span>
+<span class="fc" id="L512">                .when(articleService).findById(any(ObjectId.class));</span>
+        // actual call rejectArticle() with &quot;testArticle&quot; param from articleService
+        // return actualArticle
+<span class="nc" id="L515">        Article actualArticle = articleService.rejectArticle(new ObjectId());</span>
+        // compare Status REJECTED and actualArticle.getStatus()
+<span class="nc" id="L517">        assertEquals(Status.REJECTED, actualArticle.getStatus());</span>
+<span class="nc" id="L518">    }</span>
+
+    /**
+     * Test reject article with discarded article given
+     * throws RejectingArticleIsDiscardedException
+     */
+    @Test(expected = RejectingArticleIsDiscardedException.class)
+    public void testRejectArticle_DiscardedArticle(){
+<span class="fc" id="L526">        Article expectedArticle = articles.get(4);</span>
+        // when findArticleByChannelId() with any string param from articleRepository
+        // return expectedArticle
+<span class="fc" id="L529">        doReturn(expectedArticle)</span>
+<span class="fc" id="L530">                .when(articleService).findById(any(ObjectId.class));</span>
+        // actual call rejectArticle() with &quot;testArticle&quot; param from articleService
+        // return actualArticle
+<span class="nc" id="L533">        Article actualArticle = articleService.rejectArticle(new ObjectId());</span>
+        // compare Status RDISCARDED and actualArticle.getStatus()
+<span class="nc" id="L535">        assertEquals(Status.DISCARDED, actualArticle.getStatus());</span>
+<span class="nc" id="L536">    }</span>
+
+    /**
+     * Test reject article
+     * will throw ArticleNotFoundException
+     */
+    @Test(expected = ArticleNotFoundException.class)
+    public void testRejectArticle_ArticleNotFound(){
+        // when findArticleByChannelId() is called with any string param from articleRepository
+        // then return expectedArticle
+<span class="fc" id="L546">        doThrow(new ArticleNotFoundException())</span>
+<span class="fc" id="L547">                .when(articleService).findById(any(ObjectId.class));</span>
+        // actual call rejectArticle() from articleService with &quot;Invalid&quot; param
+<span class="nc" id="L549">        articleService.rejectArticle(new ObjectId());</span>
+<span class="nc" id="L550">    }</span>
+
+    /**
+     * Test getAllApprovedArticlesByEmailId
+     */
+    @Test
+    public void testGetAllApprovedArticlesByEmailId(){
+<span class="fc" id="L557">        User expectedUser = users.get(0);</span>
+
+<span class="fc" id="L559">        List&lt;Article&gt; expectedArticles = articles.stream()</span>
+<span class="fc bfc" id="L560" title="All 2 branches covered.">                .filter(article -&gt; article.getStatus() == Status.APPROVED)</span>
+<span class="fc" id="L561">                .collect(Collectors.toList());</span>
+
+<span class="fc" id="L563">        doReturn(expectedUser)</span>
+<span class="fc" id="L564">                .when(userService).findByEmail(anyString());</span>
+
+<span class="fc" id="L566">        when(articleRepository.findAllArticlesByEmailIdAndStatus(anyString(), any(Status.class)))</span>
+<span class="fc" id="L567">                .thenReturn(expectedArticles);</span>
+
+<span class="fc" id="L569">        List&lt;Article&gt; actualArticles =</span>
+<span class="fc" id="L570">                articleService.getAllApprovedArticlesByEmailId(&quot;John@gmail.com&quot;);</span>
+
+<span class="fc" id="L572">        assertEquals(expectedArticles, actualArticles);</span>
+<span class="fc" id="L573">    }</span>
+
+    /**
+     * Test getAllApprovedArticlesByEmailId
+     * throws UserNotFoundException
+     */
+    @Test(expected = UserNotFoundException.class)
+    public void testGetAllApprovedArticlesByEmailId_Invalid(){
+
+<span class="fc" id="L582">        when(userService.findByEmail(anyString()))</span>
+<span class="fc" id="L583">                .thenThrow(new UserNotFoundException());</span>
+
+<span class="nc" id="L585">        articleService.getAllApprovedArticlesByEmailId(&quot;John@gmail.com&quot;);</span>
+<span class="nc" id="L586">    }</span>
+
+    /**
+     * Test getAllBetaArticlesByEmailId
+     */
+    @Test
+    public void testGetAllBetaArticlesByEmailId(){
+<span class="fc" id="L593">        User expectedUser = users.get(0);</span>
+
+<span class="fc" id="L595">        List&lt;Article&gt; expectedArticles = articles.stream()</span>
+<span class="fc bfc" id="L596" title="All 2 branches covered.">                .filter(article -&gt; article.getStatus() == Status.BETA)</span>
+<span class="fc" id="L597">                .collect(Collectors.toList());</span>
+
+<span class="fc" id="L599">        doReturn(expectedUser)</span>
+<span class="fc" id="L600">                .when(userService).findByEmail(anyString());</span>
+
+<span class="fc" id="L602">        when(articleRepository.findAllArticlesByEmailIdAndStatus(anyString(), any(Status.class)))</span>
+<span class="fc" id="L603">                .thenReturn(expectedArticles);</span>
+
+<span class="fc" id="L605">        List&lt;Article&gt; actualArticles =</span>
+<span class="fc" id="L606">                articleService.getAllBetaArticlesByEmailId(&quot;John@gmail.com&quot;);</span>
+
+<span class="fc" id="L608">        assertEquals(expectedArticles, actualArticles);</span>
+<span class="fc" id="L609">    }</span>
+
+    /**
+     * Test getAllBetaArticlesByEmailId
+     * throws UserNotFoundException
+     */
+    @Test(expected = UserNotFoundException.class)
+    public void testGetAllBetaArticlesByEmailId_Invalid(){
+
+<span class="fc" id="L618">        when(userService.findByEmail(anyString()))</span>
+<span class="fc" id="L619">                .thenThrow(new UserNotFoundException());</span>
+
+<span class="nc" id="L621">        articleService.getAllBetaArticlesByEmailId(&quot;John@gmail.com&quot;);</span>
+<span class="nc" id="L622">    }</span>
+
+    /**
+     * Test testGetAllInitialArticlesByEmailId
+     */
+    @Test
+    public void testGetAllInitialArticlesByEmailId(){
+<span class="fc" id="L629">        Optional&lt;User&gt; expectedUser = optionalUsers.get(0);</span>
+<span class="fc" id="L630">        List&lt;Article&gt; expectedArticles = articles.stream()</span>
+<span class="fc bfc" id="L631" title="All 2 branches covered.">                .filter(article -&gt; article.getStatus() == Status.INITIAL)</span>
+<span class="fc" id="L632">                .collect(Collectors.toList());</span>
+
+<span class="fc" id="L634">        when(userService.findByEmail(anyString()))</span>
+<span class="fc" id="L635">                .thenReturn(expectedUser.get());</span>
+
+<span class="fc" id="L637">        when(articleRepository.findAllArticlesByEmailIdAndStatus(anyString(), any(Status.class)))</span>
+<span class="fc" id="L638">                .thenReturn(expectedArticles);</span>
+
+<span class="fc" id="L640">        List&lt;Article&gt; actualArticles =</span>
+<span class="fc" id="L641">                articleService.getAllInitialArticlesByEmailId(&quot;John@gmail.com&quot;);</span>
+
+<span class="fc" id="L643">        assertEquals(expectedArticles, actualArticles);</span>
+<span class="fc" id="L644">    }</span>
+
+    /**
+     * Test testGetAllInitialArticlesByEmailId
+     * throws UserNotFoundException
+     */
+    @Test(expected = UserNotFoundException.class)
+    public void testGetAllInitialArticlesByEmailId_Invalid(){
+
+<span class="fc" id="L653">        when(userService.findByEmail(anyString()))</span>
+<span class="fc" id="L654">                .thenThrow(new UserNotFoundException());</span>
+
+<span class="nc" id="L656">        articleService.getAllInitialArticlesByEmailId(&quot;John@gmail.com&quot;);</span>
+<span class="nc" id="L657">    }</span>
+
+    /**
+     * Test testGetRejectedArticlesByEmailId
+     */
+    @Test
+    public void testGetRejectedArticlesByEmailId(){
+<span class="fc" id="L664">        Optional&lt;User&gt; expectedUser = optionalUsers.get(0);</span>
+
+<span class="fc" id="L666">        List&lt;Article&gt; expectedArticles = articles.stream()</span>
+<span class="fc bfc" id="L667" title="All 2 branches covered.">                .filter(article -&gt; article.getStatus() == Status.REJECTED)</span>
+<span class="fc" id="L668">                .collect(Collectors.toList());</span>
+
+<span class="fc" id="L670">        when(userService.findByEmail(anyString()))</span>
+<span class="fc" id="L671">                .thenReturn(expectedUser.get());</span>
+
+<span class="fc" id="L673">        when(articleRepository.findAllArticlesByEmailIdAndStatus(anyString(), any(Status.class)))</span>
+<span class="fc" id="L674">                .thenReturn(expectedArticles);</span>
+
+<span class="fc" id="L676">        List&lt;Article&gt; actualArticles =</span>
+<span class="fc" id="L677">                articleService.getAllRejectedArticlesByEmailId(&quot;John@gmail.com&quot;);</span>
+
+<span class="fc" id="L679">        assertEquals(expectedArticles, actualArticles);</span>
+<span class="fc" id="L680">    }</span>
+
+    /**
+     * Test testGetRejectedArticlesByEmailId
+     * throws UserNotFoundException
+     */
+    @Test(expected = UserNotFoundException.class)
+    public void testGetAllRejectedArticlesByEmailId_Invalid(){
+
+<span class="fc" id="L689">        when(userService.findByEmail(anyString()))</span>
+<span class="fc" id="L690">                .thenThrow(new UserNotFoundException());</span>
+
+<span class="nc" id="L692">        articleService.getAllRejectedArticlesByEmailId(&quot;John@gmail.com&quot;);</span>
+<span class="nc" id="L693">    }</span>
+
+    /**
+     * Test testGetAllDiscardedArticlesByEmailId
+     */
+    @Test
+    public void testGetAllDiscardedArticlesByEmailId(){
+<span class="fc" id="L700">        Optional&lt;User&gt; expectedUser = optionalUsers.get(0);</span>
+<span class="fc" id="L701">        List&lt;Article&gt; expectedArticles = articles.stream()</span>
+<span class="fc bfc" id="L702" title="All 2 branches covered.">                .filter(article -&gt; article.getStatus() == Status.BETA)</span>
+<span class="fc" id="L703">                .collect(Collectors.toList());</span>
+
+<span class="fc" id="L705">        when(userService.findByEmail(anyString()))</span>
+<span class="fc" id="L706">                .thenReturn(expectedUser.get());</span>
+
+<span class="fc" id="L708">        when(articleRepository.findAllArticlesByEmailIdAndStatus(anyString(), any(Status.class)))</span>
+<span class="fc" id="L709">                .thenReturn(expectedArticles);</span>
+
+<span class="fc" id="L711">        List&lt;Article&gt; actualArticles =</span>
+<span class="fc" id="L712">                articleService.getAllDiscardedArticlesByEmailId(&quot;John@gmail.com&quot;);</span>
+
+<span class="fc" id="L714">        assertEquals(expectedArticles, actualArticles);</span>
+<span class="fc" id="L715">    }</span>
+
+    /**
+     * Test testGetAllDiscardedArticlesByEmailId
+     * throws UserNotFoundException
+     */
+    @Test(expected = UserNotFoundException.class)
+    public void testGetAllDiscardedArticlesByEmailId_Invalid(){
+
+<span class="fc" id="L724">        when(userService.findByEmail(anyString()))</span>
+<span class="fc" id="L725">                .thenThrow(new UserNotFoundException());</span>
+
+<span class="nc" id="L727">        articleService.getAllDiscardedArticlesByEmailId(&quot;John@gmail.com&quot;);</span>
+<span class="nc" id="L728">    }</span>
+
+    /**
+     * Test createArticleByEmail
+     */
+    @Test
+    public void testCreateArticleByEmail() {
+        // Generate expectedUser using UserBuilder()
+<span class="fc" id="L736">        Optional&lt;User&gt; expectedUser = optionalUsers.get(0);</span>
+
+        // Generate expectedArticle using ArticleBuilder()
+<span class="fc" id="L739">        Article expectedArticle = articles.get(2);</span>
+
+<span class="fc" id="L741">        expectedArticle.setEmailId(expectedUser.get().getEmail());</span>
+
+        // when findUserByEmail() is called with any string param
+        // then return expectedUser
+<span class="fc" id="L745">        when(userService.findByEmail(anyString()))</span>
+<span class="fc" id="L746">                .thenReturn(expectedUser.get());</span>
+
+<span class="fc" id="L748">        when(articleRepository.findAllArticlesByEmailId(anyString()))</span>
+<span class="fc" id="L749">                .thenReturn(expectedUser.get().getArticles());</span>
+
+<span class="fc" id="L751">        doNothing().when(epLiteClient).createPad(anyString());</span>
+
+        // actual call to createArticleByEmail with &quot;John@gmail.com&quot;,&quot;testArticle&quot; params
+<span class="fc" id="L754">        Article actualArticle = articleService.createArticleByEmail(&quot;John@gmail.com&quot;);</span>
+
+        // compare expectedArticle.getEmailId() and actualArticle.getEmailId()
+<span class="fc" id="L757">        assertEquals(expectedArticle.getEmailId(), actualArticle.getEmailId());</span>
+        // compare expectedArticle.getStatus(), actualArticle.getStatus()
+<span class="fc" id="L759">        assertEquals(expectedArticle.getStatus(), actualArticle.getStatus());</span>
+<span class="fc" id="L760">    }</span>
+
+    /**
+     * Test createArticleByEmail
+     * throws UserNotFoundException
+     */
+    @Test(expected = UserNotFoundException.class)
+    public void testCreateArticleByEmail_UserNotFound(){
+        // when findUserByEmail() is called with any string param from userService
+        // then throw User Not Found Exception
+<span class="fc" id="L770">        when(userService.findByEmail(anyString()))</span>
+<span class="fc" id="L771">                .thenThrow(new UserNotFoundException());</span>
+
+        // actual call to createArticleByEmail() with &quot;John@gmail.com&quot;, &quot;Invalid&quot; param
+<span class="nc" id="L774">        articleService.createArticleByEmail(&quot;John@gmail.com&quot;);</span>
+<span class="nc" id="L775">    }</span>
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

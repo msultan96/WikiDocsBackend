@@ -90,4 +90,14 @@ public class UserServiceImpl implements UserService {
 			return newUser;
 		}
 	}
+
+	/**
+	 * Get the name of the user with the given email
+	 * @param email to find the user in the database
+	 * @return the name of the user requested
+	 */
+	public String getNameByEmail(String email){
+		User user = findByEmail(email);
+		return user.getName();
+	}
 }

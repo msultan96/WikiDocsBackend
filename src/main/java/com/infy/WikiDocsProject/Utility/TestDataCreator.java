@@ -9,6 +9,8 @@ import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.enums.Role;
 import com.infy.WikiDocsProject.enums.Status;
 import org.bson.types.ObjectId;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +21,7 @@ public class TestDataCreator {
     private static final BaseProducer baseProducer = fairy.baseProducer();
     private static final TextProducer textProducer = fairy.textProducer();
 
-//    private static final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    private static final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     /**
      * Creates 5 users using jFairy.
@@ -37,8 +39,8 @@ public class TestDataCreator {
                     .id(new ObjectId())
                     .email(person.getEmail())
                     .name(person.getFullName())
-//                    .password(bCryptPasswordEncoder.encode(person.getPassword()))
-                    .password(person.getPassword())
+                    .password(bCryptPasswordEncoder.encode(person.getPassword()))
+//                    .password(person.getPassword())
                     .role(Role.USER)
                     .articles(articles)
                     .build();

@@ -8,4 +8,6 @@ public interface UserService {
 	User findByEmailAndPassword(String email, String password);
 	User register(User user);
 
+	String getNameByEmail(String email);
+
 }
