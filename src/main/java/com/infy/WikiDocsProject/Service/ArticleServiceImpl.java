@@ -13,11 +13,13 @@ import java.util.Optional;
 import net.gjerull.etherpad.client.EPLiteClient;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 /**
- * 
  * Article Service Implementations
- *
  */
 @SuppressWarnings("UnnecessaryLocalVariable")
 @Service(value="articleService")
@@ -40,153 +42,59 @@ public class ArticleServiceImpl implements ArticleService {
 		this.userRepository = userRepository;
 	}
 
-	/**
-	 * Retrieves the list of articles of a user
-	 *
-	 * @param email Used to locate the user
-	 * @return The list of articles of a user
-	 */
 	public List<Article> getAllArticlesByEmailId(String email) {
-		// Call the userService's findByEmail method
-		// To validate that the user with the given email exists
 		userService.findByEmail(email);
 
-		// call articleRepository's findAllArticleByEmailId() method
-		// to find all articles of given user by email
-		// and receive back a list of articles
 		List<Article> articles = articleRepository.findAllArticlesByEmailId(email);
 		return articles;
 	}
 
 	/**
 	 * Retrieves the list of articles of a user
-	 * with the status of APPROVED
 	 *
 	 * @param email Used to locate the user
-	 * @return The list of approved articles of a user
-	 * @throws UserNotFoundException If the email isn't found
+	 * @return The list of articles of a user
 	 */
-	public List<Article> getAllApprovedArticlesByEmailId(String email) {
-		// Call the userService's findByEmail method
-		// To validate that the user with the given email exists
+	public List<Article> getAllArticlesByEmailId(String email, int pageNumber, int pageSize) {
 		userService.findByEmail(email);
 
-		// call articleRepository's findAllArticlesByEmailIdAndStatus() method to
-		// find all articles of given user by email and status APPROVED
-		// and receive back the list of articles
-        List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.APPROVED);
-        return articles;
-    }
-
-	/**
-	 * Retrieves the list of articles of a user
-	 * with the status of BETA
-	 *
-	 * @param email Used to locate the user
-	 * @return the list of beta articles of a user
-	 * @throws UserNotFoundException If the email isn't found
-	 */
-    public List<Article> getAllBetaArticlesByEmailId(String email)  {
-		// Call the userService's findByEmail method
-		// To validate that the user with the given email exists
-		userService.findByEmail(email);
-
-		// call articleRepository's findAllArticlesByEmailIdAndStatus() method to
-		// find all articles of given user by email and status BETA
-		// and receive back the list of articles
-        List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.BETA);
-        return articles;
-    }
-
-	/**
-	 * Retrieves the list of articles of a user
-	 * with the status of INITIAL
-	 *
-	 * @param email Used to locate the user
-	 * @return the list of initial articles of a user
-	 * @throws UserNotFoundException If the email isn't found
-	 */
-    public List<Article> getAllInitialArticlesByEmailId(String email)  {
-		// Call the userService's findByEmail method
-		// To validate that the user with the given email exists
-		userService.findByEmail(email);
-
-		// call articleRepository's findAllArticlesByEmailIdAndStatus() method to
-		// find all articles of given user by email and status INITIAL
-		// and receive back the list of articles
-        List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.INITIAL);
-        return articles;
-    }
-
-	/**
-	 * Retrieves the list of articles of a user
-	 * with the status of REJECTED
-	 *
-	 * @param email Used to locate the user
-	 * @return the list of rejected articles of a user
-	 * @throws UserNotFoundException If the email isn't found
-	 */
-    public List<Article> getAllRejectedArticlesByEmailId(String email) {
-		// Call the userService's findByEmail method
-		// To validate that the user with the given email exists
-		userService.findByEmail(email);
-
-		// call articleRepository's findAllArticlesByEmailIdAndStatus() method to
-		// find all articles of given user by email and status REJECTED
-		// and receive back the list of articles
-		List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.REJECTED);
-		return articles;
-    }
-
-	/**
-	 * Retrieves the list of articles of a user
-	 * with the status of DISCARDED
-	 *
-	 * @param email Used to locate the user
-	 * @return the list of discarded articles of a user
-	 * @throws UserNotFoundException If the email isn't found
-	 */
-    public List<Article> getAllDiscardedArticlesByEmailId(String email) {
-		// Call the userService's findByEmail method
-		// To validate that the user with the given email exists
-		userService.findByEmail(email);
-
-		// call articleRepository's findAllArticlesByEmailIdAndStatus() method to
-		// find all articles of given user by email and status DISCARDED
-		// and receive back the list of articles
-		List<Article> articles = articleRepository.findAllArticlesByEmailIdAndStatus(email, Status.DISCARDED);
-		return articles;
-    }
-
-	/**
-	 * Retrieves all APPROVED articles across all users
-	 *
-	 * @return the list of approved articles
-	 */
-	public List<Article> getApprovedArticles(){
-		// called findArticlesByStatus() from articleRepository class to find article of given status APPROVED
-		// receive back a list of articles
-		List<Article> articles = articleRepository.findArticlesByStatus(Status.APPROVED);
-		// return article list
+		Pageable pageWithSize = PageRequest.of(pageNumber, pageSize);
+		Page<Article> page = articleRepository.findAllArticlesByEmailId(email, pageWithSize);
+		List<Article> articles = page.getContent();
 		return articles;
 	}
 
 	/**
-	 * Retrieves all BETA articles across all users
-	 *
+	 * Retrieves all articles across all users with given status
 	 * @return the list of approved articles
 	 */
-	public List<Article> getBetaArticles(){
-		// called findArticlesByStatus() from articleRepository class to find article of given status BETA
-		// receive back a list of articles
-		List<Article> articles = articleRepository.findArticlesByStatus(Status.BETA);
-		// return article list
+	public List<Article> getAllArticlesByStatus(Status status, int pageNumber, int pageSize){
+		Pageable pageWithSize = PageRequest.of(pageNumber, pageSize);
+		Page<Article> page = articleRepository.findArticlesByStatus(status, pageWithSize);
+		List<Article> articles = page.getContent();
+		return articles;
+	}
+
+	/**
+	 * Retrieves the list of articles of a user filtered
+	 * by a given status
+	 *
+	 * @param email Used to locate the user
+	 * @param status The status of the article
+	 * @return The list of articles with specific status of a user
+	 * @throws UserNotFoundException If the email isn't found
+	 */
+	public List<Article> getAllArticlesByEmailIdAndStatus(String email, Status status, int pageNumber, int pageSize) {
+		userService.findByEmail(email);
+
+		Pageable pageWithSize = PageRequest.of(pageNumber, pageSize);
+		Page<Article> page = articleRepository.findAllArticlesByEmailIdAndStatus(email, status, pageWithSize);
+		List<Article> articles = page.getContent();
 		return articles;
 	}
 
 	/**
 	 * Retrieve an article with a specific id.
-	 *
 	 * @param id Used to locate the article
 	 * @return the article found
 	 * @throws ArticleNotFoundException If the id isn't associated with an article
@@ -206,8 +114,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	/**
-	 * Overloaded method using ObjectId as parameter
-	 *
+	 * Overloaded method using ObjectId as parameter instead
 	 * @see ArticleServiceImpl#findById(ObjectId)
 	 */
 	public Article findById(String id){
@@ -278,7 +185,6 @@ public class ArticleServiceImpl implements ArticleService {
 			throw new ApprovingArticleIsDiscardedException();
 		}
 		else{
-			// If the article is of status BETA
 			// Set the status to APPROVED
 			article.setStatus(Status.APPROVED);
 			// Save the article
@@ -334,8 +240,8 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @return article The new article created
 	 */
 	public Article createArticleByEmail(String email){
-		// Call the userService's findByEmail method
-		// To validate that the user with the given email exists
+		// Validate that the user with the given email exists
+		// and retrieve the user
 		User user = userService.findByEmail(email);
 
 		// Get that user's articles using the articleRepository

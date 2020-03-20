@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -21,9 +23,11 @@ public interface ArticleRepository extends MongoRepository<Article, String> {
 
 	Optional<Article> findById(ObjectId id);
 
-	List<Article> findArticlesByStatus(Status status);
+	Page<Article> findArticlesByStatus(Status status, Pageable pageable);
+
+	Page<Article> findAllArticlesByEmailIdAndStatus(String email, Status approved, Pageable pageable);
+
+	Page<Article> findAllArticlesByEmailId(String email, Pageable pageable);
 
 	List<Article> findAllArticlesByEmailId(String email);
-
-	List<Article> findAllArticlesByEmailIdAndStatus(String email, Status approved);
 }

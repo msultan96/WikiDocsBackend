@@ -79,4 +79,16 @@ public class UserAPI {
 		logger.info("RETRIEVED ARTICLES BELONGING TO USER WITH EMAIL: " + email);
 		return articles;
 	}
+
+	/**
+	 * Retrieve a users name by their given email
+	 * @param email the email of the user requested
+	 * @return the name of the user
+	 */
+	@GetMapping("getNameByEmail/{email:.+}")
+	@ResponseBody
+	public String getNameByEmail(@PathVariable String email){
+		String name = userService.getNameByEmail(email);
+		return name;
+	}
 }

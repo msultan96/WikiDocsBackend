@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">WikiDocsProject$ArticleServiceTests.exec</a> &gt; <a href="index.source.html" class="el_package">com.infy.WikiDocsProject.Service</a> &gt; <span class="el_source">UserServiceImpl.java</span></div><h1>UserServiceImpl.java</h1><pre class="source lang-java linenums">package com.infy.WikiDocsProject.Service;
+
+import com.infy.WikiDocsProject.Exception.PasswordIncorrectException;
+import com.infy.WikiDocsProject.Exception.UserAlreadyExistsException;
+import com.infy.WikiDocsProject.Exception.UserNotFoundException;
+import com.infy.WikiDocsProject.Model.User;
+import com.infy.WikiDocsProject.Repository.UserRepository;
+import com.infy.WikiDocsProject.enums.Role;
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Optional;
+/**
+ * 
+ * User Service Implementations
+ *
+ */
+@Service(value=&quot;userService&quot;)
+public class UserServiceImpl implements UserService {
+	
+	private final UserRepository userRepository;
+	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	/**
+	 * Constructor using constructor injection
+	 */
+	@Autowired
+<span class="nc" id="L31">	public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {</span>
+<span class="nc" id="L32">		this.userRepository = userRepository;</span>
+<span class="nc" id="L33">		this.bCryptPasswordEncoder = bCryptPasswordEncoder;</span>
+<span class="nc" id="L34">	}</span>
+
+	/**
+	 * Retrieves the user associated with the email
+	 * @param email Used to locate the user
+	 * @return The user found
+	 * @throws UserNotFoundException If the email isn't found
+	 */
+	public User findByEmail(String email) {
+<span class="nc" id="L43">		Optional&lt;User&gt; user = userRepository.findByEmail(email);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">		if(user.isPresent()){</span>
+<span class="nc" id="L45">			return user.get();</span>
+		}
+		else{
+<span class="nc" id="L48">			throw new UserNotFoundException();</span>
+		}
+	}
+
+	/**
+	 * Retrieves the user with entered email and validates the password
+	 * @param email Email of the user logging in
+	 * @param password Password of the user logging in
+	 * @return The authenticated user
+	 * @throws PasswordIncorrectException If the password is incorrect
+	 */
+	public User findByEmailAndPassword(String email, String password) {
+<span class="nc" id="L60">		User user = findByEmail(email);</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">		if(bCryptPasswordEncoder.matches(password, user.getPassword())){</span>
+//		if(password.equals(optionalUser.get().getPassword())){
+<span class="nc" id="L63">			return user;</span>
+		}
+		else{
+<span class="nc" id="L66">			throw new PasswordIncorrectException();</span>
+		}
+	}
+
+	/**
+	 * The method to register a user.
+	 * @param user The registrants information
+	 * @return The registered user
+	 */
+	public User register(User user) {
+<span class="nc" id="L76">		Optional&lt;User&gt; optionalUser = userRepository.findByEmail(user.getEmail());</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">		if(optionalUser.isPresent()){</span>
+<span class="nc" id="L78">			throw new UserAlreadyExistsException();</span>
+		}
+		else{
+<span class="nc" id="L81">			User newUser = User.builder()</span>
+<span class="nc" id="L82">					.id(new ObjectId())</span>
+<span class="nc" id="L83">					.name(user.getName())</span>
+<span class="nc" id="L84">					.email(user.getEmail())</span>
+<span class="nc" id="L85">					.articles(new ArrayList&lt;&gt;())</span>
+<span class="nc" id="L86">					.password(bCryptPasswordEncoder.encode(user.getPassword()))</span>
+<span class="nc" id="L87">					.role(Role.USER)</span>
+<span class="nc" id="L88">					.build();</span>
+<span class="nc" id="L89">			userRepository.insert(newUser);</span>
+<span class="nc" id="L90">			return newUser;</span>
+		}
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
