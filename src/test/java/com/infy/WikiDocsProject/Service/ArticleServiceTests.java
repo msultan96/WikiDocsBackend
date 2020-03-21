@@ -304,7 +304,7 @@ public class ArticleServiceTests {
     public void testSubmitArticle_ArticleNotFound(){
         // when findArticleByChannelId() with any string param from articleRepository
         // then return expectedArticle
-        doThrow(new ArticleNotFoundException())
+        doThrow(new ArticleNotFoundException("ArticleService.INVALID_ID"))
                 .when(articleService).findById(any(ObjectId.class));
 
         // actual submitArticle() with "Invalid" param from articleService
@@ -416,7 +416,7 @@ public class ArticleServiceTests {
     public void testApproveArticle_ArticleNotFound(){
         // when findArticleByChannelId() is called with any string param from articleRepository class
         // then return expectedArticle
-        doThrow(new ArticleNotFoundException())
+        doThrow(new ArticleNotFoundException("ArticleService.INVALID_ID"))
                 .when(articleService).findById(any(ObjectId.class));
         // actual call to approveArticle() with "Invalid" param from articleService
         articleService.approveArticle(new ObjectId().toHexString());
@@ -545,7 +545,7 @@ public class ArticleServiceTests {
     public void testRejectArticle_ArticleNotFound(){
         // when findArticleByChannelId() is called with any string param from articleRepository
         // then return expectedArticle
-        doThrow(new ArticleNotFoundException())
+        doThrow(new ArticleNotFoundException("ArticleService.INVALID_ID"))
                 .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() from articleService with "Invalid" param
         articleService.rejectArticle(new ObjectId().toHexString());
@@ -770,7 +770,7 @@ public class ArticleServiceTests {
         // when findUserByEmail() is called with any string param from userService
         // then throw User Not Found Exception
         when(userService.findByEmail(anyString()))
-                .thenThrow(new UserNotFoundException());
+                .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
 
         // actual call to createArticleByEmail() with "John@gmail.com", "Invalid" param
         articleService.createArticleByEmail("John@gmail.com");

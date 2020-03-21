@@ -1,8 +1,10 @@
 package com.infy.WikiDocsProject.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.infy.WikiDocsProject.Model.Article;
+import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.enums.Status;
 import org.bson.types.ObjectId;
 
@@ -38,4 +40,8 @@ public interface ArticleService {
 	Article saveArticle(String etherPadId);
 
 	String getEtherPadUrl(String id);
+
+	List<Article> getAllInvitedArticlesByEmail(String email, int pageNumber, int pageSize);
+	String inviteUserToCollaborateByEmail(Map<String, String> map);
+
 }

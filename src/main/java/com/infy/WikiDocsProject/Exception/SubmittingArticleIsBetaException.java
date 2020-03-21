@@ -1,8 +1,9 @@
 package com.infy.WikiDocsProject.Exception;
 
 public class SubmittingArticleIsBetaException extends RuntimeException {
+    static final long serialVersionUID = 1L;
 
-    public SubmittingArticleIsBetaException() {
-        super("ArticleService.SUBMITTING_ARTICLE_BETA");
+    public SubmittingArticleIsBetaException(String message) {
+        super(message);
     }
 }
