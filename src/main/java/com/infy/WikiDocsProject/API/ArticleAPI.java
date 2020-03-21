@@ -1,6 +1,7 @@
 package com.infy.WikiDocsProject.API;
 
 import com.infy.WikiDocsProject.enums.Status;
+import lombok.NonNull;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -9,6 +10,7 @@ import com.infy.WikiDocsProject.Service.ArticleService;
 import java.util.List;
 import java.util.Map;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
  * Article API Controller Class
  *
  */
-
 @SuppressWarnings("UnnecessaryLocalVariable")
 @RestController
 @CrossOrigin
@@ -28,8 +29,8 @@ public class ArticleAPI {
 
 	static Logger logger = LogManager.getLogger(ArticleAPI.class);
 
-	/*
-	Constructor using constructor injection
+	/**
+	 * Constructor using constructor injection
 	 */
 	@Autowired
 	public ArticleAPI(ArticleService articleService) {
@@ -42,7 +43,7 @@ public class ArticleAPI {
 	 */
 	@GetMapping("getAllApprovedArticles/{pageNumber}/{pageSize}")
 	@ResponseBody
-	public List<Article> getAllApprovedArticles(@PathVariable int pageNumber, @PathVariable int pageSize){
+	public List<Article> getAllApprovedArticles(@NonNull @PathVariable int pageNumber, @NonNull @PathVariable int pageSize){
 		logger.info("GETTING ALL APPROVED ARTICLES");
 		// Called getApprovedArticles() from articleService class to find a list of articles with approved status
 		// receive back a list of approved articles
@@ -132,48 +133,37 @@ public class ArticleAPI {
 
 	/**
 	 * submit an article for approval
-	 * @param article sent from frontend
+	 * @param articleId sent from frontend
 	 * @return a submitted article object
 	 */
 	@PostMapping("submitArticleForApproval")
 	@ResponseBody
-	public Article submitArticleForApproval(@RequestBody Article article) {
-		logger.info("SUBMITTING ARTICLE FOR APPROVAL FOR USER WITH EMAIL " + article.getEmailId());
-		// Called submitArticle(channelId) with channelId from articleService class to submit an article
-		System.out.println(article.getId());
-		Article submittedArticle = articleService.submitArticle(article.getId());
-		logger.info("ARTICLE SUBMITTED FOR APPROVAL FOR USER WITH EMAIL " + article.getEmailId());
-		// Return the submitted article
+	public Article submitArticleForApproval(@RequestBody String articleId) {
+		Article submittedArticle = articleService.submitArticle(articleId);
 		return submittedArticle;
 	}
 
 	/**
 	 * approve an article
-	 * @param article sent from frontend
+	 * @param articleId sent from frontend
 	 * @return an approved article object
 	 */
 	@PostMapping("approveArticle")
 	@ResponseBody
-	public Article approveArticle(@RequestBody Article article) {
-		logger.info("APPROVING ARTICLE SUBMITTED BY USER WITH EMAIL " + article.getEmailId());
-		// Called approveArticle with channelId from articleService class to approve an article.
-		Article returnedArticle = articleService.approveArticle(article.getId());
-		logger.info("APPROVED ARTICLE SUBMITTED BY USER WITH EMAIL " + article.getEmailId());
+	public Article approveArticle(@RequestBody String articleId) {
+		Article returnedArticle = articleService.approveArticle(articleId);
 		return returnedArticle;
 	}
 
 	/**
 	 * reject an article
-	 * @param article sent from frontend
+	 * @param articleId sent from frontend
 	 * @return rejected article object
 	 */
 	@PostMapping("rejectArticle")
 	@ResponseBody
-	public Article rejectArticle(@RequestBody Article article){
-		logger.info("REJECTING ARTICLE SUBMITTED BY USER WITH EMAIL " + article.getEmailId());
-		// Called rejectArticle with channelId from articleService to reject an article.
-		Article rejectedArticle = articleService.rejectArticle(article.getId());
-		logger.info("REJECTED ARTICLE SUBMITTED BY USER WITH EMAIL " + article.getEmailId());
+	public Article rejectArticle(@RequestBody String articleId){
+		Article rejectedArticle = articleService.rejectArticle(articleId);
 		return rejectedArticle;
 	}
 
