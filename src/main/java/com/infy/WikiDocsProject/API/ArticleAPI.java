@@ -1,16 +1,13 @@
 package com.infy.WikiDocsProject.API;
 
+import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.enums.Status;
-import lombok.NonNull;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-
 import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Service.ArticleService;
 import java.util.List;
 import java.util.Map;
-
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,7 +40,7 @@ public class ArticleAPI {
 	 */
 	@GetMapping("getAllApprovedArticles/{pageNumber}/{pageSize}")
 	@ResponseBody
-	public List<Article> getAllApprovedArticles(@NonNull @PathVariable int pageNumber, @NonNull @PathVariable int pageSize){
+	public List<Article> getAllApprovedArticles(@PathVariable int pageNumber, @PathVariable int pageSize){
 		logger.info("GETTING ALL APPROVED ARTICLES");
 		// Called getApprovedArticles() from articleService class to find a list of articles with approved status
 		// receive back a list of approved articles
@@ -196,5 +193,18 @@ public class ArticleAPI {
 	public String getEtherPadUrl(@RequestBody String etherPadId){
 		String etherPadUrl = articleService.getEtherPadUrl(etherPadId);
 		return etherPadUrl;
+	}
+
+	@GetMapping("getAllInvitedArticlesByEmail/{email:.+}/{pageNumber}/{pageSize}")
+    @ResponseBody
+	public List<Article> getAllInvitedArticlesByEmail(@PathVariable String email, @PathVariable int pageNumber, @PathVariable int pageSize){
+		List<Article> articles = articleService.getAllInvitedArticlesByEmail(email, pageNumber, pageSize);
+		return articles;
+	}
+
+	@PostMapping("inviteUserToCollaborateByEmail")
+	@ResponseBody
+	public String inviteUserToCollaborateByEmail(@RequestBody Map<String, String> map){
+		return articleService.inviteUserToCollaborateByEmail(map);
 	}
 }

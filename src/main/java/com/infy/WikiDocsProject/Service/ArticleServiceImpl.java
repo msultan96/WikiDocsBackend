@@ -7,13 +7,13 @@ import com.infy.WikiDocsProject.Repository.ArticleRepository;
 import com.infy.WikiDocsProject.Repository.UserRepository;
 import com.infy.WikiDocsProject.enums.Status;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import net.gjerull.etherpad.client.EPLiteClient;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -109,7 +109,7 @@ public class ArticleServiceImpl implements ArticleService {
 			return optionalArticle.get();
 		}
 		else{
-			throw new ArticleNotFoundException();
+			throw new ArticleNotFoundException("ArticleService.INVALID_ID");
 		}
 	}
 
@@ -141,11 +141,11 @@ public class ArticleServiceImpl implements ArticleService {
 		// A submitting article can't be of status DISCARDED or APPROVED
 		// throw appropriate exception
 		if (article.getStatus() == Status.DISCARDED) {
-			throw new SubmittingArticleIsDiscardedException();
+			throw new SubmittingArticleIsDiscardedException("ArticleService.SUBMITTING_ARTICLE_DISCARDED");
 		} else if (article.getStatus() == Status.APPROVED) {
-			throw new SubmittingArticleIsApprovedException();
+			throw new SubmittingArticleIsApprovedException("ArticleService.SUBMITTING_ARTICLE_APPROVED");
 		} else if(article.getStatus() == Status.BETA) {
-			throw new SubmittingArticleIsBetaException();
+			throw new SubmittingArticleIsBetaException("ArticleService.SUBMITTING_ARTICLE_BETA");
 		}
 		else{
 			// If the article is of status INITIAL or REJECTED
@@ -176,13 +176,13 @@ public class ArticleServiceImpl implements ArticleService {
 		// An article being approved can only be of status BETA
 		// throw appropriate exceptions otherwise
 		if(article.getStatus() == Status.REJECTED){
-			throw new ApprovingArticleIsStillRejectedException();
+			throw new ApprovingArticleIsStillRejectedException("ArticleService.APPROVING_ARTICLE_REJECTED");
 		} else if(article.getStatus() == Status.INITIAL){
-			throw new ApprovingArticleIsInitialException();
+			throw new ApprovingArticleIsInitialException("ArticleService.APPROVING_ARTICLE_INITIAL");
 		} else if(article.getStatus() == Status.APPROVED){
-			throw new ApprovingArticleIsApprovedException();
+			throw new ApprovingArticleIsApprovedException("ArticleService.APPROVING_ARTICLE_APPROVED");
 		} else if(article.getStatus() == Status.DISCARDED){
-			throw new ApprovingArticleIsDiscardedException();
+			throw new ApprovingArticleIsDiscardedException("ArticleService.APPROVING_ARTICLE_DISCARDED");
 		}
 		else{
 			// Set the status to APPROVED
@@ -210,13 +210,13 @@ public class ArticleServiceImpl implements ArticleService {
 		// An article being rejected can only be of status BETA
 		// throw appropriate exceptions otherwise
 		if(article.getStatus() == Status.REJECTED){
-			throw new RejectingArticleIsStillRejectedException();
+			throw new RejectingArticleIsStillRejectedException("ArticleService.REJECTING_ARTICLE_REJECTED");
 		} else if(article.getStatus() == Status.INITIAL){
-			throw new RejectingArticleIsInitialException();
+			throw new RejectingArticleIsInitialException("ArticleService.REJECTING_ARTICLE_INITIAL");
 		} else if(article.getStatus() == Status.APPROVED){
-			throw new RejectingArticleIsApprovedException();
+			throw new RejectingArticleIsApprovedException("ArticleService.REJECTING_ARTICLE_APPROVED");
 		} else if(article.getStatus() == Status.DISCARDED){
-			throw new RejectingArticleIsDiscardedException();
+			throw new RejectingArticleIsDiscardedException("ArticleService.REJECTING_ARTICLE_DISCARDED");
 		}
 		else{
 			// Increase the rejection count of the article
@@ -286,6 +286,8 @@ public class ArticleServiceImpl implements ArticleService {
 	public Article saveArticle(String etherPadId) {
 		// Call findById to validate that the article does exist
 		Article article = findById(etherPadId);
+		if(article.getStatus() == Status.BETA)
+			throw new SavingArticleIsSubmittedException("ArticleService.EDITING_ARTICLE_SUBMITTED");
 		// Retrieve the contents of the ether pad
 		String content = epLiteClient.getText(etherPadId).get("text").toString();
 		epLiteClient.setText(etherPadId, content);
@@ -322,8 +324,76 @@ public class ArticleServiceImpl implements ArticleService {
 				appendingId = id + "?";
 		}
 		etherPadUrl = etherPadUrl + appendingId;
-		epLiteClient.createPad(id);
 		epLiteClient.setText(id,article.getContent());
 		return etherPadUrl;
 	}
+
+	/**
+	 * Get All Articles a User has been invited to collaborate on
+	 * @param email email of the user
+	 * @param pageNumber current page number
+	 * @param pageSize size of the page
+	 * @return the collaborating articles
+	 */
+	public List<Article> getAllInvitedArticlesByEmail(String email, int pageNumber, int pageSize){
+		List<Article> articles = new ArrayList<>();
+
+		//Retrieve the user + their collaborating articles
+		User user = userService.findByEmail(email);
+		List<ObjectId> collaboratingArticlesById = user.getCollaboratingArticles();
+
+		collaboratingArticlesById.removeIf(id -> {
+			Article article = findById(id);
+			if(article.getStatus() == Status.DISCARDED
+					|| article.getStatus() == Status.BETA
+					|| article.getStatus() == Status.APPROVED)
+				return true;
+			else{
+				articles.add(article);
+				return false;
+			}
+		});
+		user.setCollaboratingArticles(collaboratingArticlesById);
+		userRepository.save(user);
+
+		//Convert the list into pages
+		Pageable pageable = PageRequest.of(pageNumber, pageSize);
+		int start = Math.toIntExact(pageable.getOffset());
+		int end = Math.min((start + pageable.getPageSize()), articles.size());
+
+		if(start>end) return Collections.emptyList();
+		Page<Article> page = new PageImpl<Article>(articles.subList(start, end), pageable, articles.size());
+
+		//return the current page
+		return page.getContent();
+	}
+
+	public String inviteUserToCollaborateByEmail(Map<String, String> map){
+		String inviteeEmail = map.get("email");
+		String articleIdAsString = map.get("articleId");
+		ObjectId articleId = new ObjectId(articleIdAsString);
+
+
+		//validate the user email exists
+		User invitee = userService.findByEmail(inviteeEmail);
+
+		//retrieve the articles to mutate later
+		List<ObjectId> inviteeArticles = invitee.getCollaboratingArticles();
+
+		if(inviteeArticles.contains(articleId)) {
+			throw new UserAlreadyInvitedException("ArticleService.USER_ALREADY_INVITED");
+		}
+
+		//Validate article id
+		findById(articleId);
+
+		//Add to users collaborating articles
+		inviteeArticles.add(articleId);
+
+		//Save user with modified collaborating articles
+		userRepository.save(invitee);
+
+		return invitee.getName();
+	}
+
 }

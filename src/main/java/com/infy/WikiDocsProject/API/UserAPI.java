@@ -91,4 +91,11 @@ public class UserAPI {
 		String name = userService.getNameByEmail(email);
 		return name;
 	}
+
+	@GetMapping("getAllUserEmails")
+	@ResponseBody
+	public List<String> getAllUserEmails(){
+		List<String> users = userService.getAllUserEmails();
+		return users;
+	}
 }

@@ -16,7 +16,11 @@ import static org.springframework.http.HttpStatus.*;
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Autowired
-    private Environment environment;
+    private final Environment environment;
+
+    public CustomExceptionHandler(Environment environment) {
+        this.environment = environment;
+    }
 
     @ExceptionHandler({ApprovingArticleIsApprovedException.class})
     public ResponseEntity<ErrorMessage> approvingArticleIsApprovedException(ApprovingArticleIsApprovedException e) {
@@ -93,6 +97,11 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return error(UNAUTHORIZED, e);
     }
 
+    @ExceptionHandler({UserAlreadyInvitedException.class})
+    public ResponseEntity<ErrorMessage> userAlreadyInvitedException(UserAlreadyInvitedException e) {
+        return error(CONFLICT, e);
+    }
+
     @ExceptionHandler({RuntimeException.class})
     public ResponseEntity<ErrorMessage> exception(RuntimeException e) {
         return error(INTERNAL_SERVER_ERROR, e);
@@ -100,6 +109,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     private ResponseEntity<ErrorMessage> error(HttpStatus status, Exception e) {
         log.error("The following exception occurred during processing:  ", e);
+        log.info(environment.getProperty(e.getMessage()));
         ErrorMessage error = new ErrorMessage(status.value(), environment.getProperty(e.getMessage()));
         return new ResponseEntity<>(error, status);
     }

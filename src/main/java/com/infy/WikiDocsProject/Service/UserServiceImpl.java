@@ -12,6 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 /**
  * 
@@ -45,7 +47,7 @@ public class UserServiceImpl implements UserService {
 			return user.get();
 		}
 		else{
-			throw new UserNotFoundException();
+			throw new UserNotFoundException("UserService.USER_NOT_FOUND");
 		}
 	}
 
@@ -63,7 +65,7 @@ public class UserServiceImpl implements UserService {
 			return user;
 		}
 		else{
-			throw new PasswordIncorrectException();
+			throw new PasswordIncorrectException("UserService.INCORRECT_PASSWORD");
 		}
 	}
 
@@ -75,7 +77,7 @@ public class UserServiceImpl implements UserService {
 	public User register(User user) {
 		Optional<User> optionalUser = userRepository.findByEmail(user.getEmail());
 		if(optionalUser.isPresent()){
-			throw new UserAlreadyExistsException();
+			throw new UserAlreadyExistsException("UserService.EMAIL_IN_USE");
 		}
 		else{
 			User newUser = User.builder()
@@ -99,5 +101,15 @@ public class UserServiceImpl implements UserService {
 	public String getNameByEmail(String email){
 		User user = findByEmail(email);
 		return user.getName();
+	}
+
+	public List<String> getAllUserEmails(){
+		List<User> users = userRepository.findAll();
+		List<String> userEmails = Collections.emptyList();
+		users.stream()
+				.filter(user -> user.getRole() == Role.ADMIN)
+				.forEach(user -> userEmails.add(user.getEmail()));
+
+		return userEmails;
 	}
 }

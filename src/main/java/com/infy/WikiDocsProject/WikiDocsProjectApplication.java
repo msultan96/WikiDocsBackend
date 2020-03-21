@@ -1,6 +1,5 @@
 package com.infy.WikiDocsProject;
 
-import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.Repository.ArticleRepository;
 import com.infy.WikiDocsProject.Repository.UserRepository;
@@ -43,13 +42,13 @@ public class WikiDocsProjectApplication {
 			userRepository.deleteAll();
 
 			List<User> users = TestDataCreator.createUsers();
-			List<Article> articles = TestDataCreator.createArticles("muh@gmail.com");
 			User muh = User.builder()
 					.id(new ObjectId())
 					.name("Muhammad Sultan")
 					.email("muh@gmail.com")
 					.password(bCryptPasswordEncoder.encode("111111"))
-					.articles(articles)
+					.articles(TestDataCreator.createArticles("muh@gmail.com"))
+					.collaboratingArticles(new ArrayList<>())
 					.role(Role.USER)
 					.build();
 
@@ -58,7 +57,8 @@ public class WikiDocsProjectApplication {
 					.name("admin")
 					.email("admin@gmail.com")
 					.password(bCryptPasswordEncoder.encode("admin"))
-					.articles(new ArrayList<>())
+					.articles(TestDataCreator.createArticles("admin@gmail.com"))
+					.collaboratingArticles(new ArrayList<>())
 					.role(Role.ADMIN)
 					.build();
 

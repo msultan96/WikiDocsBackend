@@ -43,6 +43,7 @@ public class TestDataCreator {
 //                    .password(person.getPassword())
                     .role(Role.USER)
                     .articles(articles)
+                    .collaboratingArticles(new ArrayList<>())
                     .build();
             users.add(user);
         }
