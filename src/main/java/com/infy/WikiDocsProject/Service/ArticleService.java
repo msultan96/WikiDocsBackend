@@ -31,9 +31,9 @@ public interface ArticleService {
 //	List<Article> getAllRejectedArticlesByEmailId(String email);
 //	List<Article> getAllDiscardedArticlesByEmailId(String email);
 
-	Article submitArticle(ObjectId id);
-	Article approveArticle(ObjectId id);
-	Article rejectArticle(ObjectId id);
+	Article submitArticle(String id);
+	Article approveArticle(String id);
+	Article rejectArticle(String id);
 
 	Article saveArticle(String etherPadId);
 

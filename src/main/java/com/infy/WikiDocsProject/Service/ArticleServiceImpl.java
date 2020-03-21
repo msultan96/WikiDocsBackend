@@ -134,7 +134,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param id Used to locate the article
 	 * @return the updated Article
 	 */
-	public Article submitArticle(ObjectId id) {
+	public Article submitArticle(String id) {
 		// Call findById to retrieve the article and validate that it exists
 		Article article = findById(id);
 
@@ -169,7 +169,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param id Used to locate the article
 	 * @return the updated Article
 	 */
-	public Article approveArticle(ObjectId id){
+	public Article approveArticle(String id){
 		// Call findById to retrieve the article and validate that it exists
 		Article article = findById(id);
 
@@ -203,7 +203,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param id Used to locate the article
 	 * @return the updated Article
 	 */
-	public Article rejectArticle(ObjectId id){
+	public Article rejectArticle(String id){
 		// Call findById to retrieve the article and validate that it exists
 		Article article = findById(id);
 
@@ -322,6 +322,8 @@ public class ArticleServiceImpl implements ArticleService {
 				appendingId = id + "?";
 		}
 		etherPadUrl = etherPadUrl + appendingId;
+		epLiteClient.createPad(id);
+		epLiteClient.setText(id,article.getContent());
 		return etherPadUrl;
 	}
 }

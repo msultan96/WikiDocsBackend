@@ -222,7 +222,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
 
         //actual call to submitArticle() from articleService with "Invalid" param
-        Article actualArticle = articleService.submitArticle(new ObjectId());
+        Article actualArticle = articleService.submitArticle(new ObjectId().toHexString());
 
         // compare Status.BETA and actualArticle.getStatus()
         assertEquals(Status.BETA, actualArticle.getStatus());
@@ -241,7 +241,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
 
         //actual call to submitArticle() from articleService with "testArticle" param
-        Article actualArticle = articleService.submitArticle(new ObjectId());
+        Article actualArticle = articleService.submitArticle(new ObjectId().toHexString());
         // compare Status.BETA and actualArticle.getStatus()
         assertEquals(Status.BETA, actualArticle.getStatus());
     }
@@ -259,7 +259,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
 
         //actual call to submitArticle() from articleService with "testArticle" param
-        articleService.submitArticle(new ObjectId());
+        articleService.submitArticle(new ObjectId().toHexString());
     }
 
     /**
@@ -276,7 +276,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
 
         //actual call to submitArticle() from articleService with "testArticle" param
-        articleService.submitArticle(new ObjectId());
+        articleService.submitArticle(new ObjectId().toHexString());
     }
 
     /**
@@ -293,7 +293,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
 
         //actual call to submitArticle() from articleService with "testArticle" param
-        articleService.submitArticle(new ObjectId());
+        articleService.submitArticle(new ObjectId().toHexString());
     }
 
     /**
@@ -308,7 +308,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
 
         // actual submitArticle() with "Invalid" param from articleService
-        articleService.submitArticle(new ObjectId());
+        articleService.submitArticle(new ObjectId().toHexString());
     }
 
     /**
@@ -326,7 +326,7 @@ public class ArticleServiceTests {
 
         // actual call approveArticle() with "testArticle" param from articleService
         // return actualArticle
-        Article actualArticle = articleService.approveArticle(new ObjectId());
+        Article actualArticle = articleService.approveArticle(new ObjectId().toHexString());
         // compare Status.APPROVED and actualArticle.getStatus()
         assertEquals(Status.APPROVED, actualArticle.getStatus());
     }
@@ -346,7 +346,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
         // actual call approveArticle() with "testArticle" param from articleService
         // return actualArticle
-        Article actualArticle = articleService.approveArticle(new ObjectId());
+        Article actualArticle = articleService.approveArticle(new ObjectId().toHexString());
         // compare Status.REJECTED and actualArticle.getStatus()
         assertEquals(Status.REJECTED, actualArticle.getStatus());
     }
@@ -365,7 +365,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
         // actual call approveArticle() with "testArticle" param from articleService
         // return actualArticle
-        Article actualArticle = articleService.approveArticle(new ObjectId());
+        Article actualArticle = articleService.approveArticle(new ObjectId().toHexString());
         // compare Status.INITIALand actualArticle.getStatus()
         assertEquals(Status.INITIAL, actualArticle.getStatus());
     }
@@ -384,7 +384,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
         // actual call approveArticle() with "testArticle" param from articleService
         // return actualArticle
-        Article actualArticle = articleService.approveArticle(new ObjectId());
+        Article actualArticle = articleService.approveArticle(new ObjectId().toHexString());
         // compare Status.APPROVED and actualArticle.getStatus()
         assertEquals(Status.APPROVED, actualArticle.getStatus());
     }
@@ -403,7 +403,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
         // actual call approveArticle() with "testArticle" param from articleService
         // return actualArticle
-        Article actualArticle = articleService.approveArticle(new ObjectId());
+        Article actualArticle = articleService.approveArticle(new ObjectId().toHexString());
         // compare Status.DISCARDED and actualArticle.getStatus()
         assertEquals(Status.DISCARDED, actualArticle.getStatus());
     }
@@ -419,7 +419,7 @@ public class ArticleServiceTests {
         doThrow(new ArticleNotFoundException())
                 .when(articleService).findById(any(ObjectId.class));
         // actual call to approveArticle() with "Invalid" param from articleService
-        articleService.approveArticle(new ObjectId());
+        articleService.approveArticle(new ObjectId().toHexString());
     }
 
     /**
@@ -435,7 +435,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() with "testArticle" param from articleService
         // return actualArticle
-        Article actualArticle = articleService.rejectArticle(new ObjectId());
+        Article actualArticle = articleService.rejectArticle(new ObjectId().toHexString());
         // compare Status REJECTED and actualArticle.getStatus()
         assertEquals(Status.REJECTED, actualArticle.getStatus());
     }
@@ -456,7 +456,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() with "testArticle" param from articleService
         // return actualArticle
-        Article actualArticle = articleService.rejectArticle(new ObjectId());
+        Article actualArticle = articleService.rejectArticle(new ObjectId().toHexString());
         // compare Status DISCARDED and actualArticle.getStatus()
         assertEquals(Status.DISCARDED, actualArticle.getStatus());
     }
@@ -475,7 +475,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() with "testArticle" param from articleService
         // return actualArticle
-        Article actualArticle = articleService.rejectArticle(new ObjectId());
+        Article actualArticle = articleService.rejectArticle(new ObjectId().toHexString());
         // compare Status INITIAL and actualArticle.getStatus()
         assertEquals(Status.INITIAL, actualArticle.getStatus());
     }
@@ -495,7 +495,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() with "testArticle" param from articleService
         // return actualArticle
-        Article actualArticle = articleService.rejectArticle(new ObjectId());
+        Article actualArticle = articleService.rejectArticle(new ObjectId().toHexString());
         // compare Status APPROVED and actualArticle.getStatus()
         assertEquals(Status.APPROVED, actualArticle.getStatus());
     }
@@ -514,7 +514,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() with "testArticle" param from articleService
         // return actualArticle
-        Article actualArticle = articleService.rejectArticle(new ObjectId());
+        Article actualArticle = articleService.rejectArticle(new ObjectId().toHexString());
         // compare Status REJECTED and actualArticle.getStatus()
         assertEquals(Status.REJECTED, actualArticle.getStatus());
     }
@@ -532,7 +532,7 @@ public class ArticleServiceTests {
                 .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() with "testArticle" param from articleService
         // return actualArticle
-        Article actualArticle = articleService.rejectArticle(new ObjectId());
+        Article actualArticle = articleService.rejectArticle(new ObjectId().toHexString());
         // compare Status RDISCARDED and actualArticle.getStatus()
         assertEquals(Status.DISCARDED, actualArticle.getStatus());
     }
@@ -548,7 +548,7 @@ public class ArticleServiceTests {
         doThrow(new ArticleNotFoundException())
                 .when(articleService).findById(any(ObjectId.class));
         // actual call rejectArticle() from articleService with "Invalid" param
-        articleService.rejectArticle(new ObjectId());
+        articleService.rejectArticle(new ObjectId().toHexString());
     }
 
 //    /**

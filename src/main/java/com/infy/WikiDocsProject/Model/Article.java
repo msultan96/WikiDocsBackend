@@ -26,4 +26,5 @@ public class Article {
 	private Status status;
 	private int rejectedCount;
 	private boolean readOnly;
+
 }
