@@ -11,7 +11,7 @@ import org.bson.types.ObjectId;
 public interface ArticleService {
 
 	Article findById(String id);
-	Article createArticleByEmail(String email);
+	Article createArticleByEmail(String email, String articleName);
 
 	List<Article> getAllArticlesByEmailId(String email);
 	List<Article> getAllArticlesByEmailId(String email, int pageNumber, int pageSize);

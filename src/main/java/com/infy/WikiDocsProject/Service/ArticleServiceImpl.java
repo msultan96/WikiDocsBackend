@@ -5,6 +5,7 @@ import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.Repository.ArticleRepository;
 import com.infy.WikiDocsProject.Repository.UserRepository;
+import com.infy.WikiDocsProject.enums.Role;
 import com.infy.WikiDocsProject.enums.Status;
 
 import java.util.*;
@@ -16,6 +17,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 /**
@@ -29,17 +32,20 @@ public class ArticleServiceImpl implements ArticleService {
 	private final EPLiteClient epLiteClient;
 	private final ArticleRepository articleRepository;
 	private final UserRepository userRepository;
+	private final JavaMailSender javaMailSender;
 
 	/**
 	 * Constructor using constructor injection
 	 */
 	@Autowired
 	public ArticleServiceImpl(UserService userService, EPLiteClient epLiteClient,
-							  ArticleRepository articleRepository, UserRepository userRepository) {
+							  ArticleRepository articleRepository, UserRepository userRepository,
+							  JavaMailSender javaMailSender) {
 		this.userService = userService;
 		this.epLiteClient = epLiteClient;
 		this.articleRepository = articleRepository;
 		this.userRepository = userRepository;
+		this.javaMailSender = javaMailSender;
 	}
 
 	public List<Article> getAllArticlesByEmailId(String email) {
@@ -154,6 +160,22 @@ public class ArticleServiceImpl implements ArticleService {
 			/*
 			TODO: Send an email to Administrator
 			 */
+			List<User> admins = userRepository.findAllByRole(Role.ADMIN);
+			String[] adminEmailsArray = new String[admins.size()];
+			for(int i=0; i<admins.size(); i++){
+				adminEmailsArray[i] = admins.get(i).getEmail();
+			}
+			SimpleMailMessage email = new SimpleMailMessage();
+			email.setTo(adminEmailsArray);
+			email.setSubject("Article pending approval");
+			String emailBody = "The following article by " + article.getEmailId() + " requires your approval. \n\n\n"
+					+ article.getContent() + "\n\n\n"
+					+ "Approve: " + "http://localhost:8080/DLM_Wiki/ArticleAPI/approveArticle/" + article.getId().toHexString()
+					+ " \n\n"
+					+ "Reject: " + "http://localhost:8080/DLM_Wiki/ArticleAPI/rejectArticle/" + article.getId().toHexString();
+			email.setText(emailBody);
+			javaMailSender.send(email);
+
 			// Save the article
 			articleRepository.save(article);
 			// return the article with the new status
@@ -239,7 +261,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @param email Email associated with the user
 	 * @return article The new article created
 	 */
-	public Article createArticleByEmail(String email){
+	public Article createArticleByEmail(String email, String articleName){
 		// Validate that the user with the given email exists
 		// and retrieve the user
 		User user = userService.findByEmail(email);
@@ -253,7 +275,7 @@ public class ArticleServiceImpl implements ArticleService {
 		Article newArticle = Article.builder()
 				.id(new ObjectId())
 				.emailId(user.getEmail())
-				.name("New Article")
+				.name(articleName)
 				.status(Status.INITIAL)
 				.readOnly(false)
 				.build();
@@ -290,6 +312,7 @@ public class ArticleServiceImpl implements ArticleService {
 			throw new SavingArticleIsSubmittedException("ArticleService.EDITING_ARTICLE_SUBMITTED");
 		// Retrieve the contents of the ether pad
 		String content = epLiteClient.getText(etherPadId).get("text").toString();
+		if(content == null) content = "";
 		epLiteClient.setText(etherPadId, content);
 		// Set the article's contents to the ether pad content
 		article.setContent(content);
@@ -324,6 +347,7 @@ public class ArticleServiceImpl implements ArticleService {
 				appendingId = id + "?";
 		}
 		etherPadUrl = etherPadUrl + appendingId;
+		if(article.getContent() == null) article.setContent("");
 		epLiteClient.setText(id,article.getContent());
 		return etherPadUrl;
 	}

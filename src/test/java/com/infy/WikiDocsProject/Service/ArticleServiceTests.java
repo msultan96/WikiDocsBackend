@@ -753,7 +753,7 @@ public class ArticleServiceTests {
         doNothing().when(epLiteClient).createPad(anyString());
 
         // actual call to createArticleByEmail with "John@gmail.com","testArticle" params
-        Article actualArticle = articleService.createArticleByEmail("John@gmail.com");
+        Article actualArticle = articleService.createArticleByEmail("John@gmail.com", "Article Name");
 
         // compare expectedArticle.getEmailId() and actualArticle.getEmailId()
         assertEquals(expectedArticle.getEmailId(), actualArticle.getEmailId());
@@ -773,7 +773,7 @@ public class ArticleServiceTests {
                 .thenThrow(new UserNotFoundException("UserService.USER_NOT_FOUND"));
 
         // actual call to createArticleByEmail() with "John@gmail.com", "Invalid" param
-        articleService.createArticleByEmail("John@gmail.com");
+        articleService.createArticleByEmail("John@gmail.com", "Article Name");
     }
 
 

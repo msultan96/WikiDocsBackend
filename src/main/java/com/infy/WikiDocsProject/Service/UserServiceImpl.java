@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 	 * @throws UserNotFoundException If the email isn't found
 	 */
 	public User findByEmail(String email) {
-		Optional<User> user = userRepository.findByEmail(email);
+		Optional<User> user = userRepository.findByEmail(email.toLowerCase());
 		if(user.isPresent()){
 			return user.get();
 		}
@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
 			User newUser = User.builder()
 					.id(new ObjectId())
 					.name(user.getName())
-					.email(user.getEmail())
+					.email(user.getEmail().toLowerCase())
 					.articles(new ArrayList<>())
 					.password(bCryptPasswordEncoder.encode(user.getPassword()))
 					.role(Role.USER)

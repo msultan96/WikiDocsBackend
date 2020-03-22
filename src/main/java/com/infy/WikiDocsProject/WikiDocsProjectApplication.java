@@ -45,25 +45,25 @@ public class WikiDocsProjectApplication {
 			User muh = User.builder()
 					.id(new ObjectId())
 					.name("Muhammad Sultan")
-					.email("muh@gmail.com")
+					.email("muhammad.sultan96@gmail.com")
 					.password(bCryptPasswordEncoder.encode("111111"))
 					.articles(TestDataCreator.createArticles("muh@gmail.com"))
-					.collaboratingArticles(new ArrayList<>())
-					.role(Role.USER)
-					.build();
-
-			User admin = User.builder()
-					.id(new ObjectId())
-					.name("admin")
-					.email("admin@gmail.com")
-					.password(bCryptPasswordEncoder.encode("admin"))
-					.articles(TestDataCreator.createArticles("admin@gmail.com"))
 					.collaboratingArticles(new ArrayList<>())
 					.role(Role.ADMIN)
 					.build();
 
+//			User admin = User.builder()
+//					.id(new ObjectId())
+//					.name("admin")
+//					.email("admin@gmail.com")
+//					.password(bCryptPasswordEncoder.encode("admin"))
+//					.articles(TestDataCreator.createArticles("admin@gmail.com"))
+//					.collaboratingArticles(new ArrayList<>())
+//					.role(Role.ADMIN)
+//					.build();
+
 			users.add(muh);
-			users.add(admin);
+//			users.add(admin);
 
 			users.forEach(user ->{
 				user.getArticles().forEach(article ->{

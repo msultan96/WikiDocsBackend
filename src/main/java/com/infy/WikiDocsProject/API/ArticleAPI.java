@@ -1,6 +1,5 @@
 package com.infy.WikiDocsProject.API;
 
-import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.enums.Status;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -145,9 +144,9 @@ public class ArticleAPI {
 	 * @param articleId sent from frontend
 	 * @return an approved article object
 	 */
-	@PostMapping("approveArticle")
+	@GetMapping("approveArticle/{articleId}")
 	@ResponseBody
-	public Article approveArticle(@RequestBody String articleId) {
+	public Article approveArticle(@PathVariable String articleId) {
 		Article returnedArticle = articleService.approveArticle(articleId);
 		return returnedArticle;
 	}
@@ -157,9 +156,9 @@ public class ArticleAPI {
 	 * @param articleId sent from frontend
 	 * @return rejected article object
 	 */
-	@PostMapping("rejectArticle")
+	@GetMapping("rejectArticle/{articleId}")
 	@ResponseBody
-	public Article rejectArticle(@RequestBody String articleId){
+	public Article rejectArticle(@PathVariable String articleId){
 		Article rejectedArticle = articleService.rejectArticle(articleId);
 		return rejectedArticle;
 	}
@@ -176,7 +175,7 @@ public class ArticleAPI {
 	public Article createNewArticle(@RequestBody Map<String, String> map) {
 		logger.info("CREATING NEW ARTICLE FOR USER WITH EMAIL " + map.get("email"));
 		// Called createArticleByUser() from userService class to create a new article with name
-		Article article = articleService.createArticleByEmail(map.get("email"));
+		Article article = articleService.createArticleByEmail(map.get("email"), map.get("articleName"));
 		logger.info("CREATED NEW ARTICLE FOR USER WITH EMAIL " + map.get("email"));
 		return article;
 	}

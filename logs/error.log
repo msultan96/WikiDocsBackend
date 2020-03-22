@@ -5502,3 +5502,922 @@ com.infy.WikiDocsProject.Exception.UserAlreadyInvitedException: ArticleService.U
 2020-03-21 17:07:57.261  INFO 84628 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: muh@gmail.com
 2020-03-21 17:08:00.967  INFO 84628 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
 2020-03-21 17:08:00.972  INFO 84628 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-21 20:06:39.872  INFO 59952 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 59952 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-21 20:06:39.897  INFO 59952 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-21 20:06:43.839  INFO 59952 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-21 20:06:44.176  INFO 59952 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 322ms. Found 2 MongoDB repository interfaces.
+2020-03-21 20:06:46.894  INFO 59952 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-21 20:06:46.940  INFO 59952 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-21 20:06:46.941  INFO 59952 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-21 20:06:47.326  INFO 59952 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-21 20:06:47.328  INFO 59952 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6098 ms
+2020-03-21 20:06:48.448  INFO 59952 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-21 20:06:48.628  INFO 59952 --- [cluster-ClusterId{value='5e76ba282843433493ab6ed0', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:874}] to localhost:27017
+2020-03-21 20:06:48.643  INFO 59952 --- [cluster-ClusterId{value='5e76ba282843433493ab6ed0', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=8838066}
+2020-03-21 20:06:50.311  INFO 59952 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-21 20:06:51.901  INFO 59952 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-21 20:06:51.961  INFO 59952 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 14.659 seconds (JVM running for 17.572)
+2020-03-21 20:06:52.311  INFO 59952 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:875}] to localhost:27017
+2020-03-21 20:12:53.477  INFO 59952 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-21 20:12:53.478  INFO 59952 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-21 20:12:53.541  INFO 59952 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 62 ms
+2020-03-21 20:12:53.978  INFO 59952 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: muhammad.sultan96@gmail.com
+2020-03-21 20:12:54.212 ERROR 59952 --- [http-nio-8080-exec-2] c.i.W.Exception.CustomExceptionHandler   : The following exception occurred during processing:  
+
+com.infy.WikiDocsProject.Exception.UserNotFoundException: UserService.USER_NOT_FOUND
+	at com.infy.WikiDocsProject.Service.UserServiceImpl.findByEmail(UserServiceImpl.java:50) ~[classes/:na]
+	at com.infy.WikiDocsProject.Service.UserServiceImpl.findByEmailAndPassword(UserServiceImpl.java:62) ~[classes/:na]
+	at com.infy.WikiDocsProject.API.UserAPI.loginUser(UserAPI.java:49) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-03-21 20:12:54.214  INFO 59952 --- [http-nio-8080-exec-2] c.i.W.Exception.CustomExceptionHandler   : No user was found with the email provided
+2020-03-21 20:13:36.294  INFO 57012 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 57012 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-21 20:13:36.316  INFO 57012 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-21 20:13:40.038  INFO 57012 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-21 20:13:40.320  INFO 57012 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 268ms. Found 2 MongoDB repository interfaces.
+2020-03-21 20:13:42.578  INFO 57012 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-21 20:13:42.619  INFO 57012 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-21 20:13:42.621  INFO 57012 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-21 20:13:42.973  INFO 57012 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-21 20:13:42.975  INFO 57012 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5228 ms
+2020-03-21 20:13:43.864  INFO 57012 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-21 20:13:44.082  INFO 57012 --- [cluster-ClusterId{value='5e76bbc78a1e9b3ae16d0696', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:889}] to localhost:27017
+2020-03-21 20:13:44.098  INFO 57012 --- [cluster-ClusterId{value='5e76bbc78a1e9b3ae16d0696', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=8365654}
+2020-03-21 20:13:45.677  INFO 57012 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-21 20:13:47.083  INFO 57012 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-21 20:13:47.093  INFO 57012 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 13.002 seconds (JVM running for 14.796)
+2020-03-21 20:13:47.226  INFO 57012 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:890}] to localhost:27017
+2020-03-21 20:14:46.440  INFO 57012 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-21 20:14:46.441  INFO 57012 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-21 20:14:46.468  INFO 57012 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 26 ms
+2020-03-21 20:14:46.907  INFO 57012 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: muhammad.sultan96@gmail.com
+2020-03-21 20:14:47.269  INFO 57012 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-21 20:14:47.284  INFO 57012 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: muhammad.sultan96@gmail.com
+2020-03-21 20:15:16.135  INFO 57012 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: SomeGuy@gmail.com
+2020-03-21 20:15:16.165 ERROR 57012 --- [http-nio-8080-exec-8] c.i.W.Exception.CustomExceptionHandler   : The following exception occurred during processing:  
+
+com.infy.WikiDocsProject.Exception.UserNotFoundException: UserService.USER_NOT_FOUND
+	at com.infy.WikiDocsProject.Service.UserServiceImpl.findByEmail(UserServiceImpl.java:50) ~[classes/:na]
+	at com.infy.WikiDocsProject.Service.UserServiceImpl.findByEmailAndPassword(UserServiceImpl.java:62) ~[classes/:na]
+	at com.infy.WikiDocsProject.API.UserAPI.loginUser(UserAPI.java:49) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-03-21 20:15:16.168  INFO 57012 --- [http-nio-8080-exec-8] c.i.W.Exception.CustomExceptionHandler   : No user was found with the email provided
+2020-03-21 20:15:21.571  INFO 57012 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: someguy@gmail.com
+2020-03-21 20:15:21.675  INFO 57012 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-21 20:15:21.693  INFO 57012 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: someguy@gmail.com
+2020-03-21 20:15:21.817  INFO 57012 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 20:15:21.891  INFO 57012 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 20:15:26.920  INFO 57012 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 20:15:28.490  INFO 57012 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 20:16:23.704  INFO 57012 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 20:16:23.719  INFO 57012 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 20:16:29.625 ERROR 57012 --- [http-nio-8080-exec-1] c.i.W.Exception.CustomExceptionHandler   : The following exception occurred during processing:  
+
+org.springframework.mail.MailAuthenticationException: Authentication failed; nested exception is javax.mail.AuthenticationFailedException: 535-5.7.8 Username and Password not accepted. Learn more at
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials c18sm3674265oig.53 - gsmtp
+
+	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:440) ~[spring-context-support-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:323) ~[spring-context-support-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:312) ~[spring-context-support-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at com.infy.WikiDocsProject.Service.ArticleServiceImpl.submitArticle(ArticleServiceImpl.java:177) ~[classes/:na]
+	at com.infy.WikiDocsProject.API.ArticleAPI.submitArticleForApproval(ArticleAPI.java:139) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: javax.mail.AuthenticationFailedException: 535-5.7.8 Username and Password not accepted. Learn more at
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials c18sm3674265oig.53 - gsmtp
+
+	at com.sun.mail.smtp.SMTPTransport$Authenticator.authenticate(SMTPTransport.java:947) ~[jakarta.mail-1.6.4.jar:1.6.4]
+	at com.sun.mail.smtp.SMTPTransport.authenticate(SMTPTransport.java:858) ~[jakarta.mail-1.6.4.jar:1.6.4]
+	at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:762) ~[jakarta.mail-1.6.4.jar:1.6.4]
+	at javax.mail.Service.connect(Service.java:342) ~[jakarta.mail-1.6.4.jar:1.6.4]
+	at org.springframework.mail.javamail.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518) ~[spring-context-support-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437) ~[spring-context-support-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	... 58 common frames omitted
+
+2020-03-21 20:16:29.629  INFO 57012 --- [http-nio-8080-exec-1] c.i.W.Exception.CustomExceptionHandler   : null
+2020-03-21 20:24:44.001  INFO 62964 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 62964 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-21 20:24:44.018  INFO 62964 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-21 20:24:49.032  INFO 62964 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-21 20:24:49.352  INFO 62964 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 303ms. Found 2 MongoDB repository interfaces.
+2020-03-21 20:24:52.084  INFO 62964 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-21 20:24:52.124  INFO 62964 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-21 20:24:52.126  INFO 62964 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-21 20:24:52.558  INFO 62964 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-21 20:24:52.561  INFO 62964 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 6590 ms
+2020-03-21 20:24:53.630  INFO 62964 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-21 20:24:53.872  INFO 62964 --- [cluster-ClusterId{value='5e76be653017f90f0f62dfe2', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:913}] to localhost:27017
+2020-03-21 20:24:53.888  INFO 62964 --- [cluster-ClusterId{value='5e76be653017f90f0f62dfe2', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=8980718}
+2020-03-21 20:24:56.314  INFO 62964 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-21 20:24:58.430  INFO 62964 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-21 20:24:58.444  INFO 62964 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 17.572 seconds (JVM running for 19.824)
+2020-03-21 20:24:58.586  INFO 62964 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:914}] to localhost:27017
+2020-03-21 20:25:29.549  INFO 62964 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-21 20:25:29.550  INFO 62964 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-21 20:25:29.569  INFO 62964 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 18 ms
+2020-03-21 20:25:38.283  INFO 62964 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: someguy@gmail.com
+2020-03-21 20:25:38.423  INFO 62964 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-21 20:25:38.433  INFO 62964 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: someguy@gmail.com
+2020-03-21 20:25:38.538  INFO 62964 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 20:25:38.595  INFO 62964 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 20:25:42.712  INFO 62964 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 20:25:42.920  INFO 62964 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 20:26:06.098  INFO 62964 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 20:26:06.112  INFO 62964 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 20:26:06.949  INFO 62964 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 20:26:06.970  INFO 62964 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 20:26:52.221  WARN 62964 --- [http-nio-8080-exec-8] o.s.web.servlet.PageNotFound             : Request method 'GET' not supported
+2020-03-21 20:29:42.249  INFO 67892 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 67892 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-21 20:29:42.292  INFO 67892 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-21 20:29:46.864  INFO 67892 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-21 20:29:47.187  INFO 67892 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 305ms. Found 2 MongoDB repository interfaces.
+2020-03-21 20:29:49.396  INFO 67892 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-21 20:29:49.431  INFO 67892 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-21 20:29:49.434  INFO 67892 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-21 20:29:49.821  INFO 67892 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-21 20:29:49.824  INFO 67892 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 5913 ms
+2020-03-21 20:29:50.701  INFO 67892 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-21 20:29:50.890  INFO 67892 --- [cluster-ClusterId{value='5e76bf8e6fd116146344db11', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:924}] to localhost:27017
+2020-03-21 20:29:50.909  INFO 67892 --- [cluster-ClusterId{value='5e76bf8e6fd116146344db11', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=12204064}
+2020-03-21 20:29:52.580  INFO 67892 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-21 20:29:53.855  INFO 67892 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-21 20:29:53.876  INFO 67892 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 14.349 seconds (JVM running for 17.704)
+2020-03-21 20:29:54.034  INFO 67892 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:925}] to localhost:27017
+2020-03-21 20:30:12.562  INFO 67892 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-21 20:30:12.563  INFO 67892 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-21 20:30:12.626  INFO 67892 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 61 ms
+2020-03-21 20:30:13.002  INFO 67892 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 20:30:13.211 ERROR 67892 --- [http-nio-8080-exec-2] c.i.W.Exception.CustomExceptionHandler   : The following exception occurred during processing:  
+
+com.infy.WikiDocsProject.Exception.UserNotFoundException: UserService.USER_NOT_FOUND
+	at com.infy.WikiDocsProject.Service.UserServiceImpl.findByEmail(UserServiceImpl.java:50) ~[classes/:na]
+	at com.infy.WikiDocsProject.Service.ArticleServiceImpl.getAllArticlesByEmailIdAndStatus(ArticleServiceImpl.java:94) ~[classes/:na]
+	at com.infy.WikiDocsProject.API.ArticleAPI.getAllInitialArticlesByEmail(ArticleAPI.java:108) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-03-21 20:30:13.214  INFO 67892 --- [http-nio-8080-exec-2] c.i.W.Exception.CustomExceptionHandler   : No user was found with the email provided
+2020-03-21 20:30:35.562  INFO 67892 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: someguy@gmail.com
+2020-03-21 20:30:35.731  INFO 67892 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-21 20:30:35.744  INFO 67892 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: someguy@gmail.com
+2020-03-21 20:30:35.849  INFO 67892 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 20:30:35.961  INFO 67892 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 20:30:40.887  INFO 67892 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 20:30:41.049  INFO 67892 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 20:30:55.862  INFO 67892 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 20:30:55.878  INFO 67892 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 20:30:56.664  INFO 67892 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 20:30:56.683  INFO 67892 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 20:32:52.346  INFO 67892 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 20:32:52.360  INFO 67892 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 20:32:55.777  INFO 67892 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 20:32:55.822  INFO 67892 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 20:33:12.684  INFO 67892 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 20:33:12.698  INFO 67892 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:06:40.480 ERROR 67892 --- [http-nio-8080-exec-1] c.i.W.Exception.CustomExceptionHandler   : The following exception occurred during processing:  
+
+org.springframework.http.converter.HttpMessageConversionException: JSON conversion problem: password is marked non-null but is null; nested exception is com.fasterxml.jackson.databind.JsonMappingException: password is marked non-null but is null
+ at [Source: (PushbackInputStream); line: 1, column: 38] (through reference chain: com.infy.WikiDocsProject.Model.User["password"])
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:249) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.read(AbstractJackson2HttpMessageConverter.java:228) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:205) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:158) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:131) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:167) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:134) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: com.fasterxml.jackson.databind.JsonMappingException: password is marked non-null but is null
+ at [Source: (PushbackInputStream); line: 1, column: 38] (through reference chain: com.infy.WikiDocsProject.Model.User["password"])
+	at com.fasterxml.jackson.databind.JsonMappingException.from(JsonMappingException.java:278) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty._throwAsIOE(SettableBeanProperty.java:611) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty._throwAsIOE(SettableBeanProperty.java:599) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.deser.impl.MethodProperty.deserializeAndSet(MethodProperty.java:143) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:369) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:159) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4202) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3258) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:240) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	... 55 common frames omitted
+Caused by: java.lang.NullPointerException: password is marked non-null but is null
+	at com.infy.WikiDocsProject.Model.User.setPassword(User.java:15) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at com.fasterxml.jackson.databind.deser.impl.MethodProperty.deserializeAndSet(MethodProperty.java:141) ~[jackson-databind-2.10.2.jar:2.10.2]
+	... 60 common frames omitted
+
+2020-03-21 21:06:40.482  INFO 67892 --- [http-nio-8080-exec-1] c.i.W.Exception.CustomExceptionHandler   : null
+2020-03-21 21:06:47.928 ERROR 67892 --- [http-nio-8080-exec-3] c.i.W.Exception.CustomExceptionHandler   : The following exception occurred during processing:  
+
+org.springframework.http.converter.HttpMessageConversionException: JSON conversion problem: password is marked non-null but is null; nested exception is com.fasterxml.jackson.databind.JsonMappingException: password is marked non-null but is null
+ at [Source: (PushbackInputStream); line: 1, column: 38] (through reference chain: com.infy.WikiDocsProject.Model.User["password"])
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:249) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.read(AbstractJackson2HttpMessageConverter.java:228) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodArgumentResolver.readWithMessageConverters(AbstractMessageConverterMethodArgumentResolver.java:205) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.readWithMessageConverters(RequestResponseBodyMethodProcessor.java:158) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.resolveArgument(RequestResponseBodyMethodProcessor.java:131) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:121) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:167) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:134) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+Caused by: com.fasterxml.jackson.databind.JsonMappingException: password is marked non-null but is null
+ at [Source: (PushbackInputStream); line: 1, column: 38] (through reference chain: com.infy.WikiDocsProject.Model.User["password"])
+	at com.fasterxml.jackson.databind.JsonMappingException.from(JsonMappingException.java:278) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty._throwAsIOE(SettableBeanProperty.java:611) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty._throwAsIOE(SettableBeanProperty.java:599) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.deser.impl.MethodProperty.deserializeAndSet(MethodProperty.java:143) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:369) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:159) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4202) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3258) ~[jackson-databind-2.10.2.jar:2.10.2]
+	at org.springframework.http.converter.json.AbstractJackson2HttpMessageConverter.readJavaType(AbstractJackson2HttpMessageConverter.java:240) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	... 55 common frames omitted
+Caused by: java.lang.NullPointerException: password is marked non-null but is null
+	at com.infy.WikiDocsProject.Model.User.setPassword(User.java:15) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at com.fasterxml.jackson.databind.deser.impl.MethodProperty.deserializeAndSet(MethodProperty.java:141) ~[jackson-databind-2.10.2.jar:2.10.2]
+	... 60 common frames omitted
+
+2020-03-21 21:06:47.932  INFO 67892 --- [http-nio-8080-exec-3] c.i.W.Exception.CustomExceptionHandler   : null
+2020-03-21 21:13:02.643  INFO 67892 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: someguy@gmail.com
+2020-03-21 21:13:02.757  INFO 67892 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-21 21:13:02.768  INFO 67892 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: someguy@gmail.com
+2020-03-21 21:13:02.861  INFO 67892 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 21:13:02.870  INFO 67892 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 21:13:10.093  INFO 67892 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:13:10.104  INFO 67892 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:13:11.764  INFO 67892 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 21:13:11.802  INFO 67892 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 21:13:17.095  INFO 67892 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:13:17.107  INFO 67892 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:15:04.236  INFO 67892 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 21:15:04.248  INFO 67892 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 21:15:07.140  INFO 67892 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:15:07.154  INFO 67892 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:15:08.714  INFO 67892 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:15:08.727  INFO 67892 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:15:10.057  INFO 67892 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:15:10.073  INFO 67892 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:15:13.236  INFO 67892 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 21:15:13.248  INFO 67892 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 21:15:15.533  INFO 67892 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 21:15:15.606  INFO 67892 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 21:19:54.658  INFO 67892 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 21:19:54.745  INFO 67892 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 21:20:13.371  INFO 67892 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:20:13.385  INFO 67892 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:20:15.113 ERROR 67892 --- [http-nio-8080-exec-10] c.i.W.Exception.CustomExceptionHandler   : The following exception occurred during processing:  
+
+java.lang.NullPointerException: null
+	at com.infy.WikiDocsProject.Service.ArticleServiceImpl.getAllInvitedArticlesByEmail(ArticleServiceImpl.java:367) ~[classes/:na]
+	at com.infy.WikiDocsProject.API.ArticleAPI.getAllInvitedArticlesByEmail(ArticleAPI.java:201) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-03-21 21:20:15.118  WARN 67892 --- [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Failure in @ExceptionHandler com.infy.WikiDocsProject.Exception.CustomExceptionHandler#exception(RuntimeException)
+
+java.lang.NullPointerException: null
+	at java.base/java.util.concurrent.ConcurrentHashMap.get(ConcurrentHashMap.java:936) ~[na:na]
+	at org.apache.catalina.core.ApplicationContext.getInitParameter(ApplicationContext.java:309) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationContextFacade.getInitParameter(ApplicationContextFacade.java:355) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.context.support.ServletContextPropertySource.getProperty(ServletContextPropertySource.java:47) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.context.support.ServletContextPropertySource.getProperty(ServletContextPropertySource.java:33) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.core.env.PropertySourcesPropertyResolver.getProperty(PropertySourcesPropertyResolver.java:85) ~[spring-core-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.core.env.PropertySourcesPropertyResolver.getProperty(PropertySourcesPropertyResolver.java:62) ~[spring-core-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.core.env.AbstractEnvironment.getProperty(AbstractEnvironment.java:535) ~[spring-core-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at com.infy.WikiDocsProject.Exception.CustomExceptionHandler.error(CustomExceptionHandler.java:112) ~[classes/:na]
+	at com.infy.WikiDocsProject.Exception.CustomExceptionHandler.exception(CustomExceptionHandler.java:107) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException(ExceptionHandlerExceptionResolver.java:407) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver.doResolveException(AbstractHandlerMethodExceptionResolver.java:61) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.resolveException(AbstractHandlerExceptionResolver.java:141) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.handler.HandlerExceptionResolverComposite.resolveException(HandlerExceptionResolverComposite.java:80) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processHandlerException(DispatcherServlet.java:1300) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1111) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1057) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-03-21 21:20:15.149 ERROR 67892 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[.[dispatcherServlet]      : Servlet.service() for servlet [dispatcherServlet] in context with path [/DLM_Wiki] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+
+java.lang.NullPointerException: null
+	at com.infy.WikiDocsProject.Service.ArticleServiceImpl.getAllInvitedArticlesByEmail(ArticleServiceImpl.java:367) ~[classes/:na]
+	at com.infy.WikiDocsProject.API.ArticleAPI.getAllInvitedArticlesByEmail(ArticleAPI.java:201) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-03-21 21:23:14.440  INFO 67892 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:23:14.461  INFO 67892 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:23:25.698  INFO 67892 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 21:23:25.711  INFO 67892 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 21:23:29.178  INFO 67892 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:23:29.189  INFO 67892 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:23:30.719  INFO 67892 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 21:23:30.731  INFO 67892 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 21:23:32.064  INFO 67892 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 21:23:32.070  INFO 67892 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 21:24:33.285  INFO 67892 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:24:33.300  INFO 67892 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:37:15.453  INFO 67892 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:37:15.465  INFO 67892 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:39:22.509  INFO 67892 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:39:22.521  INFO 67892 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:39:44.775  INFO 67892 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:39:44.792  INFO 67892 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:40:10.865  INFO 67892 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:40:10.880  INFO 67892 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:41:39.909  INFO 67892 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:41:39.923  INFO 67892 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:42:26.357  INFO 67892 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:42:26.373  INFO 67892 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:44:20.726  INFO 67892 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:44:20.737  INFO 67892 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:45:37.899  INFO 67892 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:45:37.917  INFO 67892 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: someguy@gmail.com
+2020-03-21 21:48:49.052  INFO 35524 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on CHDSEZ156991L with PID 35524 (C:\Users\muhammad.sultan01\workspace\WikiDocsProject\target\classes started by muhammad.sultan01 in C:\Users\muhammad.sultan01\workspace\WikiDocsProject)
+2020-03-21 21:48:49.083  INFO 35524 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-21 21:48:52.727  INFO 35524 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-21 21:48:53.009  INFO 35524 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 265ms. Found 2 MongoDB repository interfaces.
+2020-03-21 21:48:54.954  INFO 35524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-21 21:48:54.992  INFO 35524 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-21 21:48:54.993  INFO 35524 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-21 21:48:55.280  INFO 35524 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-21 21:48:55.281  INFO 35524 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4678 ms
+2020-03-21 21:48:56.024  INFO 35524 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-21 21:48:56.202  INFO 35524 --- [cluster-ClusterId{value='5e76d218bc60612a340531f7', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:1078}] to localhost:27017
+2020-03-21 21:48:56.215  INFO 35524 --- [cluster-ClusterId{value='5e76d218bc60612a340531f7', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 2, 3]}, minWireVersion=0, maxWireVersion=8, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=7179005}
+2020-03-21 21:48:58.019  INFO 35524 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-21 21:48:59.262  INFO 35524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-21 21:48:59.274  INFO 35524 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 12.485 seconds (JVM running for 14.57)
+2020-03-21 21:48:59.399  INFO 35524 --- [main] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:1079}] to localhost:27017
+2020-03-21 21:49:59.774  INFO 35524 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-21 21:49:59.776  INFO 35524 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-21 21:49:59.792  INFO 35524 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 15 ms
+2020-03-21 21:49:59.967  INFO 35524 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 21:50:00.144  INFO 35524 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 22:02:57.927  INFO 35524 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL someguy@gmail.com
+2020-03-21 22:02:57.963 ERROR 35524 --- [http-nio-8080-exec-4] c.i.W.Exception.CustomExceptionHandler   : The following exception occurred during processing:  
+
+com.infy.WikiDocsProject.Exception.UserNotFoundException: UserService.USER_NOT_FOUND
+	at com.infy.WikiDocsProject.Service.UserServiceImpl.findByEmail(UserServiceImpl.java:50) ~[classes/:na]
+	at com.infy.WikiDocsProject.Service.ArticleServiceImpl.createArticleByEmail(ArticleServiceImpl.java:267) ~[classes/:na]
+	at com.infy.WikiDocsProject.API.ArticleAPI.createNewArticle(ArticleAPI.java:178) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
+
+2020-03-21 22:02:57.965  INFO 35524 --- [http-nio-8080-exec-4] c.i.W.Exception.CustomExceptionHandler   : No user was found with the email provided
+2020-03-21 22:03:58.778  INFO 35524 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN, VALIDATING CREDENTIALS, EMAIL ID ENTERED: muhammad.sultan96@gmail.com
+2020-03-21 22:03:58.918  INFO 35524 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.UserAPI     : USER FOUND, RETRIEVING USER ARTICLES
+2020-03-21 22:03:58.933  INFO 35524 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.UserAPI     : USER LOGIN SUCCESS: muhammad.sultan96@gmail.com
+2020-03-21 22:03:59.047  INFO 35524 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 22:03:59.058  INFO 35524 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 22:04:08.976  INFO 35524 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL muhammad.sultan96@gmail.com
+2020-03-21 22:04:09.177  INFO 35524 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL muhammad.sultan96@gmail.com
+2020-03-21 22:04:49.465  INFO 35524 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL muhammad.sultan96@gmail.com
+2020-03-21 22:04:49.552  INFO 35524 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL muhammad.sultan96@gmail.com
+2020-03-21 22:05:04.036  INFO 35524 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:05:04.050  INFO 35524 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:05:05.179  INFO 35524 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:05:05.202  INFO 35524 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:05:10.321  INFO 35524 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:05:10.341  INFO 35524 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:12:59.651  INFO 35524 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:12:59.666  INFO 35524 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:37.084  INFO 35524 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:37.101  INFO 35524 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:41.167  INFO 35524 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL ARTICLES BELONGING TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:41.180  INFO 35524 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ARTICLES BELONGING TO USER WITH EMAIL : muhammad.sultan96@gmail.com
+2020-03-21 22:14:41.739  INFO 35524 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 22:14:41.751  INFO 35524 --- [http-nio-8080-exec-8] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 22:14:43.924  INFO 35524 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:43.934  INFO 35524 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:45.273  INFO 35524 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:45.284  INFO 35524 --- [http-nio-8080-exec-10] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:46.623  INFO 35524 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:46.639  INFO 35524 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:53.227  INFO 35524 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL DISCARDED ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:53.242  INFO 35524 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL DISCARDED ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:54.528  INFO 35524 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:54.541  INFO 35524 --- [http-nio-8080-exec-3] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: muhammad.sultan96@gmail.com
+2020-03-21 22:14:55.123  INFO 35524 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 22:14:55.133  INFO 35524 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 22:14:56.026  INFO 35524 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 22:14:56.033  INFO 35524 --- [http-nio-8080-exec-5] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 22:14:56.144  INFO 35524 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 22:14:56.151  INFO 35524 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-21 22:20:03.111  INFO 35524 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : CREATING NEW ARTICLE FOR USER WITH EMAIL muhammad.sultan96@gmail.com
+2020-03-21 22:20:03.595  INFO 35524 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : CREATED NEW ARTICLE FOR USER WITH EMAIL muhammad.sultan96@gmail.com
+2020-03-21 22:28:03.772  INFO 35524 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-21 22:28:03.783  INFO 35524 --- [http-nio-8080-exec-1] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
