@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -100,6 +102,17 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({UserAlreadyInvitedException.class})
     public ResponseEntity<ErrorMessage> userAlreadyInvitedException(UserAlreadyInvitedException e) {
         return error(CONFLICT, e);
+    }
+
+
+    @ExceptionHandler({UsernameNotFoundException.class})
+    public ResponseEntity<ErrorMessage> UsernameNotFoundException(UsernameNotFoundException e) {
+        return error(UNAUTHORIZED, e);
+    }
+
+    @ExceptionHandler({BadCredentialsException.class})
+    public ResponseEntity<ErrorMessage> BadCredentialsException(BadCredentialsException e) {
+        return error(UNAUTHORIZED, e);
     }
 
     @ExceptionHandler({RuntimeException.class})

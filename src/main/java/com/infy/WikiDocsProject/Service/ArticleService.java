@@ -4,16 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.infy.WikiDocsProject.Model.Article;
-import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.enums.Status;
-import org.bson.types.ObjectId;
 
 public interface ArticleService {
 
 	Article findById(String id);
 	Article createArticleByEmail(String email, String articleName);
 
-	List<Article> getAllArticlesByEmailId(String email);
+//	List<Article> getAllArticlesByEmailId(String email);
 	List<Article> getAllArticlesByEmailId(String email, int pageNumber, int pageSize);
 
 	List<Article> getAllArticlesByStatus(Status status, int pageNumber, int pageSize);
