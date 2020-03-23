@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * Article model class
  *
  */
-@Document
+@Document(collection = "articles")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

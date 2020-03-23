@@ -2,9 +2,9 @@ package com.infy.WikiDocsProject;
 
 import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.Repository.ArticleRepository;
+import com.infy.WikiDocsProject.Repository.RoleRepository;
 import com.infy.WikiDocsProject.Repository.UserRepository;
-import com.infy.WikiDocsProject.Utility.TestDataCreator;
-import com.infy.WikiDocsProject.enums.Role;
+import com.infy.WikiDocsProject.Model.Role;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
@@ -23,55 +23,31 @@ import java.util.List;
 public class WikiDocsProjectApplication {
 
 	@Autowired
-	ArticleRepository articleRepository;
+	RoleRepository roleRepository;
 
 	@Autowired
 	UserRepository userRepository;
-
-	@Autowired
-	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public static void main(String[] args) {
 		SpringApplication.run(WikiDocsProjectApplication.class, args);
 	}
 
+
 	@Bean
-	ApplicationRunner init(){
-		return args ->{
-			articleRepository.deleteAll();
-			userRepository.deleteAll();
-
-			List<User> users = TestDataCreator.createUsers();
-			User muh = User.builder()
-					.id(new ObjectId())
-					.name("Muhammad Sultan")
-					.email("muhammad.sultan96@gmail.com")
-					.password(bCryptPasswordEncoder.encode("111111"))
-					.articles(TestDataCreator.createArticles("muh@gmail.com"))
-					.collaboratingArticles(new ArrayList<>())
-					.role(Role.ADMIN)
-					.build();
-
-//			User admin = User.builder()
-//					.id(new ObjectId())
-//					.name("admin")
-//					.email("admin@gmail.com")
-//					.password(bCryptPasswordEncoder.encode("admin"))
-//					.articles(TestDataCreator.createArticles("admin@gmail.com"))
-//					.collaboratingArticles(new ArrayList<>())
-//					.role(Role.ADMIN)
-//					.build();
-
-			users.add(muh);
-//			users.add(admin);
-
-			users.forEach(user ->{
-				user.getArticles().forEach(article ->{
-					articleRepository.insert(article);
-				});
-				userRepository.insert(user);
-			});
+	ApplicationRunner init() {
+		return args -> {
 		};
+	}
+
+	private void initRoles() {
+		userRepository.deleteAll();
+		roleRepository.deleteAll();
+
+		Role userRole = Role.builder().id("USER").role("USER").build();
+		Role adminRole = Role.builder().id("ADMIN").role("ADMIN").build();
+
+		roleRepository.insert(userRole);
+		roleRepository.insert(adminRole);
 	}
 
 }

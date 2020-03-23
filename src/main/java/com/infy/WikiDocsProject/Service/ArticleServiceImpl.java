@@ -4,8 +4,9 @@ import com.infy.WikiDocsProject.Exception.*;
 import com.infy.WikiDocsProject.Model.Article;
 import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.Repository.ArticleRepository;
+import com.infy.WikiDocsProject.Repository.RoleRepository;
 import com.infy.WikiDocsProject.Repository.UserRepository;
-import com.infy.WikiDocsProject.enums.Role;
+import com.infy.WikiDocsProject.Model.Role;
 import com.infy.WikiDocsProject.enums.Status;
 
 import java.util.*;
@@ -19,6 +20,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 /**
@@ -28,32 +30,34 @@ import org.springframework.stereotype.Service;
 @Service(value="articleService")
 public class ArticleServiceImpl implements ArticleService {
 
-	private final UserService userService;
+	private final CustomUserDetailsService customUserDetailsService;
 	private final EPLiteClient epLiteClient;
 	private final ArticleRepository articleRepository;
 	private final UserRepository userRepository;
+	private final RoleRepository roleRepository;
 	private final JavaMailSender javaMailSender;
 
 	/**
 	 * Constructor using constructor injection
 	 */
 	@Autowired
-	public ArticleServiceImpl(UserService userService, EPLiteClient epLiteClient,
+	public ArticleServiceImpl(CustomUserDetailsService customUserDetailsService, EPLiteClient epLiteClient,
 							  ArticleRepository articleRepository, UserRepository userRepository,
-							  JavaMailSender javaMailSender) {
-		this.userService = userService;
+							  JavaMailSender javaMailSender, RoleRepository roleRepository) {
+		this.customUserDetailsService = customUserDetailsService;
 		this.epLiteClient = epLiteClient;
 		this.articleRepository = articleRepository;
 		this.userRepository = userRepository;
 		this.javaMailSender = javaMailSender;
+		this.roleRepository = roleRepository;
 	}
 
-	public List<Article> getAllArticlesByEmailId(String email) {
-		userService.findByEmail(email);
-
-		List<Article> articles = articleRepository.findAllArticlesByEmailId(email);
-		return articles;
-	}
+//	public List<Article> getAllArticlesByEmailId(String email) {
+//		customUserDetailsService.findByEmail(email);
+//
+//		List<Article> articles = articleRepository.findAllArticlesByEmailId(email);
+//		return articles;
+//	}
 
 	/**
 	 * Retrieves the list of articles of a user
@@ -62,7 +66,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @return The list of articles of a user
 	 */
 	public List<Article> getAllArticlesByEmailId(String email, int pageNumber, int pageSize) {
-		userService.findByEmail(email);
+		customUserDetailsService.findByEmail(email);
 
 		Pageable pageWithSize = PageRequest.of(pageNumber, pageSize);
 		Page<Article> page = articleRepository.findAllArticlesByEmailId(email, pageWithSize);
@@ -91,7 +95,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * @throws UserNotFoundException If the email isn't found
 	 */
 	public List<Article> getAllArticlesByEmailIdAndStatus(String email, Status status, int pageNumber, int pageSize) {
-		userService.findByEmail(email);
+		customUserDetailsService.findByEmail(email);
 
 		Pageable pageWithSize = PageRequest.of(pageNumber, pageSize);
 		Page<Article> page = articleRepository.findAllArticlesByEmailIdAndStatus(email, status, pageWithSize);
@@ -160,7 +164,17 @@ public class ArticleServiceImpl implements ArticleService {
 			/*
 			TODO: Send an email to Administrator
 			 */
-			List<User> admins = userRepository.findAllByRole(Role.ADMIN);
+			Role adminRole = roleRepository.findByRole("ADMIN");
+			List<User> users = userRepository.findAll();
+			List<User> admins = new ArrayList<>();
+
+			users.forEach(user ->{
+				Set<Role> userRoles = user.getRoles();
+				if(userRoles.contains(adminRole)){
+					admins.add(user);
+				}
+			});
+
 			String[] adminEmailsArray = new String[admins.size()];
 			for(int i=0; i<admins.size(); i++){
 				adminEmailsArray[i] = admins.get(i).getEmail();
@@ -168,11 +182,12 @@ public class ArticleServiceImpl implements ArticleService {
 			SimpleMailMessage email = new SimpleMailMessage();
 			email.setTo(adminEmailsArray);
 			email.setSubject("Article pending approval");
-			String emailBody = "The following article by " + article.getEmailId() + " requires your approval. \n\n\n"
+			String emailBody = "The following article by " + article.getEmailId() + " requires your attention. \n\n\n"
 					+ article.getContent() + "\n\n\n"
-					+ "Approve: " + "http://localhost:8080/DLM_Wiki/ArticleAPI/approveArticle/" + article.getId().toHexString()
-					+ " \n\n"
-					+ "Reject: " + "http://localhost:8080/DLM_Wiki/ArticleAPI/rejectArticle/" + article.getId().toHexString();
+//					+ "Approve: " + "http://localhost:8080/DLM_Wiki/ArticleAPI/approveArticle/" + article.getId().toHexString()
+//					+ " \n\n"
+//					+ "Reject: " + "http://localhost:8080/DLM_Wiki/ArticleAPI/rejectArticle/" + article.getId().toHexString();
+					+ "Head on over to DLM Wiki to make further action " + "http://localhost:4200";
 			email.setText(emailBody);
 			javaMailSender.send(email);
 
@@ -264,7 +279,7 @@ public class ArticleServiceImpl implements ArticleService {
 	public Article createArticleByEmail(String email, String articleName){
 		// Validate that the user with the given email exists
 		// and retrieve the user
-		User user = userService.findByEmail(email);
+		User user = customUserDetailsService.findByEmail(email);
 
 		// Get that user's articles using the articleRepository
 		// (We could have used user.getArticles()
@@ -363,7 +378,7 @@ public class ArticleServiceImpl implements ArticleService {
 		List<Article> articles = new ArrayList<>();
 
 		//Retrieve the user + their collaborating articles
-		User user = userService.findByEmail(email);
+		User user = customUserDetailsService.findByEmail(email);
 		List<ObjectId> collaboratingArticlesById = user.getCollaboratingArticles();
 
 		collaboratingArticlesById.removeIf(id -> {
@@ -399,7 +414,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 
 		//validate the user email exists
-		User invitee = userService.findByEmail(inviteeEmail);
+		User invitee = customUserDetailsService.findByEmail(inviteeEmail);
 
 		//retrieve the articles to mutate later
 		List<ObjectId> inviteeArticles = invitee.getCollaboratingArticles();

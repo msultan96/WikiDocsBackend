@@ -1,17 +1,16 @@
 package com.infy.WikiDocsProject.Model;
 
-import com.infy.WikiDocsProject.enums.Role;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.annotation.RegEx;
-import javax.validation.constraints.Email;
 import java.util.List;
+import java.util.Set;
 
-@Document
+@Document(collection = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,12 +22,15 @@ public class User {
 
 	private String email;
 
-	private String name;
-
 	private String password;
+
+	private String name;
 
 	private @DBRef(db = "article") List<Article> articles;
 	private List<ObjectId> collaboratingArticles;
-	private Role role;
+
+	@Field("roles")
+	private @DBRef Set<Role> roles;
+	private boolean enabled;
 
 }
