@@ -26,7 +26,10 @@ public class User {
 
 	private String name;
 
+	// TODO: Change List<Article> to Set<Article> to handle duplicates
 	private @DBRef(db = "article") List<Article> articles;
+
+	// TODO: Change List<ObjectId> to Set<ObjectId> to handle duplicates
 	private List<ObjectId> collaboratingArticles;
 
 	@Field("roles")

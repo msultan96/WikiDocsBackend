@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArticleServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">WikiDocsProject$ArticleServiceTests.exec</a> &gt; <a href="index.source.html" class="el_package">com.infy.WikiDocsProject.Service</a> &gt; <span class="el_source">ArticleServiceImpl.java</span></div><h1>ArticleServiceImpl.java</h1><pre class="source lang-java linenums">package com.infy.WikiDocsProject.Service;
+
+import com.infy.WikiDocsProject.Exception.*;
+import com.infy.WikiDocsProject.Model.Article;
+import com.infy.WikiDocsProject.Model.User;
+import com.infy.WikiDocsProject.Repository.ArticleRepository;
+import com.infy.WikiDocsProject.Repository.RoleRepository;
+import com.infy.WikiDocsProject.Repository.UserRepository;
+import com.infy.WikiDocsProject.Model.Role;
+import com.infy.WikiDocsProject.enums.Status;
+
+import java.util.*;
+
+import net.gjerull.etherpad.client.EPLiteClient;
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Service;
+
+/**
+ * Article Service Implementations
+ */
+@SuppressWarnings(&quot;UnnecessaryLocalVariable&quot;)
+@Service(value=&quot;articleService&quot;)
+public class ArticleServiceImpl implements ArticleService {
+
+	private final CustomUserDetailsService customUserDetailsService;
+	private final EPLiteClient epLiteClient;
+	private final ArticleRepository articleRepository;
+	private final UserRepository userRepository;
+	private final RoleRepository roleRepository;
+	private final JavaMailSender javaMailSender;
+
+	/**
+	 * Constructor using constructor injection
+	 */
+	@Autowired
+	public ArticleServiceImpl(CustomUserDetailsService customUserDetailsService,
+							  ArticleRepository articleRepository,
+							  UserRepository userRepository,
+							  RoleRepository roleRepository,
+							  EPLiteClient epLiteClient,
+<span class="fc" id="L49">							  JavaMailSender javaMailSender) {</span>
+<span class="fc" id="L50">		this.customUserDetailsService = customUserDetailsService;</span>
+<span class="fc" id="L51">		this.articleRepository = articleRepository;</span>
+<span class="fc" id="L52">		this.userRepository = userRepository;</span>
+<span class="fc" id="L53">		this.roleRepository = roleRepository;</span>
+<span class="fc" id="L54">		this.epLiteClient = epLiteClient;</span>
+<span class="fc" id="L55">		this.javaMailSender = javaMailSender;</span>
+<span class="fc" id="L56">	}</span>
+
+//	public List&lt;Article&gt; getAllArticlesByEmailId(String email) {
+//		customUserDetailsService.findByEmail(email);
+//
+//		List&lt;Article&gt; articles = articleRepository.findAllArticlesByEmailId(email);
+//		return articles;
+//	}
+
+	/**
+	 * Retrieves the list of articles of a user
+	 *
+	 * @param email Used to locate the user
+	 * @return The list of articles of a user
+	 */
+	public List&lt;Article&gt; getAllArticlesByEmailId(String email, int pageNumber, int pageSize) {
+<span class="fc" id="L72">		customUserDetailsService.findByEmail(email);</span>
+
+<span class="fc" id="L74">		Pageable pageWithSize = PageRequest.of(pageNumber, pageSize);</span>
+<span class="fc" id="L75">		Page&lt;Article&gt; page = articleRepository.findAllArticlesByEmailId(email, pageWithSize);</span>
+<span class="fc" id="L76">		List&lt;Article&gt; articles = page.getContent();</span>
+<span class="fc" id="L77">		return articles;</span>
+	}
+
+	/**
+	 * Retrieves all articles across all users with given status
+	 * @return the list of approved articles
+	 */
+	public List&lt;Article&gt; getAllArticlesByStatus(Status status, int pageNumber, int pageSize){
+<span class="fc" id="L85">		Pageable pageWithSize = PageRequest.of(pageNumber, pageSize);</span>
+<span class="fc" id="L86">		Page&lt;Article&gt; page = articleRepository.findArticlesByStatus(status, pageWithSize);</span>
+<span class="fc" id="L87">		List&lt;Article&gt; articles = page.getContent();</span>
+<span class="fc" id="L88">		return articles;</span>
+	}
+
+	/**
+	 * Retrieves the list of articles of a user filtered
+	 * by a given status
+	 *
+	 * @param email Used to locate the user
+	 * @param status The status of the article
+	 * @return The list of articles with specific status of a user
+	 * @throws UserNotFoundException If the email isn't found
+	 */
+	public List&lt;Article&gt; getAllArticlesByEmailIdAndStatus(String email, Status status, int pageNumber, int pageSize) {
+<span class="fc" id="L101">		customUserDetailsService.findByEmail(email);</span>
+
+<span class="fc" id="L103">		Pageable pageWithSize = PageRequest.of(pageNumber, pageSize);</span>
+<span class="fc" id="L104">		Page&lt;Article&gt; page = articleRepository.findAllArticlesByEmailIdAndStatus(email, status, pageWithSize);</span>
+<span class="fc" id="L105">		List&lt;Article&gt; articles = page.getContent();</span>
+<span class="fc" id="L106">		return articles;</span>
+	}
+
+	/**
+	 * Retrieve an article with a specific id.
+	 * @param id Used to locate the article
+	 * @return the article found
+	 * @throws ArticleNotFoundException If the id isn't associated with an article
+	 */
+	public Article findById(ObjectId id){
+		// Call findById from articleRepository to find the article with the given id
+<span class="fc" id="L117">		Optional&lt;Article&gt; optionalArticle = articleRepository.findById(id);</span>
+
+		// If the article is present, then return it
+		// otherwise, throw an Article Not Found Exception
+<span class="fc bfc" id="L121" title="All 2 branches covered.">		if(optionalArticle.isPresent()){</span>
+<span class="fc" id="L122">			return optionalArticle.get();</span>
+		}
+		else{
+<span class="fc" id="L125">			throw new ArticleNotFoundException(&quot;ArticleService.INVALID_ID&quot;);</span>
+		}
+	}
+
+	/**
+	 * Overloaded method using ObjectId as parameter instead
+	 * @see ArticleServiceImpl#findById(ObjectId)
+	 */
+	public Article findById(String id){
+		// Convert the string to an objectId
+<span class="fc" id="L135">		ObjectId objectId = new ObjectId(id);</span>
+
+		// Use the converted objectId as the parameter for the original method
+<span class="fc" id="L138">		return findById(objectId);</span>
+	}
+
+	/**
+	 * Submit an article for approval.
+	 * If it passes the requirements for submission,
+	 * then change its status to BETA
+	 * and send an email to an administrator about the submission
+	 *
+	 * @param id Used to locate the article
+	 * @return the updated Article
+	 */
+	public Article submitArticle(String id) {
+		// Call findById to retrieve the article and validate that it exists
+<span class="fc" id="L152">		Article article = findById(id);</span>
+
+		// A submitting article can't be of status DISCARDED or APPROVED
+		// throw appropriate exception
+<span class="fc bfc" id="L156" title="All 2 branches covered.">		if (article.getStatus() == Status.DISCARDED) {</span>
+<span class="fc" id="L157">			throw new SubmittingArticleIsDiscardedException(&quot;ArticleService.SUBMITTING_ARTICLE_DISCARDED&quot;);</span>
+<span class="fc bfc" id="L158" title="All 2 branches covered.">		} else if (article.getStatus() == Status.APPROVED) {</span>
+<span class="fc" id="L159">			throw new SubmittingArticleIsApprovedException(&quot;ArticleService.SUBMITTING_ARTICLE_APPROVED&quot;);</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">		} else if(article.getStatus() == Status.BETA) {</span>
+<span class="fc" id="L161">			throw new SubmittingArticleIsBetaException(&quot;ArticleService.SUBMITTING_ARTICLE_BETA&quot;);</span>
+		}
+		else{
+			// If the article is of status INITIAL or REJECTED
+			// Set the status to BETA
+<span class="fc" id="L166">			article.setStatus(Status.BETA);</span>
+			/*
+			TODO: Send an email to Administrator
+			 */
+<span class="fc" id="L170">			Role adminRole = roleRepository.findByRole(&quot;ADMIN&quot;);</span>
+<span class="fc" id="L171">			List&lt;User&gt; users = userRepository.findAll();</span>
+<span class="fc" id="L172">			List&lt;User&gt; admins = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L174">			users.forEach(user -&gt;{</span>
+<span class="fc" id="L175">				Set&lt;Role&gt; userRoles = user.getRoles();</span>
+<span class="pc bpc" id="L176" title="1 of 2 branches missed.">				if(userRoles.contains(adminRole)){</span>
+<span class="fc" id="L177">					admins.add(user);</span>
+				}
+<span class="fc" id="L179">			});</span>
+
+<span class="fc" id="L181">			String[] adminEmailsArray = new String[admins.size()];</span>
+<span class="fc bfc" id="L182" title="All 2 branches covered.">			for(int i=0; i&lt;admins.size(); i++){</span>
+<span class="fc" id="L183">				adminEmailsArray[i] = admins.get(i).getEmail();</span>
+			}
+<span class="fc" id="L185">			SimpleMailMessage email = new SimpleMailMessage();</span>
+<span class="fc" id="L186">			email.setTo(adminEmailsArray);</span>
+<span class="fc" id="L187">			email.setSubject(&quot;Article pending approval&quot;);</span>
+<span class="fc" id="L188">			String emailBody = &quot;The following article by &quot; + article.getEmailId() + &quot; requires your attention. \n\n\n&quot;</span>
+<span class="fc" id="L189">					+ article.getContent() + &quot;\n\n\n&quot;</span>
+//					+ &quot;Approve: &quot; + &quot;http://localhost:8080/DLM_Wiki/ArticleAPI/approveArticle/&quot; + article.getId().toHexString()
+//					+ &quot; \n\n&quot;
+//					+ &quot;Reject: &quot; + &quot;http://localhost:8080/DLM_Wiki/ArticleAPI/rejectArticle/&quot; + article.getId().toHexString();
+					+ &quot;Head on over to DLM Wiki to make further action &quot; + &quot;http://localhost:4200&quot;;
+<span class="fc" id="L194">			email.setText(emailBody);</span>
+<span class="fc" id="L195">			javaMailSender.send(email);</span>
+
+			// Save the article
+<span class="fc" id="L198">			articleRepository.save(article);</span>
+			// return the article with the new status
+<span class="fc" id="L200">			return article;</span>
+		}
+	}
+
+	/**
+	 * Approve an article that's been submitted.
+	 * If it passes the requirements for approval,
+	 * then change its status to APPROVED.
+	 *
+	 * @param id Used to locate the article
+	 * @return the updated Article
+	 */
+	public Article approveArticle(String id){
+		// Call findById to retrieve the article and validate that it exists
+<span class="fc" id="L214">		Article article = findById(id);</span>
+
+		// An article being approved can only be of status BETA
+		// throw appropriate exceptions otherwise
+<span class="fc bfc" id="L218" title="All 2 branches covered.">		if(article.getStatus() == Status.REJECTED){</span>
+<span class="fc" id="L219">			throw new ApprovingArticleIsStillRejectedException(&quot;ArticleService.APPROVING_ARTICLE_REJECTED&quot;);</span>
+<span class="fc bfc" id="L220" title="All 2 branches covered.">		} else if(article.getStatus() == Status.INITIAL){</span>
+<span class="fc" id="L221">			throw new ApprovingArticleIsInitialException(&quot;ArticleService.APPROVING_ARTICLE_INITIAL&quot;);</span>
+<span class="fc bfc" id="L222" title="All 2 branches covered.">		} else if(article.getStatus() == Status.APPROVED){</span>
+<span class="fc" id="L223">			throw new ApprovingArticleIsApprovedException(&quot;ArticleService.APPROVING_ARTICLE_APPROVED&quot;);</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">		} else if(article.getStatus() == Status.DISCARDED){</span>
+<span class="fc" id="L225">			throw new ApprovingArticleIsDiscardedException(&quot;ArticleService.APPROVING_ARTICLE_DISCARDED&quot;);</span>
+		}
+		else{
+			// Set the status to APPROVED
+<span class="fc" id="L229">			article.setStatus(Status.APPROVED);</span>
+			// Save the article
+<span class="fc" id="L231">			articleRepository.save(article);</span>
+			// return the article with the new status
+<span class="fc" id="L233">			return article;</span>
+		}
+
+	}
+
+	/**
+	 * Reject an article that's been submitted.
+	 * If it passes the requirements for rejection,
+	 * then change its status to REJECTED.
+	 *
+	 * @param id Used to locate the article
+	 * @return the updated Article
+	 */
+	public Article rejectArticle(String id){
+		// Call findById to retrieve the article and validate that it exists
+<span class="fc" id="L248">		Article article = findById(id);</span>
+
+		// An article being rejected can only be of status BETA
+		// throw appropriate exceptions otherwise
+<span class="fc bfc" id="L252" title="All 2 branches covered.">		if(article.getStatus() == Status.REJECTED){</span>
+<span class="fc" id="L253">			throw new RejectingArticleIsStillRejectedException(&quot;ArticleService.REJECTING_ARTICLE_REJECTED&quot;);</span>
+<span class="fc bfc" id="L254" title="All 2 branches covered.">		} else if(article.getStatus() == Status.INITIAL){</span>
+<span class="fc" id="L255">			throw new RejectingArticleIsInitialException(&quot;ArticleService.REJECTING_ARTICLE_INITIAL&quot;);</span>
+<span class="fc bfc" id="L256" title="All 2 branches covered.">		} else if(article.getStatus() == Status.APPROVED){</span>
+<span class="fc" id="L257">			throw new RejectingArticleIsApprovedException(&quot;ArticleService.REJECTING_ARTICLE_APPROVED&quot;);</span>
+<span class="fc bfc" id="L258" title="All 2 branches covered.">		} else if(article.getStatus() == Status.DISCARDED){</span>
+<span class="fc" id="L259">			throw new RejectingArticleIsDiscardedException(&quot;ArticleService.REJECTING_ARTICLE_DISCARDED&quot;);</span>
+		}
+		else{
+			// Increase the rejection count of the article
+<span class="fc" id="L263">			article.setRejectedCount(article.getRejectedCount() + 1);</span>
+			// If it's been allowed more than 3 edits,
+			// then change status to DISCARDED
+			// otherwise change the status to REJECTED
+<span class="fc bfc" id="L267" title="All 2 branches covered.">			if (article.getRejectedCount() &gt;= 4) article.setStatus(Status.DISCARDED);</span>
+<span class="fc" id="L268">			else article.setStatus(Status.REJECTED);</span>
+			// Save the article
+<span class="fc" id="L270">			articleRepository.save(article);</span>
+			// return the article with the new status
+<span class="fc" id="L272">			return article;</span>
+		}
+	}
+
+	/**
+	 * Create a new article for a user with the given email.
+	 * Also, create a new ether pad with the new article's id.
+	 * @param email Email associated with the user
+	 * @return article The new article created
+	 */
+	public Article createArticleByEmail(String email, String articleName){
+		// Validate that the user with the given email exists
+		// and retrieve the user
+<span class="fc" id="L285">		User user = customUserDetailsService.findByEmail(email);</span>
+
+		// Get that user's articles using the articleRepository
+		// (We could have used user.getArticles()
+<span class="fc" id="L289">		List&lt;Article&gt; articles = articleRepository.findAllArticlesByEmailId(email);</span>
+
+		// Declared new article object and
+		// set with with the article builder with initial parameters
+<span class="fc" id="L293">		Article newArticle = Article.builder()</span>
+<span class="fc" id="L294">				.id(new ObjectId())</span>
+<span class="fc" id="L295">				.emailId(user.getEmail())</span>
+<span class="fc" id="L296">				.name(articleName)</span>
+<span class="fc" id="L297">				.status(Status.INITIAL)</span>
+<span class="fc" id="L298">				.readOnly(false)</span>
+<span class="fc" id="L299">				.build();</span>
+
+		// add the new article to the list of articles
+<span class="fc" id="L302">		articles.add(newArticle);</span>
+
+		// set the articles list to the users articles
+<span class="fc" id="L305">		user.setArticles(articles);</span>
+
+		//create an etherPad with the article's ObjectId
+<span class="fc" id="L308">		epLiteClient.createPad(newArticle.getId().toString());</span>
+
+		// save article to database
+<span class="fc" id="L311">		articleRepository.save(newArticle);</span>
+
+		// save user to database
+<span class="fc" id="L314">		userRepository.save(user);</span>
+
+		// return new article object
+<span class="fc" id="L317">		return newArticle;</span>
+	}
+
+	/**
+	 * Save an article with the given id
+	 *
+	 * @param etherPadId id of the ether pad and article
+	 * @return article The saved article
+	 */
+	public Article saveArticle(String etherPadId) {
+		// Call findById to validate that the article does exist
+<span class="nc" id="L328">		Article article = findById(etherPadId);</span>
+<span class="nc bnc" id="L329" title="All 2 branches missed.">		if(article.getStatus() == Status.BETA)</span>
+<span class="nc" id="L330">			throw new SavingArticleIsSubmittedException(&quot;ArticleService.EDITING_ARTICLE_SUBMITTED&quot;);</span>
+		// Retrieve the contents of the ether pad
+<span class="nc" id="L332">		String content = epLiteClient.getText(etherPadId).get(&quot;text&quot;).toString();</span>
+<span class="nc bnc" id="L333" title="All 2 branches missed.">		if(content == null) content = &quot;&quot;;</span>
+<span class="nc" id="L334">		epLiteClient.setText(etherPadId, content);</span>
+		// Set the article's contents to the ether pad content
+<span class="nc" id="L336">		article.setContent(content);</span>
+		// Save the article with updated content
+<span class="nc" id="L338">		articleRepository.save(article);</span>
+<span class="nc" id="L339">		return article;</span>
+	}
+
+	/**
+	 * Get the appropriate URL for the ether pad requested
+	 * @param id the id of the article
+	 * @return ether pad url
+	 */
+	public String getEtherPadUrl(String id){
+		// Call findById to validate that the article does exist
+<span class="fc" id="L349">		Article article = findById(id);</span>
+
+		// TODO: Change to retrieve from application.properties
+<span class="fc" id="L352">		String etherPadUrl = &quot;http://localhost:9001/p/&quot;;</span>
+
+		// Get either the readOnly id or the editable id
+<span class="fc" id="L355">		String appendingId = null;</span>
+<span class="pc bpc" id="L356" title="1 of 3 branches missed.">		switch(article.getStatus()){</span>
+			case APPROVED:
+			case BETA:
+			case DISCARDED:
+<span class="fc" id="L360">				appendingId = epLiteClient.getReadOnlyID(id).get(&quot;readOnlyID&quot;).toString() + &quot;?&quot;;</span>
+<span class="fc" id="L361">				appendingId = appendingId +  &quot;showControls=false&quot;;</span>
+<span class="fc" id="L362">				break;</span>
+			case INITIAL:
+			case REJECTED:
+<span class="fc" id="L365">				appendingId = id + &quot;?&quot;;</span>
+		}
+<span class="fc" id="L367">		etherPadUrl = etherPadUrl + appendingId;</span>
+<span class="pc bpc" id="L368" title="1 of 2 branches missed.">		if(article.getContent() == null) article.setContent(&quot;&quot;);</span>
+<span class="fc" id="L369">		epLiteClient.setText(id,article.getContent());</span>
+<span class="fc" id="L370">		return etherPadUrl;</span>
+	}
+
+	/**
+	 * Get All Articles a User has been invited to collaborate on
+	 * @param email email of the user
+	 * @param pageNumber current page number
+	 * @param pageSize size of the page
+	 * @return the collaborating articles
+	 */
+	public List&lt;Article&gt; getAllInvitedArticlesByEmail(String email, int pageNumber, int pageSize){
+<span class="nc" id="L381">		List&lt;Article&gt; articles = new ArrayList&lt;&gt;();</span>
+
+		//Retrieve the user + their collaborating articles
+<span class="nc" id="L384">		User user = customUserDetailsService.findByEmail(email);</span>
+<span class="nc" id="L385">		List&lt;ObjectId&gt; collaboratingArticlesById = user.getCollaboratingArticles();</span>
+
+		//Remove any articles that aren't editable
+<span class="nc" id="L388">		collaboratingArticlesById.removeIf(id -&gt; {</span>
+<span class="nc" id="L389">			Article article = findById(id);</span>
+<span class="nc bnc" id="L390" title="All 2 branches missed.">			if(article.getStatus() == Status.DISCARDED</span>
+<span class="nc bnc" id="L391" title="All 2 branches missed.">					|| article.getStatus() == Status.BETA</span>
+<span class="nc bnc" id="L392" title="All 2 branches missed.">					|| article.getStatus() == Status.APPROVED)</span>
+<span class="nc" id="L393">				return true;</span>
+			else{
+<span class="nc" id="L395">				articles.add(article);</span>
+<span class="nc" id="L396">				return false;</span>
+			}
+		});
+<span class="nc" id="L399">		user.setCollaboratingArticles(collaboratingArticlesById);</span>
+<span class="nc" id="L400">		userRepository.save(user);</span>
+
+		//Convert the list into pages
+<span class="nc" id="L403">		Pageable pageable = PageRequest.of(pageNumber, pageSize);</span>
+<span class="nc" id="L404">		int start = Math.toIntExact(pageable.getOffset());</span>
+<span class="nc" id="L405">		int end = Math.min((start + pageable.getPageSize()), articles.size());</span>
+
+<span class="nc bnc" id="L407" title="All 2 branches missed.">		if(start&gt;end) return Collections.emptyList();</span>
+<span class="nc" id="L408">		Page&lt;Article&gt; page = new PageImpl&lt;&gt;(articles.subList(start, end), pageable, articles.size());</span>
+
+		//return the current page
+<span class="nc" id="L411">		return page.getContent();</span>
+	}
+
+	public String inviteUserToCollaborateByEmail(Map&lt;String, String&gt; map){
+<span class="fc" id="L415">		String inviteeEmail = map.get(&quot;email&quot;);</span>
+<span class="fc" id="L416">		String articleIdAsString = map.get(&quot;articleId&quot;);</span>
+<span class="fc" id="L417">		ObjectId articleId = new ObjectId(articleIdAsString);</span>
+
+		//validate the user email exists
+<span class="fc" id="L420">		User invitee = customUserDetailsService.findByEmail(inviteeEmail);</span>
+
+		//retrieve the articles to mutate later
+<span class="fc" id="L423">		List&lt;ObjectId&gt; inviteeArticles = invitee.getCollaboratingArticles();</span>
+
+<span class="pc bpc" id="L425" title="1 of 2 branches missed.">		if(inviteeArticles.contains(articleId)) {</span>
+<span class="nc" id="L426">			throw new UserAlreadyInvitedException(&quot;ArticleService.USER_ALREADY_INVITED&quot;);</span>
+		}
+
+		//Validate article id
+<span class="fc" id="L430">		findById(articleId);</span>
+
+		//Add to users collaborating articles
+<span class="fc" id="L433">		inviteeArticles.add(articleId);</span>
+
+		//Save user with modified collaborating articles
+<span class="fc" id="L436">		userRepository.save(invitee);</span>
+
+<span class="fc" id="L438">		return invitee.getName();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,0 +1,311 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TestDataCreator</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.infy.WikiDocsProject.Utility</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TestDataCreator (com.infy.WikiDocsProject.Utility)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TestDataCreator</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 97)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">TestDataCreator$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 98)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.infy.WikiDocsProject.Utility;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.devskiller.jfairy.Fairy;
+<i>4</i>&nbsp;import com.devskiller.jfairy.producer.BaseProducer;
+<i>5</i>&nbsp;import com.devskiller.jfairy.producer.person.Person;
+<i>6</i>&nbsp;import com.devskiller.jfairy.producer.text.TextProducer;
+<i>7</i>&nbsp;import com.infy.WikiDocsProject.Model.Article;
+<i>8</i>&nbsp;import com.infy.WikiDocsProject.Model.User;
+<i>9</i>&nbsp;import com.infy.WikiDocsProject.Model.Role;
+<i>10</i>&nbsp;import com.infy.WikiDocsProject.enums.Status;
+<i>11</i>&nbsp;import org.bson.types.ObjectId;
+<i>12</i>&nbsp;import org.springframework.data.domain.Page;
+<i>13</i>&nbsp;import org.springframework.data.domain.PageImpl;
+<i>14</i>&nbsp;import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;import java.util.*;
+<i>17</i>&nbsp;
+<b class="nc"><i>18</i>&nbsp;public class TestDataCreator {</b>
+<i>19</i>&nbsp;
+<b class="nc"><i>20</i>&nbsp;    private static final Fairy fairy = Fairy.create();</b>
+<b class="nc"><i>21</i>&nbsp;    private static final BaseProducer baseProducer = fairy.baseProducer();</b>
+<b class="nc"><i>22</i>&nbsp;    private static final TextProducer textProducer = fairy.textProducer();</b>
+<i>23</i>&nbsp;
+<b class="nc"><i>24</i>&nbsp;    private static final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();</b>
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    /**
+<i>27</i>&nbsp;     * Creates 5 users with specific role using jFairy.
+<i>28</i>&nbsp;     * @return the list of users generated
+<i>29</i>&nbsp;     */
+<i>30</i>&nbsp;    public static List&lt;User&gt; createUsersWithRole(String role) {
+<b class="nc"><i>31</i>&nbsp;        role = role.toUpperCase();</b>
+<b class="nc"><i>32</i>&nbsp;        List&lt;User&gt; users = new ArrayList&lt;&gt;();</b>
+<i>33</i>&nbsp;        Person person;
+<b class="nc"><i>34</i>&nbsp;        Role userRole = Role.builder().id(role).role(role).build();</b>
+<b class="nc"><i>35</i>&nbsp;        for (int i = 0; i &lt;= 5; i++) {</b>
+<b class="nc"><i>36</i>&nbsp;            person = fairy.person();</b>
+<b class="nc"><i>37</i>&nbsp;            Map&lt;Status, Article&gt; articleMap = createArticles(person.getEmail());</b>
+<b class="nc"><i>38</i>&nbsp;            List&lt;Article&gt; articles = new ArrayList&lt;&gt;(articleMap.values());</b>
+<i>39</i>&nbsp;
+<b class="nc"><i>40</i>&nbsp;            List&lt;Article&gt; collaboratingArticles = new ArrayList&lt;&gt;(createArticlesWithStatus(&quot;john@gmail.com&quot;, Status.INITIAL));</b>
+<b class="nc"><i>41</i>&nbsp;            List&lt;ObjectId&gt; collaboratingArticlesObjectId = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>42</i>&nbsp;            collaboratingArticles.forEach(article -&gt; {</b>
+<b class="nc"><i>43</i>&nbsp;                        collaboratingArticlesObjectId.add(article.getId());</b>
+<i>44</i>&nbsp;            });
+<i>45</i>&nbsp;
+<b class="nc"><i>46</i>&nbsp;            User user = User.builder()</b>
+<b class="nc"><i>47</i>&nbsp;                    .id(new ObjectId())</b>
+<b class="nc"><i>48</i>&nbsp;                    .email(person.getEmail())</b>
+<b class="nc"><i>49</i>&nbsp;                    .name(person.getFullName())</b>
+<b class="nc"><i>50</i>&nbsp;                    .password(bCryptPasswordEncoder.encode(person.getPassword()))</b>
+<i>51</i>&nbsp;//                    .password(person.getPassword())
+<b class="nc"><i>52</i>&nbsp;                    .roles(new HashSet&lt;&gt;(Arrays.asList(userRole)))</b>
+<b class="nc"><i>53</i>&nbsp;                    .articles(articles)</b>
+<b class="nc"><i>54</i>&nbsp;                    .collaboratingArticles(collaboratingArticlesObjectId)</b>
+<b class="nc"><i>55</i>&nbsp;                    .build();</b>
+<b class="nc"><i>56</i>&nbsp;            users.add(user);</b>
+<i>57</i>&nbsp;        }
+<b class="nc"><i>58</i>&nbsp;        return users;</b>
+<i>59</i>&nbsp;    }
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    /**
+<i>62</i>&nbsp;     * Creates a list of optional users.
+<i>63</i>&nbsp;     * Calls createUsers to create users and
+<i>64</i>&nbsp;     * uses a lambda expression to
+<i>65</i>&nbsp;     * convert them into optionals
+<i>66</i>&nbsp;     * @return The list of optional users generated
+<i>67</i>&nbsp;     */
+<i>68</i>&nbsp;    public static List&lt;Optional&lt;User&gt;&gt; createOptionalUsers(){
+<b class="nc"><i>69</i>&nbsp;        List&lt;Optional&lt;User&gt;&gt; optionals = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>70</i>&nbsp;        List&lt;User&gt; users = createUsersWithRole(&quot;user&quot;);</b>
+<b class="nc"><i>71</i>&nbsp;        users.forEach(user -&gt; optionals.add(Optional.of(user)));</b>
+<b class="nc"><i>72</i>&nbsp;        return optionals;</b>
+<i>73</i>&nbsp;    }
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    /**
+<i>76</i>&nbsp;     * Creates an Article with given email and status
+<i>77</i>&nbsp;     * @param email provided email to set article&#39;s emailId
+<i>78</i>&nbsp;     * @param status provided status to set article&#39;s status
+<i>79</i>&nbsp;     * @return generated article
+<i>80</i>&nbsp;     */
+<i>81</i>&nbsp;    public static Article createArticleByUserWithStatus(String email, Status status) {
+<b class="nc"><i>82</i>&nbsp;        Article article = Article.builder()</b>
+<b class="nc"><i>83</i>&nbsp;                .id(new ObjectId())</b>
+<b class="nc"><i>84</i>&nbsp;                .emailId(email)</b>
+<b class="nc"><i>85</i>&nbsp;                .name(textProducer.sentence(1))</b>
+<b class="nc"><i>86</i>&nbsp;                .content(textProducer.paragraph(1))</b>
+<b class="nc"><i>87</i>&nbsp;                .status(status)</b>
+<b class="nc"><i>88</i>&nbsp;                .rejectedCount(baseProducer.randomBetween(0,2))</b>
+<b class="nc"><i>89</i>&nbsp;                .build();</b>
+<b class="nc"><i>90</i>&nbsp;        switch(status){</b>
+<i>91</i>&nbsp;            case APPROVED:
+<i>92</i>&nbsp;            case BETA:
+<b class="nc"><i>93</i>&nbsp;                article.setReadOnly(true);</b>
+<b class="nc"><i>94</i>&nbsp;                break;</b>
+<i>95</i>&nbsp;            case DISCARDED:
+<b class="nc"><i>96</i>&nbsp;                article.setReadOnly(true);</b>
+<b class="nc"><i>97</i>&nbsp;                article.setRejectedCount(4);</b>
+<b class="nc"><i>98</i>&nbsp;                break;</b>
+<i>99</i>&nbsp;            case REJECTED:
+<b class="nc"><i>100</i>&nbsp;                article.setReadOnly(false);</b>
+<b class="nc"><i>101</i>&nbsp;                break;</b>
+<i>102</i>&nbsp;            case INITIAL:
+<b class="nc"><i>103</i>&nbsp;                article.setReadOnly(false);</b>
+<b class="nc"><i>104</i>&nbsp;                article.setRejectedCount(0);</b>
+<i>105</i>&nbsp;                break;
+<i>106</i>&nbsp;        }
+<b class="nc"><i>107</i>&nbsp;        return article;</b>
+<i>108</i>&nbsp;    }
+<i>109</i>&nbsp;
+<i>110</i>&nbsp;    /**
+<i>111</i>&nbsp;     * Creates 5 articles reflecting the 5 Status enums
+<i>112</i>&nbsp;     * with a given users email for the article&#39;s emailId
+<i>113</i>&nbsp;     * @param email provided email to pass to createArticleByUserWithStatus()
+<i>114</i>&nbsp;     * @return the list of articles generated
+<i>115</i>&nbsp;     */
+<i>116</i>&nbsp;    public static Map&lt;Status, Article&gt; createArticles(String email) {
+<b class="nc"><i>117</i>&nbsp;        Map&lt;Status, Article&gt; articleMap = new HashMap&lt;&gt;();</b>
+<i>118</i>&nbsp;
+<b class="nc"><i>119</i>&nbsp;        Article approved = createArticleByUserWithStatus(email, Status.APPROVED);</b>
+<b class="nc"><i>120</i>&nbsp;        Article beta = createArticleByUserWithStatus(email, Status.BETA);</b>
+<b class="nc"><i>121</i>&nbsp;        Article initial = createArticleByUserWithStatus(email, Status.INITIAL);</b>
+<b class="nc"><i>122</i>&nbsp;        Article rejected = createArticleByUserWithStatus(email, Status.REJECTED);</b>
+<b class="nc"><i>123</i>&nbsp;        Article discarded = createArticleByUserWithStatus(email, Status.DISCARDED);</b>
+<i>124</i>&nbsp;
+<b class="nc"><i>125</i>&nbsp;        articleMap.put(Status.APPROVED, approved);</b>
+<b class="nc"><i>126</i>&nbsp;        articleMap.put(Status.BETA, beta);</b>
+<b class="nc"><i>127</i>&nbsp;        articleMap.put(Status.INITIAL, initial);</b>
+<b class="nc"><i>128</i>&nbsp;        articleMap.put(Status.REJECTED, rejected);</b>
+<b class="nc"><i>129</i>&nbsp;        articleMap.put(Status.DISCARDED, discarded);</b>
+<i>130</i>&nbsp;
+<b class="nc"><i>131</i>&nbsp;        return articleMap;</b>
+<i>132</i>&nbsp;    }
+<i>133</i>&nbsp;
+<i>134</i>&nbsp;    /**
+<i>135</i>&nbsp;     * Creates 5 articles reflecting the 5 Status enums
+<i>136</i>&nbsp;     * with a given users email for the article&#39;s emailId
+<i>137</i>&nbsp;     * @param email provided email to pass to createArticleByUserWithStatus()
+<i>138</i>&nbsp;     * @return the list of articles generated
+<i>139</i>&nbsp;     */
+<i>140</i>&nbsp;    public static List&lt;Article&gt; createArticlesWithStatus(String email, Status status) {
+<b class="nc"><i>141</i>&nbsp;        List&lt;Article&gt; articles = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>142</i>&nbsp;        articles.add(createArticleByUserWithStatus(email, status));</b>
+<b class="nc"><i>143</i>&nbsp;        articles.add(createArticleByUserWithStatus(email, status));</b>
+<b class="nc"><i>144</i>&nbsp;        articles.add(createArticleByUserWithStatus(email, status));</b>
+<b class="nc"><i>145</i>&nbsp;        articles.add(createArticleByUserWithStatus(email, status));</b>
+<b class="nc"><i>146</i>&nbsp;        articles.add(createArticleByUserWithStatus(email, status));</b>
+<b class="nc"><i>147</i>&nbsp;        return articles;</b>
+<i>148</i>&nbsp;    }
+<i>149</i>&nbsp;
+<i>150</i>&nbsp;    /**
+<i>151</i>&nbsp;     * Creates a list of optional articles.
+<i>152</i>&nbsp;     * Calls createArticles to create articles.
+<i>153</i>&nbsp;     * Uses lambda expression to convert them to optionals.
+<i>154</i>&nbsp;     * @return List of optional articles
+<i>155</i>&nbsp;     */
+<i>156</i>&nbsp;    public static List&lt;Optional&lt;Article&gt;&gt; createOptionalArticles(){
+<b class="nc"><i>157</i>&nbsp;        List&lt;Optional&lt;Article&gt;&gt; optionals = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>158</i>&nbsp;        Map&lt;Status, Article&gt; articleMap = createArticles(&quot;john@gmail.com&quot;);</b>
+<b class="nc"><i>159</i>&nbsp;        articleMap.values().forEach(article -&gt; optionals.add(Optional.of(article)));</b>
+<b class="nc"><i>160</i>&nbsp;        return optionals;</b>
+<i>161</i>&nbsp;    }
+<i>162</i>&nbsp;
+<i>163</i>&nbsp;    public static Map&lt;Status, Page&lt;Article&gt;&gt; createPages() {
+<b class="nc"><i>164</i>&nbsp;        Map&lt;Status, Page&lt;Article&gt;&gt; pageMap = new HashMap&lt;&gt;();</b>
+<i>165</i>&nbsp;
+<b class="nc"><i>166</i>&nbsp;        List&lt;Article&gt; approved = createArticlesWithStatus(&quot;john@gmail.com&quot;, Status.APPROVED);</b>
+<b class="nc"><i>167</i>&nbsp;        List&lt;Article&gt; beta = createArticlesWithStatus(&quot;john@gmail.com&quot;, Status.BETA);</b>
+<b class="nc"><i>168</i>&nbsp;        List&lt;Article&gt; initial = createArticlesWithStatus(&quot;john@gmail.com&quot;, Status.INITIAL);</b>
+<b class="nc"><i>169</i>&nbsp;        List&lt;Article&gt; rejected = createArticlesWithStatus(&quot;john@gmail.com&quot;, Status.REJECTED);</b>
+<b class="nc"><i>170</i>&nbsp;        List&lt;Article&gt; discarded = createArticlesWithStatus(&quot;john@gmail.com&quot;, Status.DISCARDED);</b>
+<i>171</i>&nbsp;
+<b class="nc"><i>172</i>&nbsp;        Page&lt;Article&gt; approvedPage = new PageImpl&lt;&gt;(approved);</b>
+<b class="nc"><i>173</i>&nbsp;        Page&lt;Article&gt; betaPage = new PageImpl&lt;&gt;(beta);</b>
+<b class="nc"><i>174</i>&nbsp;        Page&lt;Article&gt; initialPage = new PageImpl&lt;&gt;(initial);</b>
+<b class="nc"><i>175</i>&nbsp;        Page&lt;Article&gt; rejectedPage = new PageImpl&lt;&gt;(rejected);</b>
+<b class="nc"><i>176</i>&nbsp;        Page&lt;Article&gt; discardedPage = new PageImpl&lt;&gt;(discarded);</b>
+<i>177</i>&nbsp;
+<b class="nc"><i>178</i>&nbsp;        pageMap.put(Status.APPROVED, approvedPage);</b>
+<b class="nc"><i>179</i>&nbsp;        pageMap.put(Status.BETA, betaPage);</b>
+<b class="nc"><i>180</i>&nbsp;        pageMap.put(Status.INITIAL, initialPage);</b>
+<b class="nc"><i>181</i>&nbsp;        pageMap.put(Status.REJECTED, rejectedPage);</b>
+<b class="nc"><i>182</i>&nbsp;        pageMap.put(Status.DISCARDED, discardedPage);</b>
+<i>183</i>&nbsp;
+<b class="nc"><i>184</i>&nbsp;        return pageMap;</b>
+<i>185</i>&nbsp;    }
+<i>186</i>&nbsp;
+<i>187</i>&nbsp;    public static ObjectId createObjectId() {
+<b class="nc"><i>188</i>&nbsp;        return new ObjectId();</b>
+<i>189</i>&nbsp;    }
+<i>190</i>&nbsp;
+<i>191</i>&nbsp;    public static Map&lt;String, Role&gt; createRoles() {
+<b class="nc"><i>192</i>&nbsp;        Map&lt;String, Role&gt; map = new HashMap&lt;&gt;();</b>
+<i>193</i>&nbsp;
+<b class="nc"><i>194</i>&nbsp;        Role user = Role.builder().id(&quot;USER&quot;).role(&quot;USER&quot;).build();</b>
+<b class="nc"><i>195</i>&nbsp;        Role admin = Role.builder().id(&quot;ADMIN&quot;).role(&quot;ADMIN&quot;).build();</b>
+<i>196</i>&nbsp;
+<b class="nc"><i>197</i>&nbsp;        map.put(&quot;USER&quot;, user);</b>
+<b class="nc"><i>198</i>&nbsp;        map.put(&quot;ADMIN&quot;, admin);</b>
+<i>199</i>&nbsp;
+<b class="nc"><i>200</i>&nbsp;        return map;</b>
+<i>201</i>&nbsp;    }
+<i>202</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-03-24 21:41</div>
+</div>
+</body>
+</html>

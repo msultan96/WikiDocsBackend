@@ -41,11 +41,12 @@ public class ArticleAPI {
 	@ResponseBody
 	public List<Article> getAllApprovedArticles(@PathVariable int pageNumber, @PathVariable int pageSize){
 		logger.info("GETTING ALL APPROVED ARTICLES");
-		// Called getApprovedArticles() from articleService class to find a list of articles with approved status
-		// receive back a list of approved articles
+
+		// request Article Service for paginated approved articles
 		List<Article> approvedArticles = articleService.getAllArticlesByStatus(Status.APPROVED, pageNumber, pageSize);
+
 		logger.info("RETRIEVED ALL APPROVED ARTICLES");
-		// Return list of approved articles
+
 		return approvedArticles;
 	}
 
@@ -57,80 +58,122 @@ public class ArticleAPI {
 	@ResponseBody
 	public List<Article> getAllBetaArticles(@PathVariable int pageNumber, @PathVariable int pageSize){
 		logger.info("GETTING ALL BETA ARTICLES");
-		// Called getBetaArticles() from articleService class to find a list of articles with beta status
-		// Receive back a list of beta articles
+
+		// request Article Service for paginated beta articles
 		List<Article> betaArticles = articleService.getAllArticlesByStatus(Status.BETA, pageNumber, pageSize);
+
 		logger.info("RETRIEVED ALL BETA ARTICLES");
-		// Return a list of beta articles
+
 		return betaArticles;
 	}
 
 	/**
 	 * get all article of given user via email
 	 * @param email email provided used for lookup
-	 * @return list of articles in a response entity
+	 * @param pageNumber page number for infinite scroll
+	 * @param pageSize page size
+	 * @return the articles being requested
 	 */
 	@GetMapping("getAllArticlesByEmail/{email:.+}/{pageNumber}/{pageSize}")
 	@ResponseBody
 	public List<Article> getAllArticlesByEmail(@PathVariable String email, @PathVariable int pageNumber, @PathVariable int pageSize) {
 		logger.info("GETTING ALL ARTICLES BELONGING TO USER WITH EMAIL: " + email);
-		// call getAllArticlesByEmail() from articleService class to find  articles of user with email.
-		// receive back  a list of articles
+
+		// request Article Service for paginated articles by given email
 		List<Article> articles = articleService.getAllArticlesByEmailId(email, pageNumber, pageSize);
+
 		logger.info("RETRIEVED ARTICLES BELONGING TO USER WITH EMAIL : " + email);
-		// return a list of articles of that user has.
+
 		return articles;
 	}
 
+	/**
+	 * get all approved articles of given user via email
+	 * @param email email of user provided for lookup
+	 * @param pageNumber page number for infinite scrolling
+	 * @param pageSize page sie
+	 * @return all approved articles by email
+	 */
 	@GetMapping("getAllApprovedArticlesByEmail/{email:.+}/{pageNumber}/{pageSize}")
 	@ResponseBody
-	public List<Article> getAllApprovedArticles(@PathVariable String email, @PathVariable int pageNumber, @PathVariable int pageSize){
+	public List<Article> getAllApprovedArticlesByEmail(@PathVariable String email, @PathVariable int pageNumber, @PathVariable int pageSize){
 		logger.info("GETTING ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: " + email);
+
+		// request Article Service for paginated approved articles by given email
 		List<Article> approvedArticles = articleService.getAllArticlesByEmailIdAndStatus(email, Status.APPROVED, pageNumber, pageSize);
+
 		logger.info("RETRIEVED ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: " + email);
 		return approvedArticles;
 	}
 
+	/**
+	 * get all beta articles of given user via email
+	 * @see ArticleAPI#getAllApprovedArticlesByEmail
+	 */
 	@GetMapping("getAllBetaArticlesByEmail/{email:.+}/{pageNumber}/{pageSize}")
 	@ResponseBody
 	public List<Article> getAllBetaArticlesByEmail(@PathVariable String email, @PathVariable int pageNumber, @PathVariable int pageSize){
 		logger.info("GETTING ALL BETA ARTICLES BELONG TO USER WITH EMAIL: " + email);
+
+		// request Article Service for paginated beta articles by given email
 		List<Article> betaArticles = articleService.getAllArticlesByEmailIdAndStatus(email, Status.BETA, pageNumber, pageSize);
+
 		logger.info("RETRIEVED ALL APPROVED ARTICLES BELONG TO USER WITH EMAIL: " + email);
 		return betaArticles;
 	}
 
+	/**
+	 * get all initial articles of given user via email
+	 * @see ArticleAPI#getAllApprovedArticlesByEmail
+	 */
 	@GetMapping("getAllInitialArticlesByEmail/{email:.+}/{pageNumber}/{pageSize}")
 	@ResponseBody
 	public List<Article> getAllInitialArticlesByEmail(@PathVariable String email, @PathVariable int pageNumber, @PathVariable int pageSize){
 		logger.info("GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: " + email);
+
+		// request Article Service for paginated initial articles by given email
 		List<Article> initialArticles = articleService.getAllArticlesByEmailIdAndStatus(email, Status.INITIAL, pageNumber, pageSize);
+
 		logger.info("GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: " + email);
 		return initialArticles;
 	}
 
+	/**
+	 * get all rejected articles of given user via email
+	 * @see ArticleAPI#getAllApprovedArticlesByEmail
+	 */
 	@GetMapping("getAllRejectedArticlesByEmail/{email:.+}/{pageNumber}/{pageSize}")
 	@ResponseBody
 	public List<Article> getAllRejectedArticlesByEmail(@PathVariable String email, @PathVariable int pageNumber, @PathVariable int pageSize){
 		logger.info("GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: " + email);
+
+		// request Article Service for paginated rejected articles by given email
 		List<Article> rejectedArticles = articleService.getAllArticlesByEmailIdAndStatus(email, Status.REJECTED, pageNumber, pageSize);
+
 		logger.info("GETTING ALL REJECTED ARTICLES BELONG TO USER WITH EMAIL: " + email);
 		return rejectedArticles;
 	}
 
+	/**
+	 * get all discarded articles of given user via email
+	 * @see ArticleAPI#getAllApprovedArticlesByEmail
+	 */
 	@GetMapping("getAllDiscardedArticlesByEmail/{email:.+}/{pageNumber}/{pageSize}")
 	@ResponseBody
 	public List<Article> getAllDiscardedArticlesByEmail(@PathVariable String email, @PathVariable int pageNumber, @PathVariable int pageSize){
 		logger.info("GETTING ALL DISCARDED ARTICLES BELONG TO USER WITH EMAIL: " + email);
+
+		// request Article Service for paginated discarded articles by given email
 		List<Article> discardedArticles = articleService.getAllArticlesByEmailIdAndStatus(email, Status.DISCARDED, pageNumber, pageSize);
+
 		logger.info("GETTING ALL DISCARDED ARTICLES BELONG TO USER WITH EMAIL: " + email);
 		return discardedArticles;
 	}
 
 	/**
 	 * submit an article for approval
-	 * @param articleId sent from frontend
-	 * @return a submitted article object
+	 * @param articleId id of the article
+	 * @return the article requested
 	 */
 	@PostMapping("submitArticleForApproval")
 	@ResponseBody
@@ -141,8 +184,8 @@ public class ArticleAPI {
 
 	/**
 	 * approve an article
-	 * @param articleId sent from frontend
-	 * @return an approved article object
+	 * @param articleId id of the article
+	 * @return the article requested
 	 */
 	@GetMapping("approveArticle/{articleId}")
 	@ResponseBody
@@ -153,8 +196,8 @@ public class ArticleAPI {
 
 	/**
 	 * reject an article
-	 * @param articleId sent from frontend
-	 * @return rejected article object
+	 * @param articleId id of the article
+	 * @return the article requested
 	 */
 	@GetMapping("rejectArticle/{articleId}")
 	@ResponseBody
@@ -163,13 +206,25 @@ public class ArticleAPI {
 		return rejectedArticle;
 	}
 
+	/**
+	 * retrieve the article being requested
+	 * @param articleId id of the article
+	 * @return the article requested
+	 */
 	@PostMapping("getArticleById")
 	@ResponseBody
-	public Article getArticleByChannelId(@RequestParam String id){
-		Article article = articleService.findById(id);
+	public Article getArticleByChannelId(@RequestParam String articleId){
+		Article article = articleService.findById(articleId);
 		return article;
 	}
 
+	/**
+	 * creates a new article with the given name
+	 * and adds that article to the list of articles
+	 * of the given email
+	 * @param map contains email and article name
+	 * @return newly created article
+	 */
 	@PostMapping("createNewArticle")
 	@ResponseBody
 	public Article createNewArticle(@RequestBody Map<String, String> map) {
@@ -180,6 +235,11 @@ public class ArticleAPI {
 		return article;
 	}
 
+	/**
+	 * saves the article
+	 * @param etherPadId id the of etherPad to retrieve and save the content
+	 * @return saved article
+	 */
 	@PostMapping("saveArticle")
 	@ResponseBody
 	public Article saveArticle(@RequestBody String etherPadId){
@@ -187,6 +247,12 @@ public class ArticleAPI {
 		return returnedArticle;
 	}
 
+	/**
+	 * generates the appropriate url for the
+	 * frontend EtherPad instance
+	 * @param etherPadId
+	 * @return the url
+	 */
 	@PostMapping("getEtherPadUrl")
 	@ResponseBody
 	public String getEtherPadUrl(@RequestBody String etherPadId){
@@ -194,6 +260,13 @@ public class ArticleAPI {
 		return etherPadUrl;
 	}
 
+	/**
+	 * get all articles a user has been invited to
+	 * @param email email provided used for lookup
+	 * @param pageNumber page number for infinite scroll
+	 * @param pageSize page size
+	 * @return the articles being requested
+	 */
 	@GetMapping("getAllInvitedArticlesByEmail/{email:.+}/{pageNumber}/{pageSize}")
     @ResponseBody
 	public List<Article> getAllInvitedArticlesByEmail(@PathVariable String email, @PathVariable int pageNumber, @PathVariable int pageSize){
@@ -201,9 +274,16 @@ public class ArticleAPI {
 		return articles;
 	}
 
+	/**
+	 * invites a user with the given email
+	 * to collaborate on the given article
+	 * @param map contains invitee email and article id to collaborate on
+	 * @return name of the invitee to send to front end
+	 */
 	@PostMapping("inviteUserToCollaborateByEmail")
 	@ResponseBody
 	public String inviteUserToCollaborateByEmail(@RequestBody Map<String, String> map){
-		return articleService.inviteUserToCollaborateByEmail(map);
+		String inviteeName = articleService.inviteUserToCollaborateByEmail(map);
+		return inviteeName;
 	}
 }
