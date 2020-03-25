@@ -41,15 +41,18 @@ public class ArticleServiceImpl implements ArticleService {
 	 * Constructor using constructor injection
 	 */
 	@Autowired
-	public ArticleServiceImpl(CustomUserDetailsService customUserDetailsService, EPLiteClient epLiteClient,
-							  ArticleRepository articleRepository, UserRepository userRepository,
-							  JavaMailSender javaMailSender, RoleRepository roleRepository) {
+	public ArticleServiceImpl(CustomUserDetailsService customUserDetailsService,
+							  ArticleRepository articleRepository,
+							  UserRepository userRepository,
+							  RoleRepository roleRepository,
+							  EPLiteClient epLiteClient,
+							  JavaMailSender javaMailSender) {
 		this.customUserDetailsService = customUserDetailsService;
-		this.epLiteClient = epLiteClient;
 		this.articleRepository = articleRepository;
 		this.userRepository = userRepository;
-		this.javaMailSender = javaMailSender;
 		this.roleRepository = roleRepository;
+		this.epLiteClient = epLiteClient;
+		this.javaMailSender = javaMailSender;
 	}
 
 //	public List<Article> getAllArticlesByEmailId(String email) {
@@ -323,8 +326,12 @@ public class ArticleServiceImpl implements ArticleService {
 	public Article saveArticle(String etherPadId) {
 		// Call findById to validate that the article does exist
 		Article article = findById(etherPadId);
-		if(article.getStatus() == Status.BETA)
-			throw new SavingArticleIsSubmittedException("ArticleService.EDITING_ARTICLE_SUBMITTED");
+		switch(article.getStatus()){
+			case APPROVED:
+			case BETA:
+			case DISCARDED:
+				throw new SavingArticleIsSubmittedException("ArticleService.EDITING_ARTICLE_SUBMITTED");
+		}
 		// Retrieve the contents of the ether pad
 		String content = epLiteClient.getText(etherPadId).get("text").toString();
 		if(content == null) content = "";
@@ -381,6 +388,7 @@ public class ArticleServiceImpl implements ArticleService {
 		User user = customUserDetailsService.findByEmail(email);
 		List<ObjectId> collaboratingArticlesById = user.getCollaboratingArticles();
 
+		//Remove any articles that aren't editable
 		collaboratingArticlesById.removeIf(id -> {
 			Article article = findById(id);
 			if(article.getStatus() == Status.DISCARDED
@@ -392,6 +400,7 @@ public class ArticleServiceImpl implements ArticleService {
 				return false;
 			}
 		});
+
 		user.setCollaboratingArticles(collaboratingArticlesById);
 		userRepository.save(user);
 
@@ -401,7 +410,7 @@ public class ArticleServiceImpl implements ArticleService {
 		int end = Math.min((start + pageable.getPageSize()), articles.size());
 
 		if(start>end) return Collections.emptyList();
-		Page<Article> page = new PageImpl<Article>(articles.subList(start, end), pageable, articles.size());
+		Page<Article> page = new PageImpl<>(articles.subList(start, end), pageable, articles.size());
 
 		//return the current page
 		return page.getContent();
@@ -411,7 +420,6 @@ public class ArticleServiceImpl implements ArticleService {
 		String inviteeEmail = map.get("email");
 		String articleIdAsString = map.get("articleId");
 		ObjectId articleId = new ObjectId(articleIdAsString);
-
 
 		//validate the user email exists
 		User invitee = customUserDetailsService.findByEmail(inviteeEmail);

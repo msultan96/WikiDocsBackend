@@ -1,0 +1,92 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ArticleService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.infy.WikiDocsProject.Service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ArticleService (com.infy.WikiDocsProject.Service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ArticleService</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.infy.WikiDocsProject.Service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.List;
+<i>4</i>&nbsp;import java.util.Map;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import com.infy.WikiDocsProject.Model.Article;
+<i>7</i>&nbsp;import com.infy.WikiDocsProject.enums.Status;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public interface ArticleService {
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;	Article findById(String id);
+<i>12</i>&nbsp;	Article createArticleByEmail(String email, String articleName);
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;//	List&lt;Article&gt; getAllArticlesByEmailId(String email);
+<i>15</i>&nbsp;	List&lt;Article&gt; getAllArticlesByEmailId(String email, int pageNumber, int pageSize);
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;	List&lt;Article&gt; getAllArticlesByStatus(Status status, int pageNumber, int pageSize);
+<i>18</i>&nbsp;	/**
+<i>19</i>&nbsp;	* Commented methods below have been replaced by the method above
+<i>20</i>&nbsp;	* */
+<i>21</i>&nbsp;//	List&lt;Article&gt; getApprovedArticles();
+<i>22</i>&nbsp;//	List&lt;Article&gt; getBetaArticles();
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;	List&lt;Article&gt; getAllArticlesByEmailIdAndStatus(String email, Status status, int pageNumber, int pageSize);
+<i>25</i>&nbsp;	/**
+<i>26</i>&nbsp;	 * Commented methods below have been replaced by the method above
+<i>27</i>&nbsp;	 */
+<i>28</i>&nbsp;//	List&lt;Article&gt; getAllApprovedArticlesByEmailId(String email);
+<i>29</i>&nbsp;//	List&lt;Article&gt; getAllBetaArticlesByEmailId(String email);
+<i>30</i>&nbsp;//	List&lt;Article&gt; getAllInitialArticlesByEmailId(String email);
+<i>31</i>&nbsp;//	List&lt;Article&gt; getAllRejectedArticlesByEmailId(String email);
+<i>32</i>&nbsp;//	List&lt;Article&gt; getAllDiscardedArticlesByEmailId(String email);
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;	Article submitArticle(String id);
+<i>35</i>&nbsp;	Article approveArticle(String id);
+<i>36</i>&nbsp;	Article rejectArticle(String id);
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;	Article saveArticle(String etherPadId);
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;	String getEtherPadUrl(String id);
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;	List&lt;Article&gt; getAllInvitedArticlesByEmail(String email, int pageNumber, int pageSize);
+<i>43</i>&nbsp;	String inviteUserToCollaborateByEmail(Map&lt;String, String&gt; map);
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-03-24 21:41</div>
+</div>
+</body>
+</html>

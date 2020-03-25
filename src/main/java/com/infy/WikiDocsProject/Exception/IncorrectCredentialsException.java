@@ -1,9 +1,9 @@
 package com.infy.WikiDocsProject.Exception;
 
-public class PasswordIncorrectException extends RuntimeException {
+public class IncorrectCredentialsException extends RuntimeException {
     static final long serialVersionUID = 1L;
 
-    public PasswordIncorrectException(String message ) {
+    public IncorrectCredentialsException(String message ) {
         super( message ); //"UserService.INCORRECT_PASSWORD"
     }
 }

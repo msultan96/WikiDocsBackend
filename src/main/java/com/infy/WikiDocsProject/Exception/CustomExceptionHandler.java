@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -94,8 +93,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return error(CONFLICT, e);
     }
 
-    @ExceptionHandler({PasswordIncorrectException.class})
-    public ResponseEntity<ErrorMessage> passwordIncorrectException(PasswordIncorrectException e) {
+    @ExceptionHandler({IncorrectCredentialsException.class})
+    public ResponseEntity<ErrorMessage> incorrectCredentialsException(IncorrectCredentialsException e) {
         return error(UNAUTHORIZED, e);
     }
 
@@ -104,14 +103,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return error(CONFLICT, e);
     }
 
-
     @ExceptionHandler({UsernameNotFoundException.class})
     public ResponseEntity<ErrorMessage> UsernameNotFoundException(UsernameNotFoundException e) {
-        return error(UNAUTHORIZED, e);
-    }
-
-    @ExceptionHandler({BadCredentialsException.class})
-    public ResponseEntity<ErrorMessage> BadCredentialsException(BadCredentialsException e) {
         return error(UNAUTHORIZED, e);
     }
 
