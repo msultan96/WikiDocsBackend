@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 
  * User API Controller Class
- *
+ * @author Muhammad Sultan
  */
 @SuppressWarnings("UnnecessaryLocalVariable")
 @RestController
