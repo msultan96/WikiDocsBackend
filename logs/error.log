@@ -2157,3 +2157,413 @@ com.infy.WikiDocsProject.Exception.IncorrectCredentialsException: AuthAPI.INCORR
 2020-03-24 22:24:01.980  INFO 91124 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL INITIAL ARTICLES BELONG TO USER WITH EMAIL: mo@gmail.com
 2020-03-24 22:24:21.092  INFO 91124 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
 2020-03-24 22:24:21.106  INFO 91124 --- [http-nio-8080-exec-9] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-27 12:06:04.746  INFO 58636 --- [main] c.i.W.WikiDocsProjectApplicationTests    : Starting WikiDocsProjectApplicationTests on USABOS150107L with PID 58636 (started by daniel.neal01 in C:\Users\daniel.neal01\verizon)
+2020-03-27 12:06:04.753  INFO 58636 --- [main] c.i.W.WikiDocsProjectApplicationTests    : No active profile set, falling back to default profiles: default
+2020-03-27 12:06:10.049  INFO 58636 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-27 12:06:10.614  INFO 58636 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 551ms. Found 3 MongoDB repository interfaces.
+2020-03-27 12:06:13.108  INFO 58636 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-27 12:06:13.377  INFO 58636 --- [cluster-ClusterId{value='5e7e328566b0a23b943d11d5', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:3224}] to localhost:27017
+2020-03-27 12:06:13.389  INFO 58636 --- [cluster-ClusterId{value='5e7e328566b0a23b943d11d5', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 0, 3]}, minWireVersion=0, maxWireVersion=7, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=7538045}
+2020-03-27 12:06:15.182  INFO 58636 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2020-03-27 12:06:15.183  INFO 58636 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/static/**'], []
+2020-03-27 12:06:15.184  INFO 58636 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-03-27 12:06:15.185  INFO 58636 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-03-27 12:06:15.186  INFO 58636 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2020-03-27 12:06:15.440  INFO 58636 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@a5d79ced, org.springframework.security.web.context.SecurityContextPersistenceFilter@8d2dca4e, org.springframework.security.web.header.HeaderWriterFilter@1e47d664, org.springframework.security.web.authentication.logout.LogoutFilter@762fadb0, com.infy.WikiDocsProject.Configuration.JwtTokenFilter@10de2fd1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@9df7a2d7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@35719f5b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@d05bffd8, org.springframework.security.web.session.SessionManagementFilter@227fd3fc, org.springframework.security.web.access.ExceptionTranslationFilter@50181db, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@21a8324a]
+2020-03-27 12:06:16.549  INFO 58636 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 12:06:18.021  INFO 58636 --- [main] c.i.W.WikiDocsProjectApplicationTests    : Started WikiDocsProjectApplicationTests in 15.273 seconds (JVM running for 20.313)
+2020-03-27 12:06:18.809  INFO 58636 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-27 12:08:58.532  INFO 88540 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on USABOS150107L with PID 88540 (C:\Users\daniel.neal01\verizon\target\classes started by daniel.neal01 in C:\Users\daniel.neal01\verizon)
+2020-03-27 12:08:58.540  INFO 88540 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 12:09:01.059  INFO 88540 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-27 12:09:01.226  INFO 88540 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 157ms. Found 3 MongoDB repository interfaces.
+2020-03-27 12:09:02.339  INFO 88540 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 12:09:02.351  INFO 88540 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 12:09:02.352  INFO 88540 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-27 12:09:02.498  INFO 88540 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-27 12:09:02.499  INFO 88540 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2830 ms
+2020-03-27 12:09:02.908  INFO 88540 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-27 12:09:02.995  INFO 88540 --- [cluster-ClusterId{value='5e7e332ef46e8e45318867fa', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:3230}] to localhost:27017
+2020-03-27 12:09:03.005  INFO 88540 --- [cluster-ClusterId{value='5e7e332ef46e8e45318867fa', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 0, 3]}, minWireVersion=0, maxWireVersion=7, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=7322661}
+2020-03-27 12:09:03.880  INFO 88540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2020-03-27 12:09:03.880  INFO 88540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/static/**'], []
+2020-03-27 12:09:03.881  INFO 88540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-03-27 12:09:03.881  INFO 88540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-03-27 12:09:03.881  INFO 88540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2020-03-27 12:09:03.926  INFO 88540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@496fc5cc, org.springframework.security.web.context.SecurityContextPersistenceFilter@b5751ea6, org.springframework.security.web.header.HeaderWriterFilter@74b5830, org.springframework.security.web.authentication.logout.LogoutFilter@ec782a6f, com.infy.WikiDocsProject.Configuration.JwtTokenFilter@b993b770, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@bf9859dd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@95b0e126, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7fa6fc20, org.springframework.security.web.session.SessionManagementFilter@f52731ab, org.springframework.security.web.access.ExceptionTranslationFilter@356724c0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7d0f6bc1]
+2020-03-27 12:09:04.138  INFO 88540 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 12:09:04.959  INFO 88540 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-27 12:09:04.962  INFO 88540 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 8.001 seconds (JVM running for 8.962)
+2020-03-27 12:11:23.968  INFO 88540 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 12:11:23.968  INFO 88540 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 12:11:23.984  INFO 88540 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 16 ms
+2020-03-27 12:11:24.186  INFO 88540 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN WITH EMAIL dpn140030@gmail.com
+2020-03-27 12:11:24.316  INFO 88540 --- [http-nio-8080-exec-2] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:3236}] to localhost:27017
+2020-03-27 12:11:24.646  INFO 88540 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : LOGIN FAILED INVALID CREDENTIALS PROVIDED
+2020-03-27 12:11:24.654 ERROR 88540 --- [http-nio-8080-exec-2] c.i.W.Exception.CustomExceptionHandler   : The following exception occurred during processing:  
+
+com.infy.WikiDocsProject.Exception.IncorrectCredentialsException: AuthAPI.INCORRECT_CREDENTIALS
+	at com.infy.WikiDocsProject.API.AuthAPI.loginUser(AuthAPI.java:85) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_202]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_202]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_202]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_202]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138) ~[spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) [spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909) [spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) [spring-webmvc-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) [tomcat-embed-websocket-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at com.infy.WikiDocsProject.Configuration.JwtTokenFilter.doFilter(JwtTokenFilter.java:26) [classes/:na]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178) [spring-security-web-5.2.2.RELEASE.jar:5.2.2.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:92) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) [spring-web-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_202]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_202]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.lang.Thread.run(Thread.java:813) [na:1.8.0_202]
+
+2020-03-27 12:11:24.657  INFO 88540 --- [http-nio-8080-exec-2] c.i.W.Exception.CustomExceptionHandler   : Incorrect email/password provided
+2020-03-27 12:30:15.188  INFO 10436 --- [main] c.i.W.WikiDocsProjectApplicationTests    : Starting WikiDocsProjectApplicationTests on USABOS150107L with PID 10436 (started by daniel.neal01 in C:\Users\daniel.neal01\verizon)
+2020-03-27 12:30:15.354  INFO 10436 --- [main] c.i.W.WikiDocsProjectApplicationTests    : No active profile set, falling back to default profiles: default
+2020-03-27 12:30:22.105  INFO 10436 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-27 12:30:22.731  INFO 10436 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 605ms. Found 3 MongoDB repository interfaces.
+2020-03-27 12:30:27.719  INFO 10436 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-27 12:30:28.093  INFO 10436 --- [cluster-ClusterId{value='5e7e38335e215e21f7cdf7f0', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:3274}] to localhost:27017
+2020-03-27 12:30:28.112  INFO 10436 --- [cluster-ClusterId{value='5e7e38335e215e21f7cdf7f0', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 0, 3]}, minWireVersion=0, maxWireVersion=7, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=15425628}
+2020-03-27 12:30:35.539  INFO 10436 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2020-03-27 12:30:35.540  INFO 10436 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/static/**'], []
+2020-03-27 12:30:35.540  INFO 10436 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-03-27 12:30:35.541  INFO 10436 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-03-27 12:30:35.541  INFO 10436 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2020-03-27 12:30:35.917  INFO 10436 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@aaae0137, org.springframework.security.web.context.SecurityContextPersistenceFilter@f3d05929, org.springframework.security.web.header.HeaderWriterFilter@dae7f061, org.springframework.security.web.authentication.logout.LogoutFilter@f2c12da, com.infy.WikiDocsProject.Configuration.JwtTokenFilter@3f770a97, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@ff227225, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@bd069390, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@209d74c2, org.springframework.security.web.session.SessionManagementFilter@233884b9, org.springframework.security.web.access.ExceptionTranslationFilter@e16a1285, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1f76bbcd]
+2020-03-27 12:30:37.979  INFO 10436 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 12:30:40.261  INFO 10436 --- [main] c.i.W.WikiDocsProjectApplicationTests    : Started WikiDocsProjectApplicationTests in 27.297 seconds (JVM running for 32.889)
+2020-03-27 12:30:41.280  INFO 10436 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-27 13:26:59.243  INFO 50264 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on USABOS150107L with PID 50264 (C:\Users\daniel.neal01\verizon\target\classes started by daniel.neal01 in C:\Users\daniel.neal01\verizon)
+2020-03-27 13:26:59.289  INFO 50264 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 13:27:02.441  INFO 50264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-27 13:27:02.620  INFO 50264 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 158ms. Found 3 MongoDB repository interfaces.
+2020-03-27 13:27:04.694  INFO 50264 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 13:27:04.708  INFO 50264 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 13:27:04.709  INFO 50264 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-27 13:27:04.886  INFO 50264 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-27 13:27:04.887  INFO 50264 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4627 ms
+2020-03-27 13:27:05.012  INFO 50264 --- [main] c.i.W.Utility.LoggingAspect              : Before Method: simpleCorsFilter
+2020-03-27 13:27:05.062  INFO 50264 --- [main] c.i.W.Utility.LoggingAspect              : After Method: simpleCorsFilter
+2020-03-27 13:27:05.062  INFO 50264 --- [main] c.i.W.Utility.LoggingAspect              : After Execution of: simpleCorsFilter
+2020-03-27 13:27:05.066 ERROR 50264 --- [main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.BeanNotOfRequiredTypeException. Message: Bean named 'simpleCorsFilter' is expected to be of type 'org.springframework.boot.web.servlet.ServletContextInitializer' but was actually of type 'org.springframework.beans.factory.support.NullBean'
+2020-03-27 13:27:05.116  INFO 50264 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-03-27 13:27:05.123  WARN 50264 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+2020-03-27 13:27:05.140  INFO 50264 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-03-27 13:27:05.167 ERROR 50264 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:156) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:544) ~[spring-context-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at com.infy.WikiDocsProject.WikiDocsProjectApplication.main(WikiDocsProjectApplication.java:28) [classes/:na]
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:126) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:88) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:438) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:191) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:180) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:153) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.BeanNotOfRequiredTypeException: Bean named 'simpleCorsFilter' is expected to be of type 'org.springframework.boot.web.servlet.ServletContextInitializer' but was actually of type 'org.springframework.beans.factory.support.NullBean'
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:395) ~[spring-beans-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:202) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:96) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:85) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:253) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:227) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext$$Lambda$436.0000000012A554A0.onStartup(Unknown Source) ~[na:na]
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5135) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[na:1.8.0_202]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134) ~[na:1.8.0_202]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:841) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[na:1.8.0_202]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134) ~[na:1.8.0_202]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:467) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:107) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	... 13 common frames omitted
+
+2020-03-27 13:27:47.120  INFO 88808 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on USABOS150107L with PID 88808 (C:\Users\daniel.neal01\verizon\target\classes started by daniel.neal01 in C:\Users\daniel.neal01\verizon)
+2020-03-27 13:27:47.137  INFO 88808 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 13:27:48.872  INFO 88808 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-27 13:27:49.071  INFO 88808 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 185ms. Found 3 MongoDB repository interfaces.
+2020-03-27 13:27:50.589  INFO 88808 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 13:27:50.603  INFO 88808 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 13:27:50.604  INFO 88808 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-27 13:27:50.823  INFO 88808 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-27 13:27:50.824  INFO 88808 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3043 ms
+2020-03-27 13:27:50.868  INFO 88808 --- [main] c.i.W.Utility.LoggingAspect              : Before Method: simpleCorsFilter
+2020-03-27 13:27:50.895  INFO 88808 --- [main] c.i.W.Utility.LoggingAspect              : After Method: simpleCorsFilter
+2020-03-27 13:27:50.895  INFO 88808 --- [main] c.i.W.Utility.LoggingAspect              : After Execution of: simpleCorsFilter
+2020-03-27 13:27:50.899 ERROR 88808 --- [main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.BeanNotOfRequiredTypeException. Message: Bean named 'simpleCorsFilter' is expected to be of type 'org.springframework.boot.web.servlet.ServletContextInitializer' but was actually of type 'org.springframework.beans.factory.support.NullBean'
+2020-03-27 13:27:50.935  INFO 88808 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-03-27 13:27:50.940  WARN 88808 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+2020-03-27 13:27:50.959  INFO 88808 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-03-27 13:27:50.967 ERROR 88808 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:156) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:544) ~[spring-context-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at com.infy.WikiDocsProject.WikiDocsProjectApplication.main(WikiDocsProjectApplication.java:28) [classes/:na]
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:126) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:88) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:438) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:191) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:180) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:153) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.BeanNotOfRequiredTypeException: Bean named 'simpleCorsFilter' is expected to be of type 'org.springframework.boot.web.servlet.ServletContextInitializer' but was actually of type 'org.springframework.beans.factory.support.NullBean'
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:395) ~[spring-beans-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:202) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:96) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:85) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:253) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:227) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext$$Lambda$437.000000001301E7C0.onStartup(Unknown Source) ~[na:na]
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5135) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[na:1.8.0_202]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134) ~[na:1.8.0_202]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:841) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[na:1.8.0_202]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134) ~[na:1.8.0_202]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:467) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:107) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	... 13 common frames omitted
+
+2020-03-27 13:31:11.376  INFO 96728 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on USABOS150107L with PID 96728 (C:\Users\daniel.neal01\verizon\target\classes started by daniel.neal01 in C:\Users\daniel.neal01\verizon)
+2020-03-27 13:31:11.398  INFO 96728 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 13:31:13.306  INFO 96728 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-27 13:31:13.440  INFO 96728 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 129ms. Found 3 MongoDB repository interfaces.
+2020-03-27 13:31:15.240  INFO 96728 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 13:31:15.257  INFO 96728 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 13:31:15.258  INFO 96728 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-27 13:31:15.429  INFO 96728 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-27 13:31:15.430  INFO 96728 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3289 ms
+2020-03-27 13:31:15.487  INFO 96728 --- [main] c.i.W.Utility.LoggingAspect              : Before Method: simpleCorsFilter
+2020-03-27 13:31:15.517  INFO 96728 --- [main] c.i.W.Utility.LoggingAspect              : After Execution of: simpleCorsFilter
+2020-03-27 13:31:15.518  INFO 96728 --- [main] c.i.W.Utility.LoggingAspect              : After Method: simpleCorsFilter
+2020-03-27 13:31:15.523 ERROR 96728 --- [main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.BeanNotOfRequiredTypeException. Message: Bean named 'simpleCorsFilter' is expected to be of type 'org.springframework.boot.web.servlet.ServletContextInitializer' but was actually of type 'org.springframework.beans.factory.support.NullBean'
+2020-03-27 13:31:15.559  INFO 96728 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2020-03-27 13:31:15.565  WARN 96728 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+2020-03-27 13:31:15.582  INFO 96728 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-03-27 13:31:15.589 ERROR 96728 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:156) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:544) ~[spring-context-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:747) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215) [spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at com.infy.WikiDocsProject.WikiDocsProjectApplication.main(WikiDocsProjectApplication.java:28) [classes/:na]
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:126) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:88) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:438) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:191) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:180) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:153) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.BeanNotOfRequiredTypeException: Bean named 'simpleCorsFilter' is expected to be of type 'org.springframework.boot.web.servlet.ServletContextInitializer' but was actually of type 'org.springframework.beans.factory.support.NullBean'
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:395) ~[spring-beans-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-5.2.4.RELEASE.jar:5.2.4.RELEASE]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:202) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addServletContextInitializerBeans(ServletContextInitializerBeans.java:96) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:85) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:253) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:227) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext$$Lambda$435.0000000012D3C0B0.onStartup(Unknown Source) ~[na:na]
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:53) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5135) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[na:1.8.0_202]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134) ~[na:1.8.0_202]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:841) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1384) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1374) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[na:1.8.0_202]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:134) ~[na:1.8.0_202]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:909) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:262) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:421) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:930) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:467) ~[tomcat-embed-core-9.0.31.jar:9.0.31]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:107) ~[spring-boot-2.2.5.RELEASE.jar:2.2.5.RELEASE]
+	... 13 common frames omitted
+
+2020-03-27 13:32:11.984  INFO 3304 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on USABOS150107L with PID 3304 (C:\Users\daniel.neal01\verizon\target\classes started by daniel.neal01 in C:\Users\daniel.neal01\verizon)
+2020-03-27 13:32:11.993  INFO 3304 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-03-27 13:32:14.515  INFO 3304 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-03-27 13:32:14.641  INFO 3304 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 118ms. Found 3 MongoDB repository interfaces.
+2020-03-27 13:32:15.698  INFO 3304 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-03-27 13:32:15.711  INFO 3304 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-03-27 13:32:15.712  INFO 3304 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-03-27 13:32:15.872  INFO 3304 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-03-27 13:32:15.873  INFO 3304 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2694 ms
+2020-03-27 13:32:16.676  INFO 3304 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-03-27 13:32:16.792  INFO 3304 --- [cluster-ClusterId{value='5e7e46b030d0b643afeb6eb9', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:3354}] to localhost:27017
+2020-03-27 13:32:16.799  INFO 3304 --- [cluster-ClusterId{value='5e7e46b030d0b643afeb6eb9', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 0, 3]}, minWireVersion=0, maxWireVersion=7, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=3826458}
+2020-03-27 13:32:18.185  INFO 3304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2020-03-27 13:32:18.186  INFO 3304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/static/**'], []
+2020-03-27 13:32:18.186  INFO 3304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-03-27 13:32:18.187  INFO 3304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-03-27 13:32:18.187  INFO 3304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2020-03-27 13:32:18.232  INFO 3304 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@ae57fb49, org.springframework.security.web.context.SecurityContextPersistenceFilter@f7794246, org.springframework.security.web.header.HeaderWriterFilter@784175b8, org.springframework.security.web.authentication.logout.LogoutFilter@26f27fe5, com.infy.WikiDocsProject.Configuration.JwtTokenFilter@aebfe155, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@9ac6551f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2bbf3ff8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@bf206297, org.springframework.security.web.session.SessionManagementFilter@f145c57f, org.springframework.security.web.access.ExceptionTranslationFilter@f93c899b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@416e62c6]
+2020-03-27 13:32:18.508  INFO 3304 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-03-27 13:32:19.469  INFO 3304 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-03-27 13:32:19.471  INFO 3304 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 8.975 seconds (JVM running for 9.897)
+2020-03-27 13:32:55.165  INFO 3304 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-03-27 13:32:55.166  INFO 3304 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-03-27 13:32:55.184  INFO 3304 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 17 ms
+2020-03-27 13:32:55.499  INFO 3304 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : USER TRYING TO LOGIN WITH EMAIL muhammad.sultan96@gmail.com
+2020-03-27 13:32:55.729  INFO 3304 --- [http-nio-8080-exec-2] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:3355}] to localhost:27017
+2020-03-27 13:32:56.579  INFO 3304 --- [http-nio-8080-exec-2] com.infy.WikiDocsProject.API.UserAPI     : LOGIN SUCCESSFUL FOR muhammad.sultan96@gmail.com
+2020-03-27 13:32:59.261  INFO 3304 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-27 13:32:59.355  INFO 3304 --- [http-nio-8080-exec-4] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES
+2020-03-27 13:33:02.963  INFO 3304 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL BETA ARTICLES
+2020-03-27 13:33:02.966  INFO 3304 --- [http-nio-8080-exec-6] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL BETA ARTICLES
+2020-03-27 13:33:03.924  INFO 3304 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : GETTING ALL APPROVED ARTICLES
+2020-03-27 13:33:03.927  INFO 3304 --- [http-nio-8080-exec-7] com.infy.WikiDocsProject.API.ArticleAPI  : RETRIEVED ALL APPROVED ARTICLES

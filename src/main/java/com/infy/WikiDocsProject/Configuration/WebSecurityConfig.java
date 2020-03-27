@@ -1,6 +1,6 @@
 package com.infy.WikiDocsProject.Configuration;
 
-import com.infy.WikiDocsProject.Service.CustomUserDetailsService;
+import com.infy.WikiDocsProject.Service.CustomUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -93,6 +93,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService mongoUserDetails() {
-        return new CustomUserDetailsService();
+        return new CustomUserDetailsServiceImpl();
     }
 }

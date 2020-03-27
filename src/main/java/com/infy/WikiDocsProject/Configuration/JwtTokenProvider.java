@@ -8,7 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
 import com.infy.WikiDocsProject.Model.Role;
-import com.infy.WikiDocsProject.Service.CustomUserDetailsService;
+import com.infy.WikiDocsProject.Service.CustomUserDetailsServiceImpl;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +27,7 @@ public class JwtTokenProvider {
     private long validityInMilliseconds = 3600000;
 
     @Autowired
-    private CustomUserDetailsService userDetailsService;
+    private CustomUserDetailsServiceImpl userDetailsService;
 
     @PostConstruct
     protected void init(){

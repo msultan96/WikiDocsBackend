@@ -41,7 +41,7 @@ import java.util.*;
 public class ArticleServiceTests {
 
     @Mock
-    CustomUserDetailsService customUserDetailsService;
+    CustomUserDetailsServiceImpl customUserDetailsService;
 
     @Mock
     ArticleRepository articleRepository;

@@ -30,7 +30,7 @@ import org.springframework.stereotype.Service;
 @Service(value="articleService")
 public class ArticleServiceImpl implements ArticleService {
 
-	private final CustomUserDetailsService customUserDetailsService;
+	private final CustomUserDetailsServiceImpl customUserDetailsService;
 	private final EPLiteClient epLiteClient;
 	private final ArticleRepository articleRepository;
 	private final UserRepository userRepository;
@@ -41,7 +41,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * Constructor using constructor injection
 	 */
 	@Autowired
-	public ArticleServiceImpl(CustomUserDetailsService customUserDetailsService,
+	public ArticleServiceImpl(CustomUserDetailsServiceImpl customUserDetailsService,
 							  ArticleRepository articleRepository,
 							  UserRepository userRepository,
 							  RoleRepository roleRepository,
