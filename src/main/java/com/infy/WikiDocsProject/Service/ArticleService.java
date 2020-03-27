@@ -11,25 +11,11 @@ public interface ArticleService {
 	Article findById(String id);
 	Article createArticleByEmail(String email, String articleName);
 
-//	List<Article> getAllArticlesByEmailId(String email);
 	List<Article> getAllArticlesByEmailId(String email, int pageNumber, int pageSize);
 
 	List<Article> getAllArticlesByStatus(Status status, int pageNumber, int pageSize);
-	/**
-	* Commented methods below have been replaced by the method above
-	* */
-//	List<Article> getApprovedArticles();
-//	List<Article> getBetaArticles();
 
 	List<Article> getAllArticlesByEmailIdAndStatus(String email, Status status, int pageNumber, int pageSize);
-	/**
-	 * Commented methods below have been replaced by the method above
-	 */
-//	List<Article> getAllApprovedArticlesByEmailId(String email);
-//	List<Article> getAllBetaArticlesByEmailId(String email);
-//	List<Article> getAllInitialArticlesByEmailId(String email);
-//	List<Article> getAllRejectedArticlesByEmailId(String email);
-//	List<Article> getAllDiscardedArticlesByEmailId(String email);
 
 	Article submitArticle(String id);
 	Article approveArticle(String id);

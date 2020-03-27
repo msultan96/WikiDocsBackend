@@ -34,7 +34,8 @@ public class ArticleAPI {
 	}
 
 	/**
-	 * get approved articles across all users
+	 * get all approved articles - for admins
+	 * @author Luong Dinh
 	 * @return List of approved articles across all users
 	 */
 	@GetMapping("getAllApprovedArticles/{pageNumber}/{pageSize}")
@@ -51,8 +52,9 @@ public class ArticleAPI {
 	}
 
 	/**
-	 * get all beta articles
-	 * @return List of beta articles
+	 * get all beta articles - for admins
+	 * @author Luong Dinh
+	 * @return List of beta articles across all users
 	 */
 	@GetMapping("getAllBetaArticles/{pageNumber}/{pageSize}")
 	@ResponseBody
@@ -69,6 +71,7 @@ public class ArticleAPI {
 
 	/**
 	 * get all article of given user via email
+	 * @author Luong Dinh
 	 * @param email email provided used for lookup
 	 * @param pageNumber page number for infinite scroll
 	 * @param pageSize page size
@@ -89,6 +92,7 @@ public class ArticleAPI {
 
 	/**
 	 * get all approved articles of given user via email
+	 * @author Daniel Neal
 	 * @param email email of user provided for lookup
 	 * @param pageNumber page number for infinite scrolling
 	 * @param pageSize page sie
@@ -108,6 +112,7 @@ public class ArticleAPI {
 
 	/**
 	 * get all beta articles of given user via email
+	 * @author Daniel Neal
 	 * @see ArticleAPI#getAllApprovedArticlesByEmail
 	 */
 	@GetMapping("getAllBetaArticlesByEmail/{email:.+}/{pageNumber}/{pageSize}")
@@ -171,7 +176,23 @@ public class ArticleAPI {
 	}
 
 	/**
+	 * get all articles a user has been invited to
+	 * @author Muhammad Sultan
+	 * @param email email provided used for lookup
+	 * @param pageNumber page number for infinite scroll
+	 * @param pageSize page size
+	 * @return the articles being
+	 */
+	@GetMapping("getAllInvitedArticlesByEmail/{email:.+}/{pageNumber}/{pageSize}")
+	@ResponseBody
+	public List<Article> getAllInvitedArticlesByEmail(@PathVariable String email, @PathVariable int pageNumber, @PathVariable int pageSize){
+		List<Article> articles = articleService.getAllInvitedArticlesByEmail(email, pageNumber, pageSize);
+		return articles;
+	}
+
+	/**
 	 * submit an article for approval
+	 * @author Muhamamd Sultan
 	 * @param articleId id of the article
 	 * @return the article requested
 	 */
@@ -184,6 +205,7 @@ public class ArticleAPI {
 
 	/**
 	 * approve an article
+	 * @author Luong Dinh
 	 * @param articleId id of the article
 	 * @return the article requested
 	 */
@@ -196,6 +218,7 @@ public class ArticleAPI {
 
 	/**
 	 * reject an article
+	 * @author Daniel Neal
 	 * @param articleId id of the article
 	 * @return the article requested
 	 */
@@ -208,12 +231,13 @@ public class ArticleAPI {
 
 	/**
 	 * retrieve the article being requested
+	 * @author Luong Dinh
 	 * @param articleId id of the article
 	 * @return the article requested
 	 */
 	@PostMapping("getArticleById")
 	@ResponseBody
-	public Article getArticleByChannelId(@RequestParam String articleId){
+	public Article getArticleById(@RequestParam String articleId){
 		Article article = articleService.findById(articleId);
 		return article;
 	}
@@ -237,6 +261,7 @@ public class ArticleAPI {
 
 	/**
 	 * saves the article
+	 * @author Luong Dinh
 	 * @param etherPadId id the of etherPad to retrieve and save the content
 	 * @return saved article
 	 */
@@ -250,33 +275,21 @@ public class ArticleAPI {
 	/**
 	 * generates the appropriate url for the
 	 * frontend EtherPad instance
+	 * @author Luong Dinh
 	 * @param etherPadId
 	 * @return the url
 	 */
 	@PostMapping("getEtherPadUrl")
 	@ResponseBody
-	public String getEtherPadUrl(@RequestBody String etherPadId){
+	public String getEtherPadUrl(@RequestBody String etherPadId) {
 		String etherPadUrl = articleService.getEtherPadUrl(etherPadId);
 		return etherPadUrl;
 	}
 
 	/**
-	 * get all articles a user has been invited to
-	 * @param email email provided used for lookup
-	 * @param pageNumber page number for infinite scroll
-	 * @param pageSize page size
-	 * @return the articles being requested
-	 */
-	@GetMapping("getAllInvitedArticlesByEmail/{email:.+}/{pageNumber}/{pageSize}")
-    @ResponseBody
-	public List<Article> getAllInvitedArticlesByEmail(@PathVariable String email, @PathVariable int pageNumber, @PathVariable int pageSize){
-		List<Article> articles = articleService.getAllInvitedArticlesByEmail(email, pageNumber, pageSize);
-		return articles;
-	}
-
-	/**
 	 * invites a user with the given email
 	 * to collaborate on the given article
+	 * @author Muhammad Sultan
 	 * @param map contains invitee email and article id to collaborate on
 	 * @return name of the invitee to send to front end
 	 */
