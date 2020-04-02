@@ -15,7 +15,6 @@ import org.springframework.stereotype.Repository;
 /**
  * 
  * Article Repository
- * @Repository - Declared this class as a Repository
  *
  */
 @Repository

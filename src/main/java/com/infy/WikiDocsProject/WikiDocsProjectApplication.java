@@ -1,11 +1,8 @@
 package com.infy.WikiDocsProject;
 
-import com.infy.WikiDocsProject.Model.User;
-import com.infy.WikiDocsProject.Repository.ArticleRepository;
 import com.infy.WikiDocsProject.Repository.RoleRepository;
 import com.infy.WikiDocsProject.Repository.UserRepository;
 import com.infy.WikiDocsProject.Model.Role;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;

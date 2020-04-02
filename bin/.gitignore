@@ -30,3 +30,14 @@ build/
 ### VS Code ###
 .vscode/
 /.metadata/
+/.gitignore
+/.mvn/
+/coverage/
+/keystore.p12
+/logs/
+/mvnw
+/mvnw.cmd
+/plugin.log
+/plugin.log.2020-03-04
+/pom.xml
+/src/
