@@ -13,6 +13,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 
+import java.text.DateFormat;
+
 
 /**
  * Spring AOP LoggingAspect Class using Log4J
@@ -61,17 +63,22 @@ public class LoggingAspect {
                 "\n\t" + "invoked");
 
         final StopWatch stopWatch = new StopWatch();
-        stopWatch.start();
+        Object response = null;
+        try {
+            stopWatch.start();
 
-        //executes the method
-        Object response = proceedingJoinPoint.proceed();
-        stopWatch.stop();
+            //continues to execute the method
+            response = proceedingJoinPoint.proceed();
+            return response;
+        }
+        finally {
+            stopWatch.stop();
 
-        //logs generic info, including the report time, after the poincut/method execution
-        log.info("\n" + className + "\n\t" + methodName +"\n(" + objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(argsObject) + ")" +
-                "\n\t" + "took " + stopWatch.getTotalTimeMillis() + " ms" +
-                "\n\t" + "response: \n" + objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(response));
-        return response;
+            //logs generic info, including the report time, after the poincut/method execution
+            log.info("\n" + className + "\n\t" + methodName + "\n(" + objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(argsObject) + ")" +
+                    "\n\t" + "took " + stopWatch.getTotalTimeMillis() + " ms" +
+                    "\n\t" + "response: \n" + objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(response));
+        }
     }
 
     /**
@@ -119,6 +126,7 @@ public class LoggingAspect {
      * @param exception
      */
     private void exceptionLogger(Exception exception){
+        long time = System.currentTimeMillis();
         if(exception.getMessage()!=null &&
                 (exception.getMessage().contains("Service") || exception.getMessage().contains("API"))){
             log.error("\n\t" + exception.getMessage());
@@ -126,5 +134,6 @@ public class LoggingAspect {
         else{
             log.error("\n\t" + exception.getMessage(), exception);
         }
+        log.info("EXCEPTION TIMESTAMP: " + DateFormat.getDateTimeInstance().format(time));
     }
 }
