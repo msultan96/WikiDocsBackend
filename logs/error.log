@@ -5470,3 +5470,561 @@ com.infy.WikiDocsProject.API.ArticleAPI@38eba70c
   "rejectedCount" : 0,
   "readOnly" : false
 }
+2020-04-02 17:05:05.774  INFO 78540 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on USABOS150107L with PID 78540 (C:\Users\daniel.neal01\verizon\target\classes started by daniel.neal01 in C:\Users\daniel.neal01\verizon)
+2020-04-02 17:05:05.781  INFO 78540 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-04-02 17:05:07.926  INFO 78540 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-04-02 17:05:08.062  INFO 78540 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 130ms. Found 3 MongoDB repository interfaces.
+2020-04-02 17:05:09.503  INFO 78540 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-04-02 17:05:09.516  INFO 78540 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-02 17:05:09.517  INFO 78540 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-04-02 17:05:09.691  INFO 78540 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-04-02 17:05:09.692  INFO 78540 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3016 ms
+2020-04-02 17:05:10.219  INFO 78540 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-04-02 17:05:10.295  INFO 78540 --- [cluster-ClusterId{value='5e866196a32da6309f632c20', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:4138}] to localhost:27017
+2020-04-02 17:05:10.301  INFO 78540 --- [cluster-ClusterId{value='5e866196a32da6309f632c20', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 0, 3]}, minWireVersion=0, maxWireVersion=7, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=4118971}
+2020-04-02 17:05:11.581  INFO 78540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2020-04-02 17:05:11.582  INFO 78540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/static/**'], []
+2020-04-02 17:05:11.582  INFO 78540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-04-02 17:05:11.582  INFO 78540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-04-02 17:05:11.583  INFO 78540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2020-04-02 17:05:11.653  INFO 78540 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@69259a3b, org.springframework.security.web.context.SecurityContextPersistenceFilter@a4a566ff, org.springframework.security.web.header.HeaderWriterFilter@73f7968a, org.springframework.security.web.authentication.logout.LogoutFilter@34dea793, com.infy.WikiDocsProject.Configuration.JwtTokenFilter@6f3c79ee, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1382b8cf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@f02beeb0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@aa4af5ff, org.springframework.security.web.session.SessionManagementFilter@6af3adf3, org.springframework.security.web.access.ExceptionTranslationFilter@1d7950f6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@396c67fd]
+2020-04-02 17:05:12.013  INFO 78540 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-02 17:05:12.687  INFO 78540 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-04-02 17:05:12.690  INFO 78540 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 8.175 seconds (JVM running for 9.118)
+2020-04-02 17:05:23.302  INFO 78540 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-02 17:05:23.303  INFO 78540 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-02 17:05:23.996  INFO 78540 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 692 ms
+2020-04-02 17:05:24.905  INFO 78540 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.API.AuthAPI@1579aba7
+	loginUser
+([ {
+  "email" : "muhammad.sultan96@gmail.com",
+  "password" : "**********"
+} ])
+	invoked
+2020-04-02 17:05:24.919  INFO 78540 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@9ae86e57
+	findByEmail
+([ "muhammad.sultan96@gmail.com" ])
+	invoked
+2020-04-02 17:05:25.308  INFO 78540 --- [http-nio-8080-exec-2] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:4139}] to localhost:27017
+2020-04-02 17:05:25.438  INFO 78540 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@9ae86e57
+	findByEmail
+([ "muhammad.sultan96@gmail.com" ])
+	took 471 ms
+	response: 
+{
+  "id" : {
+    "timestamp" : 1585014281,
+    "counter" : 4350905,
+    "date" : 1585014281000,
+    "machineIdentifier" : 10808487,
+    "processIdentifier" : 17959,
+    "timeSecond" : 1585014281,
+    "time" : 1585014281000
+  },
+  "email" : "muhammad.sultan96@gmail.com",
+  "password" : "$2a$10$yXiC/UbwLSFQN0fL3AOvyOqN0PVOboFt/bCfSJgHT5xyHibkXqNOu",
+  "name" : "Muhammad Sultan",
+  "articles" : [ ],
+  "collaboratingArticles" : [ ],
+  "roles" : [ {
+    "id" : "ADMIN",
+    "role" : "ADMIN"
+  } ],
+  "enabled" : true
+}
+2020-04-02 17:05:25.440  INFO 78540 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@9ae86e57
+	getUserAuthority
+([ [ {
+  "id" : "ADMIN",
+  "role" : "ADMIN"
+} ] ])
+	invoked
+2020-04-02 17:05:25.443  INFO 78540 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@9ae86e57
+	getUserAuthority
+([ [ {
+  "id" : "ADMIN",
+  "role" : "ADMIN"
+} ] ])
+	took 0 ms
+	response: 
+[ {
+  "authority" : "ADMIN"
+} ]
+2020-04-02 17:05:25.601  INFO 78540 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@3e9730e1
+	loadUserByUsername
+([ "muhammad.sultan96@gmail.com" ])
+	invoked
+2020-04-02 17:05:25.616  INFO 78540 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@3e9730e1
+	loadUserByUsername
+([ "muhammad.sultan96@gmail.com" ])
+	took 8 ms
+	response: 
+{
+  "password" : "$2a$10$yXiC/UbwLSFQN0fL3AOvyOqN0PVOboFt/bCfSJgHT5xyHibkXqNOu",
+  "username" : "muhammad.sultan96@gmail.com",
+  "authorities" : [ {
+    "authority" : "ADMIN"
+  } ],
+  "accountNonExpired" : true,
+  "accountNonLocked" : true,
+  "credentialsNonExpired" : true,
+  "enabled" : true
+}
+2020-04-02 17:05:25.858  INFO 78540 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.API.AuthAPI@1579aba7
+	loginUser
+([ {
+  "email" : "muhammad.sultan96@gmail.com",
+  "password" : "**********"
+} ])
+	took 932 ms
+	response: 
+{
+  "headers" : { },
+  "body" : {
+    "role" : [ {
+      "id" : "ADMIN",
+      "role" : "ADMIN"
+    } ],
+    "username" : "muhammad.sultan96@gmail.com",
+    "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdWhhbW1hZC5zdWx0YW45NkBnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOiJBRE1JTiIsInJvbGUiOiJBRE1JTiJ9XSwiaWF0IjoxNTg1ODY1MTI1LCJleHAiOjE1ODU4Njg3MjV9.05giB_9Av4wVeM2PrKoyM18grsjGrJ6yJuwmib9X26A"
+  },
+  "statusCode" : "OK",
+  "statusCodeValue" : 200
+}
+2020-04-02 17:06:18.584  INFO 78540 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.API.AuthAPI@1579aba7
+	loginUser
+([ {
+  "email" : "dan@mail.com",
+  "password" : "**********"
+} ])
+	invoked
+2020-04-02 17:06:18.585  INFO 78540 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@9ae86e57
+	findByEmail
+([ "dan@mail.com" ])
+	invoked
+2020-04-02 17:06:18.603  INFO 78540 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@9ae86e57
+	findByEmail
+([ "dan@mail.com" ])
+	took 11 ms
+	response: 
+{
+  "id" : {
+    "timestamp" : 1585013321,
+    "counter" : 12176711,
+    "date" : 1585013321000,
+    "machineIdentifier" : 9956457,
+    "processIdentifier" : 20721,
+    "timeSecond" : 1585013321,
+    "time" : 1585013321000
+  },
+  "email" : "dan@mail.com",
+  "password" : "$2a$10$beBqNM40lPBowMxz3S27U.PjEHyBxehyaV2SrhJLA5j80fzBMuExO",
+  "name" : "dan",
+  "articles" : [ ],
+  "collaboratingArticles" : [ ],
+  "roles" : [ {
+    "id" : "USER",
+    "role" : "USER"
+  } ],
+  "enabled" : true
+}
+2020-04-02 17:06:18.605  INFO 78540 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@9ae86e57
+	getUserAuthority
+([ [ {
+  "id" : "USER",
+  "role" : "USER"
+} ] ])
+	invoked
+2020-04-02 17:06:18.606  INFO 78540 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@9ae86e57
+	getUserAuthority
+([ [ {
+  "id" : "USER",
+  "role" : "USER"
+} ] ])
+	took 0 ms
+	response: 
+[ {
+  "authority" : "USER"
+} ]
+2020-04-02 17:06:18.607  INFO 78540 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@3e9730e1
+	loadUserByUsername
+([ "dan@mail.com" ])
+	invoked
+2020-04-02 17:06:18.617  INFO 78540 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@3e9730e1
+	loadUserByUsername
+([ "dan@mail.com" ])
+	took 7 ms
+	response: 
+{
+  "password" : "$2a$10$beBqNM40lPBowMxz3S27U.PjEHyBxehyaV2SrhJLA5j80fzBMuExO",
+  "username" : "dan@mail.com",
+  "authorities" : [ {
+    "authority" : "USER"
+  } ],
+  "accountNonExpired" : true,
+  "accountNonLocked" : true,
+  "credentialsNonExpired" : true,
+  "enabled" : true
+}
+2020-04-02 17:06:18.727  INFO 78540 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.API.AuthAPI@1579aba7
+	loginUser
+([ {
+  "email" : "dan@mail.com",
+  "password" : "**********"
+} ])
+	took 134 ms
+	response: 
+{
+  "headers" : { },
+  "body" : {
+    "role" : [ {
+      "id" : "USER",
+      "role" : "USER"
+    } ],
+    "username" : "dan@mail.com",
+    "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5AbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOiJVU0VSIiwicm9sZSI6IlVTRVIifV0sImlhdCI6MTU4NTg2NTE3OCwiZXhwIjoxNTg1ODY4Nzc4fQ.1SJv4vxuE7DgP2vqwr9xfYSlT1AWjTrdwbeBvO_2yPw"
+  },
+  "statusCode" : "OK",
+  "statusCodeValue" : 200
+}
+2020-04-02 17:06:18.862  INFO 78540 --- [http-nio-8080-exec-6] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@9ae86e57
+	loadUserByUsername
+([ "dan@mail.com" ])
+	invoked
+2020-04-02 17:06:18.873  INFO 78540 --- [http-nio-8080-exec-6] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@9ae86e57
+	loadUserByUsername
+([ "dan@mail.com" ])
+	took 7 ms
+	response: 
+{
+  "password" : "$2a$10$beBqNM40lPBowMxz3S27U.PjEHyBxehyaV2SrhJLA5j80fzBMuExO",
+  "username" : "dan@mail.com",
+  "authorities" : [ {
+    "authority" : "USER"
+  } ],
+  "accountNonExpired" : true,
+  "accountNonLocked" : true,
+  "credentialsNonExpired" : true,
+  "enabled" : true
+}
+2020-04-02 17:06:18.887  INFO 78540 --- [http-nio-8080-exec-6] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.API.ArticleAPI@6d12affe
+	getAllApprovedArticles
+([ 0, 5 ])
+	invoked
+2020-04-02 17:06:18.914  INFO 78540 --- [http-nio-8080-exec-6] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.ArticleServiceImpl@e55e1db9
+	getAllArticlesByStatus
+([ "APPROVED", 0, 5 ])
+	invoked
+2020-04-02 17:06:18.948  INFO 78540 --- [http-nio-8080-exec-6] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.ArticleServiceImpl@e55e1db9
+	getAllArticlesByStatus
+([ "APPROVED", 0, 5 ])
+	took 32 ms
+	response: 
+[ ]
+2020-04-02 17:06:18.948  INFO 78540 --- [http-nio-8080-exec-6] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.API.ArticleAPI@6d12affe
+	getAllApprovedArticles
+([ 0, 5 ])
+	took 59 ms
+	response: 
+[ ]
+2020-04-02 17:10:39.962  INFO 60812 --- [main] c.i.W.WikiDocsProjectApplication         : Starting WikiDocsProjectApplication on USABOS150107L with PID 60812 (C:\Users\daniel.neal01\verizon\target\classes started by daniel.neal01 in C:\Users\daniel.neal01\verizon)
+2020-04-02 17:10:39.972  INFO 60812 --- [main] c.i.W.WikiDocsProjectApplication         : No active profile set, falling back to default profiles: default
+2020-04-02 17:10:42.053  INFO 60812 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2020-04-02 17:10:42.205  INFO 60812 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 144ms. Found 3 MongoDB repository interfaces.
+2020-04-02 17:10:43.592  INFO 60812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2020-04-02 17:10:43.603  INFO 60812 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-04-02 17:10:43.604  INFO 60812 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.31]
+2020-04-02 17:10:43.774  INFO 60812 --- [main] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring embedded WebApplicationContext
+2020-04-02 17:10:43.774  INFO 60812 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2778 ms
+2020-04-02 17:10:44.301  INFO 60812 --- [main] org.mongodb.driver.cluster               : Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+2020-04-02 17:10:44.384  INFO 60812 --- [cluster-ClusterId{value='5e8662e4c7e481070cd66db9', description='null'}-localhost:27017] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:1, serverValue:4150}] to localhost:27017
+2020-04-02 17:10:44.391  INFO 60812 --- [cluster-ClusterId{value='5e8662e4c7e481070cd66db9', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[4, 0, 3]}, minWireVersion=0, maxWireVersion=7, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=4626868}
+2020-04-02 17:10:45.603  INFO 60812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/resources/**'], []
+2020-04-02 17:10:45.603  INFO 60812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/static/**'], []
+2020-04-02 17:10:45.603  INFO 60812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/css/**'], []
+2020-04-02 17:10:45.604  INFO 60812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/js/**'], []
+2020-04-02 17:10:45.604  INFO 60812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: Ant [pattern='/images/**'], []
+2020-04-02 17:10:45.653  INFO 60812 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2879dfb6, org.springframework.security.web.context.SecurityContextPersistenceFilter@8cfe98a9, org.springframework.security.web.header.HeaderWriterFilter@45635956, org.springframework.security.web.authentication.logout.LogoutFilter@855a75ba, com.infy.WikiDocsProject.Configuration.JwtTokenFilter@dc3fd83d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@296ec2db, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@caaa8433, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@13c733, org.springframework.security.web.session.SessionManagementFilter@70ebfca7, org.springframework.security.web.access.ExceptionTranslationFilter@fe762c7e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@9eb45eb4]
+2020-04-02 17:10:45.972  INFO 60812 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-04-02 17:10:46.665  INFO 60812 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/DLM_Wiki'
+2020-04-02 17:10:46.667  INFO 60812 --- [main] c.i.W.WikiDocsProjectApplication         : Started WikiDocsProjectApplication in 7.803 seconds (JVM running for 8.635)
+2020-04-02 17:10:53.414  INFO 60812 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[localhost].[/DLM_Wiki]      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-04-02 17:10:53.416  INFO 60812 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-04-02 17:10:53.429  INFO 60812 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2020-04-02 17:10:53.626  INFO 60812 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.API.AuthAPI@1ed9372d
+	loginUser
+([ {
+  "email" : "muhammad.sultan96@gmail.com",
+  "password" : "**********"
+} ])
+	invoked
+2020-04-02 17:10:53.639  INFO 60812 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ff1fb32d
+	findByEmail
+([ "muhammad.sultan96@gmail.com" ])
+	invoked
+2020-04-02 17:10:53.729  INFO 60812 --- [http-nio-8080-exec-2] org.mongodb.driver.connection            : Opened connection [connectionId{localValue:2, serverValue:4152}] to localhost:27017
+2020-04-02 17:10:53.802  INFO 60812 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ff1fb32d
+	findByEmail
+([ "muhammad.sultan96@gmail.com" ])
+	took 148 ms
+	response: 
+{
+  "id" : {
+    "timestamp" : 1585014281,
+    "counter" : 4350905,
+    "date" : 1585014281000,
+    "machineIdentifier" : 10808487,
+    "processIdentifier" : 17959,
+    "timeSecond" : 1585014281,
+    "time" : 1585014281000
+  },
+  "email" : "muhammad.sultan96@gmail.com",
+  "password" : "$2a$10$yXiC/UbwLSFQN0fL3AOvyOqN0PVOboFt/bCfSJgHT5xyHibkXqNOu",
+  "name" : "Muhammad Sultan",
+  "articles" : [ ],
+  "collaboratingArticles" : [ ],
+  "roles" : [ {
+    "id" : "ADMIN",
+    "role" : "ADMIN"
+  } ],
+  "enabled" : true
+}
+2020-04-02 17:10:53.804  INFO 60812 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ff1fb32d
+	getUserAuthority
+([ [ {
+  "id" : "ADMIN",
+  "role" : "ADMIN"
+} ] ])
+	invoked
+2020-04-02 17:10:53.806  INFO 60812 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ff1fb32d
+	getUserAuthority
+([ [ {
+  "id" : "ADMIN",
+  "role" : "ADMIN"
+} ] ])
+	took 0 ms
+	response: 
+[ {
+  "authority" : "ADMIN"
+} ]
+2020-04-02 17:10:54.110  INFO 60812 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ce63659b
+	loadUserByUsername
+([ "muhammad.sultan96@gmail.com" ])
+	invoked
+2020-04-02 17:10:54.121  INFO 60812 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ce63659b
+	loadUserByUsername
+([ "muhammad.sultan96@gmail.com" ])
+	took 7 ms
+	response: 
+{
+  "password" : "$2a$10$yXiC/UbwLSFQN0fL3AOvyOqN0PVOboFt/bCfSJgHT5xyHibkXqNOu",
+  "username" : "muhammad.sultan96@gmail.com",
+  "authorities" : [ {
+    "authority" : "ADMIN"
+  } ],
+  "accountNonExpired" : true,
+  "accountNonLocked" : true,
+  "credentialsNonExpired" : true,
+  "enabled" : true
+}
+2020-04-02 17:10:54.376  INFO 60812 --- [http-nio-8080-exec-2] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.API.AuthAPI@1ed9372d
+	loginUser
+([ {
+  "email" : "muhammad.sultan96@gmail.com",
+  "password" : "**********"
+} ])
+	took 735 ms
+	response: 
+{
+  "headers" : { },
+  "body" : {
+    "role" : [ {
+      "id" : "ADMIN",
+      "role" : "ADMIN"
+    } ],
+    "username" : "muhammad.sultan96@gmail.com",
+    "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtdWhhbW1hZC5zdWx0YW45NkBnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOiJBRE1JTiIsInJvbGUiOiJBRE1JTiJ9XSwiaWF0IjoxNTg1ODY1NDU0LCJleHAiOjE1ODU4NjkwNTR9.7qPM71ZJpDfgTTOD8ftSOZohdAipIUir0Pj6MfIFpr0"
+  },
+  "statusCode" : "OK",
+  "statusCodeValue" : 200
+}
+2020-04-02 17:11:05.645  INFO 60812 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.API.AuthAPI@1ed9372d
+	loginUser
+([ {
+  "email" : "dan@mail.com",
+  "password" : "**********"
+} ])
+	invoked
+2020-04-02 17:11:05.646  INFO 60812 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ff1fb32d
+	findByEmail
+([ "dan@mail.com" ])
+	invoked
+2020-04-02 17:11:05.664  INFO 60812 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ff1fb32d
+	findByEmail
+([ "dan@mail.com" ])
+	took 11 ms
+	response: 
+{
+  "id" : {
+    "timestamp" : 1585013321,
+    "counter" : 12176711,
+    "date" : 1585013321000,
+    "machineIdentifier" : 9956457,
+    "processIdentifier" : 20721,
+    "timeSecond" : 1585013321,
+    "time" : 1585013321000
+  },
+  "email" : "dan@mail.com",
+  "password" : "$2a$10$beBqNM40lPBowMxz3S27U.PjEHyBxehyaV2SrhJLA5j80fzBMuExO",
+  "name" : "dan",
+  "articles" : [ ],
+  "collaboratingArticles" : [ ],
+  "roles" : [ {
+    "id" : "USER",
+    "role" : "USER"
+  } ],
+  "enabled" : true
+}
+2020-04-02 17:11:05.666  INFO 60812 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ff1fb32d
+	getUserAuthority
+([ [ {
+  "id" : "USER",
+  "role" : "USER"
+} ] ])
+	invoked
+2020-04-02 17:11:05.667  INFO 60812 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ff1fb32d
+	getUserAuthority
+([ [ {
+  "id" : "USER",
+  "role" : "USER"
+} ] ])
+	took 0 ms
+	response: 
+[ {
+  "authority" : "USER"
+} ]
+2020-04-02 17:11:05.668  INFO 60812 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ce63659b
+	loadUserByUsername
+([ "dan@mail.com" ])
+	invoked
+2020-04-02 17:11:05.679  INFO 60812 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ce63659b
+	loadUserByUsername
+([ "dan@mail.com" ])
+	took 7 ms
+	response: 
+{
+  "password" : "$2a$10$beBqNM40lPBowMxz3S27U.PjEHyBxehyaV2SrhJLA5j80fzBMuExO",
+  "username" : "dan@mail.com",
+  "authorities" : [ {
+    "authority" : "USER"
+  } ],
+  "accountNonExpired" : true,
+  "accountNonLocked" : true,
+  "credentialsNonExpired" : true,
+  "enabled" : true
+}
+2020-04-02 17:11:05.797  INFO 60812 --- [http-nio-8080-exec-4] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.API.AuthAPI@1ed9372d
+	loginUser
+([ {
+  "email" : "dan@mail.com",
+  "password" : "**********"
+} ])
+	took 145 ms
+	response: 
+{
+  "headers" : { },
+  "body" : {
+    "role" : [ {
+      "id" : "USER",
+      "role" : "USER"
+    } ],
+    "username" : "dan@mail.com",
+    "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkYW5AbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOiJVU0VSIiwicm9sZSI6IlVTRVIifV0sImlhdCI6MTU4NTg2NTQ2NSwiZXhwIjoxNTg1ODY5MDY1fQ.11VI04V__gXWOqwjF5cjbpgESJ2huLxDr_Tn-VjgsB8"
+  },
+  "statusCode" : "OK",
+  "statusCodeValue" : 200
+}
+2020-04-02 17:11:05.912  INFO 60812 --- [http-nio-8080-exec-6] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ff1fb32d
+	loadUserByUsername
+([ "dan@mail.com" ])
+	invoked
+2020-04-02 17:11:05.927  INFO 60812 --- [http-nio-8080-exec-6] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.CustomUserDetailsService@ff1fb32d
+	loadUserByUsername
+([ "dan@mail.com" ])
+	took 12 ms
+	response: 
+{
+  "password" : "$2a$10$beBqNM40lPBowMxz3S27U.PjEHyBxehyaV2SrhJLA5j80fzBMuExO",
+  "username" : "dan@mail.com",
+  "authorities" : [ {
+    "authority" : "USER"
+  } ],
+  "accountNonExpired" : true,
+  "accountNonLocked" : true,
+  "credentialsNonExpired" : true,
+  "enabled" : true
+}
+2020-04-02 17:11:05.943  INFO 60812 --- [http-nio-8080-exec-6] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.API.ArticleAPI@30f8f58d
+	getAllApprovedArticles
+([ 0, 5 ])
+	invoked
+2020-04-02 17:11:05.974  INFO 60812 --- [http-nio-8080-exec-6] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.ArticleServiceImpl@56199cd8
+	getAllArticlesByStatus
+([ "APPROVED", 0, 5 ])
+	invoked
+2020-04-02 17:11:06.024  INFO 60812 --- [http-nio-8080-exec-6] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.Service.ArticleServiceImpl@56199cd8
+	getAllArticlesByStatus
+([ "APPROVED", 0, 5 ])
+	took 47 ms
+	response: 
+[ ]
+2020-04-02 17:11:06.025  INFO 60812 --- [http-nio-8080-exec-6] c.i.W.Utility.LoggingAspect              : 
+com.infy.WikiDocsProject.API.ArticleAPI@30f8f58d
+	getAllApprovedArticles
+([ 0, 5 ])
+	took 82 ms
+	response: 
+[ ]
