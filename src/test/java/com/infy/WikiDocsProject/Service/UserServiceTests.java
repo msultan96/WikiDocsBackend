@@ -47,7 +47,7 @@ public class UserServiceTests {
 
     @InjectMocks
     @Spy //Needed to mock methods that call class methods
-    CustomUserDetailsServiceImpl userService;
+            CustomUserDetailsService userService;
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();

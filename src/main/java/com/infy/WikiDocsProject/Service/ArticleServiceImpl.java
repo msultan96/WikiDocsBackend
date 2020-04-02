@@ -20,7 +20,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 /**
@@ -30,7 +29,7 @@ import org.springframework.stereotype.Service;
 @Service(value="articleService")
 public class ArticleServiceImpl implements ArticleService {
 
-	private final CustomUserDetailsServiceImpl customUserDetailsService;
+	private final CustomUserDetailsService customUserDetailsService;
 	private final EPLiteClient epLiteClient;
 	private final ArticleRepository articleRepository;
 	private final UserRepository userRepository;
@@ -41,7 +40,7 @@ public class ArticleServiceImpl implements ArticleService {
 	 * Constructor using constructor injection
 	 */
 	@Autowired
-	public ArticleServiceImpl(CustomUserDetailsServiceImpl customUserDetailsService,
+	public ArticleServiceImpl(CustomUserDetailsService customUserDetailsService,
 							  ArticleRepository articleRepository,
 							  UserRepository userRepository,
 							  RoleRepository roleRepository,

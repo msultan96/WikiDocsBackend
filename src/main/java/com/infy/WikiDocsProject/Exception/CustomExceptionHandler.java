@@ -1,5 +1,7 @@
 package com.infy.WikiDocsProject.Exception;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.infy.WikiDocsProject.Model.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -9,15 +11,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import lombok.extern.slf4j.Slf4j;
 import static org.springframework.http.HttpStatus.*;
 
-@Slf4j
+
 @RestControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Autowired
     private final Environment environment;
+
+    static Logger logger = LogManager.getLogger(CustomExceptionHandler.class.getName());
 
     public CustomExceptionHandler(Environment environment) {
         this.environment = environment;
@@ -114,8 +117,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private ResponseEntity<ErrorMessage> error(HttpStatus status, Exception e) {
-        log.error("The following exception occurred during processing:  ", e);
-        log.info(environment.getProperty(e.getMessage()));
+        logger.error("The following exception occurred during processing:  ", e);
+        logger.info(environment.getProperty(e.getMessage()));
         ErrorMessage error = new ErrorMessage(status.value(), environment.getProperty(e.getMessage()));
         return new ResponseEntity<>(error, status);
     }

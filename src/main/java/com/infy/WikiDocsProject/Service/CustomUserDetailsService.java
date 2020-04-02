@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service(value="customUserDetailsServiceImpl")
-public class CustomUserDetailsServiceImpl implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
     /**
      * Autowired using field injection because of conflict in WebSecurityConfig
      */

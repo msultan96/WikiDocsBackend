@@ -5,13 +5,12 @@ import com.infy.WikiDocsProject.Exception.IncorrectCredentialsException;
 import com.infy.WikiDocsProject.Model.AuthBody;
 import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.Repository.UserRepository;
-import com.infy.WikiDocsProject.Service.CustomUserDetailsServiceImpl;
+import com.infy.WikiDocsProject.Service.CustomUserDetailsService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -41,7 +40,7 @@ public class AuthAPI {
     UserRepository userRepository;
 
     @Autowired
-    CustomUserDetailsServiceImpl customUserDetailsService;
+    CustomUserDetailsService customUserDetailsService;
 
     @Autowired
     PasswordEncoder passwordEncoder;
