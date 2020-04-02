@@ -88,19 +88,10 @@ public class TestDataCreator {
                 .rejectedCount(baseProducer.randomBetween(0,2))
                 .build();
         switch(status){
-            case APPROVED:
-            case BETA:
-                article.setReadOnly(true);
-                break;
             case DISCARDED:
-                article.setReadOnly(true);
                 article.setRejectedCount(4);
                 break;
-            case REJECTED:
-                article.setReadOnly(false);
-                break;
             case INITIAL:
-                article.setReadOnly(false);
                 article.setRejectedCount(0);
                 break;
         }

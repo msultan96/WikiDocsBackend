@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class User implements Cloneable {
 
 	@Id
 	private ObjectId id;
@@ -26,14 +26,16 @@ public class User {
 
 	private String name;
 
-	// TODO: Change List<Article> to Set<Article> to handle duplicates
 	private @DBRef(db = "article") List<Article> articles;
 
-	// TODO: Change List<ObjectId> to Set<ObjectId> to handle duplicates
 	private List<ObjectId> collaboratingArticles;
 
 	@Field("roles")
 	private @DBRef Set<Role> roles;
 	private boolean enabled;
 
+	@Override
+	public User clone() throws CloneNotSupportedException {
+		return (User) super.clone();
+	}
 }

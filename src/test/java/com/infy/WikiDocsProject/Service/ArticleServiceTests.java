@@ -689,10 +689,14 @@ public class ArticleServiceTests {
         map.put("articleId", stringId);
 
         User expectedUser = users.get(0);
+        Article expectedArticle = articles.get(Status.INITIAL);
         expectedUser.setCollaboratingArticles(Arrays.asList(objectId));
 
         when(customUserDetailsService.findByEmail(anyString()))
                 .thenReturn(expectedUser);
+
+        doReturn(expectedArticle)
+                .when(articleService).findById(any(ObjectId.class));
 
         articleService.inviteUserToCollaborateByEmail(map);
     }

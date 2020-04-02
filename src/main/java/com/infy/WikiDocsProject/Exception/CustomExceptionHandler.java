@@ -114,8 +114,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private ResponseEntity<ErrorMessage> error(HttpStatus status, Exception e) {
-        log.error("The following exception occurred during processing:  ", e);
-        log.info(environment.getProperty(e.getMessage()));
+//        log.error("The following exception occurred during processing:  ", e);
+//        log.info(environment.getProperty(e.getMessage()));
         ErrorMessage error = new ErrorMessage(status.value(), environment.getProperty(e.getMessage()));
         return new ResponseEntity<>(error, status);
     }
