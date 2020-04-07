@@ -19,53 +19,62 @@
 	</properties>
 
 	<dependencies>
+		<!-- Spring Boot - Spring Data MongoDB -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
+
+		<!-- Spring Boot - Spring Web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<!-- Spring Boot - Spring Security Starter -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-			<version>2.2.5.RELEASE</version>
 		</dependency>
+
+		<!-- Spring Security Core -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>5.3.0.RELEASE</version>
 		</dependency>
+
+		<!-- Spring Security Config -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>5.3.0.RELEASE</version>
 		</dependency>
+
+		<!-- Spring Security Crypto -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
-			<version>5.3.0.RELEASE</version>
 		</dependency>
+
+		<!-- Spring Security Test -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Spring Boot - Spring Logger -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
-			<version>2.2.5.RELEASE</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>5.2.4.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>1.9.5</version>
-		</dependency>
+
+		<!-- Spring Boot - Spring Mail -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
+
+		<!-- Spring Boot - Spring Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -77,43 +86,67 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<!--Spring AOP -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+
+		<!-- Spring Boot Spring AutoConfigure -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+
+		<!-- ??? -->
 		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- AspectJ -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-autoconfigure</artifactId>
-			<version>2.2.4.RELEASE</version>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
 		</dependency>
+
+		<!-- jUnit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Lombok -->
 		<dependency>
         	<groupId>org.projectlombok</groupId>
         	<artifactId>lombok</artifactId>
-        	<version>1.18.12</version>
         	<scope>provided</scope>
     	</dependency>
 
+		<!-- jFairy 0.6.2 -->
 		<dependency>
 			<groupId>com.devskiller</groupId>
 			<artifactId>jfairy</artifactId>
 			<version>0.6.2</version>
 		</dependency>
+
+		<!-- EtherPad 1.2.13 -->
 		<dependency>
 			<groupId>net.gjerull.etherpad</groupId>
 			<artifactId>etherpad_lite_client</artifactId>
 			<version>1.2.13</version>
 		</dependency>
+
+		<!-- JSON Web Token 0.9.0 -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 			<version>0.9.0</version>
 		</dependency>
+
 	</dependencies>
 
 	<build>

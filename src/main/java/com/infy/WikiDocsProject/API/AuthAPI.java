@@ -1,13 +1,14 @@
 package com.infy.WikiDocsProject.API;
 
-import com.infy.WikiDocsProject.Annotation.ContainsRawPassword;
 import com.infy.WikiDocsProject.Configuration.JwtTokenProvider;
 import com.infy.WikiDocsProject.Exception.IncorrectCredentialsException;
 import com.infy.WikiDocsProject.Model.AuthBody;
+import com.infy.WikiDocsProject.Model.ErrorMessage;
 import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.Repository.UserRepository;
 import com.infy.WikiDocsProject.Service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -53,7 +54,6 @@ public class AuthAPI {
      * @return map containing email, user role, and token
      */
     @PostMapping("login")
-    @ContainsRawPassword
     public ResponseEntity loginUser(@RequestBody AuthBody data){
         try{
             // retrieve email from AuthBody
@@ -77,8 +77,10 @@ public class AuthAPI {
             model.put("username", email);
             model.put("role", user.getRoles());
             model.put("token",token);
-
-            return ok(model);
+            HttpStatus status = HttpStatus.BAD_REQUEST;
+            ErrorMessage error = new ErrorMessage(status.value(), "Some Message Here");
+            return new ResponseEntity<>(error, status);
+//            return ok(model);
         }
         catch(AuthenticationException e){
             throw new IncorrectCredentialsException("AuthAPI.INCORRECT_CREDENTIALS");
@@ -88,7 +90,6 @@ public class AuthAPI {
 
     @PostMapping("register")
     @ResponseBody
-    @ContainsRawPassword
     public ResponseEntity register(@RequestBody User user){
 
         //call user service to register the user

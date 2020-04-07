@@ -1,6 +1,5 @@
 package com.infy.WikiDocsProject.Service;
 
-import com.infy.WikiDocsProject.Annotation.ContainsRawPassword;
 import com.infy.WikiDocsProject.Exception.RegistrationException;
 import com.infy.WikiDocsProject.Exception.UserAlreadyExistsException;
 import com.infy.WikiDocsProject.Exception.UserNotFoundException;
@@ -8,7 +7,6 @@ import com.infy.WikiDocsProject.Model.Role;
 import com.infy.WikiDocsProject.Model.User;
 import com.infy.WikiDocsProject.Repository.RoleRepository;
 import com.infy.WikiDocsProject.Repository.UserRepository;
-import lombok.NonNull;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -77,7 +75,6 @@ public class CustomUserDetailsService implements UserDetailsService {
      * handles input validation
      * @param user the user being registered
      */
-    @ContainsRawPassword
     public void register(User user) {
         //retrieve user information
         String email = user.getEmail().toLowerCase();

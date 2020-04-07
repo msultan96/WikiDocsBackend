@@ -70,26 +70,20 @@ public class ArticleServiceTests {
      */
     private List<User> users;
     private List<User> admins;
-    private List<Optional<User>> optionalUsers;
-    private Map<Status, Article> articles;
-    private List<Optional<Article>> optionalArticles;
-    private Page<Article> page;
-    private Map<Status, Page<Article>> pages;
-    private ObjectId objectId;
-    private String stringId;
     private Map<String, Role> roles;
 
+    private Page<Article> page;
+    private Map<Status, Page<Article>> pages;
+    private Map<Status, Article> articles;
+
+    private List<Optional<User>> optionalUsers;
+    private List<Optional<Article>> optionalArticles;
+
+    private ObjectId objectId;
+    private String stringId;
+
     /**
-     * Populates test data.
-     * Should change data structure to Map.
-     * Special note for articles, optionalArticles, and pages:
-     *
-     * Articles.get(x) | Status(x)
-     *      0            APPROVED
-     *      1            BETA
-     *      2            INITIAL
-     *      3            REJECTED
-     *      4            DISCARDED
+     * Populates test data
      * @see TestDataCreator Class
      */
     @Before
